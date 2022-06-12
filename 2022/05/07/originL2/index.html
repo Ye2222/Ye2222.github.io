@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="origin2022b的新功能、一些操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="originL2">
+<meta property="og:url" content="https://ye2222.github.io/2022/05/07/originL2/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="origin2022b的新功能、一些操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111418731.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111446066.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111447106.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111449050.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111453026.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111456716.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111501653.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111508120.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111509284.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111510267.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111513164.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111514813.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111519640.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111524157.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111536191.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111535869.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507231452922.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507231522713.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220523140742968.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220523140754689.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220523140815427.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061540393.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061541769.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061559103.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061637723.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061638599.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206062002923.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206062003442.png">
+<meta property="article:published_time" content="2022-05-07T13:46:24.000Z">
+<meta property="article:modified_time" content="2022-06-11T07:36:55.834Z">
+<meta property="article:author" content="GuoYB">
+<meta property="article:tag" content="origin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111418731.png">
+
+<link rel="canonical" href="https://ye2222.github.io/2022/05/07/originL2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>originL2 | Yeの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2022/05/07/originL2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.gif">
+      <meta itemprop="name" content="GuoYB">
+      <meta itemprop="description" content="欢迎欢迎">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          originL2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 21:46:24" itemprop="dateCreated datePublished" datetime="2022-05-07T21:46:24+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-11 15:36:55" itemprop="dateModified" datetime="2022-06-11T15:36:55+08:00">2022-06-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%BB%E5%9B%BE/" itemprop="url" rel="index"><span itemprop="name">画图</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%BB%E5%9B%BE/origin/" itemprop="url" rel="index"><span itemprop="name">origin</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">origin2022b的新功能、一些操作</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2><span id="2022b新功能">2022b新功能</span></h2><ul>
+<li>导出图为SVG格式<ul>
+<li>支持导出图为SVG格式</li>
+</ul>
+</li>
+<li><p>窗口排列和窗口贴靠</p>
+<ul>
+<li><p>新对话框可按所需顺序排列窗口 </p>
+</li>
+<li><p>支持 theme 保存设置再次使用</p>
+</li>
+<li>拖拽窗口标题栏到工作 区边缘， 窗口自动贴靠一侧分屏显示</li>
+<li>Shift + 拖拽，并排排列窗口 </li>
+<li>Alt + 拖拽，两窗口交换位置</li>
+</ul>
+</li>
+<li>支持GeoTIFF图片<ul>
+<li>GeoTIFF 文件的导入导出 </li>
+<li>对 GeoTIFF 图片进行图像处理并进一步绘图 </li>
+<li>(批量) 导入 GeoTIFF 格式的栅格数据进行处理分析</li>
+</ul>
+</li>
+<li>对RS/GIS数据的进一步支持<ul>
+<li>对堆叠矩阵或图像进行插值 </li>
+<li>添加 IDW 和 Kriging算法 </li>
+<li>导入 NC 时计算指定月份的年平均数据，例如夏季 （6-9月） </li>
+<li>堆叠矩阵支持时间维度上计算周期性的数学计算</li>
+</ul>
+</li>
+<li>Notes窗口支持富文本及图片表格</li>
+<li>优化了Symbol Map对话框</li>
+<li>距离标注工具</li>
+<li>一键添加小图编号</li>
+<li>坐标轴支持统一的数量级设置</li>
+<li>断开公式等数据链接，保留数值</li>
+</ul>
+<h2><span id="跟着论文学绘图">跟着论文学绘图</span></h2><h4><span id="原位拉曼光谱图">原位拉曼光谱图</span></h4><h5><span id="数据导入多个数据文件的导入">数据导入（多个数据文件的导入）</span></h5><ul>
+<li>使用导入多个ASCII文件（菜单/数据/从文件导入/多个ASCII文件），选中需要导入的11个文件</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111418731.png" alt="image-20220611141753188" style="zoom: 80%;"></p>
+<h5><span id="数据筛除删除重复的x列">数据筛除（删除重复的X列）</span></h5><ul>
+<li>原数据中出现了重复的X列，进行删除</li>
+<li>选择数据(菜单/编辑/选择)</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111446066.png" alt="image-20220611144605963" style="zoom:80%;"></p>
+<ul>
+<li>选择跳行模式，设置好测试选中目标行，进行删除（隐藏只是将列隐藏，还是会存在）</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111447106.png" alt="image-20220611144706916" style="zoom:67%;"></p>
+<h5><span id="设置x轴数据时间">设置X轴数据（时间）</span></h5><ul>
+<li>将其插入到数据列的长名称中</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111449050.png" alt="image-20220611144912962"></p>
+<h5><span id="绘制等高线图">绘制等高线图</span></h5><ul>
+<li>全选数据，选择（菜单/绘图/等高线图/等高线图-颜色填充）</li>
+<li>X值：列标签，长名称</li>
+<li>Y值：第一列</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111453026.png" alt="image-20220611145346836" style="zoom:67%;"></p>
+<ul>
+<li>将图片的等高线去除</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111456716.png" alt="image-20220611145601529" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111501653.png" alt="image-20220611150116300" style="zoom: 67%;"></p>
+<h5><span id="绘制三维网格图">绘制三维网格图</span></h5><h6><span id="转换数据为xyz形式">转换数据为XYZ形式</span></h6><ul>
+<li>将刚才的数据转换为XYZ数据（菜单/工作表/转换为XYZ数据）</li>
+<li>设置X值为X数据跨列/列标签/长名称，Y值为第一列</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111508120.png" alt="image-20220611150815011" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111509284.png" alt="image-20220611150906119" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111510267.png" alt="image-20220611151002082" style="zoom:67%;"></p>
+<h6><span id="xyz数据网格化插值处理">XYZ数据网格化（插值处理）</span></h6><ul>
+<li>将数据转换为矩阵（菜单/工作表/转换为矩阵/XYZ网格化）</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111513164.png" alt="image-20220611151354035" style="zoom:67%;"></p>
+<ul>
+<li>在网格设置中，设置行数和列数，会平滑地插入相应位置的数据</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111514813.png" alt="image-20220611151443630" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111519640.png" alt="image-20220611151912484" style="zoom:67%;"></p>
+<h6><span id="绘图">绘图</span></h6><ul>
+<li>选中矩阵，选择绘图/带投影的3D颜色映射曲面图</li>
+<li>这时候绘制出来的是曲面的颜色映射填充</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111524157.png" alt="image-20220611152428890" style="zoom:67%;"></p>
+<ul>
+<li><p>我们需要的是网格线的颜色映射</p>
+<ul>
+<li>首先将曲面的填充设置为逐块填充，颜色设置为白</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111536191.png" alt="image-20220611153434105"></p>
+<ul>
+<li>然后将网格的线条颜色的颜色映射开启，线条宽度设置为2</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206111535869.png" alt="image-20220611153554718"></p>
+</li>
+</ul>
+<h2><span id="一些操作">一些操作</span></h2><h4><span id="对函数进行积分">对函数进行积分</span></h4><p>选中图像后，在快速分析中，选择积分</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507231452922.png" alt="image-20220507231452922" style="zoom:67%;"></p>
+<p>可对积分区域、积分函数进行调整</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507231522713.png" alt="image-20220507231522713" style="zoom:67%;"></p>
+<h4><span id="列统计">列统计</span></h4><p>可以选择分组进行列的统计</p>
+<ul>
+<li>以某一些列作为分组的依据</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220523140742968.png" alt="image-20220523140742968" style="zoom: 67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220523140754689.png" alt="image-20220523140754689" style="zoom: 67%;"></p>
+<p>可以选择保留的位数</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220523140815427.png" alt="image-20220523140815427" style="zoom: 67%;"></p>
+<h4><span id="横坐标的设置">横坐标的设置</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061540393.png" alt="image-20220606154007666"></p>
+<p>在类型选项中，可以设置非线性的刻度，例如下图的Log2</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061541769.png" alt="image-20220606154121681"></p>
+<h4><span id="色阶带头尾去除">色阶带头尾去除</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061559103.png" alt="image-20220606155954966" style="zoom:67%;"></p>
+<h4><span id="快速屏蔽一些列隔一列删除一列">快速屏蔽一些列（隔一列删除一列）</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061637723.png" alt="image-20220606163750623" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206061638599.png" alt="image-20220606163816033" style="zoom: 50%;"></p>
+<h4><span id="对三维的数据进行插值">对三维的数据进行插值</span></h4><p>可以使用xyz网格化</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206062002923.png" alt="image-20220606200231648" style="zoom: 67%;"></p>
+<p>在网格设置中，设置列数和行数，会根据行列数进行插值形成一个矩阵</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206062003442.png" alt="image-20220606200326294"></p>
+<h4><span id="三维谱图绘制">三维谱图绘制</span></h4><p>绘制要点</p>
+<ul>
+<li><p>数据构造</p>
+<ul>
+<li>数据导入</li>
+<li>X值不一样时需插值(Analysis：Mathematics：Interpolate Y from X)</li>
+<li>删除重复的X</li>
+<li>为Y数据列设定采样时间</li>
+</ul>
+</li>
+<li><p>插值平滑（不是必须的）</p>
+<ul>
+<li><p>XYZ 网格化 </p>
+<ul>
+<li><p>从Virtual Matrix 转换为 XYZ 数据 （Worksheet:  Convert to XYZ） </p>
+</li>
+<li><p>XYZ Griding 平滑数据 (Worksheet: Convert to  Matrix: XYZ Gridding) </p>
+</li>
+</ul>
+</li>
+<li><p>3D Smooth app</p>
+</li>
+</ul>
+</li>
+<li>绘图推荐<ul>
+<li>Y偏移堆积线图 </li>
+<li>瀑布图</li>
+<li>等高线图 </li>
+<li>线框曲面图</li>
+</ul>
+</li>
+</ul>
+<h4><span id="在word中插入origin导出的图片">在Word中插入Origin导出的图片</span></h4><p>推荐使用EMF/WMF/SVG，其他的Word会限制分辨率，透明背景也可能会发黄</p>
+<p>Origin导出图片到Word中，</p>
+<ul>
+<li>复制页面</li>
+<li>复制页面为图片</li>
+<li>导出为EMF/WMF</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/origin/" rel="tag"><i class="fa fa-tag"></i> origin</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L2/" rel="prev" title="李宏毅深度学习L2">
+      <i class="fa fa-chevron-left"></i> 李宏毅深度学习L2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/08/origin-%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88/" rel="next" title="origin-配色方案">
+      origin-配色方案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GuoYB"
+      src="/images/avatar1.gif">
+  <p class="site-author-name" itemprop="name">GuoYB</p>
+  <div class="site-description" itemprop="description">欢迎欢迎</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuoYB</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

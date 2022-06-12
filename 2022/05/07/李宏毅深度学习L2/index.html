@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="机器学习的模型调整，Critical point，Batch, Momentum, Optimization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李宏毅深度学习L2">
+<meta property="og:url" content="https://ye2222.github.io/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L2/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="机器学习的模型调整，Critical point，Batch, Momentum, Optimization">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504153801254.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504153553382.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504153845905.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504154038638.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504154429868.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504155047799.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504155612581.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504155842513.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504160942222.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161254749.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161259428.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161630132.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161823295.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504162049166.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504183943324.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504204638614.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504205118318.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504205157651.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504205651548.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505204351618.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505204418006.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505210657956.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505224358808.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505224711954.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100740910.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100014626.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100151818.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100545124.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100629611.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506101058647.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506101135667.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523152218349.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523152357920.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523152444023.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523153202022.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523153033261.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523191044210.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192005933.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192033944.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192406050.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192511072.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523201033185.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523201954527.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523202244436.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203031249.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203134838.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203653408.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203754428.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523204246299.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523204544385.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523204832373.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523205008774.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523205739344.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523210749299.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523210803041.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523210903339.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524101005244.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524102423192.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524102657886.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524103016126.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524103055785.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524104512668.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524104702145.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524143839566.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524144314440.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524195845107.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200558865.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200643266.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200714687.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200735691.png">
+<meta property="article:published_time" content="2022-05-07T12:26:55.000Z">
+<meta property="article:modified_time" content="2022-06-01T07:23:45.268Z">
+<meta property="article:author" content="GuoYB">
+<meta property="article:tag" content="DeepLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504153801254.png">
+
+<link rel="canonical" href="https://ye2222.github.io/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>李宏毅深度学习L2 | Yeの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.gif">
+      <meta itemprop="name" content="GuoYB">
+      <meta itemprop="description" content="欢迎欢迎">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          李宏毅深度学习L2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 20:26:55" itemprop="dateCreated datePublished" datetime="2022-05-07T20:26:55+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-01 15:23:45" itemprop="dateModified" datetime="2022-06-01T15:23:45+08:00">2022-06-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9D%8E%E5%AE%8F%E6%AF%85/" itemprop="url" rel="index"><span itemprop="name">李宏毅</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">机器学习的模型调整，Critical point，Batch, Momentum, Optimization</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2><span id="机器学习的任务攻略">机器学习的任务攻略</span></h2><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504153801254.png" alt="image-20220504153801254" style="zoom:80%;"></p>
+<p>对于我们的模型，首先要保证训练损失在一个可接受的范围，才去考虑测试集损失的问题</p>
+<h3><span id="根据训练损失过大做出的模型调整">根据训练损失过大做出的模型调整</span></h3><p>当查看我们的训练损失过大的时候，需要调整我们的模型，有几个方向可以考虑</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504153553382.png" alt="image-20220504153553382" style="zoom:80%;"></p>
+<h4><span id="model-bias-模型偏差">Model bias 模型偏差</span></h4><h5><span id="问题">问题</span></h5><p>我们的模型可能过于简单，模型的参数取值范围内只能构建一个比较小的函数集，没办法满足我们的需求，也就是模型的弹性不够</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504153845905.png" alt="image-20220504153845905"></p>
+<p>我们的最优解只是<strong>小范围函数集内的最优解</strong></p>
+<h5><span id="解决方案">解决方案</span></h5><p>重新设计模型，让它更加具有弹性，也就是范围更大</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504154038638.png" alt="image-20220504154038638"></p>
+<h4><span id="optimization-issue-优化问题">Optimization Issue 优化问题</span></h4><h5><span id="问题">问题</span></h5><p>我们的模型使用优化方法是梯度下降，但是模型只是找到局部的最低点便停下来了</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504154429868.png" alt="image-20220504154429868"></p>
+<h5><span id="判断是model-bias或者是optimization-issue">判断是Model Bias或者是Optimization Issue</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504155047799.png" alt="image-20220504155047799"></p>
+<ul>
+<li><p>这并不是过拟合，因为在训练的数据集上，深层的损失也比浅层的损失大</p>
+</li>
+<li><p>在构建模型的过程中，我们可以先尝试浅层的模型，它们比较容易优化，再尝试比较深层的模型</p>
+</li>
+<li>如果深层的模型的损失比浅层的损失要大，说明是优化问题</li>
+</ul>
+<h3><span id="根据测试集损失过大做出的模型调整">根据测试集损失过大做出的模型调整</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504155612581.png" alt="image-20220504155612581" style="zoom:80%;"></p>
+<h4><span id="overfitting-过拟合">Overfitting 过拟合</span></h4><p>在训练损失小，测试集损失很大的情况下，就是<strong>overfitting（过拟合）</strong>发生了</p>
+<h5><span id="一个极端的例子">一个极端的例子</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504155842513.png" alt="image-20220504155842513"></p>
+<h5><span id="分析">分析</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504160942222.png" alt="image-20220504160942222"></p>
+<p>我们的数据是来自一个分布的，模型得到的函数会尝试根据所给的分布上的训练点集去拟合这个分布</p>
+<h5><span id="解决">解决</span></h5><p><strong>More training data 更多的训练数据集</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161254749.png" alt="image-20220504161254749"></p>
+<p><strong>Data augmentation 数据增强</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161259428.png" alt="image-20220504161259428"></p>
+<p>要合理，不要让模型学到奇怪的特征</p>
+<p><strong>constrained model 限制模型</strong></p>
+<p>我们知道数据的分布是二次函数时，可以限制模型为二次函数，得到比较好的结果</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161630132.png" alt="image-20220504161630132"></p>
+<p><strong>方法：</strong></p>
+<ol>
+<li>更少的参数，或者共享参数</li>
+<li>更少的features</li>
+<li>Early stopping</li>
+<li>Regularization</li>
+<li>Dropout</li>
+</ol>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504161823295.png" alt="image-20220504161823295" style="zoom: 80%;"></p>
+<p>CNN限制比较大，针对图片和影像</p>
+<p>但是也不能给模型太大的限制</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504162049166.png" alt="image-20220504162049166"></p>
+<p><strong>偏差-复杂度的权衡</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504183943324.png" alt="image-20220504183943324"></p>
+<h5><span id="validation-set">Validation set</span></h5><p><strong>起因</strong></p>
+<p>Testing Set 有公开的和保密的，在训练模型时，大家会拿公开的Testing Set跑模型看结果怎么样，然后来调整模型，但是因为公开的Testing Set可以多次使用，可能会使你的模型对于公开的Testing Set更好地拟合，但是放到保密的Testing Set会得到比较糟糕的结果</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504204638614.png" alt="image-20220504204638614"></p>
+<p><strong>解决</strong></p>
+<p>可以将用于训练模型的数据Training Set分为两部分，即Training Set和Validation Set，在Training Set上跑了之后，用Validation Set作为验证来调整参数，其实它相当于前面公开的Testing Set，然后再用来跑公开的Testing Set，就是说不要去过度地根据公开的Testing Set去调整模型，这样，用来跑保密的Testing Set结果基本能够跟公开的保持一致</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504205118318.png" alt="image-20220504205118318"></p>
+<p><strong>如何划分Training Set</strong></p>
+<p>方法：N fold Cross Validation</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504205157651.png" alt="image-20220504205157651"></p>
+<p>分成n段，轮流当Validation Set来进行训练</p>
+<h4><span id="mismatching-不一致">Mismatching 不一致</span></h4><p>训练集和测试集的分布是不一致的</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220504205651548.png" alt="image-20220504205651548"></p>
+<h2><span id="critical-point">Critical Point</span></h2><p>当梯度变得十分小的时候，Optimization会变得十分困难，这时候有两种情况：</p>
+<ul>
+<li><strong>local minima</strong>  局部最小值</li>
+<li><strong>saddle point</strong>  鞍点</li>
+</ul>
+<p>它们统称为<strong>critical point</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505204351618.png" alt="image-20220505204351618"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505204418006.png" alt="image-20220505204418006"></p>
+<h4><span id="数学推导">数学推导</span></h4><h5><span id="泰勒近似">泰勒近似</span></h5><p>当$\theta=\theta^{`}$时，根据泰勒公式</p>
+<script type="math/tex; mode=display">
+L(\theta) \approx L(\theta^{`}) + (\theta - \theta^{`})^{T}g + \frac{1}{2}(\theta-\theta^{`})^{T}H(\theta-\theta^{`})</script><p>相当于函数泰勒公式中，f(x)在$x_1$处</p>
+<script type="math/tex; mode=display">
+f(x) = f(x_1) + \frac{f^{`}(x_1)}{1!} (x-x_1) + \frac{f^{``}(x_1)}{2!}(x-x_1)^2 + o((x-x_1)^2)</script><p>其中，</p>
+<ul>
+<li><p>g：Gradient(梯度) （下图中绿色部分）</p>
+<ul>
+<li><p>是一个向量</p>
+</li>
+<li><script type="math/tex; mode=display">
+g = \nabla L(\theta^{`}) \\
+g_i = \frac{\partial L(\theta^{`})}{\partial\theta_i}</script></li>
+<li><p>$g_i$是损失函数对某一个参数的梯度</p>
+</li>
+</ul>
+</li>
+<li><p>H：Hessian（下图中红色部分）</p>
+<ul>
+<li><p>是一个矩阵</p>
+</li>
+<li><script type="math/tex; mode=display">
+H_{ij} = \frac{\partial^{2}}{\partial\theta_i\partial\theta_j}L(\theta^{`})</script></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505210657956.png" alt="image-20220505210657956"></p>
+<p>而在Critical point上，g的部分等于0</p>
+<script type="math/tex; mode=display">
+L(\theta) \approx L(\theta^{`}) + \frac{1}{2}(\theta-\theta^`)^TH(\theta - \theta^`)</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505224358808.png" alt="image-20220505224358808"></p>
+<p>有三种情况：</p>
+<ul>
+<li>Local minima</li>
+<li>Local maxima</li>
+<li>Saddle point</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220505224711954.png" alt="image-20220505224711954"></p>
+<h6><span id="local-minima">Local minima</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100740910.png" alt="image-20220506100740910"></p>
+<p>所有的特征值是正的</p>
+<h6><span id="local-maxima">Local maxima</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100014626.png" alt="image-20220506100014626"></p>
+<p>所有的特征值是负的</p>
+<h6><span id="saddle-point">Saddle point</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100151818.png" alt="image-20220506100151818"></p>
+<p>特征值有正有负</p>
+<h4><span id="一个例子">一个例子</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100545124.png" alt="image-20220506100545124"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506100629611.png" alt="image-20220506100629611"></p>
+<ul>
+<li>最优点(L最小)在(1, 1)和(-1, -1)这两个位置上</li>
+</ul>
+<p><strong>损失函数</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506101058647.png" alt="image-20220506101058647"></p>
+<p>在(0, 0)处，</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220506101135667.png" alt="image-20220506101135667"></p>
+<p>​    </p>
+<h2><span id="宝可梦-数码宝贝分类器">宝可梦、数码宝贝分类器</span></h2><ul>
+<li>根据宝可梦和数码宝贝原画线条数目的多少可以来进行区分</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523152218349.png" alt="image-20220523152218349"></p>
+<ul>
+<li>我们可以找到一个阈值h大于这个值为数码宝贝，小于这个值为宝可梦</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523152357920.png" alt="image-20220523152357920"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523152444023.png" alt="image-20220523152444023"></p>
+<p>$H$是指候选函数的数目，即这个模型的复杂度，能够表达的函数集的大小</p>
+<h3><span id="损失函数">损失函数</span></h3><p>使用的是错误率，也可以使用交叉熵</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523153202022.png" alt="image-20220523153202022" style="zoom:80%;"></p>
+<h3><span id="数据集和训练">数据集和训练</span></h3><ul>
+<li>数据集的形式</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523153033261.png" alt="image-20220523153033261" style="zoom:80%;"></p>
+<ul>
+<li>如果我们收集了所有的宝可梦和数码宝贝(记为$D_{all}$)，我们可以找到最好的阈值(记为$h^{all}$)，即</li>
+</ul>
+<script type="math/tex; mode=display">
+h^{all} = arg \mathop{min}_{h}(h,D_{all})</script><ul>
+<li>但现实是，我们一般只能从所有数据中获取到一部分数据，将其作为训练数据(记为$D_{train}$)(独立且相同的分布)</li>
+</ul>
+<script type="math/tex; mode=display">
+D_{train} = {(x^1, \hat{y}^1), (x^2, \hat{y}^2),\cdots (x^N, \hat{y}^N)} \\ \\
+h^{train} = arg \mathop{min}_{h}(h, D_{train})</script><ul>
+<li>我们希望的是训练得到的阈值$h^{train}$能够在整体的表现上能够接近$h^{all}$，即</li>
+</ul>
+<script type="math/tex; mode=display">
+L(h^{train}, D_{all}) \rightarrow L(h^{all}, D_{all})</script><ul>
+<li>从所有的数据中我们得到$h^{all}=4824$</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523191044210.png" alt="image-20220523191044210" style="zoom:80%;"></p>
+<ul>
+<li>随机采样200个数据样本作为$D_{train1}$，得到$h_{train1}$</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192005933.png" alt="image-20220523192005933" style="zoom:80%;"></p>
+<p>在总体上数据表现较好</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192033944.png" alt="image-20220523192033944" style="zoom:80%;"></p>
+<ul>
+<li>再随机采样200个数据样本作为$D_{train2}$，得到$h_{train2}$</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192406050.png" alt="image-20220523192406050" style="zoom:80%;"></p>
+<p>总体表现较差</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523192511072.png" alt="image-20220523192511072" style="zoom:80%;"></p>
+<ul>
+<li><p>我们想要的是在训练集上训练得到的$h^{train}$能够在总体数据上表现能够接近理想中的$h_{all}$</p>
+<script type="math/tex; mode=display">
+L(h^{train}, D_{all}) \rightarrow L(h^{all}, D_{all})</script><p>可以转化为</p>
+<script type="math/tex; mode=display">
+L(h^{train}, D_{all}) - L(h^{all}, D_{all}) \le \delta</script></li>
+<li><p>那么$D_{train}$要满足 </p>
+<script type="math/tex; mode=display">
+\forall h \in H, |L(h, D_{train}) - L(h, D_{all})| \le \delta/2</script><p>上述公式的推导</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523201033185.png" alt="image-20220523201033185" style="zoom:80%;"></p>
+</li>
+<li><p>我们想要的是好的$D_{train}$，即</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\forall h \in H, |L(h, D_{train}) - L(h, D_{all})| \le \epsilon \\
+\epsilon = \delta/2</script><h4><span id="训练失败的概率">训练失败的概率</span></h4><ul>
+<li>每一个点都是一个训练集</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523201954527.png" alt="image-20220523201954527" style="zoom:80%;"></p>
+<ul>
+<li>如果一个训练集$D_{train}$是坏的，至少有一个$h$会让</li>
+</ul>
+<script type="math/tex; mode=display">
+ |L(h, D_{train}) - L(h, D_{all})| \gt \epsilon</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523202244436.png" alt="image-20220523202244436" style="zoom:80%;"></p>
+<script type="math/tex; mode=display">
+P(D_{train}\  is \ bad) = \mathop\cup_{h\in H}P(D_{train} \ is \ bad \ due \ to \ h) \\
+\le \mathop\sum_{h\in H}P(D_{train} \ is \ bad \ due \ to \ h)</script><p>这里概率加起来是会大于1的，那说明会经常发生</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203031249.png" alt="image-20220523203031249" style="zoom: 67%;"></p>
+<p>可以推导出</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203134838.png" alt="image-20220523203134838" style="zoom:80%;"></p>
+<ul>
+<li><p>怎么使$P(D_{train} \ is \ bad)$变小</p>
+<ul>
+<li>更大的N和更小的H</li>
+<li>即更大的样本容量和更加简单或者说限制比较多的模型</li>
+</ul>
+</li>
+<li><p>更大的N</p>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203653408.png" alt="image-20220523203653408" style="zoom:80%;"></p>
+<p>样本容量越大，越能够更好地接近总体的分布情况</p>
+<ul>
+<li>更小的H</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523203754428.png" alt="image-20220523203754428"></p>
+<p>H变小了，那么参数h的数目就会变少，一些表现较差的参数也会被筛除</p>
+<ul>
+<li>一个例子</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523204246299.png" alt="image-20220523204246299" style="zoom: 67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523204544385.png" alt="image-20220523204544385" style="zoom:67%;"></p>
+<ul>
+<li>那如果模型的参数是连续的，该怎么选择<ul>
+<li>计算机内的一切都是离散的</li>
+</ul>
+</li>
+<li>如果使用更小的H就可以获取好的结果，那么为什么不直接使用很小的H</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523204832373.png" alt="image-20220523204832373"></p>
+<p>使用很小的H，我们的模型可能在数据上表现就是很差，去接近理想状态也没有意义</p>
+<ul>
+<li>陷入了两难的境地</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523205008774.png" alt="image-20220523205008774" style="zoom:80%;"></p>
+<p>可以使用深度学习</p>
+<h2><span id="训练的建议-batch和momentum">训练的建议 — Batch和Momentum</span></h2><h3><span id="batch-批量">Batch 批量</span></h3><h4><span id="批量优化">批量优化</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523205739344.png" alt="image-20220523205739344"></p>
+<p>将一个数据集分成多个batch，可以多次更新参数</p>
+<h5><span id="小的batch和大的batch">小的batch和大的batch</span></h5><p>现在我们有20个样本(N=20)</p>
+<ul>
+<li>batch size = N = 20，即整个数据集</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523210749299.png" alt="image-20220523210749299"></p>
+<ul>
+<li>batch size = 1</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523210803041.png" alt="image-20220523210803041"></p>
+<ul>
+<li>大的batch一般不需要更长的时间来计算梯度，除非batch实在太大了</li>
+<li>小的batch需要更多的时间，在每一个epoch中计算梯度，即需要更多的时间来查看整个数据集</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220523210903339.png" alt="image-20220523210903339" style="zoom:80%;"></p>
+<ul>
+<li>实例</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524101005244.png" alt="image-20220524101005244"></p>
+<p>小的batch有着更好的表现，而大的batch可能会导致Optimizaiton Fails    </p>
+<h3><span id="momentum">Momentum</span></h3><ul>
+<li>让梯度下降保持一个动量，可以跨过平坦的Local minima</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524102423192.png" alt="image-20220524102423192" style="zoom:80%;"></p>
+<ul>
+<li>当前参数的变化不仅取决当前的梯度，还取决于之前的变化</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524102657886.png" alt="image-20220524102657886"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524103016126.png" alt="image-20220524103016126"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524103055785.png" alt="image-20220524103055785"></p>
+<p>在损失函数到达一个比较平缓的梯度区间时，可以因为之前向右移动的趋势，而向右边移动</p>
+<h3><span id="小结">小结</span></h3><p>小的batch size和Momentum可以帮助逃离critical points</p>
+<h2><span id="optimization的总结">Optimization的总结</span></h2><p>一些符号标记</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524104512668.png" alt="image-20220524104512668" style="zoom:80%;"></p>
+<h3><span id="sgd">SGD</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524104702145.png" alt="image-20220524104702145"></p>
+<h3><span id="sgd-with-momentum">SGD with Momentum</span></h3><script type="math/tex; mode=display">
+\theta_t = \theta_{t-1} - \eta m_t \\
+m_t = \beta_1m_{t-1}+(1-\beta_1)g_{t-1}</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524143839566.png" alt="image-20220524143839566"></p>
+<h3><span id="adagrad">Adagrad</span></h3><script type="math/tex; mode=display">
+\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\sum^{t-1}_{i=0}(g_i)^2}}g_{t-1}</script><p>这种会累积之前所有的梯度，遇到一些需要你Learning Rate大的情况处理不了(如RMSProp中的图)</p>
+<h3><span id="rmsprop">RMSProp</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524144314440.png" alt="image-20220524144314440"></p>
+<script type="math/tex; mode=display">
+\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{v_t}}g_{t-1} \\
+v_1 = g^2_0 \\
+v_t = \alpha v_{t-1} + (1-\alpha)(g_{t-1})^2</script><h3><span id="adam">Adam</span></h3><ul>
+<li>是SGDM和RMSProp的结合</li>
+</ul>
+<script type="math/tex; mode=display">
+\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\hat{v_t}}+\epsilon}\hat{m_t}</script><script type="math/tex; mode=display">
+\hat{m_t} = \frac{m_t}{1-\beta_1^t} \\
+\hat{v_t} = \frac{v_t}{1-\beta_2^t}</script><script type="math/tex; mode=display">
+\beta_1 = 0.9 \\
+\beta_2 = 0.999 \\
+\epsilon = 10^{-8}</script><h3><span id="adam和sgdm的对比">Adam和SGDM的对比</span></h3><ul>
+<li>Adam<ul>
+<li>训练快速</li>
+<li>较大的差别（训练集和测试集）</li>
+<li>不稳定</li>
+</ul>
+</li>
+<li>SGDM<ul>
+<li>稳定</li>
+<li>很小的差别</li>
+<li>更好的收敛</li>
+</ul>
+</li>
+</ul>
+<h2><span id="深度学习">深度学习</span></h2><p>我们想要的是</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524195845107.png" alt="image-20220524195845107"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200558865.png" alt="image-20220524200558865"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200643266.png" alt="image-20220524200643266"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200714687.png" alt="image-20220524200714687"></p>
+<p>深度和宽度的对比</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220524200735691.png" alt="image-20220524200735691"></p>
+<h1><span id="第三章的">第三章的</span></h1>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DeepLearning/" rel="tag"><i class="fa fa-tag"></i> DeepLearning</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L1/" rel="prev" title="李宏毅深度学习L1">
+      <i class="fa fa-chevron-left"></i> 李宏毅深度学习L1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/07/originL2/" rel="next" title="originL2">
+      originL2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GuoYB"
+      src="/images/avatar1.gif">
+  <p class="site-author-name" itemprop="name">GuoYB</p>
+  <div class="site-description" itemprop="description">欢迎欢迎</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuoYB</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

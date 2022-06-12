@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="机器学习的基本任务，和一些基本概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李宏毅深度学习L1">
+<meta property="og:url" content="https://ye2222.github.io/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L1/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="机器学习的基本任务，和一些基本概念">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301026876.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301037725.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301028213.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301035279.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301030352.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301126515.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301127137.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301127916.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220517201248200.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220517201458465.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220517201513033.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507194526339.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200058287.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200155027.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200252270.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510202943067.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507203825921.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507203837016.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220509205959571.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220509210204857.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203104238.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203527319.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203646052.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203843228.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510095736537.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200943024.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507201359112.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507201339625.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507201820893.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510192236007.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510192540560.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510192854921.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201221790.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201236080.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518104803258.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518104902942.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518105244462.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518105525634.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518110011768.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518110331193.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518110346806.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518140215320.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201627870.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201959183.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301037725.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301035279.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510204324748.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510204715065.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205004926.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205102830.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205422208.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213010955.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205834595.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510210513338.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510210807568.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510210950666.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212001519.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212544677.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212616296.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212702118.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212717566.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212807747.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213150406.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213734178.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213810465.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213848632.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213939359.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517145816632.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517151100007.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517151742238.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517152914840.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517154453945.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517154608690.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517154705157.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517155048402.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517155655685.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517160124003.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517183223513.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517183346790.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517183602952.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517192906177.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517193001751.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517193400452.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518140921917.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141018771.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141308293.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141357729.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141438154.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141615446.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141654644.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518142038027.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518143549559.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518143818728.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518144726395.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518144918960.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145133327.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145222845.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145258066.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145535753.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151311013.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151336435.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151459336.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151817778.png">
+<meta property="article:published_time" content="2022-05-07T12:26:28.000Z">
+<meta property="article:modified_time" content="2022-05-24T02:34:31.420Z">
+<meta property="article:author" content="GuoYB">
+<meta property="article:tag" content="DeepLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301026876.png">
+
+<link rel="canonical" href="https://ye2222.github.io/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>李宏毅深度学习L1 | Yeの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.gif">
+      <meta itemprop="name" content="GuoYB">
+      <meta itemprop="description" content="欢迎欢迎">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          李宏毅深度学习L1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 20:26:28" itemprop="dateCreated datePublished" datetime="2022-05-07T20:26:28+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-24 10:34:31" itemprop="dateModified" datetime="2022-05-24T10:34:31+08:00">2022-05-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9D%8E%E5%AE%8F%E6%AF%85/" itemprop="url" rel="index"><span itemprop="name">李宏毅</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">机器学习的基本任务，和一些基本概念</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1><span id="机器学习">机器学习</span></h1><h2><span id="基本任务">基本任务</span></h2><h3><span id="regression">Regression</span></h3><ul>
+<li>回归，预测一个值，期望其与实际值相等</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301026876.png" alt="image-20220430102659714"></p>
+<ul>
+<li>损失函数一般使用<strong>平均方差（Mean Square Error）</strong></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301037725.png" alt="image-20220430103752590" style="zoom:67%;"></p>
+<h3><span id="classification">Classification</span></h3><ul>
+<li>分类，输出多个概率值，判断输入属于哪一个类别</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301028213.png" alt="image-20220430102849022"></p>
+<ul>
+<li><p>输出值可使用<strong>Soft-max</strong>将其转换为概率值</p>
+</li>
+<li><p>classfication的损失函数使用<strong>交叉熵</strong>（Cross-entropy）</p>
+<ul>
+<li>交叉熵可以很好地衡量两个概率值之间的差异</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301035279.png" alt="image-20220430103504153" style="zoom:67%;"></p>
+</li>
+</ul>
+<h3><span id="一些概念">一些概念</span></h3><h4><span id="soft-max">Soft-max</span></h4><ul>
+<li>将多个Classification的多个输出值转换为概率值</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301030352.png" alt="image-20220430103012220" style="zoom:67%;"></p>
+<h4><span id="激活函数activation-function">激活函数（Activation function）</span></h4><h5><span id="sigmoid">Sigmoid</span></h5><p>函数：<img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301126515.png" alt="image-20220430112644374" style="zoom: 80%;"></p>
+<p>导数：  <img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301127137.png" alt="image-20220430112710008" style="zoom:80%;"></p>
+<p>图像：    <img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301127916.png" alt="image-20220430112752698" style="zoom:50%;"></p>
+<h5><span id="relu">ReLU</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220517201248200.png" alt="image-20220517201248200"></p>
+<p>函数：</p>
+<script type="math/tex; mode=display">
+f(X) = max(0,X)</script><p>图像：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220517201458465.png" alt="image-20220517201458465"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220517201513033.png" alt="image-20220517201513033"></p>
+<h2><span id="基本步骤">基本步骤</span></h2><h3><span id="functionmodel-with-unknown">Function(Model) with unknown</span></h3><p>函数的集合</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507194526339.png" alt="image-20220507194526339"></p>
+<h3><span id="define-loss-from-training-data">Define loss from training data</span></h3><ul>
+<li><p>计算一个函数得到的输出与预期值的差距</p>
+</li>
+<li><p>输入：一个函数（参数）</p>
+</li>
+<li>输出：函数的优劣程度</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200058287.png" alt="image-20220507200058287"></p>
+<h4><span id="error-surface"><strong>Error surface</strong></span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200155027.png" alt="image-20220507200155027"></p>
+<p>图中的每一个点都是一个函数，颜色代表L(w,b)的大小</p>
+<h3><span id="optimization">Optimization</span></h3><p>可以通过梯度下降来寻找使损失函数变得最小的参数w，b</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200252270.png" alt="image-20220507200252270"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510202943067.png" alt="image-20220510202943067"></p>
+<h2><span id="一些概念">一些概念</span></h2><h3><span id="generalization-一般化">Generalization 一般化</span></h3><p>我们真正关心的是模型在新数据(testing data)上的错误率</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507203825921.png" alt="image-20220507203825921"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507203837016.png" alt="image-20220507203837016"></p>
+<h4><span id="使用更加复杂的模型">使用更加复杂的模型</span></h4><p>使用更加复杂的模型会使我们在训练的数据上表现的更好</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220509205959571.png" alt="image-20220509205959571"></p>
+<p>但是这往往会造成在测试集数据上过拟合（overfitting）</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220509210204857.png" alt="image-20220509210204857"></p>
+<h4><span id="使用sigmoid函数构建非线性模型">使用Sigmoid函数构建非线性模型</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203104238.png" alt="image-20220510203104238" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203527319.png" alt="image-20220510203527319"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203646052.png" alt="image-20220510203646052"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510203843228.png" alt="image-20220510203843228"></p>
+<h3><span id="gradient-descent">Gradient Descent</span></h3><script type="math/tex; mode=display">
+\theta^* = arg \mathop{min}{\theta}L(\theta)</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510095736537.png" alt="image-20220510095736537"></p>
+<h4><span id="考虑一个参数w"><strong>考虑一个参数w</strong></span></h4><script type="math/tex; mode=display">
+\begin{equation}
+
+    w^* = arg\mathop{\min}_{\theta}L(w) 
+
+\end{equation}</script><p>步骤：</p>
+<ul>
+<li>随机选取一个初始值$w^0$</li>
+<li>计算梯度(导数)$\frac{dL}{dw}|_{w=w0}$<ul>
+<li>如果为负，增加w</li>
+<li>如果为正，减少w</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507200943024.png" alt="image-20220507200943024"></p>
+<ul>
+<li>更新参数：</li>
+</ul>
+<script type="math/tex; mode=display">
+w^1 \leftarrow w^0 - \eta\frac{dL}{dw}|_{w=w0}</script><p>这里的$\eta$称为<strong>学习率（learning rate）</strong></p>
+<h4><span id="考虑两个参数w和b"><strong>考虑两个参数w和b</strong></span></h4><script type="math/tex; mode=display">
+w^*, b^* = arg \mathop{min}_{w, b}L(w, b)</script><p>它们的梯度：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507201359112.png" alt="image-20220507201359112"></p>
+<p>步骤：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507201339625.png" alt="image-20220507201339625"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220507201820893.png" alt="image-20220507201820893"></p>
+<p>在线性回归模型中，损失函数是凹的，没有局部最优点</p>
+<p><strong>求梯度</strong></p>
+<script type="math/tex; mode=display">
+L(w, b)=\sum^{10}_{n=1} (\hat{y}^n-(b+w *x^n_{cp}))^2</script><script type="math/tex; mode=display">
+\frac{\partial L}{\partial w} = \sum^{10}_{n=1}2(\hat y^n-(b+w*x^n_{cp}))(-x^n_{cp})</script><script type="math/tex; mode=display">
+\frac{\partial L}{\partial w} = \sum^{10}_{n=1}2(\hat y^n-(b+w*x^n_{cp}))</script><h4><span id="learning-rate-学习率">Learning Rate 学习率</span></h4><ul>
+<li>步子太大的话容易错过最优点</li>
+<li>步子太小速度太慢</li>
+</ul>
+<h4><span id="adaptive-learning-rates-可调整的学习率">Adaptive Learning Rates 可调整的学习率</span></h4><ul>
+<li>基本思想：在每一个epoch中通过一些因素来减小学习率<ul>
+<li>一开始，我们离目标很远，所以要使用较大的学习率</li>
+<li>在几个epoch之后，我们接近了目标，所以减少学习率</li>
+</ul>
+</li>
+<li>学习率不可能是one-size-fits-all<ul>
+<li>给了不同的参数，应该有不同的学习率</li>
+</ul>
+</li>
+</ul>
+<h5><span id="vanilla-gradient-descent">Vanilla Gradient descent</span></h5><script type="math/tex; mode=display">
+\eta^t=\frac{\eta}{\sqrt{t+1}} \\
+g^t=\frac{\partial L(\theta^t)}{\partial w} \\
+w^{t+1} \leftarrow w^t - \eta^tg^t</script><h5><span id="adagrad">Adagrad</span></h5><ul>
+<li><p>使用了root mean square</p>
+<ul>
+<li>将每个参数的学习率除以其<strong>先前导数的均方根</strong>（$\sigma^t$）</li>
+</ul>
+<script type="math/tex; mode=display">
+\eta^t=\frac{\eta}{\sqrt{t+1}} \\
+g^t=\frac{\partial L(\theta^t)}{\partial w} \\
+\sigma^t = \sqrt{\frac{1}{t+1}\sum^t_{i=0}(g^i)^2} \\
+w^{t+1} \leftarrow w^t - \frac{\eta^t}{\sigma^t}g^t \\</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510192236007.png" alt="image-20220510192236007" style="zoom:80%;"></p>
+</li>
+</ul>
+<p>化简</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510192540560.png" alt="image-20220510192540560" style="zoom:80%;"></p>
+<p>分子与分母作用相反，越大的梯度，我们应该走更大的步才对</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510192854921.png" alt="image-20220510192854921" style="zoom:80%;"></p>
+<p>最佳的步骤</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201221790.png" alt="image-20220510201221790" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201236080.png" alt="image-20220510201236080" style="zoom:80%;"></p>
+<p>Adagrad是在尝试用一阶导去估计二阶导</p>
+<h4><span id="backpropagation">Backpropagation</span></h4><p>参数$\theta = {w_1, w_2, \dots, b_1, b_2, \dots}$，不断进行更新</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518104803258.png" alt="image-20220518104803258"></p>
+<h5><span id="链式法则">链式法则</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518104902942.png" alt="image-20220518104902942"></p>
+<h5><span id="向前传递">向前传递</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518105244462.png" alt="image-20220518105244462"></p>
+<h5><span id="向后传递">向后传递</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518105525634.png" alt="image-20220518105525634"></p>
+<script type="math/tex; mode=display">
+\frac{\part{C}}{\part{z}} = \frac{\part{a}}{\part{z}}\frac{\part{C}}{\part{a}} \\ \\
+\frac{\part{C}}{\part{a}} = \frac{\part{z^`}}{\part{a}}\frac{\part{C}}{\part{z^`}}+ \frac{\part{z^{``}}}{\part{a}}\frac{\part{C}}{\part{z^{``}}} \\ \\
+\frac{\part{z^`}}{\part{a}} = w_3 \\ \frac{\part{z^{``}}}{\part{a}} = w_4 \\ \\ 
+现在的问题是\frac{\part{C}}{\part{z^`}}和\frac{\part{C}}{\part{z^{``}}}的取值</script><p>情况一：有输出层</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518110011768.png" alt="image-20220518110011768"></p>
+<p>情况二：不是输出层，只是中间层</p>
+<p>只能不断地往后算，直到输出层，然后向后传播</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518110331193.png" alt="image-20220518110331193"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518110346806.png" alt="image-20220518110346806"></p>
+<h5><span id="小结">小结</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518140215320.png" alt="image-20220518140215320"></p>
+<script type="math/tex; mode=display">
+在拥有\frac{\part z}{\part w}和\frac{\part C}{\part z}的条件下，我们可以通过链式法则得到输出关于参数的梯度\frac{\part C}{\part w}</script><h3><span id="stochastic-gradient-descentsgd">Stochastic Gradient Descent(SGD)</span></h3><p>随机梯度下降</p>
+<h5><span id="对比">对比</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201627870.png" alt="image-20220510201627870"></p>
+<p>在每次更新时用1个样本来计算梯度，然后更新参数</p>
+<p>随机也就是说我们用样本中的一个例子来近似我所有的样本，来调整<em>θ</em></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510201959183.png" alt="image-20220510201959183"></p>
+<h3><span id="loss-function">Loss function</span></h3><ul>
+<li><p>L(f) = L(w,b)</p>
+<ul>
+<li>衡量一组参数的好坏</li>
+</ul>
+</li>
+<li><p>常用的损失函数</p>
+<ul>
+<li>Mean Square Error(MSE)</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301037725.png" alt="image-20220430103752590" style="zoom:67%;"></p>
+<ul>
+<li>Cross-entropy</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202204301035279.png" alt="image-20220430103504153" style="zoom:67%;"></p>
+</li>
+</ul>
+<h2><span id="classification-probabilistic-generative-model-概率生成模型">Classification: Probabilistic Generative Model 概率生成模型</span></h2><p>分类任务</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510204324748.png" alt="image-20220510204324748"></p>
+<h3><span id="二元分类问题">二元分类问题</span></h3><p>给生成模型一个x，模型给出一个类别</p>
+<h4><span id="regression">Regression</span></h4><ul>
+<li>输出1代表类别1，输出-1代表类别2</li>
+<li>靠近1代表更大可能属于类别1，反之则是类别二</li>
+<li><p>实际上就是划分出一道线，左边为类别1，右边为类别2</p>
+</li>
+<li><p>但是如果有一些分布得太远的点，会造成更大的错误</p>
+</li>
+<li>且只能区分两个类别</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510204715065.png" alt="image-20220510204715065"></p>
+<h4><span id="理想的选择">理想的选择</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205004926.png" alt="image-20220510205004926"></p>
+<p>假设两个类别分别为两个箱子</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205102830.png" alt="image-20220510205102830"></p>
+<ul>
+<li>Box1是类别1，Box2是类别2</li>
+<li>$P(B_1)$代表数据集中$B_1$占总数的比例，则$P(B_2)$代表数据集中$B_2$占总数的比例</li>
+</ul>
+<p>所以，我们拿到一个蓝色的球，它属于$B_1$的概率为</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205422208.png" alt="image-20220510205422208"></p>
+<h5><span id="使用高斯分布">使用高斯分布</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213010955.png" alt="image-20220510213010955"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510205834595.png" alt="image-20220510205834595"></p>
+<ul>
+<li>输入：向量x</li>
+<li>输出：采样x的概率</li>
+<li>方程的形状取决于平均值$\mu$和协方差矩阵$\sum$</li>
+</ul>
+<p>假设我们数据集的点分布符合高斯分布</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510210513338.png" alt="image-20220510210513338"></p>
+<p>选用不同的平均值和协方差矩阵，会有不同的可能（different likelihood）</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510210807568.png" alt="image-20220510210807568"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510210950666.png" alt="image-20220510210950666"></p>
+<h5><span id="最大似然估计">最大似然估计</span></h5><p>最大似然原则就是选择使该概率最大的参数</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212001519.png" alt="image-20220510212001519"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212544677.png" alt="image-20220510212544677"></p>
+<h5><span id="进行分类"><strong>进行分类</strong></span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212616296.png" alt="image-20220510212616296"></p>
+<h5><span id="改进"><strong>改进</strong></span></h5><ul>
+<li>使用相同的协方差矩阵</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212702118.png" alt="image-20220510212702118"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212717566.png" alt="image-20220510212717566"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510212807747.png" alt="image-20220510212807747"></p>
+<h5><span id="先验概率"><strong>先验概率</strong></span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213150406.png" alt="image-20220510213150406" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213734178.png" alt="image-20220510213734178" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213810465.png" alt="image-20220510213810465" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213848632.png" alt="image-20220510213848632" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20220510213939359.png" alt="image-20220510213939359" style="zoom:80%;"></p>
+<h2><span id="logistic-regression-逻辑回归">Logistic Regression 逻辑回归</span></h2><p>线性的二分类的分类模型</p>
+<h3><span id="步骤一函数集function-set">步骤一：函数集（Function Set）</span></h3><ul>
+<li>函数集：</li>
+</ul>
+<script type="math/tex; mode=display">
+f_{w,b}(x)=P_{w,b}(C_1|x)</script><ul>
+<li>寻找$P_{w,b}(C_1|x)$，即拿到x，x属于$C_1$的概率<ul>
+<li>如果$P_{w,b}(C_1|x)\ge0.5$，输出$C_1$，否则输出$C_2$</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+z = w \cdot x +b \\ 
+P_{w,b}(C_1|x) = \sigma(z)</script><script type="math/tex; mode=display">
+\sigma(z) = \frac{1}{1+exp(-z)}</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517145816632.png" alt="image-20220517145816632"></p>
+<h3><span id="步骤二函数的优良程度goodness-of-a-function">步骤二：函数的优良程度（Goodness of a Function）</span></h3><p>我们拥有n个数据集和它们对应的标签</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517151100007.png" alt="image-20220517151100007"></p>
+<p>假设数据是根据$f_{w,b}(x)=P_{w,b}(C_1|x)$生成的，对应给定的w和b，生成这些数据的概率为</p>
+<script type="math/tex; mode=display">
+L(w,b) = f_{w,b}(x^1)f_{w,b}(x^2)(1-f_{w,b}(x^3))\cdots f_{w,b}(x^N)</script><p>根据最大似然估计，最好的参数$w^<em>$和$b^</em>$会使$L(w,b)$最大，即</p>
+<script type="math/tex; mode=display">
+w^*,b^*=arg \mathop{max}_{w,b}L(w,b)</script><p>为了计算，我们将两个标签$C_1和C_2 $转换为1和0，然后进行最大似然估计</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517151742238.png" alt="image-20220517151742238"></p>
+<p>转换为两个伯努利分布的交叉熵</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517152914840.png" alt="image-20220517152914840"></p>
+<h3><span id="步骤三找到最好的函数find-the-best-function">步骤三：找到最好的函数（Find the best function）</span></h3><p>求导数</p>
+<ul>
+<li>第一部分</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517154453945.png" alt="image-20220517154453945"></p>
+<ul>
+<li>第二部分</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517154608690.png" alt="image-20220517154608690"></p>
+<ul>
+<li>最后的结果</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517154705157.png" alt="image-20220517154705157"></p>
+<h3><span id="小结">小结</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517155048402.png" alt="image-20220517155048402"></p>
+<p>两种方法参数更新的式子是一样的，但是函数的输出和目标不一样</p>
+<h3><span id="使用不同的损失函数">使用不同的损失函数</span></h3><p>如果我们使用的损失函数是Square Error</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517155655685.png" alt="image-20220517155655685"></p>
+<p>会出现一些问题</p>
+<ul>
+<li>当我们的输出接近目标时，导数接近0</li>
+<li>当我们的输出远离目标时，导数接近0</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517160124003.png" alt="image-20220517160124003"></p>
+<p>使用Cross Entropy时，我们可以快速地朝目标地方向走，但是Square Error则会比较平坦</p>
+<h3><span id="离散模型和生成模型的对比">离散模型和生成模型的对比</span></h3><ul>
+<li>离散模型：直接寻找参数w和b</li>
+<li>生成模型：学习到一个概率分布</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517183223513.png" alt="image-20220517183223513"></p>
+<p>相同的函数集，相同的数据集，但是会找到不同的函数</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517183346790.png" alt="image-20220517183346790"></p>
+<p>一个例子  使用Naive Bayes</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517183602952.png" alt="image-20220517183602952"></p>
+<h4><span id="生成模型的优点">生成模型的优点</span></h4><ul>
+<li>在概率分布的假设下，需要的训练数据更少</li>
+<li>在概率分布的假设下，对噪声更鲁棒</li>
+<li>先验和类依赖概率可以从不同的来源估计</li>
+</ul>
+<h3><span id="多分类">多分类</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517192906177.png" alt="image-20220517192906177"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517193001751.png" alt="image-20220517193001751"></p>
+<h3><span id="逻辑回归的局限性">逻辑回归的局限性</span></h3><p>逻辑回归是线性的分类模型</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/image-20220517193400452.png" alt="image-20220517193400452"></p>
+<h1><span id="深度学习">深度学习</span></h1><h2><span id="基本步骤">基本步骤</span></h2><h3><span id="neural-network">Neural Network</span></h3><ul>
+<li>不同的联系会指向不同的网络结构</li>
+<li>网络的参数$\theta$：神经元中所有的权重(weights)和偏差(biases)</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518140921917.png" alt="image-20220518140921917"></p>
+<ul>
+<li>给定网络结构，定义一个函数集</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141018771.png" alt="image-20220518141018771"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141308293.png" alt="image-20220518141308293"></p>
+<p>矩阵的操作</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141357729.png" alt="image-20220518141357729"></p>
+<p>输出层</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141438154.png" alt="image-20220518141438154" style="zoom:80%;"></p>
+<h3><span id="goodness-of-function">goodness of function</span></h3><ul>
+<li>定义一个损失函数，找到一个函数，能够使损失函数的值最小化，起始也就是找到合适的参数</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141615446.png" alt="image-20220518141615446" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518141654644.png" alt="image-20220518141654644" style="zoom:80%;"></p>
+<h3><span id="pick-the-best-function">pick the best function</span></h3><ul>
+<li>使用梯度下降，来寻找能让损失函数降到最小的参数</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518142038027.png" alt="yi"></p>
+<h2><span id="深度学习的一些建议">深度学习的一些建议</span></h2><ul>
+<li>在训练集上表现不好</li>
+<li>在训练集上表现好，测试集上表现不好<ul>
+<li>可能是Overfitting（过拟合）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518143549559.png" alt="image-20220518143549559"></p>
+<h4><span id="各自的解决方法">各自的解决方法</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518143818728.png" alt="image-20220518143818728"></p>
+<h4><span id="新的激活函数">新的激活函数</span></h4><h5><span id="梯度消失问题">梯度消失问题</span></h5><ul>
+<li>浅层的梯度较小，学习非常慢，几乎是随机的</li>
+<li>与此同时，深层的梯度很大，学习很快，几乎要收敛了</li>
+<li>这有可能是激活函数的原因，如图</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518144726395.png" alt="image-20220518144726395"></p>
+<ul>
+<li>因为链式法则不断乘小于1的数，导致梯度非常小的现象</li>
+<li>sigmoid函数的导数，是在0~0.25这个区间的，这意味着，当网络层数越深，那么对于前面几层的梯度，就会非常的小</li>
+</ul>
+<h5><span id="使用relu">使用ReLU</span></h5><p>ReLU：Rectified Linear Unit</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518144918960.png" alt="image-20220518144918960"></p>
+<ul>
+<li>优点<ul>
+<li>计算快</li>
+<li>解决消失梯度问题</li>
+</ul>
+</li>
+</ul>
+<p>ReLU的变种</p>
+<ul>
+<li>Leaky ReLU</li>
+<li>Parametric ReLU</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145133327.png" alt="image-20220518145133327" style="zoom:80%;"></p>
+<h5><span id="使用maxout">使用Maxout</span></h5><p>ReLU是Maxout的一种特殊例子</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145222845.png" alt="image-20220518145222845"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145258066.png" alt="image-20220518145258066"></p>
+<h4><span id="adaptive-learning-rate-可调整的学习率">Adaptive Learning Rate 可调整的学习率</span></h4><p>详情见L2</p>
+<ul>
+<li>RMSProp</li>
+<li>Momentum</li>
+<li>Adam</li>
+</ul>
+<h4><span id="early-stopping">Early stopping</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518145535753.png" alt="image-20220518145535753"></p>
+<h4><span id="regularization-正则化">Regularization 正则化</span></h4><ul>
+<li>对参数进行惩罚—权重衰退<ul>
+<li>防止过拟合</li>
+</ul>
+</li>
+<li>L2 regularization</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151311013.png" alt="image-20220518151311013" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151336435.png" alt="image-20220518151336435" style="zoom:80%;"></p>
+<ul>
+<li>L1 regularization<script type="math/tex; mode=display">
+\theta = |w_1| + |w_2| + \dots</script></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151459336.png" alt="image-20220518151459336"></p>
+<h4><span id="dropout">Dropout</span></h4><ul>
+<li>在每一层丢弃一些神经元</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151817778.png" alt="image-20220518151817778"></p>
+<ul>
+<li>改变了网络的结构</li>
+</ul>
+<h2><span id="pytorch实战部分">pytorch实战部分</span></h2><h4><span id="数据集">数据集</span></h4><ul>
+<li>pytorch中主要使用的是Dataset和DataLoader</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们可以构建自己处理数据集的类(<strong>继承Dataset</strong>)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据集处理及读取</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">COVID19Dataset</span>(<span class="params">Dataset</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, x, y=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> y <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            self.y = y</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.y = torch.FloatTensor(y)</span><br><span class="line">        self.x = torch.FloatTensor(x)</span><br><span class="line">    <span class="comment"># 这一部分读入并处理数据</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, idx</span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.y <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> self.x[idx]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.x[idx], self.y[idx]</span><br><span class="line">    <span class="comment"># 这一部分提供为DataLoader返回一个数据的函数</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.x)</span><br><span class="line">    <span class="comment"># 这一部分为DataLoader返回数据集的长度</span></span><br><span class="line">    </span><br><span class="line">train_dataset = COVID19Dataset(x_train, y_train)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>DataLoader可以构建一批一批的数据集合，批量加载数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据集的批量读取器</span></span><br><span class="line">train_loader = DataLoader(train_dataset, batch_size=<span class="number">32</span>,</span><br><span class="line">                           shuffle=<span class="literal">True</span>, pin_memory=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h4><span id="模型结构">模型结构</span></h4><ul>
+<li>pytorch中主要使用的是torch.nn</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们可以构建自己模型结构的类(<strong>继承nn.Module</strong>)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模型结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">My_model</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_dim</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(My_model, self).__init__()</span><br><span class="line">        self.layer1 = nn.Linear(input_dim, <span class="number">128</span>)</span><br><span class="line">        self.layer2 = nn.ReLU()</span><br><span class="line">        self.layer3 = nn.Linear(<span class="number">128</span>, <span class="number">32</span>)</span><br><span class="line">        self.layer4 = nn.ReLU()</span><br><span class="line">        self.layer5 = nn.Linear(<span class="number">32</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 模型的layers</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        out = self.layer1(x)</span><br><span class="line">        out = self.layer2(out)</span><br><span class="line">        out = self.layer3(out)</span><br><span class="line">        out = self.layer4(out)</span><br><span class="line">        out = self.layer5(out)</span><br><span class="line">        out = out.squeeze(<span class="number">1</span>) <span class="comment"># (B, 1) -&gt; (B)</span></span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line">   	<span class="comment"># 正向传播</span></span><br></pre></td></tr></table></figure>
+<h4><span id="损失函数">损失函数</span></h4><ul>
+<li>使用平均方差</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.MSELoss(reduction=<span class="string">&#x27;mean&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h4><span id="优化器">优化器</span></h4><ul>
+<li>更新参数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">1e-5</span>, momentum=<span class="number">0.9</span>)</span><br></pre></td></tr></table></figure>
+<h4><span id="训练过程">训练过程</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练过程</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3000</span>):</span><br><span class="line">    model.train()</span><br><span class="line">    train_pbar = tqdm(train_loader, position=<span class="number">0</span>, leave=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">for</span> x,y <span class="keyword">in</span> train_pbar:</span><br><span class="line">        pred = model(x)</span><br><span class="line">        loss = criterion(pred, y)</span><br><span class="line">        loss.backward() <span class="comment"># 计算梯度</span></span><br><span class="line">        optimizer.step() <span class="comment"># 更新参数</span></span><br><span class="line">        optimizer.zero_grad() <span class="comment"># 清零梯度</span></span><br></pre></td></tr></table></figure>
+<h4><span id="简单的保存数据为csv文件">简单的保存数据为csv文件</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_in_csv</span>(<span class="params">file,res</span>):</span></span><br><span class="line">    file_csv = codecs.<span class="built_in">open</span>(file, <span class="string">&#x27;w+&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    writer = csv.writer(file_csv)</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> res:</span><br><span class="line">        writer.writerow(x)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;保存成功&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DeepLearning/" rel="tag"><i class="fa fa-tag"></i> DeepLearning</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/05/originL1/" rel="prev" title="originL1">
+      <i class="fa fa-chevron-left"></i> originL1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/07/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L2/" rel="next" title="李宏毅深度学习L2">
+      李宏毅深度学习L2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GuoYB"
+      src="/images/avatar1.gif">
+  <p class="site-author-name" itemprop="name">GuoYB</p>
+  <div class="site-description" itemprop="description">欢迎欢迎</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuoYB</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

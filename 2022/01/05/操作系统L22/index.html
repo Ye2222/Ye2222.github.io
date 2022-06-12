@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统L22">
+<meta property="og:url" content="https://ye2222.github.io/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL22/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="Linux">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051632557.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051634688.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051641497.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051643561.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051642356.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051644670.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051650532.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051650886.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051828228.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051654963.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051656215.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051657409.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051845037.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051903168.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051629462.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051657719.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051903620.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051904338.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051905586.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051911701.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201052003444.png">
+<meta property="article:published_time" content="2022-01-05T07:33:13.000Z">
+<meta property="article:modified_time" content="2022-05-23T07:09:41.607Z">
+<meta property="article:author" content="GuoYB">
+<meta property="article:tag" content="课程:操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051632557.png">
+
+<link rel="canonical" href="https://ye2222.github.io/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL22/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>操作系统L22 | Yeの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.gif">
+      <meta itemprop="name" content="GuoYB">
+      <meta itemprop="description" content="欢迎欢迎">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          操作系统L22
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-05 15:33:13" itemprop="dateCreated datePublished" datetime="2022-01-05T15:33:13+08:00">2022-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-23 15:09:41" itemprop="dateModified" datetime="2022-05-23T15:09:41+08:00">2022-05-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">Linux</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4><span id="page-replacement-mechanism">Page Replacement Mechanism</span></h4><ul>
+<li>页面守护进程在开始时初始化；</li>
+<li>页面守护进程定期检查页面使用情况（100ms）；如果免费页面数量不足，它将释放更多页面</li>
+<li>四种类型的页面：<ul>
+<li>unreclaimable 不可恢复：例如，锁定的页面、内核模式堆栈；</li>
+<li>swappable 可交换：回收前必须回写</li>
+<li>syncable：脏的必须写回</li>
+<li>discardable 可丢弃：可立即回收。</li>
+</ul>
+</li>
+</ul>
+<h4><span id="page-replacement-algorithm">Page Replacement Algorithm</span></h4><ul>
+<li>使用增强的LRU算法，每页维护两个标志：活动/非活动和引用或未引用。</li>
+<li>在第一次扫描中，页面的参考位被清除。</li>
+<li>如果在第二次扫描期间，页面被引用，则页面将被移动到不太可能回收的状态。否则，页面将移动到更有可能回收的状态。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051632557.png" alt="image-20220105163245528"></p>
+<h3><span id="linux-io">Linux I/O</span></h3><ul>
+<li>Linux将设备(I/O)集成到文件系统中，称为特殊文件 special files</li>
+<li>阻止特殊文件 block special files — 磁盘等。</li>
+<li>字符特殊文件 character special files — 键盘、打印机、鼠标等。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051634688.png" alt="image-20220105163420656"></p>
+<h5><span id="inputoutput-system-calls-in-linux">Input/Output System Calls in Linux</span></h5><ul>
+<li>Linux系统中的每个I/O设备通常都有一个与之关联的特殊文件。</li>
+<li>大多数I/O都可以通过使用适当的文件来完成。</li>
+<li>某些特殊文件需要特殊的POSIX调用。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051641497.png" alt="image-20220105164151451"></p>
+<h5><span id="implementation-of-inputoutput-in-linux">Implementation of Input/Output in Linux</span></h5><ul>
+<li>每个特殊文件都与处理相应设备的设备驱动程序相关联。<ul>
+<li>主要设备编号——用于识别设备类型</li>
+<li>次要设备编号——用于识别相同类型的设备</li>
+</ul>
+</li>
+<li>系统将索引到字符设备的哈希表中以选择适当的结构，然后调用相应的函数来执行工作。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051643561.png" alt="image-20220105164302495"></p>
+<h4><span id="the-linux-file-system">The Linux File System</span></h4><ul>
+<li>文件可以在目录中分组；目录存储为文件；目录可以包含子目录。</li>
+<li>根目录名为/（斜杠），并且/字符也用于分隔目录名。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051642356.png" alt="image-20220105164255318"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051644670.png" alt="image-20220105164448591"></p>
+<h5><span id="stat-system-call">Stat  System Call</span></h5><p>对于每个文件，Linux都会记录其文件类型、大小、上次修改时间等，可以使用stat系统调用查看这些文件</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051650532.png" alt="image-20220105165017486"></p>
+<h5><span id="some-system-calls-for-directories">Some System Calls  for Directories</span></h5><p>mkdir，rmkdir：创建和销毁目录（目录只有在为空时才能删除）<br>link：创建链接；取消链接：删除链接<br>chdir:更改工作目录<br>opendir、closedir、readdir、rewinddir：用于读取目录</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051650886.png" alt="image-20220105165007826"></p>
+<h5><span id="the-linux-ext2-file-system">The Linux Ext2 File System</span></h5><ul>
+<li>block 0:包含启动计算机的代码</li>
+<li>superblock：包含有关文件系统布局的信息（i节点数、磁盘块数等）</li>
+<li>group descriptor：包含有关位图位置、组中空闲块和i节点的数量等信息。</li>
+<li>two bitmaps：分别跟踪空闲块和空闲i节点</li>
+<li>i-nodes：包含记帐信息以及足够的信息来定位保存文件数据的所有磁盘块</li>
+<li>data blocks：存储所有文件和目录的区域</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051828228.png" alt="image-20220105182826185"></p>
+<ul>
+<li>目录文件允许最多255个字符的文件名。</li>
+<li>每个目录都由整数个磁盘块组成，因此可以将目录以原子方式写入磁盘。</li>
+<li>文件和目录的条目在目录中按未排序的顺序排列。</li>
+<li>条目不能跨越磁盘块。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051654963.png" alt="image-20220105165453900" style="zoom:80%;"></p>
+<h5><span id="the-structure-of-i-node">The Structure of I-Node</span></h5><p>i-node放在i-node表中，i-node表是一种内核数据结构，用于保存当前打开的文件和目录的所有i-node。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051656215.png" alt="image-20220105165624177"></p>
+<p>如果一个块大小为1KB，地址长度为4字节，那么一个文件最多可以包含以下i节点索引多大</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051657409.png" alt="image-20220105165702327" style="zoom:67%;"></p>
+<p>Ans：<br>16843020KB<br>≈ 16448.3MB<br>≈ 16.1GB</p>
+<h4><span id="security-in-linux">Security in Linux</span></h4><ul>
+<li>Linux系统的用户社区由一定数量的注册用户组成，每个用户都有一个唯一的UID（用户ID），它是一个介于0和65535之间的整数。</li>
+<li>用户可以被组织成多个组，这些组也用称为GID（组ID）的16位整数进行编号。</li>
+<li>Linux中的基本安全机制很简单。每个进程都携带其所有者的UID和GID。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051845037.png" alt="image-20220105184547002"></p>
+<h4><span id="security-system-calls-in-linux">Security System Calls in Linux</span></h4><ul>
+<li>chmod：最常用的一种，用于更改保护模式</li>
+<li>access：查看是否允许使用真实UID和GID进行特定访问</li>
+<li>getuid、geteuid、getgid、getegid：返回真实有效的uid和gid</li>
+<li>chown、setuid、setgid：仅允许超级用户更改文件的所有者，以及更改进程的UID和GID</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051903168.png" alt="image-20220105190338088"></p>
+<h3><span id="问题">问题</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051629462.png" alt="image-20220105162913429"></p>
+<p>守护进程优先级很低</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051657719.png" alt="image-20220105165733688"></p>
+<ul>
+<li>block 0</li>
+<li>no</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051903620.png" alt="image-20220105190356583"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051904338.png" alt="image-20220105190423300"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051905586.png" alt="image-20220105190513545"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051911701.png" alt="image-20220105191120672"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201052003444.png" alt="image-20220105200320284"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BE%E7%A8%8B-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 课程:操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL21/" rel="prev" title="操作系统L21">
+      <i class="fa fa-chevron-left"></i> 操作系统L21
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/10/hexo-%E6%9B%B4%E6%8D%A2%E5%9B%BE%E5%BA%8A-GitHub/" rel="next" title="hexo-更换图床-GitHub">
+      hexo-更换图床-GitHub <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GuoYB"
+      src="/images/avatar1.gif">
+  <p class="site-author-name" itemprop="name">GuoYB</p>
+  <div class="site-description" itemprop="description">欢迎欢迎</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuoYB</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

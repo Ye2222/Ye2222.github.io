@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Formal specification">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程复习L8">
+<meta property="og:url" content="https://ye2222.github.io/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L8/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="Formal specification">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208111939917.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208112106030.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208112142220.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208112539632.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208124735101.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208124752944.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208130238599.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208131207032.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208131444807.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208131712310.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208140009875.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208140435481.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208141203112.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208141315599.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208144220087.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208144234536.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208144746069.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208145614558.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150708459.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150737499.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150824074.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150947611.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208151028282.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208151045183.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208151119411.png">
+<meta property="article:published_time" content="2021-12-08T03:13:41.000Z">
+<meta property="article:modified_time" content="2022-05-23T07:09:40.337Z">
+<meta property="article:author" content="GuoYB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208111939917.png">
+
+<link rel="canonical" href="https://ye2222.github.io/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>软件工程复习L8 | Yeの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.gif">
+      <meta itemprop="name" content="GuoYB">
+      <meta itemprop="description" content="欢迎欢迎">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件工程复习L8
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-08 11:13:41" itemprop="dateCreated datePublished" datetime="2021-12-08T11:13:41+08:00">2021-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-23 15:09:40" itemprop="dateModified" datetime="2022-05-23T15:09:40+08:00">2022-05-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">Formal specification</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3><span id="formal-methods">Formal methods</span></h3><ul>
+<li>形式规范(<strong>Formal specification</strong>)是更普遍的技术集合的一部分，这些技术被称为“形式化方法”</li>
+<li>这些都是基于软件的数学表示和分析</li>
+<li>形式化方法包括<ul>
+<li>形式规范 Formal specification</li>
+<li>规格分析与证明 Specification analysis and proof</li>
+<li>转型发展 Transformational development</li>
+<li>程序验证 Program verification</li>
+</ul>
+</li>
+</ul>
+<h4><span id="formal-specification">Formal Specification</span></h4><ul>
+<li><p>形式规范的目标：</p>
+<ul>
+<li>完全的</li>
+<li>持续的</li>
+<li>简洁的</li>
+<li>明确的</li>
+<li>有效——准确说明用户想要什么</li>
+</ul>
+</li>
+<li><p>基于形式语义模型的规范</p>
+</li>
+<li><p>什么是语义？ semantics</p>
+<ul>
+<li><p>语义意味着“意义”</p>
+</li>
+<li><p>形式语义：用数学表达的意义</p>
+</li>
+<li><p>形式语义模型：数学中语言的完整语义定义</p>
+</li>
+<li><p>什么数学？</p>
+<ul>
+<li>离散数学！</li>
+</ul>
+</li>
+<li><p>形式语义允许各方之间进行可靠的通信 dependable communication</p>
+</li>
+</ul>
+</li>
+<li><p>什么是形式语义模型？ formal semantic model</p>
+</li>
+</ul>
+<h5><span id="types-of-languages">Types Of Languages</span></h5><ul>
+<li>程序：Procedural<ul>
+<li>由计算机要执行的所需动作序列定义的计算</li>
+<li>大多数高级语言都是程序化的</li>
+</ul>
+</li>
+<li>声明：Declarative<ul>
+<li>由计算机应处于的期望状态定义的计算</li>
+<li>许多规范语言都是声明性的</li>
+</ul>
+</li>
+<li>语言的最大区别在于：<ul>
+<li>声明式(Declarative)：不说如何，只说什么</li>
+<li>程序性的(Procedural)：什么都不说，只说怎么做</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208111939917.png" alt="image-20211208111939917"></p>
+<ul>
+<li><p>Library Example: Informal Statement 图书馆示例：非规范声明</p>
+<ul>
+<li>一本书可以成堆、保留或借出</li>
+<li>如果一本书在书架中或被保留，则可以请求</li>
+<li>我们想<ul>
+<li>形式化概念和陈述<ul>
+<li>证明一些定理以获得对规范正确的信心</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>首先让我们形式化一些概念<br>S: the book is in the stacks<br>R: the book is on reserve<br>L: the book is on loan<br>Q: the book is requested</li>
+<li><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208112106030.png" alt="image-20211208112106030" style="zoom: 33%;"></p>
+</li>
+<li><p>如果需要一本书，那么它就在书架上或保留<br><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208112142220.png" alt="image-20211208112142220" style="zoom:33%;"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5><span id="resolution-refutation-归结法">Resolution Refutation 归结法</span></h5><ul>
+<li>一旦定理证明者表明否定目标(negated goal)与给定的公理集不一致，那么原始目标必须是一致的。</li>
+<li>这证明了定理</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208112539632.png" alt="image-20211208112539632"></p>
+<p>例子</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208124735101.png" alt="image-20211208124735101" style="zoom: 50%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208124752944.png" alt="image-20211208124752944" style="zoom:50%;"></p>
+<ul>
+<li>解析原则(resolution principle)，描述了一种在最小替换的条款数据库中查找矛盾的方法</li>
+<li>归结法通过否定要证明的陈述并将否定的目标添加到已知或已假定为真的公理集合来证明定理</li>
+<li>然后它使用推理的分解规则来证明这导致了一个矛盾</li>
+</ul>
+<p>步骤</p>
+<ul>
+<li>把前提或公理变成从句形式</li>
+<li>将要以从句形式证明的内容的否定添加到公理集合中</li>
+<li>一起解析这些子句，产生从它们逻辑上遵循的新子句</li>
+<li>通过生成空子句产生矛盾</li>
+<li>用于产生空子句的替换是那些否定目标的反面为真的替换</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208130238599.png" alt="image-20211208130238599" style="zoom: 67%;"><br>演绎可以用一棵树来表示——演绎树。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208131207032.png" alt="image-20211208131207032" style="zoom:50%;"></p>
+<ul>
+<li><p>例子1</p>
+<ul>
+<li><p>We wish to prove that  “Fido will die” from the statements that</p>
+</li>
+<li><p>“Fido is a dog” and  “all dogs are animals” and  “all animals will die”</p>
+</li>
+<li><p>Convert these predicates to clause form</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208131444807.png" alt="image-20211208131444807" style="zoom: 67%;"></p>
+</li>
+<li><p>Negate the conclusion that fido will die ¬die(fido)</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208131712310.png" alt="image-20211208131712310" style="zoom:67%;"></p>
+</li>
+</ul>
+</li>
+<li><p>例子2</p>
+<ul>
+<li>Jack owns a dog.</li>
+<li>Every dog owner is an animal lover.</li>
+<li>No animal lover kills an animal.</li>
+<li>Either Jack or Curiosity killed the cat, who is named Tuna.</li>
+<li>Did Curiosity kill the cat? </li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208140009875.png" alt="image-20211208140009875" style="zoom: 50%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208140435481.png" alt="image-20211208140435481"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208141203112.png" alt="image-20211208141203112"></p>
+<ul>
+<li>例子3</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208141315599.png" alt="image-20211208141315599" style="zoom:67%;"></p>
+<h3><span id="introduction">Introduction</span></h3><h4><span id="形式方法-formal-methods">形式方法 Formal methods</span></h4><ul>
+<li>提高软件质量，减少错误</li>
+<li>只有少数软件是用形式化方法开发的<ul>
+<li>成功的软件工程</li>
+<li>市场变化</li>
+<li>形式方法的范围有限</li>
+<li>形式方法的可扩展性有限</li>
+</ul>
+</li>
+<li>应用于某些领域，如关键系统</li>
+</ul>
+<h4><span id="形式规范-formal-specification">形式规范 Formal specification</span></h4><ul>
+<li>紧接着系统要求</li>
+<li>详细需求规范和形式规范之间的紧密反馈循环</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208144220087.png" alt="image-20211208144220087" style="zoom:50%;"></p>
+<p>Software development costs with formal specification</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208144234536.png" alt="image-20211208144234536" style="zoom:50%;"></p>
+<h5><span id="形式规范语言-formal-specification-languages">形式规范语言 Formal specification languages</span></h5><ul>
+<li>代数方法 Algebraic approach<ul>
+<li>系统是根据操作及其关系来描述的</li>
+<li>Larch(Guttag et al., 1985,1993), OBJ(Futatsugi et al., 1985), Lotos(Bolognesi and Brinksma, 1987)</li>
+</ul>
+</li>
+<li>基于模型的方法 Model-based approach<ul>
+<li>系统模型是使用数学结构（例如集合和序列）构建的，系统操作由它们如何修改系统状态来定义</li>
+<li>Z(Spivey, 1992), VDM(Jones, 1980), B(Wordsworth, 1986), CSP(Hoare, 1985), Petri Nets(Peterson, 1981)</li>
+</ul>
+</li>
+</ul>
+<h4><span id="接口规范-interface-specification">接口规范 Interface specification</span></h4><ul>
+<li>大型系统被分解为子系统，这些子系统之间具有明确定义的接口</li>
+<li>子系统接口的规范允许不同子系统的独立开发</li>
+<li><p>接口可以定义为抽象数据类型或对象类</p>
+</li>
+<li><p>形式化规范的代数方法特别适用于接口规范</p>
+</li>
+</ul>
+<h5><span id="sub-system-interfaces">Sub-system interfaces</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208144746069.png" alt="image-20211208144746069"></p>
+<h5><span id="sub-system-interface-specification">Sub-system interface specification</span></h5><ul>
+<li>代数方法<ul>
+<li>接口类似于对象类<ul>
+<li>介绍，声明指定的排序（类型名称）</li>
+<li>描述，其中操作被非正式地描述</li>
+<li>签名，定义对象类或抽象数据类型的接口语法</li>
+<li>公理，通过定义一组表征抽象数据类型行为的公理来定义操作的语义</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="recursion-in-specifications">Recursion in specifications</span></h4><p>操作通常以递归方式指定。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208145614558.png" alt="image-20211208145614558"></p>
+<p>例子：一个扇区</p>
+<ul>
+<li>表示受控扇区的对象上的关键操作是<ul>
+<li>Enter。 在管制空域增加一架飞机；</li>
+<li>Leave。 将飞机移出管制空域；</li>
+<li>Move。 将飞机从一个高度移动到另一个高度；</li>
+<li>Lookup。 给定飞机标识符，返回其当前高度；</li>
+</ul>
+</li>
+</ul>
+<h5><span id="primitive-operations">Primitive operations</span></h5><ul>
+<li>有时需要引入额外的操作来简化规范</li>
+<li>然后可以使用这些更原始的操作定义其他操作</li>
+<li>Primitive operations<ul>
+<li>Create。 使扇区实例存在</li>
+<li>Put。 添加一架没有安全检查的飞机</li>
+</ul>
+</li>
+</ul>
+<h4><span id="behavioral-specification">Behavioral specification</span></h4><ul>
+<li>基于模型的规范 Model-based specification</li>
+<li>抽象状态机语言 (AsmL) Abstract State Machine Language</li>
+</ul>
+<p>Abstract State Machine Language (AsmL)</p>
+<ul>
+<li>AsmL 是一种可执行的规范语言，用于对数字系统的结构和行为进行建模</li>
+<li>抽象帮助我们将复杂的问题简化为可管理的单元，并防止我们迷失在细节的海洋中</li>
+<li>AsmL 提供了多种功能，允许您以非常经济、高级的方式描述系统的相关状态</li>
+</ul>
+<h5><span id="state-transitions">State transitions</span></h5><p>机器的行为（它的运行）总是可以被描述为由状态转换链接的状态序列</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150708459.png" alt="image-20211208150708459"></p>
+<h5><span id="evolution-of-state-variables-状态变量的演化">Evolution of state variables 状态变量的演化</span></h5><p>state variables: (Name, Value) </p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150737499.png" alt="image-20211208150737499"></p>
+<p>例子：</p>
+<p>图表显示了机器的运行，该机器对订单的处理方式进行建模</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150824074.png" alt="image-20211208150824074"></p>
+<ul>
+<li>每个过渡操作：<ul>
+<li>可以看作是在当前状态上调用机器的控制逻辑的结果</li>
+<li>计算子序列状态作为输出</li>
+</ul>
+</li>
+</ul>
+<h5><span id="control-logic">Control Logic</span></h5><p>机器控制逻辑是一个黑匣子，它以状态字典 S1 作为输入，并给出一个新字典 S2 作为输出</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208150947611.png" alt="image-20211208150947611"></p>
+<p>两个字典 S1 和 S2 具有相同的一组键，但与每个变量名称关联的值在 S1 和 S2 之间可能不同</p>
+<ul>
+<li>例子：读取文件</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208151028282.png" alt="image-20211208151028282"></p>
+<ul>
+<li>例子：图像表示</li>
+</ul>
+<p>​        <img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208151045183.png" alt="image-20211208151045183"></p>
+<h5><span id="behavioral-specification">Behavioral specification</span></h5><ul>
+<li>Z Schema<ul>
+<li>Schema signature</li>
+<li>Schema predicate</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208151119411.png" alt="image-20211208151119411" style="zoom:50%;"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L7/" rel="prev" title="软件工程复习L7">
+      <i class="fa fa-chevron-left"></i> 软件工程复习L7
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L9/" rel="next" title="软件工程复习L9">
+      软件工程复习L9 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GuoYB"
+      src="/images/avatar1.gif">
+  <p class="site-author-name" itemprop="name">GuoYB</p>
+  <div class="site-description" itemprop="description">欢迎欢迎</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuoYB</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

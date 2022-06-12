@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Data Link Layer-数据链路层 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网L5">
+<meta property="og:url" content="https://ye2222.github.io/2021/09/25/%E8%AE%A1%E7%BD%91L5/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="Data Link Layer-数据链路层 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210925162847783.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210925163107899.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210925165112762.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926105849104.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926111028429.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926112026178.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926112414261.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205195327838.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205211602283.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205211731466.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205211835011.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205212630714.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205212836723.png">
+<meta property="article:published_time" content="2021-09-25T08:19:07.000Z">
+<meta property="article:modified_time" content="2022-05-23T07:09:40.495Z">
+<meta property="article:author" content="GuoYB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210925162847783.png">
+
+<link rel="canonical" href="https://ye2222.github.io/2021/09/25/%E8%AE%A1%E7%BD%91L5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计网L5 | Yeの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/09/25/%E8%AE%A1%E7%BD%91L5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.gif">
+      <meta itemprop="name" content="GuoYB">
+      <meta itemprop="description" content="欢迎欢迎">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计网L5
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-25 16:19:07" itemprop="dateCreated datePublished" datetime="2021-09-25T16:19:07+08:00">2021-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-23 15:09:40" itemprop="dateModified" datetime="2022-05-23T15:09:40+08:00">2022-05-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">Data Link Layer-数据链路层 1</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3><span id="dll数据链路层">DLL—数据链路层</span></h3><ul>
+<li>数据链路层使用物理层提供的服务在通信信道上发送和接收比特。</li>
+<li>数据链路层从网络层获得数据包（package），然后将这些数据包封装成帧（frame ）以便传输。</li>
+<li>每个帧包含一个帧头(Header)、一个有效载荷(Payload field)（用于存放数据包〉以及一个帧尾(Trailer)</li>
+<li>实现两个相连机器稳定有效的交流(reliable, efficient communication)</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210925162847783.png" alt="image-20210925162847783"></p>
+<h4><span id="主要功能">主要功能</span></h4><ul>
+<li>为网络层提供定义好的服务接口</li>
+<li>处理传输错误</li>
+<li>规定数据流，这样处理较慢的接受机器不会被淹没</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210925163107899.png" alt="image-20210925163107899"></p>
+<h4><span id="dll提供的服务">DLL提供的服务</span></h4><p>数据链路层提供了许多种服务，实际上提供的服务在系统间存在差异</p>
+<p>三种常见的服务</p>
+<ul>
+<li>Unacknowledged connectionless service.<ul>
+<li>无确认的无连接服务</li>
+<li>指源机器向目标机器发送独立的帧，<strong>目标机器并不对这些帧进行确认</strong></li>
+<li>采用这种服务，事先不需要建立逻辑连接，事后也不用释放逻辑连接。</li>
+<li>若由于线路的噪声而造成了某一帧的丢失，数据链路层并<strong>不试图去检测这样的丢帧情况，更不会去试图恢复丢失的帧。</strong></li>
+<li>使用场合<ul>
+<li>错误率很低的场合</li>
+<li>实时通信</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Acknowledged connectionless service.<ul>
+<li>有确认的无连接服务</li>
+<li>数据链路层仍然没有使用逻辑连接，但其发送的每一帧都需要单独确认。</li>
+<li>发送方可知道一个帧是否已经正确地到达目的地。如果一个帧在指定的时间间隔内还没有到达，则发送方将再次发送该帧。</li>
+<li>适用于不可靠的信道</li>
+<li>不要求这种确认服务由数据链路层实现。</li>
+</ul>
+</li>
+<li>Acknowledged connection-oriented service.<ul>
+<li>有确认的面向连接服务</li>
+<li>建立了两个机器的连接，帧可以传输</li>
+<li>在连接发送的每一个帧是编号的(numbered)和确认的(acknowledged)</li>
+<li>帧保证仅按顺序到达一次(Only once and in order)。</li>
+<li>一旦通信完成，就会释放连接。</li>
+<li>这与“可靠”比特流相同。</li>
+</ul>
+</li>
+</ul>
+<p>例子：两个路由间的数据流动</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210925165112762.png" alt="image-20210925165112762"></p>
+<p>路由：1）通过网络传输信息 2）确定最佳路径</p>
+<h4><span id="frame帧">Frame—帧</span></h4><ul>
+<li>为了向网络层提供服务(use the service)，数据链路层必须使用物理层提供的服务。</li>
+<li>物理层只能在传输介质上放置原始比特流(use the service)。</li>
+<li>位流不保证没有错误。</li>
+<li>数据链路层负责检测并在必要时纠正错误。</li>
+</ul>
+<h4><span id="成帧">成帧</span></h4><ul>
+<li><p>DDL 能够将位流分解为离散的帧(break up the bit stream into discrete frames)。</p>
+</li>
+<li><p>计算每个帧的校验和，当帧到达目的地时重新计算校验和。</p>
+</li>
+<li><p>将比特流分解成帧有点困难。</p>
+<ul>
+<li>时间间隔</li>
+</ul>
+</li>
+<li><p>我们需要看看其他表示帧开始和结束的方法。</p>
+</li>
+</ul>
+<h4><span id="四种成帧的方法">四种成帧的方法</span></h4><ul>
+<li><p>Character count（字符计数法）</p>
+<ul>
+<li><p>使用帧头中的字段来指定帧中的字符数</p>
+</li>
+<li><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926105849104.png" alt="image-20210926105849104"></p>
+</li>
+<li><p>缺点：出现错误后，找不到下一帧的正确起始位置，重传也不知道从哪里开始</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Flag bytes with <strong>byte</strong> stuffing（带字节/字符填充的分界符法）</p>
+<ul>
+<li>使用一些特殊的字节作为开始和结束，通常都相同，成为标志字节(flag byte)</li>
+<li>使用了两个连续的标志字符代表了一帧的结束和下一帧的开始</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926111028429.png" alt="image-20210926111028429"></p>
+<ul>
+<li><p>问题1：如果标志字节出现在数据中，会干扰到帧的分界</p>
+<ul>
+<li>解决：添加转义字节，接收方的数据链路层在将数据传递给网络层之前必须删除转义字节，称为字节填充</li>
+</ul>
+</li>
+<li><p>问题2：如果转义字节也出现在数据中，怎么办</p>
+<ul>
+<li>解决：同样用字节填充。用一个转义字节来填充</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926112026178.png" alt="image-20210926112026178"></p>
+</li>
+<li><p>缺点：只能使用8比特的字节</p>
+</li>
+</ul>
+</li>
+<li><p>Starting and ending flags, with <strong>bit</strong> stuffing（带位填充的分界标志法）</p>
+<ul>
+<li><p>帧的划分可以在比特级完成</p>
+</li>
+<li><p>每个帧的开始和结束由一个特殊的比特模式标记，如01111110或者十六进制0x7E</p>
+</li>
+<li><p>这种模式是一个标志字节。每当发送方的数据链路层在数据中遇到连续五个1 ，它</p>
+<p>便自动在输出的比特流中填入一个比特 。</p>
+</li>
+<li><p>比特填充还确保了转换的最小密度，这将有助于物理层保持同步。</p>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210926112414261.png" alt="image-20210926112414261"></p>
+</li>
+<li><p>Physical layer coding violations（物理层编码违例法）</p>
+<ul>
+<li>使用物理层的捷径</li>
+<li>比特编码成信号通常包括一些冗余比特，以便帮助接收器同步接收。这种冗余意味着一些信号将不会出现在常规数据中。<ul>
+<li>例如，在 4B/5B 线性编码模式下， 个数据位被映射成 个信号比特，通过这种方法确保线路上的信号有足够的跳变。这意味着 32 个可能的信号中有 16 个是不会被使用的。</li>
+</ul>
+</li>
+<li>可以使用保留的信号来指示帧的开始和结束</li>
+<li>大多数 DLL 协议将字符计数与另一种方法结合使用以提高安全性。 这增加了发现错误的机会。</li>
+</ul>
+</li>
+</ul>
+<h4><span id="差错控制error-control">差错控制—Error Control</span></h4><ul>
+<li>我们使用<strong>字节填充</strong>、<strong>位填充</strong>和<strong>校验和</strong>作为检测和确定我们发送的数据中的错误的方法。</li>
+<li>我们还必须确保帧能够到达目的地。</li>
+<li>接收器发回一个控制帧(control frame)，确认接收到的帧和帧的状态。</li>
+<li><p>如果确认没有到达，可能会发生超时，导致帧被重新发送。</p>
+<ul>
+<li>超时间隔</li>
+</ul>
+</li>
+<li><p>重新发送帧也会导致问题——当同一帧被<strong>接收两次或更多次</strong>时会发生什么？</p>
+</li>
+<li>我们还可以<strong>对帧进行顺序编号</strong>(sequentially number the frames)以防止出现此问题。</li>
+<li>有许多不同的方法可以进行这种类型的错误控制（也可以在不同的级别上进行）。</li>
+<li><strong>管理定时器和序列号是数据链路层职责的重要部分</strong>。</li>
+</ul>
+<h4><span id="流量控制flow-control">流量控制—Flow Control</span></h4><ul>
+<li>我们必须处理发送方以高于接收方接收数据的速率发送数据的问题。</li>
+<li>有两种方法可以解决这个问题：<ul>
+<li>基于反馈的流量控制 — feedback-based flow control<ul>
+<li>反馈用于告诉发送方接收方正在做什么或发送另一个帧</li>
+</ul>
+</li>
+<li>基于速率的流量控制 — rate-based flow control<ul>
+<li>传输速率由发件人固定</li>
+<li>这从未在 DLL 中使用过</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="why-do-we-need-error-detection-and-correction">Why do we need Error Detection And Correction?</span></h4><ul>
+<li>本地环路仍然是模拟双绞线，错误仍然很常见。</li>
+<li>无线通信正变得越来越普遍，错误率比局间光纤干线上的差几个数量级。</li>
+<li>传输错误将伴随我们很多年。</li>
+</ul>
+<h4><span id="types-of-error-错误的类型">Types of Error 错误的类型</span></h4><ul>
+<li>错误突然出现 Burst errors</li>
+<li>独立的单位错误 Independent single-bit errors</li>
+<li>例子<ul>
+<li>块大小为 1000 位</li>
+<li>错误率为每比特 0.001</li>
+</ul>
+</li>
+<li>突发错误比孤立错误更难纠正</li>
+</ul>
+<h4><span id="错误处理error-processing">错误处理—Error Processing</span></h4><p>这两种技术中的每一种都适用于不同的情况</p>
+<h5><span id="error-correcting-codes-纠错码">Error-correcting codes 纠错码</span></h5><ul>
+<li>在发送的每个数据块中包含足够的冗余信息。</li>
+<li>接收机可以推断发送的数据</li>
+<li>纠错码的使用通常被称为前向纠错(前向纠错).</li>
+<li>开销很高，但它减少了重新发送帧的需要。</li>
+<li>最适合高误差（无线）网络</li>
+</ul>
+<h5><span id="error-detecting-codes-检错码">Error-detecting codes 检错码</span></h5><ul>
+<li>只包含足够的冗余</li>
+<li>允许接收方推断出发生了错误，但不更正错误，只让它请求重新传输。</li>
+<li>适用于高可靠性信道(highly reliable channel)，如光纤</li>
+<li>只要在发现错误时重新传输即可</li>
+</ul>
+<h5><span id="hamming-code-汉明码">Hamming code 汉明码</span></h5><ul>
+<li>纠错码位数：r</li>
+<li>数据位数：m</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205195327838.png" alt="image-20211205195327838" style="zoom: 50%;"></p>
+<h5><span id="例子">例子：</span></h5><p>获得汉明码</p>
+<ul>
+<li>问题：Original data: 10101111,even-parity Hamming code 偶校验汉明码, if hope to correct one single error,  What is the Hamming code for it?</li>
+<li>解法：m = 8， 根据公式 $(m+r+1) \le 2^r$得到$r = 4$</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">12</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">10</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">8*</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">4*</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">2*</th>
+<th style="text-align:center">1*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1100</td>
+<td style="text-align:center">1011</td>
+<td style="text-align:center">1010</td>
+<td style="text-align:center">1001</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">0111</td>
+<td style="text-align:center">0110</td>
+<td style="text-align:center">0101</td>
+<td style="text-align:center">0100</td>
+<td style="text-align:center">0011</td>
+<td style="text-align:center">0010</td>
+<td style="text-align:center">0001</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>计算校验位用在相应位置上为1的数进行异或</li>
+<li>P1：$B1 \oplus B3 \oplus B5 \oplus B7 \oplus B9 \oplus B11 = 1$</li>
+<li><p>同理：</p>
+<ul>
+<li>P2：0</li>
+<li>P3：0</li>
+<li>P4：0</li>
+</ul>
+</li>
+<li><p>这里自己位置设置为0，检验的时侯计算这些位置做异或运算一定得等于0</p>
+</li>
+<li>所以汉明码为<strong>10</strong>1<strong>0</strong>010<strong>0</strong>1111</li>
+</ul>
+<p>利用汉明码检测错误</p>
+<ul>
+<li>收到一个代码为100110001100（m = 8, r = 4）</li>
+<li>这个代码是否正确，如果错了该改正哪里</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">12</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">10</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">8*</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">4*</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">2*</th>
+<th style="text-align:center">1*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1100</td>
+<td style="text-align:center">1011</td>
+<td style="text-align:center">1010</td>
+<td style="text-align:center">1001</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">0111</td>
+<td style="text-align:center">0110</td>
+<td style="text-align:center">0101</td>
+<td style="text-align:center">0100</td>
+<td style="text-align:center">0011</td>
+<td style="text-align:center">0010</td>
+<td style="text-align:center">0001</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>P1：$B1 \oplus B3 \oplus B5 \oplus B7 \oplus B9 \oplus B11 = 1$</p>
+</li>
+<li><p>同理：</p>
+<ul>
+<li>P2：1</li>
+<li>P3：0</li>
+<li>P4：0</li>
+</ul>
+</li>
+<li>0011是第三个位置出现了错误，改为相反数</li>
+<li>即101110001100</li>
+</ul>
+<h5><span id="error-detection">Error Detection</span></h5><ul>
+<li><p>错误检测代码仅包含足够的数据，以便接收器确定数据是否有故障。</p>
+</li>
+<li><p>如果物理链路的错误率更低，则错误检测和重传通常更有效。</p>
+<ul>
+<li>铜线或光纤</li>
+</ul>
+</li>
+<li><p>为了比较，考虑错误率为每比特$10^{-6}$的信道。让块大小为1000bits。</p>
+<ul>
+<li>要纠正单个错误（通过汉明码），每个块需要10个校验位。要传输1000个块，需要10000个校验位（开销）。</li>
+<li>要检测单个错误，每个块一个奇偶校验位就足够了。为了传输1000个块，只需重新传输一个额外的块（由于每比特的错误率为$10^{-6}$），从而产生开销(开销） 只有2001（=1000*1+1001）位。</li>
+</ul>
+</li>
+</ul>
+<h5><span id="polynomial-code多项式编码">Polynomial Code(多项式编码)</span></h5><ul>
+<li>Also known as a CRC (Cyclic Redundancy Check，循环冗余校验码). </li>
+<li><p>基于将位字符串视为系数为0和1的多项式的表示</p>
+<ul>
+<li>例子：110001</li>
+<li><p>6项5阶多项式</p>
+</li>
+<li><p>$1\times x^5+1\times x^4+0\times x^3+0\times x^2+0\times x^1+1\times x^0 = x^5+x^4+1$</p>
+</li>
+</ul>
+</li>
+<li>多项式运算是模2(modulo 2)完成的。加法和减法都与异或相同(等同于异或） EXCLUSIVE OR</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205211602283.png" alt="image-20211205211602283"></p>
+<p>What is modulo 2？</p>
+<ul>
+<li>Modulo 2 addition &amp; substraction:  XOR logic</li>
+</ul>
+<p>​    <img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205211731466.png" alt="image-20211205211731466"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205211835011.png" alt="image-20211205211835011"></p>
+<ul>
+<li><p>CRC方法的基本思想是：</p>
+<ul>
+<li>发送方和接收方提前就在生成多项式(generator polynomial)上达成一致, G(x)。</li>
+<li>发送方在帧的末尾追加校验和(checksum)，校验和帧表示的多项式可以被G(x)整除。</li>
+<li>当接收器获得帧时，它会尝试将其除以相同的G(x)。如果有余数，则一定是发生了错误，并将请求重新传输。</li>
+</ul>
+</li>
+<li><p>计算校验和</p>
+<ul>
+<li>r：G(x)的维度</li>
+<li><p>添加r个零位到帧的低阶端，使其现在包含m+r位，并对应于多项式$x^rM(x)$。</p>
+</li>
+<li><p>使用模2除法将对应于$G(x)$的位字符串划分为对应于$x^rM(x)$的位字符串。</p>
+</li>
+<li>使用模2减法从与$x^rM(x)$对应的位字符串中减去余数（始终为r或更少的位）。</li>
+<li>结果是要传输的校验和帧。称其为多项式$T(x)$。</li>
+</ul>
+</li>
+<li><p>例子</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205212630714.png" alt="image-20211205212630714" style="zoom:67%;"></p>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211205212836723.png" alt="image-20211205212836723" style="zoom: 50%;"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/23/%E8%AE%A1%E7%BD%91L4/" rel="prev" title="计网L4">
+      <i class="fa fa-chevron-left"></i> 计网L4
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL4/" rel="next" title="操作系统L4">
+      操作系统L4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GuoYB"
+      src="/images/avatar1.gif">
+  <p class="site-author-name" itemprop="name">GuoYB</p>
+  <div class="site-description" itemprop="description">欢迎欢迎</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuoYB</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

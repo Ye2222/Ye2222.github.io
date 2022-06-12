@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="图片的一些处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像处理L1">
+<meta property="og:url" content="https://ye2222.github.io/2021/10/17/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86L1/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="图片的一些处理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_1.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_2.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_3.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main\image-20211018180048798.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main\image-20211018180102429.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_4.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_5.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_6.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_7.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_8.jpg">
+<meta property="og:image" content="https://ye2222.github.io/2021/10/17/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86L1/imori_noise.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_9.jpg">
+<meta property="og:image" content="https://ye2222.github.io/2021/10/17/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86L1/imori_noise.jpg">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_10.jpg">
+<meta property="article:published_time" content="2021-10-17T15:53:02.000Z">
+<meta property="article:modified_time" content="2022-05-23T07:09:43.932Z">
+<meta property="article:author" content="GuoYB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">
+
+<link rel="canonical" href="https://ye2222.github.io/2021/10/17/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86L1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>图像处理L1 | Yeの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yeの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/10/17/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86L1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.gif">
+      <meta itemprop="name" content="GuoYB">
+      <meta itemprop="description" content="欢迎欢迎">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yeの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图像处理L1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-17 23:53:02" itemprop="dateCreated datePublished" datetime="2021-10-17T23:53:02+08:00">2021-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-23 15:09:43" itemprop="dateModified" datetime="2022-05-23T15:09:43+08:00">2022-05-23</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">图片的一些处理</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1><span id="问题一至问题十">问题一至问题十</span></h1><h2><span id="问题一通道交换">问题一：通道交换</span></h2><p>读取图像，然后将$\text{RGB}$通道替换成$\text{BGR}$通道。</p>
+<p>下面的代码用于提取图像的红色通道。</p>
+<p>注意，<code>cv2.imread()</code> 的系数是按$\text{BGR}$顺序排列的！</p>
+<p>其中的变量<code>red</code>表示的是仅有原图像红通道的<code>https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1</span></span><br><span class="line"><span class="comment"># cv2.imread() 的系数是按 BGR顺序排列的</span></span><br><span class="line"><span class="comment"># 读取图片，第二个参数0是灰色，1是彩色</span></span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&quot;https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg&quot;</span>)</span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">red = img[:, :, <span class="number">2</span>].copy()</span><br><span class="line">blue = img[:, :, <span class="number">0</span>].copy()</span><br><span class="line">img[:, :, <span class="number">0</span>] = red</span><br><span class="line">img[:, :, <span class="number">2</span>] = blue</span><br><span class="line"></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="built_in">print</span>(img.shape)</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_1.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_1.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_1.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2><span id="问题二灰度化grayscale">问题二：灰度化（Grayscale）</span></h2><p>将图像灰度化吧！</p>
+<p>灰度是一种图像亮度的表示方法，通过下式计算：</p>
+<script type="math/tex; mode=display">
+Y = 0.2126\  R + 0.7152\  G + 0.0722\  B</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_2.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_2.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_2.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 灰度化</span></span><br><span class="line">img = cv2.imread(<span class="string">&quot;https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg&quot;</span>)</span><br><span class="line">blue = np.array(img[:, :, <span class="number">0</span>].copy(), dtype=<span class="string">&#x27;float64&#x27;</span>)</span><br><span class="line">blue *= <span class="number">0.0722</span></span><br><span class="line"></span><br><span class="line">green = np.array(img[:, :, <span class="number">1</span>].copy(), dtype=<span class="string">&#x27;float64&#x27;</span>)</span><br><span class="line">green *= <span class="number">0.7152</span></span><br><span class="line"></span><br><span class="line">red = np.array(img[:, :, <span class="number">2</span>].copy(), dtype=<span class="string">&#x27;float64&#x27;</span>)</span><br><span class="line">red *= <span class="number">0.2126</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img[:, :, <span class="number">0</span>] = red+green+blue</span><br><span class="line">img[:, :, <span class="number">1</span>] = red+green+blue</span><br><span class="line">img[:, :, <span class="number">2</span>] = red+green+blue</span><br><span class="line"></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2><span id="问题三二值化thresholding">问题三：二值化（Thresholding）</span></h2><p>把图像进行二值化吧。</p>
+<p>二值化是将图像使用黑和白两种颜色表示的方法。</p>
+<p>我们将灰度的阈值设置为$128$来进行二值化，即：</p>
+<script type="math/tex; mode=display">
+y=
+\begin{cases}
+0& (\text{if}\quad y < 128) \\
+255& (\text{else})
+\end{cases}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_3.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_3.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_3.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3 二值化</span></span><br><span class="line"><span class="comment"># 二值化是将图像使用黑和白两种颜色表示的方法。</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(img[:, :, <span class="number">0</span>])):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(img[:, :, <span class="number">0</span>][<span class="number">1</span>])):</span><br><span class="line">        <span class="keyword">if</span> img[:, :, <span class="number">0</span>][i][j] &lt; <span class="number">128</span>:</span><br><span class="line">            img[:, :, <span class="number">0</span>][i][j] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            img[:, :, <span class="number">0</span>][i][j] = <span class="number">255</span></span><br><span class="line">        </span><br><span class="line">img[:, :, <span class="number">1</span>] = img[:, :, <span class="number">0</span>]</span><br><span class="line">img[:, :, <span class="number">2</span>] = img[:, :, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2><span id="问题四大津二值化算法otsus-method">问题四：大津二值化算法（Otsu’s Method）</span></h2><p>使用大津算法来二值化图像吧。</p>
+<p>大津算法，也被称作最大类间方差法，是一种可以自动确定二值化中阈值的算法。</p>
+<p>从<strong>类内方差</strong>和<strong>类间方差</strong>的比值计算得来：</p>
+<ul>
+<li>小于阈值$t$的类记作$0$，大于阈值$t$的类记作$1$；</li>
+<li>$w_0$和$w_1$是被阈值$t$分开的两个类中的像素数占总像素数的比率（满足$w_0+w_1=1$）；</li>
+<li>${S_0}^2$， ${S_1}^2$是这两个类中像素值的方差；</li>
+<li>$M_0$，$M_1$是这两个类的像素值的平均值；</li>
+</ul>
+<p>即：</p>
+<ul>
+<li>类内方差：${S_w}^2=w_0\ {S_0}^2+w_1\  {S_1}^2$</li>
+<li>类间方差：${S_b}^2 = w_0 \  (M_0 - M_t)^2 + w_1\ (M_1 - M_t)^2 = w_0\  w_1\  (M_0 - M_1) ^2$</li>
+<li>图像所有像素的方差：${S_t}^2 = {S_w}^2 + {S_b}^2 = \text{常数}$</li>
+</ul>
+<p>根据以上的式子，我们用以下的式子计算分离度$X$：<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main\image-20211018180048798.png" alt="image-20211018180048798"></p>
+<p>也就是说： </p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main\image-20211018180102429.png" alt="image-20211018180102429"></p>
+<p>换言之，如果使${S_b}^2={w_0}\ {w_1}\ (M_0 - M_1)^2$最大，就可以得到最好的二值化阈值$t$。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出 ($\text{th} = 127$) (<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_4.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_4.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_4.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2><span id="问题五texthsv变换">问题五：$\text{HSV}$变换</span></h2><p>将使用$\text{HSV}$表示色彩的图像的色相反转吧！</p>
+<p>$\text{HSV}$即使用<strong>色相（Hue）、饱和度（Saturation）、明度（Value）</strong>来表示色彩的一种方式。</p>
+<ul>
+<li><p>色相：将颜色使用$0^{\circ}$到$360^{\circ}$表示，就是平常所说的颜色名称，如红色、蓝色。色相与数值按下表对应：</p>
+<p>| 红          | 黄           | 绿            | 青色          | 蓝色          | 品红          | 红            |<br>| —————- | —————— | ——————- | ——————- | ——————- | ——————- | ——————- |<br>| $0^{\circ}$ | $60^{\circ}$ | $120^{\circ}$ | $180^{\circ}$ | $240^{\circ}$ | $300^{\circ}$ | $360^{\circ}$ |</p>
+</li>
+<li><p>饱和度：是指色彩的纯度，饱和度越低则颜色越黯淡（$0\leq S &lt; 1$）；</p>
+</li>
+<li>明度：即颜色的明暗程度。数值越高越接近白色，数值越低越接近黑色（$0\leq V &lt; 1$）；</li>
+</ul>
+<p>从$\text{RGB}$色彩表示转换到$\text{HSV}$色彩表示通过以下方式计算：</p>
+<p>$\text{RGB}$的取值范围为$[0, 1]$，令：</p>
+<script type="math/tex; mode=display">
+\text{Max}=\max(R,G,B)\\
+\text{Min}=\min(R,G,B)</script><p>色相：</p>
+<script type="math/tex; mode=display">
+H=\begin{cases}
+0&(\text{if}\ \text{Min}=\text{Max})\\
+60\  \frac{G-R}{\text{Max}-\text{Min}}+60&(\text{if}\ \text{Min}=B)\\
+60\  \frac{B-G}{\text{Max}-\text{Min}}+180&(\text{if}\ \text{Min}=R)\\
+60\  \frac{R-B}{\text{Max}-\text{Min}}+300&(\text{if}\ \text{Min}=G)
+\end{cases}</script><p>饱和度：</p>
+<script type="math/tex; mode=display">
+S=\text{Max}-\text{Min}</script><p>明度：</p>
+<script type="math/tex; mode=display">
+V=\text{Max}</script><p>从$\text{HSV}$色彩表示转换到$\text{RGB}$色彩表示通过以下方式计算：</p>
+<script type="math/tex; mode=display">
+C = S\\</script><script type="math/tex; mode=display">
+H' = \frac{H}{60}\\</script><script type="math/tex; mode=display">
+X = C\  (1 - |H' \mod 2 - 1|)\\</script><script type="math/tex; mode=display">
+(R,G,B)=(V-C)\ (1,1,1)+\begin{cases}
+(0, 0, 0)&  (\text{if H is undefined})\\
+(C, X, 0)&  (\text{if}\quad 0 \leq H' < 1)\\
+(X, C, 0)&  (\text{if}\quad 1 \leq H' < 2)\\
+(0, C, X)&  (\text{if}\quad 2 \leq H' < 3)\\
+(0, X, C)&  (\text{if}\quad 3 \leq H' < 4)\\
+(X, 0, C)&  (\text{if}\quad 4 \leq H' < 5)\\
+(C, 0, X)&  (\text{if}\quad 5 \leq H' < 6)
+\end{cases}</script><p>请将色相反转（色相值加$180$），然后再用$\text{RGB}$色彩空间表示图片。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_5.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_5.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_5.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>答案 </p>
+<ul>
+<li>Python &gt;&gt; <a href="answers_py/answer_5.py">answers_py/answer_5.py</a></li>
+<li>C++ &gt;&gt; <a href="answers_cpp/answer_5.cpp">answers_cpp/answer_5.cpp</a></li>
+</ul>
+</blockquote>
+<h2><span id="问题六减色处理2">问题六：减色处理<sup><a href="#fn_2" id="reffn_2">2</a></sup></span></h2><blockquote id="fn_2">
+<sup>2</sup>. 这里没有找到”減色処理”准确的中文翻译，所以直译了。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<p>我们将图像的值由$256^3$压缩至$4^3$，即将$\text{RGB}$的值只取$\{32, 96, 160, 224\}$。这被称作色彩量化。色彩的值按照下面的方式定义：</p>
+<script type="math/tex; mode=display">
+\text{val}=
+\begin{cases}
+32& (0 \leq \text{var} <  64)\\
+96& (64\leq \text{var}<128)\\
+160&(128\leq \text{var}<192)\\
+224&(192\leq \text{var}<256)
+\end{cases}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_6.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_6.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_6.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>答案 </p>
+<ul>
+<li>Python &gt;&gt; <a href="answers_py/answer_6.py">answers_py/answer_6.py</a></li>
+<li>C++ &gt;&gt; <a href="answers_cpp/answer_6.cpp">answers_cpp/answer_6.cpp</a></li>
+</ul>
+</blockquote>
+<h2><span id="问题七平均池化average-pooling">问题七：平均池化（Average Pooling）</span></h2><p>将图片按照固定大小网格分割，网格内的像素值取网格内所有像素的平均值。</p>
+<p>我们将这种把图片使用均等大小网格分割，并求网格内代表值的操作称为<strong>池化（Pooling）</strong>。</p>
+<p>池化操作是<strong>卷积神经网络（Convolutional Neural Network）</strong>中重要的图像处理方式。平均池化按照下式定义：</p>
+<script type="math/tex; mode=display">
+v=\frac{1}{|R|}\  \sum\limits_{i=1}^R\ v_i</script><p>请把大小为$128\times128$的<code>https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</code>使用$8\times8$的网格做平均池化。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_7.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_7.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_7.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>答案 </p>
+<ul>
+<li>Python &gt;&gt; <a href="answers_py/answer_7.py">answers_py/answer_7.py</a></li>
+<li>C++ &gt;&gt; <a href="answers_cpp/answer_7.cpp">answers_cpp/answer_7.cpp</a></li>
+</ul>
+</blockquote>
+<h2><span id="问题八最大池化max-pooling">问题八：最大池化（Max Pooling）</span></h2><p>网格内的值不取平均值，而是取网格内的最大值进行池化操作。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg</a>)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_8.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_8.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/imori.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_8.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>答案</p>
+<ul>
+<li>Python &gt;&gt; <a href="answers_py/answer_8.py">answers_py/answer_8.py</a></li>
+<li>C++ &gt;&gt; <a href="answers_cpp/answer_8.cpp">answers_cpp/answer_8.cpp</a></li>
+</ul>
+</blockquote>
+<h2><span id="问题九高斯滤波gaussian-filter">问题九：高斯滤波（Gaussian Filter）</span></h2><p>使用高斯滤波器（$3\times3$大小，标准差$\sigma=1.3$）来对<code>imori_noise.jpg</code>进行降噪处理吧！</p>
+<p>高斯滤波器是一种可以使图像<strong>平滑</strong>的滤波器，用于去除<strong>噪声</strong>。可用于去除噪声的滤波器还有中值滤波器（参见问题十），平滑滤波器（参见问题十一）、LoG滤波器（参见问题十九）。</p>
+<p>高斯滤波器将中心像素周围的像素按照高斯分布加权平均进行平滑化。这样的（二维）权值通常被称为<strong>卷积核（kernel）</strong>或者<strong>滤波器（filter）</strong>。</p>
+<p>但是，由于图像的长宽可能不是滤波器大小的整数倍，因此我们需要在图像的边缘补$0$。这种方法称作<strong>Zero Padding</strong>。并且权值$g$（卷积核）要进行<a target="_blank" rel="noopener" href="https://blog.csdn.net/lz0499/article/details/54015150">归一化操作</a>（$\sum\ g = 1$）。</p>
+<p>按下面的高斯分布公式计算权值：</p>
+<script type="math/tex; mode=display">
+g(x,y,\sigma)=\frac{1}{2\  \pi\ \sigma^2}\  e^{-\frac{x^2+y^2}{2\  \sigma^2}}</script><p>标准差$\sigma=1.3$的$8-$近邻高斯滤波器如下：</p>
+<script type="math/tex; mode=display">
+K=\frac{1}{16}\  \left[
+ \begin{matrix}
+   1 & 2 & 1 \\
+   2 & 4 & 2 \\
+   1 & 2 & 1
+  \end{matrix}
+  \right]</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（imori_noise.jpg)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_9.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_9.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="imori_noise.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_9.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>答案 </p>
+<ul>
+<li>Python &gt;&gt; <a href="answers_py/answer_9.py">answers_py/answer_9.py</a></li>
+<li>C++ &gt;&gt; <a href="answers_cpp/answer_9.cpp">answers_cpp/answer_9.cpp</a></li>
+</ul>
+</blockquote>
+<h2><span id="问题十中值滤波median-filter">问题十：中值滤波（Median Filter）</span></h2><p>使用中值滤波器（$3\times3$大小）来对<code>imori_noise.jpg</code>进行降噪处理吧！</p>
+<p>中值滤波器是一种可以使图像平滑的滤波器。这种滤波器用滤波器范围内（在这里是$3\times3$）像素点的中值进行滤波，请在这里也采用Zero Padding。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">输入（imori_noise.jpg)</th>
+<th style="text-align:center">输出(<a target="_blank" rel="noopener" href="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_10.jpg">https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_10.jpg</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="imori_noise.jpg" alt></td>
+<td style="text-align:center"><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/answer_10.jpg" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/17/FastSpeech/" rel="prev" title="FastSpeech">
+      <i class="fa fa-chevron-left"></i> FastSpeech
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL15/" rel="next" title="操作系统L15">
+      操作系统L15 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GuoYB"
+      src="/images/avatar1.gif">
+  <p class="site-author-name" itemprop="name">GuoYB</p>
+  <div class="site-description" itemprop="description">欢迎欢迎</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuoYB</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
