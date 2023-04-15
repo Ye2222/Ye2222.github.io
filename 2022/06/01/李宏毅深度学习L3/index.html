@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="卷积神经网络(CNN)，自注意力(Self-attention)机制，循环神经网络(RNN)">
+  <meta name="description" content="卷积神经网络(CNN)，自注意力(Self-attention)机制，循环神经网络(RNN)，Transfomer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="李宏毅深度学习L3">
 <meta property="og:url" content="https://ye2222.github.io/2022/06/01/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L3/index.html">
 <meta property="og:site_name" content="Yeの博客">
-<meta property="og:description" content="卷积神经网络(CNN)，自注意力(Self-attention)机制，循环神经网络(RNN)">
+<meta property="og:description" content="卷积神经网络(CNN)，自注意力(Self-attention)机制，循环神经网络(RNN)，Transfomer">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252103858.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252104016.png">
@@ -54,6 +54,52 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121529997.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121531532.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121532801.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121547500.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121554397.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121557234.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121559818.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121604746.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121605857.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121607014.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121608475.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121617309.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121626766.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121852288.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121908775.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121918618.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121921657.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121927804.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121933005.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121935566.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121937184.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121939602.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121943377.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121945280.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121957183.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122000086.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122005975.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122008246.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122010241.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122010310.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206150959111.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151009677.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151011308.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151014571.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151015496.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151016619.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151022522.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151026948.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151029985.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151030015.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151034669.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151035798.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151242792.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151244411.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151245876.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151251480.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151300653.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151308161.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151310882.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011932332.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011936886.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011933411.png">
@@ -90,8 +136,63 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012102106.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012103414.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012104168.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201016079.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201020094.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021238.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021586.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201023469.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201026730.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201027152.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031355.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031877.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201038711.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201036338.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201042918.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201043748.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201044384.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201057230.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201416702.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201421768.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201422724.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201437245.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201439938.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201441878.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201450843.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201453733.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201456221.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201508376.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201501785.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151319663.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151320098.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151328102.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151330114.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151341781.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151353367.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151355615.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151415355.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151435498.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151436784.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151443520.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151446205.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151453211.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151457166.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151458612.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151500280.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151505401.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151506681.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151608002.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191607097.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191609388.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191622844.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191639053.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191640161.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191642452.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191816815.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191819653.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191836293.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191837325.png">
 <meta property="article:published_time" content="2022-06-01T07:23:07.000Z">
-<meta property="article:modified_time" content="2022-06-12T07:37:59.279Z">
+<meta property="article:modified_time" content="2022-06-20T07:08:44.075Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="DeepLearning">
 <meta name="twitter:card" content="summary">
@@ -197,12 +298,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -287,7 +388,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-12 15:37:59" itemprop="dateModified" datetime="2022-06-12T15:37:59+08:00">2022-06-12</time>
+                <time title="修改时间：2022-06-20 15:08:44" itemprop="dateModified" datetime="2022-06-20T15:08:44+08:00">2022-06-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -311,7 +412,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">卷积神经网络(CNN)，自注意力(Self-attention)机制，循环神经网络(RNN)</div>
+            <div class="post-description">卷积神经网络(CNN)，自注意力(Self-attention)机制，循环神经网络(RNN)，Transfomer</div>
 
         </div>
       </header>
@@ -431,7 +532,7 @@
 <li><p>CNN在图像的放缩和旋转后，不能够正常的识别，需要我们进行数据增强(data augmentation)</p>
 </li>
 </ul>
-<h2><span id="recurent-neural-networkrnn">Recurent Neural Network(RNN)</span></h2><h5><span id="slot-filling">Slot Filling</span></h5><ul>
+<h2><span id="recurent-neural-networkrnn">Recurent Neural Network(RNN)</span></h2><h3><span id="slot-filling">Slot Filling</span></h3><ul>
 <li>输入一段语句，给出填空的答案</li>
 </ul>
 <p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121525234.png" alt="image-20220612152453286"></p>
@@ -443,6 +544,12 @@
 </li>
 </ul>
 <p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121537487.png" alt="image-20220612153756328"></p>
+<ul>
+<li>问题：网络无法结合上下单词，理解词汇的意义，如到达和离开的区别，只能捕捉到目的地单词<ul>
+<li>我们需要网络具有记忆的功能，能够记住前后的单词</li>
+</ul>
+</li>
+</ul>
 <h4><span id="单词编码">单词编码</span></h4><h5><span id="1-of-n-encoding">1-of-N encoding</span></h5><ul>
 <li>向量长度为整个词库的词语数量</li>
 <li>一个维度标记词库中的一个单词</li>
@@ -458,6 +565,247 @@
 <li>维度用来标记字母组合</li>
 </ul>
 <p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121532801.png" alt="image-20220612153228675" style="zoom:80%;"></p>
+<h3><span id="rnn">RNN</span></h3><h4><span id="存储前一个输入的信息">存储前一个输入的信息</span></h4><ul>
+<li>将隐藏层的信息存储起来，将该信息作为输入，让网络可以学习</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121547500.png" alt="image-20220612154709343" style="zoom:67%;"></p>
+<h5><span id="例子">例子</span></h5><ul>
+<li><p>假设所有的权重为1，没有bias，激活函数都是线性的</p>
+</li>
+<li><p>输入序列：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+    \begin{bmatrix}
+    1 \\
+    1
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 \\
+    1
+    \end{bmatrix}
+    \begin{bmatrix}
+    2 \\
+    2
+    \end{bmatrix}
+\end{equation}</script></li>
+<li><p>初始的存储值为0</p>
+</li>
+</ul>
+<p>第一次输入:</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 \\
+    1
+\end{bmatrix}</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121554397.png" alt="image-20220612155431239"></p>
+<ul>
+<li><p>两个存储值都会变为2</p>
+</li>
+<li><p>输出为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    4 \\
+    4
+\end{bmatrix}</script></li>
+</ul>
+<p>第二次输入：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 \\
+    1
+\end{bmatrix}</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121557234.png" alt="image-20220612155724080"></p>
+<ul>
+<li>两个存储值会变为6</li>
+<li>输出为</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    12 \\
+    12
+\end{bmatrix}</script><h5><span id="小结">小结</span></h5><ul>
+<li>改变输入序列的顺序，会改变输出</li>
+<li>反复使用这样的结构</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121559818.png" alt="image-20220612155900617" style="zoom:80%;"></p>
+<p>如上图所示，当前输入，可以获得前一个输入的信息，可以简单区分出一些不同</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121604746.png" alt="image-20220612160431558" style="zoom:80%;"></p>
+<ul>
+<li>可以将网络做深</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121605857.png" alt="image-20220612160526711"></p>
+<h5><span id="类别">类别</span></h5><ul>
+<li>Elman Network：传递前一个输入的隐藏层信息</li>
+<li>Jordan Network：传递前一个输出的信息</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121607014.png" alt="image-20220612160711768"></p>
+<h4><span id="双向rnn">双向RNN</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121608475.png" alt="image-20220612160845326"></p>
+<p>将前向输入和逆向输入相同位置上的隐藏信息拼合到一个，存储当前单词前后的信息</p>
+<h4><span id="lstm">LSTM</span></h4><h5><span id="结构">结构</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121617309.png" alt="image-20220612161713899"></p>
+<ul>
+<li><p>由4个部分组成</p>
+<ul>
+<li>Input Gate：由信号控制是否接收输入</li>
+<li>Memory Cell：存储记忆的信息</li>
+<li>Forget Gate：由信号控制是否清除现在存储的信息</li>
+<li>Output Gate：由信号控制是否输出</li>
+</ul>
+</li>
+<li><p>一共有4个输入，1个输出</p>
+<ul>
+<li>输入：3个signal，1个正常输入</li>
+</ul>
+</li>
+</ul>
+<h5><span id="计算过程">计算过程</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121626766.png" alt="image-20220612162608543"></p>
+<ul>
+<li>激活函数f输出为0到1，可以用来控制是否接收信息</li>
+<li>输入$z$和$z_i$，经过激活函数得到$g(z)$和$f(z_i)$，将两者相乘，即为$g(z)f(z_i)$<ul>
+<li>这一步用来控制输入</li>
+</ul>
+</li>
+<li>输入$z_f$，经过激活函数得到$f(z_f)$，与Memory Cell中存储的信息c进行相乘，即为$cf(z_f)$<ul>
+<li>这一步用来控制是否要清楚当前信息c</li>
+</ul>
+</li>
+<li>将前两步获得的数据相加获得新的存储信息$c^\prime$</li>
+</ul>
+<script type="math/tex; mode=display">
+c^\prime = g(z)f(z_i) + cf(z_f)</script><ul>
+<li><p>输入$c^\prime$和$z_o$，经过激活函数得到$h(c^\prime)$和$f(z_o)$，将两者相乘，得到输出a，即</p>
+<script type="math/tex; mode=display">
+a = h(c^\prime)f(z_0)</script><ul>
+<li>这一步用来控制输出</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121852288.png" alt="image-20220612185203076"></p>
+<p>在RNN网络架构中，一般用LSTM代替神经元</p>
+<h5><span id="缺点">缺点</span></h5><ul>
+<li><p>参数过多</p>
+<ul>
+<li>每一个LSTM都需要4个输入，需要4倍的参数*LSTM数目</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121908775.png" alt="image-20220612190853570"></p>
+<ul>
+<li>解决方案：利用当前输入，生成4个向量，所有的LSTM使用对应位置上的同一向量</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121918618.png" alt="image-20220612191837425"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121921657.png" alt="image-20220612192100452"></p>
+<ul>
+<li>可以将上一个LSTM网络中的c拼合输入中</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121927804.png" alt="image-20220612192703602" style="zoom: 80%;"></p>
+</li>
+</ul>
+<h5><span id="多层lstm">多层LSTM</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121933005.png" alt="image-20220612193342779" style="zoom: 67%;"></p>
+<h5><span id="学习目标">学习目标</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121935566.png" alt="image-20220612193533363" style="zoom:67%;"></p>
+<ul>
+<li>BPTT（Backpropagation  through time）</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121937184.png" alt="image-20220612193711051"></p>
+<h4><span id="rnn训练较为困难">RNN训练较为困难</span></h4><ul>
+<li>RNN参数的损失曲面十分陡峭</li>
+<li>可以采用clip，剪切掉超过某一范围的参数，强制在一定范围内</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121939602.png" alt="image-20220612193916228"></p>
+<ul>
+<li>损失曲面会抖动严重的原因</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121943377.png" alt="image-20220612194306243"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121945280.png" alt="image-20220612194510135"></p>
+<p>参数的细微改变，会导致后面的输出发生巨大变化（梯度爆炸），或者一直为0（梯度消失），学习率无法调节</p>
+<h4><span id="lstm的优势">LSTM的优势</span></h4><ul>
+<li>可以解决梯度消失的问题（不是梯度爆炸）<ul>
+<li>fotget gate关闭可以消除前面记录信息的影响，摆脱梯度消失</li>
+</ul>
+</li>
+<li>记录的信息和输入可以拼合</li>
+</ul>
+<h4><span id="rnn的应用场景">RNN的应用场景</span></h4><h5><span id="many-to-one">Many to one</span></h5><h6><span id="sentiment-analysis">Sentiment Analysis</span></h6><ul>
+<li>语句分析，将其分类</li>
+<li>输入：向量序列</li>
+<li>输出：向量标签</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121957183.png" alt="image-20220612195715995"></p>
+<h6><span id="key-term-extraction">Key Term Extraction</span></h6><ul>
+<li>关键词的提取</li>
+<li>输入：向量序列</li>
+<li>输出：一个向量</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122000086.png" alt="image-20220612200003882"></p>
+<h5><span id="many-to-many输出序列较短">Many to Many（输出序列较短）</span></h5><p>输入和输出都是序列，输出序列较短</p>
+<h6><span id="speech-recognition">Speech Recognition</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122005975.png" alt="image-20220612200542842"></p>
+<p>好棒棒这种叠词，可能无法识别</p>
+<p>Connectionist Temporal Classification (CTC)</p>
+<ul>
+<li>加入了额外的符号$\phi$来代表空</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122008246.png" alt="image-20220612200826119"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122010241.png" alt="image-20220612201016973"></p>
+<ul>
+<li>CTC是识别每一个字母的</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206122010310.png" alt="image-20220612201049173"></p>
+<h5><span id="many-to-many-没有限制">Many to Many （没有限制）</span></h5><p>输入和输出都是序列，且长度没有限制，可以不一样 -&gt; Sequence to sequence learning</p>
+<h6><span id="machine-translation">Machine Translation</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206150959111.png" alt="image-20220615095955057" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151009677.png" alt="image-20220615100913625" style="zoom:80%;"></p>
+<h5><span id="beyond-sequence">Beyond Sequence</span></h5><h6><span id="syntactic-parsing">Syntactic parsing</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151011308.png" alt="image-20220615101152260" style="zoom:80%;"></p>
+<h5><span id="sequence-to-sequence-auto-encoder-text">Sequence-to-sequence Auto-encoder  Text</span></h5><p>要理解一个句子的意思，单词的顺序不可以忽略</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151014571.png" alt="image-20220615101426521" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151015496.png" alt="image-20220615101517419" style="zoom: 80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151016619.png" alt="image-20220615101624543" style="zoom:80%;"></p>
+<h5><span id="sequence-to-sequence-auto-encoder-speech">Sequence-to-sequence Auto-encoder  Speech</span></h5><ul>
+<li>不定长度的序列的降维</li>
+<li>发音相近的词语转换为向量后，会聚集在一定区域</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151022522.png" alt="image-20220615102242458" style="zoom:80%;"></p>
+<p>音频归档分为可变长度的音频段，然后可以对语音进行检索</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151026948.png" alt="image-20220615102627894" style="zoom:80%;"></p>
+<p>将语音片段转换为向量后，我们希望向量能够表示这个语音片段</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151029985.png" alt="image-20220615102914925" style="zoom:80%;"></p>
+<p>Encoder和Decoder是联合训练的</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151030015.png" alt="image-20220615103050956" style="zoom:80%;"></p>
+<h4><span id="attention-based-model">Attention-based Model</span></h4><ul>
+<li>DNN/RNN可以通过Reading Head Controller在Memory中找到自己想要的相关信息</li>
+<li>就像人类的大脑一样，可以去记忆中去搜索相关的知识</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151034669.png" alt="image-20220615103430622" style="zoom:80%;"></p>
+<ul>
+<li>DNN/RNN同时也可以写入Memory</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151035798.png" alt="image-20220615103542742" style="zoom:80%;"></p>
+<h5><span id="应用">应用</span></h5><h6><span id="reading-comprehension">Reading Comprehension</span></h6><ul>
+<li>对文本进行语义分析，每一个句子转换为一个向量</li>
+<li>DNN/RNN读取向量信息</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151242792.png" alt="image-20220615124241256"></p>
+<h6><span id="visual-question-answering">Visual Question Answering</span></h6><ul>
+<li>输入一张图片和一个问题，输出问题的答案</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151244411.png" alt="image-20220615124449212"></p>
+<ul>
+<li>利用CNN将图片的每一个区域转换为一个向量</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151245876.png" alt="image-20220615124538682"></p>
+<h6><span id="speech-question-answering">Speech Question Answering</span></h6><p>听力考试</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151251480.png" alt="image-20220615125117301"></p>
+<h4><span id="rnn和structured-learning的比较">RNN和Structured Learning的比较</span></h4><p>RNN，LSTM</p>
+<ul>
+<li>非双向的RNN不能够考虑整个序列</li>
+<li>Cost和eroor总是相关的</li>
+<li>deep</li>
+</ul>
+<p>HMM，CRF，Structured Perceptron/SVM</p>
+<ul>
+<li>使用了Viterbi，考虑了整个序列<ul>
+<li>但双向的RNN也可考虑</li>
+</ul>
+</li>
+<li>可以明确考虑标签依赖关系</li>
+<li>Cost是error的下界</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151300653.png" alt="image-20220615130016461"></p>
+<h5><span id="一起使用">一起使用</span></h5><h6><span id="speech-recognition-cnnlstmdnn-hmm">Speech Recognition:  CNN/LSTM/DNN + HMM</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151308161.png" alt="image-20220615130854017" style="zoom:80%;"></p>
+<h6><span id="semantic-tagging-bi-directional-lstm-crfstructured-svm">Semantic Tagging: Bi-directional LSTM +  CRF/Structured SVM</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151310882.png" alt></p>
 <h2><span id="self-attention">Self-Attention</span></h2><h4><span id="输入">输入</span></h4><ul>
 <li>输入是一个向量，经过模型后输出一个数字或者类别</li>
 <li>输入时一组向量，经过模型后输出一组数字或者类别</li>
@@ -607,10 +955,226 @@ O = V A^`</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@m
 <ul>
 <li>Self-attention适合更多的数据，而CNN适合比较少的数据</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012102106.png" alt="image-20220601210243798"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012102106.png" alt="image-20220601210243798" style="zoom:80%;"></p>
 <h3><span id="self-attention和rnn的比较">Self-attention和RNN的比较</span></h3><p>RNN不可以平行处理，而自注意力可以</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012103414.png" alt="image-20220601210357104"></p>
-<h3><span id="self-attention-for-graph">Self-attention for Graph</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012104168.png" alt="image-20220601210432017"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012103414.png" alt="image-20220601210357104" style="zoom:80%;"></p>
+<h3><span id="self-attention-for-graph">Self-attention for Graph</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012104168.png" alt="image-20220601210432017" style="zoom:80%;"></p>
+<h3><span id="transformer">Transformer</span></h3><h4><span id="seq2seq">Seq2seq</span></h4><ul>
+<li>对于序列到序列的模型，我们输入一段序列，模型会输出一段序列，且输出序列的长度取决于模型<ul>
+<li>语音识别(Speech Recognition)</li>
+<li>机器翻译(Machine Translation)</li>
+<li>语音翻译(Speech Translation)</li>
+<li>文本转语音合成器(Text-to-Speech(TTS) Synthesis)</li>
+<li>Seq2seq for Chatbot</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201016079.png" alt="image-20220620101610237" style="zoom:80%;"></p>
+<ul>
+<li><p>其他的一些应用</p>
+<ul>
+<li>Seq2seq for Syntactic Parsing</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201020094.png" alt="image-20220620102011952" style="zoom:80%;"></p>
+<ul>
+<li>Seq2seq for  Multi-label Classification</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021238.png" alt="image-20220620102042105" style="zoom:80%;"></p>
+<ul>
+<li>Seq2seq for  Object Detection</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021586.png" alt="image-20220620102118403" style="zoom:80%;"></p>
+</li>
+</ul>
+<h4><span id="transformer">Transformer</span></h4><p>Encoder-Decoder架构</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201023469.png" alt="image-20220620102300323" style="zoom:80%;"></p>
+<p>结构</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201026730.png" alt="image-20220620102633567" style="zoom: 80%;"></p>
+<h5><span id="encoder">Encoder</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201027152.png" alt="image-20220620102723001" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031355.png" alt="image-20220620103105168" style="zoom:80%;"></p>
+<p>Layer Norm的调整</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031877.png" alt="image-20220620103151696" style="zoom:80%;"></p>
+<h5><span id="decoder">Decoder</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201038711.png" alt="image-20220620103857554" style="zoom: 67%;"></p>
+<p>Transformer的Decoder是一个自回归的Decoder（Autoregressive Decoder）</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201036338.png" alt="image-20220620103624171" style="zoom:80%;"></p>
+<h5><span id="masked-self-attention">Masked Self-attention</span></h5><ul>
+<li>在解码器中，第一个注意力机制是一个掩码的自注意力</li>
+<li>这是因为解码器需要输出一个序列，它需要在不知道后面的信息的情况下，根据前面的信息，来预测当前的输出</li>
+<li>所以我们在训练时，需要将后面的序列盖住</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201042918.png" alt="image-20220620104239749" style="zoom:80%;"></p>
+<ul>
+<li>在训练时，我们给解码器的输入都是正确答案，帮助其完成训练</li>
+</ul>
+<p><strong>停止符号</strong></p>
+<p>为了让输出停止，我们需要定义一个停止符号，提示解码器停止输出</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201043748.png" alt="image-20220620104334428" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201044384.png" alt="image-20220620104422226" style="zoom:80%;"></p>
+<h5><span id="nat-非自回归">NAT 非自回归</span></h5><ul>
+<li>AT需要前面的输出信息，才能给出当前的输出</li>
+<li>NAT可以并行地给出输出，速度比AT要快，生成更加稳定</li>
+</ul>
+<p>NAT解码器如何决定输出的长度</p>
+<ul>
+<li>预测输出序列的长度(predictor)</li>
+<li>输出一个固定长度的长序列，忽略终止符END后面的Token</li>
+</ul>
+<h5><span id="cross-attention">Cross attention</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201057230.png" alt="image-20220620105702079" style="zoom:80%;"></p>
+<p>Cross attention部分会将Encoder的最后一个输出转换为Decoder部分的$k$和$v$矩阵</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201416702.png" alt="image-20220620141608521" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201421768.png" alt="image-20220620142157510" style="zoom:80%;"></p>
+<h6><span id="不同的连接方式">不同的连接方式</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201422724.png" alt="image-20220620142232490"></p>
+<h4><span id="训练transformer">训练Transformer</span></h4><ul>
+<li>Encoder和Decoder联合训练</li>
+<li>使用softmax和cross entropy进行训练</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201437245.png" alt="image-20220620143749025" style="zoom:80%;"></p>
+<h5><span id="teacher-forcing模式">Teacher Forcing模式</span></h5><p>将输出数据作为Decoder的输入，使其向正确输出靠近</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201439938.png" alt="image-20220620143936719"></p>
+<h4><span id="tips">Tips</span></h4><h5><span id="copy-machanism-复制机制">Copy Machanism 复制机制</span></h5><p>将一些不太需要翻译的人名、地名等直接复制</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201441878.png" alt="image-20220620144123673" style="zoom:80%;"></p>
+<h5><span id="guided-attention">Guided Attention</span></h5><ul>
+<li>Monotonic Attention</li>
+<li><p>Location-aware attention</p>
+</li>
+<li><p>在一些任务中，输入和输出是单调排列的，顺序关系不可改变</p>
+</li>
+<li>例如下面的序列中，在输出时，第一个输出中，Attention关注的是后面的序列</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201450843.png" alt="image-20220620145025627" style="zoom:80%;"></p>
+<h5><span id="beam-search">Beam Search</span></h5><ul>
+<li>在Attention Score中，模型会选择当前分数最高的，但是多次选择后，综合起来，不一定是最好的选择</li>
+<li>Beam Search会综合考虑全局的分数，选择最好的结果</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201453733.png" alt="image-20220620145344491" style="zoom: 80%;"></p>
+<p>但是最好的选择不一定会产生很好的结果</p>
+<h5><span id="sampling">Sampling</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201456221.png" alt="image-20220620145622036"></p>
+<p>在一些任务中，生成序列时，Decoder需要一些噪声(Randomness)，sample是指从某些分布中sample中出来的噪声</p>
+<h6><span id="scheduled-sampling">Scheduled Sampling</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201508376.png" alt="image-20220620150815218" style="zoom:80%;"></p>
+<p>采样由Decoder决定</p>
+<h5><span id="optimizing-evaluation-metrics">Optimizing Evaluation Metrics</span></h5><p>优化方案的选择</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201501785.png" alt="image-20220620150131465" style="zoom:80%;"></p>
+<ul>
+<li>Cross Entropy</li>
+<li>BLEU score</li>
+<li>Reinforcement learning</li>
+</ul>
+<h3><span id="各种各样的attention">各种各样的Attention</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151319663.png" alt="image-20220615131919483" style="zoom:80%;"></p>
+<h4><span id="自注意力机制的运作">自注意力机制的运作</span></h4><ul>
+<li>利用Query和Key构造一个Attention Matrix</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151320098.png" alt="image-20220615132047951" style="zoom:80%;"></p>
+<ul>
+<li>自注意力只是一个大型网络的一个模块</li>
+<li>当序列的长度N足够大的时候，自注意力在计算占主导</li>
+<li>通常用于图像处理</li>
+</ul>
+<h4><span id="人工干预来跳过一些attention-matrix的计算">人工干预来跳过一些Attention Matrix的计算</span></h4><h5><span id="local-attentiontruncated-attention">Local Attention/Truncated Attention</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151328102.png" alt="image-20220615132821960" style="zoom:80%;"></p>
+<ul>
+<li>只计算标记的部位，其他位置设置为0</li>
+<li>跟CNN有些相似</li>
+</ul>
+<h5><span id="stride-attention">Stride Attention</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151330114.png" alt="image-20220615133009983" style="zoom:80%;"></p>
+<ul>
+<li>选中从自身向左右两边跨越规定的步数的部位，进行计算</li>
+</ul>
+<h5><span id="global-attention">Global Attention</span></h5><ul>
+<li>在原来的序列中添加special token<ul>
+<li>关注(attend)每一个token，可以收集全局信息</li>
+<li>被每一个token关注(attend)，知道全局信息</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151341781.png" alt="image-20220615134147669" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151353367.png" alt="image-20220615135338223" style="zoom:80%;"></p>
+<p>图中前两个是special token</p>
+<h5><span id="小结">小结</span></h5><ul>
+<li>可以在一个模型中同时使用不同的Attention<ul>
+<li>不同的head可以使用不同的模式</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151355615.png" alt="image-20220615135545467" style="zoom:80%;"></p>
+<h4><span id="关注一些matrix中关键的部分critical-parts">关注一些Matrix中关键的部分(Critical Parts)</span></h4><ul>
+<li>小数值直接设置为0</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151415355.png" alt="image-20220615141532216" style="zoom:80%;"></p>
+<ul>
+<li>如何快速估计注意力权重较小的部分</li>
+</ul>
+<h5><span id="clustering">Clustering</span></h5><ul>
+<li>Reformer</li>
+<li>Routing Transformer</li>
+</ul>
+<h6><span id="步骤1">步骤1</span></h6><p>基于相似度对query和key进行聚类标注</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151435498.png" alt="image-20220615143507228" style="zoom:80%;"></p>
+<h6><span id="步骤2">步骤2</span></h6><ul>
+<li>相同类别的才计算attention weight</li>
+<li>不同类别的设置为0</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151436784.png" alt="image-20220615143639643" style="zoom:80%;"></p>
+<h5><span id="learnable-patterns">Learnable Patterns</span></h5><p>通过学习来获取需要计算的部位</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151443520.png" alt="image-20220615144303332" style="zoom:80%;"></p>
+<h5><span id="不需要完整的attention-matrix">不需要完整的Attention matrix</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151446205.png" alt="image-20220615144605069" style="zoom:80%;"></p>
+<ul>
+<li>可以减少key和value的长度</li>
+<li>query的长度不变，因为输出长度需要不变</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151453211.png" alt="image-20220615145312066" style="zoom:80%;"></p>
+<h6><span id="使用卷积">使用卷积</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151457166.png" alt="image-20220615145754047" style="zoom:80%;"></p>
+<h6><span id="使用参数矩阵相乘">使用参数矩阵相乘</span></h6><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151458612.png" alt="image-20220615145841338" style="zoom:80%;"></p>
+<h4><span id="注意力机制计算">注意力机制计算</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151500280.png" alt="image-20220615150050121" style="zoom:80%;"></p>
+<ul>
+<li>利用输入I获取Q、K、V进行运算，得到输出O</li>
+<li>为加快运算，采用矩阵计算的形式</li>
+</ul>
+<h5><span id="计算方式的不同">计算方式的不同</span></h5><ul>
+<li>$K^TQ$先计算</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151505401.png" alt="image-20220615150558285" style="zoom:80%;"></p>
+<ul>
+<li>$VK^T$先计算</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151506681.png" alt="image-20220615150610340" style="zoom:80%;"></p>
+<p>三个矩阵计算顺序不同，进行乘法次数不同，结果相同</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151608002.png" alt="image-20220615160842793" style="zoom:80%;"></p>
+<p>而Q、K、V三个矩阵的运算中，</p>
+<p>正常进行计算，会进行$(d+d^\prime)N^2$次乘法运算</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191607097.png" style="zoom:80%;"></p>
+<p>先计算$V K^T$的话，会计算$2d^\prime dN$次乘法运算，小于正常运算次数，序列长度N是大于维度d的</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191609388.png" alt="image-20220619160902235" style="zoom:80%;"></p>
+<h5><span id="注意力计算的变换">注意力计算的变换</span></h5><p>我们利用当前向量的$q$矩阵，来与自身和其他向量的$k$矩阵进行运算，再经过$softmax$运算，得到$\alpha^{\prime}$，即</p>
+<script type="math/tex; mode=display">
+\alpha^{\prime}_{1,i} = \sum_{i=1}^{N}\frac{exp(q^1\cdot k^i)}{\sum^N_{j=1}exp(q^1\cdot k^j)}</script><p>这里以$a^1$向量($q^1$矩阵)为当前向量。</p>
+<p>再将得到的$\alpha^{\prime}$与对应的$v$矩阵进行运算，合成起来得到$b^1$，即</p>
+<script type="math/tex; mode=display">
+b^1 = \sum_{i=1}^{N}\alpha^{\prime}_{1,i}v^i = \sum_{i=1}^{N}\frac{exp(q^1\cdot k^i)}{\sum^N_{j=1}exp(q^1\cdot k^j)}v^i</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191622844.png" alt="image-20220619162249548" style="zoom:80%;"></p>
+<p>在这里，我们可以对$softmax$的计算进行改变</p>
+<script type="math/tex; mode=display">
+exp(q\cdot k) \approx \phi(q) \cdot \phi(k)</script><p>这里的$\phi$是一个变换，那么$b$的计算可以变换为</p>
+<script type="math/tex; mode=display">
+\begin{equation} 
+\begin{aligned}
+b^1 = \sum_{i=1}^{N}\alpha^{\prime}_{1,i}v^i &=\sum_{i=1}^{N}\frac{exp(q^1\cdot k^i)}{\sum^N_{j=1}exp(q^1\cdot k^j)}v^i \\ \\
+&= \sum^N_{i=1}\frac{\phi(q^1)\cdot\phi(k^i)}{\sum^N_{j=1}\phi(q^1)\cdot\phi(k^j)}v^i \\ \\
+&= \frac{\sum^N_{i=1}\phi(q^1)\cdot\phi(k^i)v^i}{\sum^N_{j=1}\phi(q^1)\cdot\phi(k^j)}
+\end{aligned}
+\end{equation}</script><p>而分母项可以进一步进行调整</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\sum^N_{j=1}\phi(q^1)\cdot\phi(k^j) = \phi(q^1) \cdot\sum^{N}_{j=1}\phi(k^j)
+\end{equation}</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191639053.png" alt="image-20220619163916875" style="zoom:67%;"></p>
+<p>那么$b^1$的计算进一步调整</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191640161.png" alt="image-20220619164017990" style="zoom:80%;"></p>
+<p>我们可以利用$k$和$v$提前计算好部分值，需要时直接调用即可</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191642452.png" alt="image-20220619164259336" style="zoom:80%;"></p>
+<p>  <img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191816815.png" alt="image-20220619181601660" style="zoom:80%;"></p>
+<p>这样子，有一部分不用重复进行计算</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191819653.png" alt="image-20220619181937513"></p>
+<p>这样利用$\phi(k)$和$v$计算出来的M组向量相当于有M组模板，$\phi(q)$与之相乘是在进行选择。</p>
+<h4><span id="通过学习来构造attention-matrix">通过学习来构造Attention Matrix</span></h4><p>注意力机制通过$q$和$k$来计算Attention Matrix，但是我们可以将整个矩阵是为网络的参数</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191836293.png" alt="image-20220619183648004" style="zoom:80%;"></p>
+<h4><span id="小结">小结</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191837325.png" alt="image-20220619183747143" style="zoom:80%;"></p>
 
     </div>
 
@@ -632,7 +1196,10 @@ O = V A^`</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@m
     <a href="/2022/05/30/originL4-LabTalk/" rel="prev" title="originL4-LabTalk">
       <i class="fa fa-chevron-left"></i> originL4-LabTalk
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/14/Linux1/" rel="next" title="Linux1">
+      Linux1 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -706,14 +1273,14 @@ O = V A^`</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@m
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -757,7 +1324,7 @@ O = V A^`</script><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@m
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

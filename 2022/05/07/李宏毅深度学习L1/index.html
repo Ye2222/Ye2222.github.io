@@ -133,7 +133,7 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151459336.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518151817778.png">
 <meta property="article:published_time" content="2022-05-07T12:26:28.000Z">
-<meta property="article:modified_time" content="2022-05-24T02:34:31.420Z">
+<meta property="article:modified_time" content="2022-06-27T02:39:00.275Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="DeepLearning">
 <meta name="twitter:card" content="summary">
@@ -239,12 +239,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -329,7 +329,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-24 10:34:31" itemprop="dateModified" datetime="2022-05-24T10:34:31+08:00">2022-05-24</time>
+                <time title="修改时间：2022-06-27 10:39:00" itemprop="dateModified" datetime="2022-06-27T10:39:00+08:00">2022-06-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -502,10 +502,10 @@ w^{t+1} \leftarrow w^t - \frac{\eta^t}{\sigma^t}g^t \\</script><p><img src="http
 <h5><span id="向前传递">向前传递</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518105244462.png" alt="image-20220518105244462"></p>
 <h5><span id="向后传递">向后传递</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518105525634.png" alt="image-20220518105525634"></p>
 <script type="math/tex; mode=display">
-\frac{\part{C}}{\part{z}} = \frac{\part{a}}{\part{z}}\frac{\part{C}}{\part{a}} \\ \\
-\frac{\part{C}}{\part{a}} = \frac{\part{z^`}}{\part{a}}\frac{\part{C}}{\part{z^`}}+ \frac{\part{z^{``}}}{\part{a}}\frac{\part{C}}{\part{z^{``}}} \\ \\
-\frac{\part{z^`}}{\part{a}} = w_3 \\ \frac{\part{z^{``}}}{\part{a}} = w_4 \\ \\ 
-现在的问题是\frac{\part{C}}{\part{z^`}}和\frac{\part{C}}{\part{z^{``}}}的取值</script><p>情况一：有输出层</p>
+\frac{\partial{C}}{\partial{z}} = \frac{\partial{a}}{\partial{z}}\frac{\partial{C}}{\partial{a}} \\ \\
+\frac{\partial{C}}{\partial{a}} = \frac{\partial{z^`}}{\partial{a}}\frac{\partial{C}}{\partial{z^`}}+ \frac{\partial{z^{``}}}{\partial{a}}\frac{\partial{C}}{\partial{z^{``}}} \\ \\
+\frac{\partial{z^`}}{\partial{a}} = w_3 \\ \frac{\partial{z^{``}}}{\partial{a}} = w_4 \\ \\ 
+现在的问题是\frac{\partial{C}}{\partial{z^`}}和\frac{\partial{C}}{\partial{z^{``}}}的取值</script><p>情况一：有输出层</p>
 <p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/image-20220518110011768.png" alt="image-20220518110011768"></p>
 <p>情况二：不是输出层，只是中间层</p>
 <p>只能不断地往后算，直到输出层，然后向后传播</p>
@@ -867,14 +867,14 @@ w^*,b^*=arg \mathop{max}_{w,b}L(w,b)</script><p>为了计算，我们将两个�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -918,7 +918,7 @@ w^*,b^*=arg \mathop{max}_{w,b}L(w,b)</script><p>为了计算，我们将两个�
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
