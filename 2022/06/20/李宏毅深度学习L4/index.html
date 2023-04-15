@@ -1,28 +1,22 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
-  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="GAN(生成对抗网络)">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GuoYB">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GAN(生成对抗网络)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="李宏毅深度学习L4">
 <meta property="og:url" content="https://ye2222.github.io/2022/06/20/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L4/index.html">
@@ -58,632 +52,813 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201921403.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201922723.png">
 <meta property="article:published_time" content="2022-06-20T02:03:18.000Z">
-<meta property="article:modified_time" content="2022-06-20T11:31:49.124Z">
+<meta property="article:modified_time" content="2023-04-15T08:35:28.685Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="DeepLearning">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201522909.png">
+  
+  
+  
+  <title>李宏毅深度学习L4 - Yeの博客</title>
 
-<link rel="canonical" href="https://ye2222.github.io/2022/06/20/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L4/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>李宏毅深度学习L4 | Yeの博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <!-- <div class="headband"></div> -->
-    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Yeの博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yeの博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2022/06/20/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0L4/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.gif">
-      <meta itemprop="name" content="GuoYB">
-      <meta itemprop="description" content="欢迎欢迎">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yeの博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          李宏毅深度学习L4
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-06-20 10:03:18 / 修改时间：19:31:49" itemprop="dateCreated datePublished" datetime="2022-06-20T10:03:18+08:00">2022-06-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9D%8E%E5%AE%8F%E6%AF%85/" itemprop="url" rel="index"><span itemprop="name">李宏毅</span></a>
-                </span>
-            </span>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-            <div class="post-description">GAN(生成对抗网络)</div>
-
+            <span id="subtitle" data-typed-text="李宏毅深度学习L4"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-20 10:03" pubdate>
+          2022年6月20日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <h2><span id="gan">GAN</span></h2><h4><span id="将网络作为生成器generator">将网络作为生成器(Generator)</span></h4><ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">李宏毅深度学习L4</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="gan">GAN</h2>
+<h4 id="将网络作为生成器generator">将网络作为生成器(Generator)</h4>
+<ul>
 <li>给定一个分布，从分布sample出一些样本</li>
 <li>网络作为generator，可以接收sample出来的样本和输入x，学习到一个复杂的分布，输出y。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201522909.png" alt="image-20220620152245797" style="zoom:80%;"></p>
-<h5><span id="为什么需要一个分布">为什么需要一个分布</span></h5><p>以一个Video Prediction为例子</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201525726.png" alt="image-20220620152519633" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201522909.png" srcset="/img/loading.gif" lazyload alt="image-20220620152245797" style="zoom:80%;" /></p>
+<h5 id="为什么需要一个分布">为什么需要一个分布</h5>
+<p>以一个Video Prediction为例子</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201525726.png" srcset="/img/loading.gif" lazyload alt="image-20220620152519633" style="zoom:80%;" /></p>
 <ul>
 <li>给定之前的帧，网络需要输出下一帧</li>
-<li>但是这样会出现一个问题，网络采用一个多分类问题的解决形式时，输出可能会结合多种可能性，生成一种包含所有情况，只是概率大小不同的图<ul>
+<li>但是这样会出现一个问题，网络采用一个多分类问题的解决形式时，输出可能会结合多种可能性，生成一种包含所有情况，只是概率大小不同的图
+<ul>
 <li>在这个例子中，你会看到小豆子分裂，一个往左，一个往右，网络没办法只选定一种可能</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201528854.png" alt="image-20220620152809649" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201528854.png" srcset="/img/loading.gif" lazyload alt="image-20220620152809649" style="zoom:80%;" /></p>
 <ul>
 <li>当给定一个分布sample出来的数值，网络便可以学习到一个分布，进行一个特定的选择</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201545752.png" alt="image-20220620154550641" style="zoom:80%;"></p>
-<h4><span id="所有种类的gan">所有种类的GAN</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201555147.png" alt="image-20220620155516033" style="zoom:80%;"></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/hindupuravinash/the-gan-zoo">https://github.com/hindupuravinash/the-gan-zoo</a></p>
-<h4><span id="gan的结构">GAN的结构</span></h4><ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201545752.png" srcset="/img/loading.gif" lazyload alt="image-20220620154550641" style="zoom:80%;" /></p>
+<h4 id="所有种类的gan">所有种类的GAN</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201555147.png" srcset="/img/loading.gif" lazyload alt="image-20220620155516033" style="zoom:80%;" /></p>
+<p>https://github.com/hindupuravinash/the-gan-zoo</p>
+<h4 id="gan的结构">GAN的结构</h4>
+<ul>
 <li>GAN包括Generator和Discriminator两个结构</li>
 <li>Generator根据输入和sample来在一个复杂的分布中sample出一个输出</li>
 <li>Discriminator对于给定的输入，进行打分，判断其是否为真实的</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558718.png" alt="image-20220620155834504" style="zoom:80%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558214.png" alt="image-20220620155843019" style="zoom:80%;"></p>
-<h4><span id="gan的思想">GAN的思想</span></h4><ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558718.png" srcset="/img/loading.gif" lazyload alt="image-20220620155834504" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558214.png" srcset="/img/loading.gif" lazyload alt="image-20220620155843019" style="zoom:80%;" /></p>
+<h4 id="gan的思想">GAN的思想</h4>
+<ul>
 <li>Generator想办法生成逼真的图片来骗过Discriminator</li>
 <li>Discriminator想办法辨别出真假图片</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201559238.png" alt="image-20220620155944071" style="zoom:80%;"></p>
-<h4><span id="gan的算法">GAN的算法</span></h4><ol>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201559238.png" srcset="/img/loading.gif" lazyload alt="image-20220620155944071" style="zoom:80%;" /></p>
+<h4 id="gan的算法">GAN的算法</h4>
+<ol type="1">
 <li>初始化generator和discriminator</li>
 <li>在每一个训练步骤中</li>
 </ol>
-<h5><span id="step1">Step1</span></h5><ul>
+<h5 id="step1">Step1</h5>
+<ul>
 <li>固定generator G，更新discriminator D</li>
 <li>Discriminator学习给真实的图片高分，给生成的图片低分，即学会去分辨真假图片</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201608509.png" alt="image-20220620160847368" style="zoom:80%;"></p>
-<h5><span id="step2">Step2</span></h5><ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201608509.png" srcset="/img/loading.gif" lazyload alt="image-20220620160847368" style="zoom:80%;" /></p>
+<h5 id="step2">Step2</h5>
+<ul>
 <li>固定discrimator D，更新generator G</li>
 <li>Generator要学会去欺骗discriminator</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611928.png" alt="image-20220620161108827" style="zoom:80%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611665.png" alt="image-20220620161157451" style="zoom:80%;"></p>
-<h4><span id="gan背后的理论">GAN背后的理论</span></h4><h5><span id="目标">目标</span></h5><ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611928.png" srcset="/img/loading.gif" lazyload alt="image-20220620161108827" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611665.png" srcset="/img/loading.gif" lazyload alt="image-20220620161157451" style="zoom:80%;" /></p>
+<h4 id="gan背后的理论">GAN背后的理论</h4>
+<h5 id="目标">目标</h5>
+<ul>
 <li>让Generator生成的分布尽可能向数据的分布靠近</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201616856.png" alt="image-20220620161655751" style="zoom:80%;"></p>
-<p>即</p>
-<script type="math/tex; mode=display">
-G^* = arg\min_{G}Div(P_G,P_{data})</script><p>这里的$Div(P_G,P_{data})$是指两个分布之间的divergence(散度)</p>
-<h6><span id="sampling">Sampling</span></h6><p>尽管我们不能确切地知道$P_G$和$P_{data}$的分布，但是我们从两个分布中sample出一些样本</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201620547.png" alt="image-20220620162034425" style="zoom:80%;"></p>
-<h5><span id="discriminator">Discriminator</span></h5><p>这里的Discriminator是一个二分类的分类器</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201621874.png" alt="image-20220620162143764" style="zoom:80%;"></p>
-<p><strong>Training</strong>：</p>
-<script type="math/tex; mode=display">
-D^* = arg\max_{D}V(D,G)</script><p>其实后面的$\max_DV(D,G)$相当于一个JS散度</p>
-<p><strong>Objective Function</strong>:</p>
-<script type="math/tex; mode=display">
-V(G,D)=E_{y\sim P_{data}}[logD(y)]+E_{y\sim P_G}[log(1-D(y))]</script><p>其中，我们希望$logD(y)$能够尽可能地大，这样能够认出真实的图片；$log(1-D(y))$能够尽可能地小，这样可以辨别出生成地图片</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201627838.png" alt="image-20220620162722742" style="zoom:80%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201629793.png" alt="image-20220620162945694" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201616856.png" srcset="/img/loading.gif" lazyload alt="image-20220620161655751" style="zoom:80%;" /></p>
+<p>即 <span class="math display">\[
+G^* = arg\min_{G}Div(P_G,P_{data})
+\]</span> 这里的<span
+class="math inline">\(Div(P_G,P_{data})\)</span>是指两个分布之间的divergence(散度)</p>
+<h6 id="sampling">Sampling</h6>
+<p>尽管我们不能确切地知道<span class="math inline">\(P_G\)</span>和<span
+class="math inline">\(P_{data}\)</span>的分布，但是我们从两个分布中sample出一些样本</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201620547.png" srcset="/img/loading.gif" lazyload alt="image-20220620162034425" style="zoom:80%;" /></p>
+<h5 id="discriminator">Discriminator</h5>
+<p>这里的Discriminator是一个二分类的分类器</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201621874.png" srcset="/img/loading.gif" lazyload alt="image-20220620162143764" style="zoom:80%;" /></p>
+<p><strong>Training</strong>： <span class="math display">\[
+D^* = arg\max_{D}V(D,G)
+\]</span> 其实后面的<span
+class="math inline">\(\max_DV(D,G)\)</span>相当于一个JS散度</p>
+<p><strong>Objective Function</strong>: <span class="math display">\[
+V(G,D)=E_{y\sim P_{data}}[logD(y)]+E_{y\sim P_G}[log(1-D(y))]
+\]</span> 其中，我们希望<span
+class="math inline">\(logD(y)\)</span>能够尽可能地大，这样能够认出真实的图片；<span
+class="math inline">\(log(1-D(y))\)</span>能够尽可能地小，这样可以辨别出生成地图片</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201627838.png" srcset="/img/loading.gif" lazyload alt="image-20220620162722742" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201629793.png" srcset="/img/loading.gif" lazyload alt="image-20220620162945694" style="zoom:80%;" /></p>
 <p>我们可以将Generator中需要的散度换成Discriminator的目标函数，联合训练</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630402.png" alt="image-20220620163033264" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630402.png" srcset="/img/loading.gif" lazyload alt="image-20220620163033264" style="zoom:80%;" /></p>
 <p>其他的一些divergence</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630227.png" alt="image-20220620163058118" style="zoom:80%;"></p>
-<h4><span id="tips-for-gan">Tips for GAN</span></h4><h5><span id="js-divergence并不适合gan">JS divergence并不适合GAN</span></h5><h6><span id="在大部分情况下p_g和p_data并不是重叠的overlapped">在大部分情况下，$P_G$和$P_{data}$并不是重叠的(overlapped)</span></h6><ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630227.png" srcset="/img/loading.gif" lazyload alt="image-20220620163058118" style="zoom:80%;" /></p>
+<h4 id="tips-for-gan">Tips for GAN</h4>
+<h5 id="js-divergence并不适合gan">JS divergence并不适合GAN</h5>
+<h6
+id="在大部分情况下p_g和p_data并不是重叠的overlapped">在大部分情况下，<span
+class="math inline">\(P_G\)</span>和<span
+class="math inline">\(P_{data}\)</span>并不是重叠的(overlapped)</h6>
+<ul>
 <li>两者都是高维空间在低维空间的流形(manifold)，重叠部分可以忽略</li>
 <li>取样问题，尽管两者之间有重叠但是取样不够多的话</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201845025.png" alt="image-20220620184554919" style="zoom:80%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201846683.png" alt="image-20220620184601523" style="zoom:80%;"></p>
-<h6><span id="js-divergence的问题">JS divergence的问题</span></h6><ul>
-<li>当两个分布不重叠的话，JS divergence总是$log_2$</li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201845025.png" srcset="/img/loading.gif" lazyload alt="image-20220620184554919" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201846683.png" srcset="/img/loading.gif" lazyload alt="image-20220620184601523" style="zoom:80%;" /></p>
+<h6 id="js-divergence的问题">JS divergence的问题</h6>
+<ul>
+<li>当两个分布不重叠的话，JS divergence总是<span
+class="math inline">\(log_2\)</span></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201851921.png" alt="image-20220620185159789" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201851921.png" srcset="/img/loading.gif" lazyload alt="image-20220620185159789" style="zoom:80%;" /></p>
 <p>这样会出现一个很严重的问题，当两个分布不重叠的时候，discriminator总是会实现百分百精度的分类，但这样GAN的训练就无法有一个明确的方向去优化了，因为只要不重叠，都是一样差的</p>
-<h5><span id="wasserstein-distance">Wasserstein distance</span></h5><p>Wasserstein distance可以用来衡量一个分布变换到目标分布的<strong>最小距离</strong></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201859084.png" alt="image-20220620185906943" style="zoom:80%;"></p>
+<h5 id="wasserstein-distance">Wasserstein distance</h5>
+<p>Wasserstein
+distance可以用来衡量一个分布变换到目标分布的<strong>最小距离</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201859084.png" srcset="/img/loading.gif" lazyload alt="image-20220620185906943" style="zoom:80%;" /></p>
 <p>这样GAN的优化就有一个明确的方向</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201901989.png" alt="image-20220620190153844" style="zoom:80%;"></p>
-<h4><span id="wgan">WGAN</span></h4><h5><span id="使用wasserstein-distance来优化p_data和p_g">使用Wasserstein distance来优化$P_{data}$和$P_G$</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201905869.png" alt="image-20220620190549765" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201901989.png" srcset="/img/loading.gif" lazyload alt="image-20220620190153844" style="zoom:80%;" /></p>
+<h4 id="wgan">WGAN</h4>
+<h5 id="使用wasserstein-distance来优化p_data和p_g">使用Wasserstein
+distance来优化<span class="math inline">\(P_{data}\)</span>和<span
+class="math inline">\(P_G\)</span></h5>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201905869.png" srcset="/img/loading.gif" lazyload alt="image-20220620190549765" style="zoom:80%;" /></p>
 <p>如果没有D函数光滑的限制，D的训练将不会收敛</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201909399.png" alt="image-20220620190901300" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201909399.png" srcset="/img/loading.gif" lazyload alt="image-20220620190901300" style="zoom:80%;" /></p>
 <ul>
 <li>如上图所示，生成分布和数据分布没有重叠，discriminator可能会不断往无穷处进行打分，来更好地区分两者，无法收敛</li>
-<li>让discriminator的函数保持光滑可以强制$D(y)$位于正无穷和负无穷之间</li>
+<li>让discriminator的函数保持光滑可以强制<span
+class="math inline">\(D(y)\)</span>位于正无穷和负无穷之间</li>
 </ul>
-<h6><span id="不同的做法">不同的做法</span></h6><ul>
-<li><p>Origin WGAN -&gt;  Weight</p>
+<h6 id="不同的做法">不同的做法</h6>
 <ul>
-<li><p>强制参数w位于c和-c之间</p>
-</li>
-<li><p>参数更新后，如果$w&gt;c$，$w = c$；如果$w &lt; -c$，$w = -c$</p>
-</li>
-</ul>
-</li>
-<li><p>Improved WGAN -&gt; Gradient Penalty 梯度惩罚</p>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201919203.png" alt="image-20220620191900047" style="zoom:80%;"></p>
+<li><p>Origin WGAN -&gt; Weight</p>
 <ul>
-<li>Spectral Normalization-&gt;Keep gradient norm  smaller than 1 everywhere</li>
+<li><p>强制参数w位于c和-c之间</p></li>
+<li><p>参数更新后，如果<span
+class="math inline">\(w&gt;c\)</span>，<span class="math inline">\(w =
+c\)</span>；如果<span class="math inline">\(w &lt; -c\)</span>，<span
+class="math inline">\(w = -c\)</span></p></li>
+</ul></li>
+<li><p>Improved WGAN -&gt; Gradient Penalty 梯度惩罚</p></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201919203.png" srcset="/img/loading.gif" lazyload alt="image-20220620191900047" style="zoom:80%;" /></p>
+<ul>
+<li>Spectral Normalization-&gt;Keep gradient norm smaller than 1
+everywhere</li>
 </ul>
 <p>GAN仍然很难训练，Generator和Discriminator需要棋逢对手，不能有一方独大</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201921403.png" alt="image-20220620192120275" style="zoom:80%;"></p>
-<h4><span id="用于序列生成的gan">用于序列生成的GAN</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201922723.png" alt="image-20220620192202569" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201921403.png" srcset="/img/loading.gif" lazyload alt="image-20220620192120275" style="zoom:80%;" /></p>
+<h4 id="用于序列生成的gan">用于序列生成的GAN</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201922723.png" srcset="/img/loading.gif" lazyload alt="image-20220620192202569" style="zoom:80%;" /></p>
 <ul>
 <li>通常，generator是从一个从其他方法中学习的模型微调(fine-tuned)得到的</li>
 <li>但是，通过足够的超参数调整和提示，ScarchGAN可以从头开始训练</li>
 </ul>
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/DeepLearning/" rel="tag"><i class="fa fa-tag"></i> DeepLearning</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2022/06/14/Linux1/" rel="prev" title="Linux1">
-      <i class="fa fa-chevron-left"></i> Linux1
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/09/11/Linux2/" rel="next" title="Linux2">
-      Linux2 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="GuoYB"
-      src="/images/avatar1.gif">
-  <p class="site-author-name" itemprop="name">GuoYB</p>
-  <div class="site-description" itemprop="description">欢迎欢迎</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">103</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">GuoYB</span>
-</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
 
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="category-chain-item">深度学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9D%8E%E5%AE%8F%E6%AF%85/" class="category-chain-item">李宏毅</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DeepLearning/">#DeepLearning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>李宏毅深度学习L4</div>
+      <div>https://ye2222.github.io/2022/06/20/李宏毅深度学习L4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GuoYB</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/11/Linux2/" title="Linux2">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/14/Linux1/" title="Linux1">
+                        <span class="hidden-mobile">Linux1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>

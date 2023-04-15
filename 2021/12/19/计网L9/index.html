@@ -1,28 +1,22 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
-  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="网络层 1">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GuoYB">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="网络层 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计网L9">
 <meta property="og:url" content="https://ye2222.github.io/2021/12/19/%E8%AE%A1%E7%BD%91L9/index.html">
@@ -30,1008 +24,1207 @@
 <meta property="og:description" content="网络层 1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205250810.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205400001.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205452271.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205547429.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210127638.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210106534.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210231958.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210727923.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211003459.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211047797.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211103487.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211119275.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211204626.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211249325.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211333100.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211422213.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211623227.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211739218.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212224980.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212307700.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212457173.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212911855.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213055109.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213101714.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213115305.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213121592.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213234071.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214243425.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214530162.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219232907230.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219233157580.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219235557166.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220000245076.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001502179.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002158695.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001724161.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002346064.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001940232.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002844515.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003427402.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003603118.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003838934.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003953673.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220004015917.png">
 <meta property="article:published_time" content="2021-12-19T12:43:21.000Z">
-<meta property="article:modified_time" content="2022-05-23T07:09:40.495Z">
+<meta property="article:modified_time" content="2023-04-15T08:35:28.727Z">
 <meta property="article:author" content="GuoYB">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205250810.png">
+  
+  
+  
+  <title>计网L9 - Yeの博客</title>
 
-<link rel="canonical" href="https://ye2222.github.io/2021/12/19/%E8%AE%A1%E7%BD%91L9/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>计网L9 | Yeの博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <!-- <div class="headband"></div> -->
-    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Yeの博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yeの博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/12/19/%E8%AE%A1%E7%BD%91L9/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.gif">
-      <meta itemprop="name" content="GuoYB">
-      <meta itemprop="description" content="欢迎欢迎">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yeの博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          计网L9
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-19 20:43:21" itemprop="dateCreated datePublished" datetime="2021-12-19T20:43:21+08:00">2021-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 15:09:40" itemprop="dateModified" datetime="2022-05-23T15:09:40+08:00">2022-05-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-            <div class="post-description">网络层 1</div>
-
+            <span id="subtitle" data-typed-text="计网L9"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-19 20:43" pubdate>
+          2021年12月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <h4><span id="主要内容">主要内容</span></h4><ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计网L9</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="主要内容">主要内容</h4>
+<ul>
 <li>packets(包)是如何从源地址传送到目标地址的</li>
-<li><p>如何选择路径</p>
+<li>如何选择路径
 <ul>
 <li>Routing protocol, Router</li>
 <li>Routed protocol: IPv4,IPv6</li>
 <li>Others</li>
-</ul>
-</li>
-<li><p>Outline of network  layer</p>
-</li>
+</ul></li>
+<li>Outline of network layer</li>
 <li>Outline of Routing algorithm</li>
 <li>Learn Dijkstra algorithm</li>
 <li>Distance-vector algorithm ：Rip</li>
 <li>Link state routing algorithm ：OSPF</li>
-<li>Multi-level routing, broadcast routing, mobile routing, adhoc routing, p2p, and et al.</li>
+<li>Multi-level routing, broadcast routing, mobile routing, adhoc
+routing, p2p, and et al.</li>
 </ul>
-<h5><span id="第一部分">第一部分</span></h5><ul>
-<li>Main function of network  layer</li>
-<li>Routing algorithm<ul>
-<li>Static routing algorithm<ul>
+<h5 id="第一部分">第一部分</h5>
+<ul>
+<li>Main function of network layer</li>
+<li>Routing algorithm
+<ul>
+<li>Static routing algorithm
+<ul>
 <li>Dijkstra</li>
 <li>flooding</li>
-</ul>
-</li>
-<li>Dynamic routing algorithm<ul>
+</ul></li>
+<li>Dynamic routing algorithm
+<ul>
 <li>DV</li>
 <li>LS</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>Learn Dijkstra algorithm</li>
 </ul>
-<h2><span id="网络层-network-layer">网络层 network layer</span></h2><h4><span id="网络层的位置">网络层的位置</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205250810.png" alt="image-20211219205250810" style="zoom:67%;"></p>
-<h4><span id="网络层的主要作用">网络层的主要作用</span></h4><p>将数据包从源头一直传输到目的地。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205400001.png" alt="image-20211219205400001"></p>
-<h3><span id="service-types-provided-by-network-layer-服务类型">Service types provided by network layer 服务类型</span></h3><ul>
-<li>Connection oriented service  面向连接：<strong>X.25, ATM   虚电路</strong></li>
-<li>Connectionless service 无连接：<strong>IP   数据报</strong></li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205452271.png" alt="image-20211219205452271" style="zoom: 67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205547429.png" alt="image-20211219205547429"></p>
+<h2 id="网络层-network-layer">网络层 network layer</h2>
+<h4 id="网络层的位置">网络层的位置</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205250810.png" srcset="/img/loading.gif" lazyload alt="image-20211219205250810" style="zoom:67%;" /></p>
+<h4 id="网络层的主要作用">网络层的主要作用</h4>
+<p>将数据包从源头一直传输到目的地。</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205400001.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="service-types-provided-by-network-layer-服务类型">Service types
+provided by network layer 服务类型</h3>
 <ul>
-<li>Virtual-circuit subnet 虚电路子网<ul>
-<li>Select a path when connection is established<ul>
+<li>Connection oriented service 面向连接：<strong>X.25, ATM
+虚电路</strong></li>
+<li>Connectionless service 无连接：<strong>IP 数据报</strong></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205452271.png" srcset="/img/loading.gif" lazyload alt="image-20211219205452271" style="zoom: 67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205547429.png" srcset="/img/loading.gif" lazyload /></p>
+<ul>
+<li>Virtual-circuit subnet 虚电路子网
+<ul>
+<li>Select a path when connection is established
+<ul>
 <li>建立连接时选择路径</li>
-</ul>
-</li>
-<li>Each packet has a connection-number<ul>
+</ul></li>
+<li>Each packet has a connection-number
+<ul>
 <li>每个数据包都有一个连接号</li>
-</ul>
-</li>
-<li>Connection is removed when communication is over<ul>
+</ul></li>
+<li>Connection is removed when communication is over
+<ul>
 <li>通信结束后连接被删除</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Datagram subnet 数据报子网<ul>
-<li>Each datagram has destination-address<ul>
+</ul></li>
+</ul></li>
+<li>Datagram subnet 数据报子网
+<ul>
+<li>Each datagram has destination-address
+<ul>
 <li>每个数据报都有目的地址</li>
-</ul>
-</li>
-<li>Each datagram look for path independently<ul>
+</ul></li>
+<li>Each datagram look for path independently
+<ul>
 <li>每个数据报独立寻找路径</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210127638.png" alt="image-20211219210127638"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210106534.png" alt="image-20211219210106534"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210231958.png" alt="image-20211219210231958"></p>
-<h3><span id="ipv4协议">IPv4协议</span></h3><h5><span id="介绍">介绍</span></h5><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210127638.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210106534.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210231958.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="ipv4协议">IPv4协议</h3>
+<h5 id="介绍">介绍</h5>
+<ul>
 <li>网际协议版本4</li>
 <li>一种无连接的协议，是互联网的核心</li>
 <li>也是使 用最广泛的网际协议版本，其后继版本为IPv6</li>
 </ul>
-<h5><span id="基本功能">基本功能</span></h5><p>internet协议执行两个基本功能 </p>
+<h5 id="基本功能">基本功能</h5>
+<p>internet协议执行两个基本功能</p>
 <ul>
-<li>寻址(addressing) </li>
+<li>寻址(addressing)</li>
 <li>分片(fragmentation)</li>
 </ul>
-<h5><span id="ipv4数据报格式">IPv4数据报格式</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210727923.png" alt="image-20211219210727923"></p>
-<h5><span id="数据报分片">数据报分片</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211003459.png" alt="image-20211219211003459"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211047797.png" alt="image-20211219211047797"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211103487.png" alt="image-20211219211103487"></p>
-<h5><span id="总结">总结</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211119275.png" alt="image-20211219211119275"></p>
-<h5><span id="ip地址">IP地址</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211204626.png" alt="image-20211219211204626"></p>
-<h5><span id="ip地址的分类">IP地址的分类</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211249325.png" alt="image-20211219211249325"></p>
-<h5><span id="一些特殊的地址">一些特殊的地址</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211333100.png" alt="image-20211219211333100"></p>
-<h4><span id="子网的划分">子网的划分</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211422213.png" alt="image-20211219211422213"></p>
-<h3><span id="routing-table">Routing table</span></h3><ul>
+<h5 id="ipv4数据报格式">IPv4数据报格式</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210727923.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="数据报分片">数据报分片</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211003459.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211047797.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211103487.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="总结">总结</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211119275.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="ip地址">IP地址</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211204626.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="ip地址的分类">IP地址的分类</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211249325.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="一些特殊的地址">一些特殊的地址</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211333100.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="子网的划分">子网的划分</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211422213.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="routing-table">Routing table</h3>
+<ul>
 <li><p>Static routing</p>
 <ul>
 <li>Configured by administrator: ip route</li>
-</ul>
-</li>
+</ul></li>
 <li><p>Dynamic routing</p>
 <ul>
-<li>Routing algorithm <ul>
+<li>Routing algorithm
+<ul>
 <li>Distance vector routing（D-V）</li>
 <li>Link state routing（L-S）</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li><p>由管理员配置的路由表项称为<strong>静态路由</strong></p>
 <ul>
 <li>适合小而稳定的网络，成本更低</li>
 <li>默认路由：目的网络地址和子网掩码均为0.0.0.0，如：</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211623227.png" alt="image-20211219211623227"></p>
-</li>
-<li><p>可以使用Windows：route print, check routing table</p>
-</li>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211623227.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>可以使用Windows：route print, check routing table</p></li>
 <li><p>通过路由协议获得的路由表项称为<strong>动态路由</strong></p>
 <ul>
 <li>适合大型变分网络，成本更高</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="routed-protocol和routing-protocol的区别">Routed protocol和Routing protocol的区别</span></h4><ul>
-<li>Routed protocol  直接连接用户的<ul>
+<h4 id="routed-protocol和routing-protocol的区别">Routed
+protocol和Routing protocol的区别</h4>
+<ul>
+<li>Routed protocol 直接连接用户的
+<ul>
 <li>example：IP、IPX</li>
-</ul>
-</li>
-<li>Routing protocol 维持路由间的表格<ul>
-<li>Distance vector routing </li>
+</ul></li>
+<li>Routing protocol 维持路由间的表格
+<ul>
+<li>Distance vector routing</li>
 <li>Link state routing</li>
 <li>Hybrid routing</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211739218.png" alt="image-20211219211739218" style="zoom:67%;"></p>
-<h2><span id="routing-algorithm">Routing algorithm</span></h2><ul>
-<li>路由算法设计必须考虑以下问题：<ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211739218.png" srcset="/img/loading.gif" lazyload alt="image-20211219211739218" style="zoom:67%;" /></p>
+<h2 id="routing-algorithm">Routing algorithm</h2>
+<ul>
+<li>路由算法设计必须考虑以下问题：
+<ul>
 <li>正确性、简单性、鲁棒性、稳定性、公平性和最优性（矛盾、权衡）</li>
-<li>Correctness, simplicity, robustness, stability, fairness, and optimality (contradictory、trade-off)</li>
-</ul>
-</li>
-<li>路由算法分类<ul>
+<li>Correctness, simplicity, robustness, stability, fairness, and
+optimality (contradictory、trade-off)</li>
+</ul></li>
+<li>路由算法分类
+<ul>
 <li>静态算法（非自适应路由选择）（not self-adaptive）</li>
 <li>动态算法（自适应路由选择）（ self-adaptive ）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="路由算法中的度量">路由算法中的度量</span></h4><ul>
+<h4 id="路由算法中的度量">路由算法中的度量</h4>
+<ul>
 <li>Alias：cost，量度、代价、开销、成本</li>
-<li>Common metric<ul>
-<li>Path length：hop (跳数) </li>
+<li>Common metric
+<ul>
+<li>Path length：hop (跳数)</li>
 <li>reliability：error rate on line</li>
 <li>delay</li>
 <li>bandwidth</li>
 <li>Load of router</li>
 <li>Communication cost</li>
+</ul></li>
 </ul>
-</li>
+<h4 id="最优化原则-optimization-principle">最优化原则 Optimization
+principle</h4>
+<ul>
+<li>如果路由器 J 在从路由器 I 到路由器 K 的最优路径上，那么从 J 到 K
+的最优路径也落在同一条路径上</li>
+<li><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212224980.png" srcset="/img/loading.gif" lazyload alt="image-20211219212224980" style="zoom:67%;" /></li>
+<li>从所有源到给定目的地的一组最优路由形成以目的地为根的树（称为sink
+tree）</li>
 </ul>
-<h4><span id="最优化原则-optimization-principle">最优化原则 Optimization principle</span></h4><ul>
-<li>如果路由器 J 在从路由器 I 到路由器 K 的最优路径上，那么从 J 到 K 的最优路径也落在同一条路径上</li>
-<li><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212224980.png" alt="image-20211219212224980" style="zoom:67%;"></li>
-<li>从所有源到给定目的地的一组最优路由形成以目的地为根的树（称为sink tree）</li>
-</ul>
-<h4><span id="sink-tree汇集树">Sink tree(汇集树)</span></h4><ul>
+<h4 id="sink-tree汇集树">Sink tree(汇集树)</h4>
+<ul>
 <li>汇集树不一定是唯一的</li>
 <li>所有路由算法的目标都是发现并使用所有路由器的汇集树</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212307700.png" alt="image-20211219212307700"></p>
-<h3><span id="shortest-path-routing">Shortest path routing</span></h3><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212307700.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="shortest-path-routing">Shortest path routing</h3>
+<ul>
 <li><p>定义</p>
 <ul>
-<li>用于计算一个节点到其他所有节点的最短路径，主要特点是以起始点为 中心向外逐层扩展，直到扩展到终点为止</li>
+<li>用于计算一个节点到其他所有节点的最短路径，主要特点是以起始点为
+中心向外逐层扩展，直到扩展到终点为止</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="dijkstra算法">Dijkstra算法</span></h4><ul>
-<li>compute shortest path using weight on communication-line</li>
-<li><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212457173.png" alt="image-20211219212457173" style="zoom:80%;"></p>
-</li>
-<li><p>带有最少行的路径可能不是最短路径</p>
-</li>
-<li>最短的路可能不是最快的</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212911855.png" alt="image-20211219212911855"></p>
-<h5><span id="步骤">步骤</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213055109.png" alt="image-20211219213055109"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213101714.png" alt="image-20211219213101714"></p>
-<h5><span id="例子">例子</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213115305.png" alt="image-20211219213115305"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213121592.png" alt="image-20211219213121592"></p>
-<h4><span id="flooding">Flooding</span></h4><ul>
-<li>Every incoming packet is sent out on every outgoing line except the one it arrived on<ul>
-<li>不计算路径，有路就走</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213234071.png" alt="image-20211219213234071" style="zoom:67%;"></p>
+<h4 id="dijkstra算法">Dijkstra算法</h4>
 <ul>
-<li><p>problem：duplicate packets，such as 3，6</p>
-</li>
+<li><p>compute shortest path using weight on communication-line</p></li>
+<li><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212457173.png" srcset="/img/loading.gif" lazyload alt="image-20211219212457173" style="zoom:80%;" /></p></li>
+<li><p>带有最少行的路径可能不是最短路径</p></li>
+<li><p>最短的路可能不是最快的</p></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212911855.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="步骤">步骤</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213055109.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213101714.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="例子">例子</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213115305.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213121592.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="flooding">Flooding</h4>
+<ul>
+<li>Every incoming packet is sent out on every outgoing line except the
+one it arrived on
+<ul>
+<li>不计算路径，有路就走</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213234071.png" srcset="/img/loading.gif" lazyload alt="image-20211219213234071" style="zoom:67%;" /></p>
+<ul>
+<li><p>problem：duplicate packets，such as 3，6</p></li>
 <li><p>解决：</p>
 <ul>
 <li>在packet-header中加一个计数器，通过节点时减1，计数器为零时丢包</li>
 <li>每个节点建立一个寄存器表，数据包再次到达节点时被丢弃</li>
 <li>选择性地Flooding</li>
+</ul></li>
+<li><p>缺点：重复数据包有两个，浪费带宽</p></li>
+<li><p>优点：可靠性高，路径短，军事上使用频繁</p></li>
 </ul>
-</li>
-<li>缺点：重复数据包有两个，浪费带宽</li>
-<li>优点：可靠性高，路径短，军事上使用频繁</li>
-</ul>
-<h2><span id="dynamic-routing-algorithm">Dynamic Routing algorithm</span></h2><ul>
-<li>Distance vector routing algorithm<ul>
+<h2 id="dynamic-routing-algorithm">Dynamic Routing algorithm</h2>
+<ul>
+<li>Distance vector routing algorithm
+<ul>
 <li>For example: RIP</li>
-</ul>
-</li>
-<li>Link state routing algorithm<ul>
+</ul></li>
+<li>Link state routing algorithm
+<ul>
 <li>For example: OSPF</li>
-</ul>
-</li>
-<li>Hybrid routing  混合路由<ul>
+</ul></li>
+<li>Hybrid routing 混合路由
+<ul>
 <li>For example: IGRP</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="动态的实现">动态的实现</span></h4><ul>
+<h4 id="动态的实现">动态的实现</h4>
+<ul>
 <li>如果路由器需要通信，他们必须说相同的语言，即相同的路由协议</li>
 <li>一个新的路由器必须主动介绍自己（问好）</li>
 <li>定期发送 hello 数据包以了解其他人的健康状况（保持活动状态）</li>
 </ul>
-<h4><span id="distance-vector-routing-距离矢量路由">Distance Vector Routing 距离矢量路由</span></h4><ul>
-<li>距离矢量路由选择：<ul>
+<h4 id="distance-vector-routing-距离矢量路由">Distance Vector Routing
+距离矢量路由</h4>
+<ul>
+<li>距离矢量路由选择：
+<ul>
 <li>通过让每个路由器维护一个表（即矢量）来操作</li>
 <li>给出到每个目的地的最佳已知距离以及使用哪条线路到达那里。</li>
-</ul>
-</li>
+</ul></li>
 <li>D-V 算法是动态的和分布式的。 常用于小型网络，RIP是D-V的典型例子</li>
 <li>RIP：路由信息协议，路由选择信息协议，1988，RFC1058</li>
 </ul>
-<h5><span id="working-principle-of-dv-dv算法的工作原则">Working principle of DV — DV算法的工作原则</span></h5><ul>
-<li>每个路由器使用两个向量 $D_i $和 $S_i$ <ul>
+<h5 id="working-principle-of-dv----dv算法的工作原则">Working principle
+of DV -- DV算法的工作原则</h5>
+<ul>
+<li>每个路由器使用两个向量 $D_i $和 <span
+class="math inline">\(S_i\)</span>
+<ul>
 <li>$D_i $表示从一个节点到所有其他节点的距离</li>
-<li>$S_i$ 表示下一个节点（跳）</li>
-</ul>
-</li>
+<li><span class="math inline">\(S_i\)</span> 表示下一个节点（跳）</li>
+</ul></li>
 <li>在邻居路由器之间交换路径信息</li>
 <li>每个节点根据路径信息更新自己的路由表</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214243425.png" alt="image-20211219214243425"></p>
-<h5><span id="更新表">更新表</span></h5><ul>
-<li>交换向量后<ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214243425.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="更新表">更新表</h5>
+<ul>
+<li>交换向量后
+<ul>
 <li>更新距离</li>
 <li>更新下一个节点</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214530162.png" alt="image-20211219214530162"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219232907230.png" alt="image-20211219232907230" style="zoom:67%;"></p>
-<h5><span id="练习">练习</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219233157580.png" alt="image-20211219233157580"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219235557166.png" alt="image-20211219235557166"></p>
-<h5><span id="d-v算法的特点">D-V算法的特点</span></h5><ul>
-<li>优势<ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214530162.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219232907230.png" srcset="/img/loading.gif" lazyload alt="image-20211219232907230" style="zoom:67%;" /></p>
+<h5 id="练习">练习</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219233157580.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219235557166.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="d-v算法的特点">D-V算法的特点</h5>
+<ul>
+<li>优势
+<ul>
 <li>算法很简单</li>
-</ul>
-</li>
-<li>坏处<ul>
+</ul></li>
+<li>坏处
+<ul>
 <li>交换的信息太大</li>
 <li>路径信息传播缓慢，路径信息可能不同</li>
 <li>收敛速度慢，导致无穷计数问题。</li>
 <li>不适合大网络</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="main-features-of-rip">Main features of RIP</span></h5><ul>
+<h5 id="main-features-of-rip">Main features of RIP</h5>
+<ul>
 <li>RIP 是一种 D-V 路由协议</li>
 <li>RIP 使用 hop（跳数）作为度量(metric)</li>
 <li>当metric大于15时，认为目的地不可达</li>
 <li>默认发送周期为 30 秒</li>
 </ul>
-<h5><span id="disadvantage-of-rip">Disadvantage of RIP</span></h5><ul>
+<h5 id="disadvantage-of-rip">Disadvantage of RIP</h5>
+<ul>
 <li>当目标网络的度量大于 15（如此小）时无法到达</li>
 <li>RIP的度量是hop，一路都是router的编号，不太合理</li>
 <li>实际中，常数到无穷大，收敛缓慢</li>
 </ul>
-<h5><span id="the-problems-induced-by-dv">The problems induced by DV</span></h5><ul>
-<li>Representation<ul>
+<h5 id="the-problems-induced-by-dv">The problems induced by DV</h5>
+<ul>
+<li>Representation
+<ul>
 <li>routing loop（路由环路）</li>
 <li>Count to infinite（计数到无穷问题）</li>
 <li>slow Convergence （收敛慢的问题）</li>
-</ul>
-</li>
-<li>Cause<ul>
+</ul></li>
+<li>Cause
+<ul>
 <li>Trust wrong routing information</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="main-problem-of-dv">Main problem of DV</span></h5><p>It reacts rapidly to good news, but leisurely to bad news(好消息跑得快，坏消息传得慢)</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220000245076.png" alt="image-20211220000245076"></p>
-<h3><span id="link-state-routing-ospf">Link State Routing  OSPF</span></h3><ul>
-<li>距离矢量路由一直在 ARPANET 中使用，直到 1979 年它被链路状态路由取代。</li>
+<h5 id="main-problem-of-dv">Main problem of DV</h5>
+<p>It reacts rapidly to good news, but leisurely to bad
+news(好消息跑得快，坏消息传得慢)</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220000245076.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="link-state-routing-ospf">Link State Routing OSPF</h3>
+<ul>
+<li>距离矢量路由一直在 ARPANET 中使用，直到 1979
+年它被链路状态路由取代。</li>
 <li>链路状态路由的变体现在被广泛使用。</li>
-<li>链路状态路由背后的思想由五个部分组成：<ul>
+<li>链路状态路由背后的思想由五个部分组成：
+<ul>
 <li>发现它的邻居并了解他们的网络地址。</li>
 <li>测量每个邻居的延迟或成本。</li>
 <li>构造一个分组，分组中包含刚收到的所有信息</li>
 <li>将此分组发送给其他的路由器</li>
 <li>计算到所有其他路由器的最短路径。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="learning-about-the-neighbors">Learning about the Neighbors</span></h4><ul>
-<li>当路由器启动时，它会在每条点对点线路上发送一个特殊的 HELLO 数据包。</li>
+<h4 id="learning-about-the-neighbors">Learning about the Neighbors</h4>
+<ul>
+<li>当路由器启动时，它会在每条点对点线路上发送一个特殊的 HELLO
+数据包。</li>
 <li>期望另一端的路由器发回一个回复，告诉它是谁（使用全局唯一名称）。</li>
 <li>当两个或多个路由器通过 LAN 连接时，LAN 可以建模为一个节点。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001502179.png" alt="image-20211220001502179"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002158695.png" alt="image-20211220002158695"></p>
-<h4><span id="measuring-line-cost-设置到每个邻居的成本度量">Measuring Line Cost 设置到每个邻居的成本度量</span></h4><ul>
-<li>为了确定线路的成本，路由器发送一个特殊的 ECHO 数据包，并且要求对方立即发回。</li>
-<li>通过测量往返时间，发送路由器可以获得对延迟的合理估计。<ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001502179.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002158695.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="measuring-line-cost-设置到每个邻居的成本度量">Measuring Line
+Cost 设置到每个邻居的成本度量</h4>
+<ul>
+<li><p>为了确定线路的成本，路由器发送一个特殊的 ECHO
+数据包，并且要求对方立即发回。</p></li>
+<li><p>通过测量往返时间，发送路由器可以获得对延迟的合理估计。</p>
+<ul>
 <li>为了获得更好的结果，可以多次进行测试，并使用平均值。</li>
-</ul>
-</li>
-<li>为了将负载考虑在内，往返计时器必须在 ECHO 数据包排队时启动。</li>
-<li><p>要忽略负载，应在 ECHO 数据包到达队列前端时启动计时器。</p>
-</li>
+</ul></li>
+<li><p>为了将负载考虑在内，往返计时器必须在 ECHO
+数据包排队时启动。</p></li>
+<li><p>要忽略负载，应在 ECHO 数据包到达队列前端时启动计时器。</p></li>
 <li><p>测量延迟时是否应考虑负载？</p>
 <ul>
 <li>论证可以通过两种方式进行。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001724161.png" alt="image-20211220001724161" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002346064.png" alt="image-20211220002346064"></p>
-<h4><span id="building-link-state-packets">Building Link State Packets</span></h4><ul>
-<li>链路状态包被构造为发送到其他路由器。 数据包中包含的信息是：<ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001724161.png" srcset="/img/loading.gif" lazyload alt="image-20211220001724161" style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002346064.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="building-link-state-packets">Building Link State Packets</h4>
+<ul>
+<li>链路状态包被构造为发送到其他路由器。 数据包中包含的信息是：
+<ul>
 <li>ID of the sender</li>
 <li>sequence number</li>
 <li>age</li>
 <li>list of neighbors</li>
 <li>delay to each neighbor</li>
-</ul>
-</li>
-<li>什么时候建立？<ul>
+</ul></li>
+<li>什么时候建立？
+<ul>
 <li>状态数据包可能会定期构建，或者在某些重要事件发生时构建，例如线路或邻居断开或再次恢复。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001940232.png" alt="image-20211220001940232"></p>
-<p>(a) A subnet. (b) The link state packets for this subnet.</p>
-<h4><span id="distributing-the-link-state-packets-将lsp分组发送给其他的路由器">Distributing The Link State Packets 将LSP分组发送给其他的路由器</span></h4><ul>
-<li>基本算法：<ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001940232.png" srcset="/img/loading.gif" lazyload /></p>
+<ol type="a">
+<li>A subnet. (b) The link state packets for this subnet.</li>
+</ol>
+<h4
+id="distributing-the-link-state-packets-将lsp分组发送给其他的路由器">Distributing
+The Link State Packets 将LSP分组发送给其他的路由器</h4>
+<ul>
+<li>基本算法：
+<ul>
 <li>每个状态数据包都包含一个序列号，该序列号随着每个新数据包的发送而递增。</li>
 <li>路由器会跟踪它们看到的所有（源路由器、序列）对。</li>
-<li>当一个新的链路状态数据包进来时，它会根据已经看到的数据包列表进行检查。<ul>
+<li>当一个新的链路状态数据包进来时，它会根据已经看到的数据包列表进行检查。
+<ul>
 <li>如果它是新的，它将在除到达的那条线路之外的所有线路上转发（即，flooding）。</li>
-<li>如果它是重复的，则将其丢弃—discarded</li>
+<li>如果它是重复的，则将其丢弃--discarded</li>
 <li>如果一个序列号低于迄今为止看到的最高序列号的数据包到达，则它被视为已过时而被拒绝。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002844515.png" alt="image-20211220002844515"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002844515.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li>基本算法的问题：<ul>
-<li>序列号可能会环绕，导致混淆。<ul>
-<li>解决方案：使用 32 位序列号。 每秒一个数据包，需要 137 年才能环绕。</li>
-</ul>
-</li>
-<li>如果路由器崩溃，它将失去对自己序列号的跟踪。 如果它再次从序列号 0 开始，新的数据包将被其他路由器拒绝为过时/重复。</li>
-<li>如果序列号被破坏并且接收到 65,540 而不是 4（1 位错误），则数据包 5 — 65540 将被拒绝为已过时。</li>
-</ul>
-</li>
-</ul>
-<p>00000000000000100<br>10000000000000100</p>
+<li>基本算法的问题：
 <ul>
-<li>路由器崩溃和序列号损坏的解决方案是将age（例如，60）与来自任何路由器的每个状态数据包相关联，并每秒递减一次年龄。</li>
-<li>当年龄达到zero时，来自该路由器的信息将被丢弃。</li>
-<li><p>通常每 10 秒就会有一个新数据包出现，因此路由器信息仅在路由器关闭时才会超时（或连续丢失 6 个数据包，这种情况不太可能发生）。</p>
-</li>
+<li>序列号可能会环绕，导致混淆。
+<ul>
+<li>解决方案：使用 32 位序列号。 每秒一个数据包，需要 137
+年才能环绕。</li>
+</ul></li>
+<li>如果路由器崩溃，它将失去对自己序列号的跟踪。 如果它再次从序列号 0
+开始，新的数据包将被其他路由器拒绝为过时/重复。</li>
+<li>如果序列号被破坏并且接收到 65,540 而不是 4（1 位错误），则数据包 5
+-- 65540 将被拒绝为已过时。</li>
+</ul></li>
+</ul>
+<p>00000000000000100 10000000000000100</p>
+<ul>
+<li><p>路由器崩溃和序列号损坏的解决方案是将age（例如，60）与来自任何路由器的每个状态数据包相关联，并每秒递减一次年龄。</p></li>
+<li><p>当年龄达到zero时，来自该路由器的信息将被丢弃。</p></li>
+<li><p>通常每 10
+秒就会有一个新数据包出现，因此路由器信息仅在路由器关闭时才会超时（或连续丢失
+6 个数据包，这种情况不太可能发生）。</p></li>
 <li><p>对基本算法的一些改进使其更加健壮。</p>
 <ul>
 <li>当一个状态包进入路由器进行flooding时，它首先被放置在一个保持区（保留区）中等待一小会。</li>
-<li>如果来自同一源的另一个状态数据包在传输之前进入，则比较它们的序列号。<ul>
+<li>如果来自同一源的另一个状态数据包在传输之前进入，则比较它们的序列号。
+<ul>
 <li>如果它们相等，则丢弃重复项。</li>
 <li>如果它们不同，则较旧的将被丢弃。</li>
-</ul>
-</li>
+</ul></li>
 <li>为了防止线路上的错误，所有状态数据包都被确认。</li>
 <li>当一条线路空闲时，保持区被循环扫描以选择要发送的数据包或确认。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003427402.png" alt="image-20211220003427402"></p>
-<h4><span id="computing-the-new-routes">Computing the New Routes</span></h4><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003427402.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="computing-the-new-routes">Computing the New Routes</h4>
+<ul>
 <li>一组完整的链路状态数据包允许路由器构建整个子网的图。</li>
 <li>我们现在可以使用 Dijkstra 算法来计算路由器之间的最短路径。</li>
 <li>我们可以在路由器中安装这些信息来引导数据包。 （设置路由表）</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003603118.png" alt="image-20211220003603118"></p>
-<h4><span id="characteristics-of-l-s-routing-algorithm">Characteristics of L-S routing algorithm</span></h4><ul>
-<li>好处<ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003603118.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="characteristics-of-l-s-routing-algorithm">Characteristics of L-S
+routing algorithm</h4>
+<ul>
+<li>好处
+<ul>
 <li>每个路由器的一致性好</li>
 <li>收敛性好</li>
 <li>适合大网络</li>
-</ul>
-</li>
-<li>缺点<ul>
+</ul></li>
+<li>缺点
+<ul>
 <li>每个路由器需要更大的存储空间</li>
 <li>计算工作量很大</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="ospf">OSPF</span></h4><ul>
+<h4 id="ospf">OSPF</h4>
+<ul>
 <li>先开最短路径</li>
-<li>用图代替真实网络<ul>
+<li>用图代替真实网络
+<ul>
 <li>每个路由器都是一个节点</li>
 <li>计量成本（公制）</li>
 <li>可能有几张图</li>
-</ul>
-</li>
+</ul></li>
 <li>计算最短路径</li>
 </ul>
-<h3><span id="bgpborder-gateway-protocol边界网关协议">BGP（border gateway protocol）（边界网关协议）</span></h3><ul>
-<li>不同的协议 - AS 之间需要 BGP（边界网关协议），因为内部网关协议和外部网关协议的目标不同。</li>
+<h3 id="bgpborder-gateway-protocol边界网关协议">BGP（border gateway
+protocol）（边界网关协议）</h3>
+<ul>
+<li>不同的协议 - AS 之间需要
+BGP（边界网关协议），因为内部网关协议和外部网关协议的目标不同。</li>
 <li>BGP 的定义在 RFCs 1771 到 1774 中。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003838934.png" alt="image-20211220003838934"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003838934.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>外部网关协议路由器的典型策略涉及政治、安全或经济方面的考虑。</li>
-<li>鉴于 BGP 对传输流量的特殊兴趣，网络被分为三类之一。<ul>
+<li>鉴于 BGP 对传输流量的特殊兴趣，网络被分为三类之一。
+<ul>
 <li>存根网络 stub networks</li>
 <li>多连接网络 multiconnected networks</li>
 <li>过境网络 transit networks</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003953673.png" alt="image-20211220003953673" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003953673.png" srcset="/img/loading.gif" lazyload alt="image-20211220003953673" style="zoom:67%;" /></p>
 <ul>
 <li>BGP 路由器对通过建立 TCP 连接相互通信。</li>
-<li>BGP 从根本上说是一种距离矢量协议，但与大多数其他协议（如 RIP）截然不同。<ul>
+<li>BGP 从根本上说是一种距离矢量协议，但与大多数其他协议（如
+RIP）截然不同。
+<ul>
 <li>BGP 路由器会跟踪准确的路径。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220004015917.png" alt="image-20211220004015917" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220004015917.png" srcset="/img/loading.gif" lazyload alt="image-20211220004015917" style="zoom:67%;" /></p>
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/12/17/%E8%AE%A1%E7%BD%91L8/" rel="prev" title="计网L8">
-      <i class="fa fa-chevron-left"></i> 计网L8
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/20/%E8%AE%A1%E7%BD%91L10/" rel="next" title="计网L10">
-      计网L10 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="GuoYB"
-      src="/images/avatar1.gif">
-  <p class="site-author-name" itemprop="name">GuoYB</p>
-  <div class="site-description" itemprop="description">欢迎欢迎</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">103</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">GuoYB</span>
-</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
 
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="category-chain-item">课程笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计网L9</div>
+      <div>https://ye2222.github.io/2021/12/19/计网L9/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GuoYB</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/20/%E8%AE%A1%E7%BD%91L10/" title="计网L10">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计网L10</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/17/%E8%AE%A1%E7%BD%91L8/" title="计网L8">
+                        <span class="hidden-mobile">计网L8</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>

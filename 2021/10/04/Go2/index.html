@@ -1,636 +1,657 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
-  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="第二章">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GuoYB">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第二章">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go2">
 <meta property="og:url" content="https://ye2222.github.io/2021/10/04/Go2/index.html">
 <meta property="og:site_name" content="Yeの博客">
 <meta property="og:description" content="第二章">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211221204026832.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211221204052484.png">
 <meta property="article:published_time" content="2021-10-04T12:37:05.000Z">
-<meta property="article:modified_time" content="2022-05-23T07:09:43.935Z">
+<meta property="article:modified_time" content="2023-04-15T08:35:28.537Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="Go">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211221204026832.png">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Go2 - Yeの博客</title>
 
-<link rel="canonical" href="https://ye2222.github.io/2021/10/04/Go2/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>Go2 | Yeの博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <!-- <div class="headband"></div> -->
-    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Yeの博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yeの博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/10/04/Go2/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.gif">
-      <meta itemprop="name" content="GuoYB">
-      <meta itemprop="description" content="欢迎欢迎">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yeの博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Go2
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-04 20:37:05" itemprop="dateCreated datePublished" datetime="2021-10-04T20:37:05+08:00">2021-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 15:09:43" itemprop="dateModified" datetime="2022-05-23T15:09:43+08:00">2022-05-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
-                </span>
-            </span>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-            <div class="post-description">第二章</div>
-
+            <span id="subtitle" data-typed-text="Go2"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-04 20:37" pubdate>
+          2021年10月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          103 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <h2><span id="21-命名">2.1 命名</span></h2><h4><span id="关键字及内建名字">关键字及内建名字</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211221204026832.png" alt="image-20211221204026832"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211221204052484.png" alt="image-20211221204052484"></p>
-<h3><span id="变量的作用范围">变量的作用范围</span></h3><h4><span id="函数内部和外部">函数内部和外部</span></h4><ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Go2</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="命名">2.1 命名</h2>
+<h4 id="关键字及内建名字">关键字及内建名字</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211221204026832.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211221204052484.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="变量的作用范围">变量的作用范围</h3>
+<h4 id="函数内部和外部">函数内部和外部</h4>
+<ul>
 <li>如果一个名字是在函数内部定义，那么它就只在函数内部有效。</li>
 <li>如果是在函数外部定义，那么将在当前包的所有文件中都可以访问。</li>
 </ul>
-<h4><span id="名字的大小写">名字的大小写</span></h4><ul>
-<li>名字的开头字母的大小写决定了名字在包外的可见性。<ul>
-<li>如果一个名字是大写字母开头的（译注：必须是在函数外部定义的包级名字；包级函数名本身也是包级名字），那么它将是导出的，也就是说可以被外部的包访问<ul>
+<h4 id="名字的大小写">名字的大小写</h4>
+<ul>
+<li>名字的开头字母的大小写决定了名字在包外的可见性。
+<ul>
+<li>如果一个名字是大写字母开头的（译注：必须是在函数外部定义的包级名字；包级函数名本身也是包级名字），那么它将是导出的，也就是说可以被外部的包访问
+<ul>
 <li>包本身的名字一般总是用小写字母。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="22-声明">2.2 声明</span></h2><ul>
+<h2 id="声明">2.2 声明</h2>
+<ul>
 <li>声明语句定义了程序的各种实体对象以及部分或全部的属性。</li>
-<li><p>Go语言主要有四种类型的声明语句：</p>
+<li>Go语言主要有四种类型的声明语句：
 <ul>
 <li>var 变量</li>
 <li>const 常量</li>
 <li>type 类型</li>
 <li>func 函数实体</li>
-</ul>
-</li>
-<li><p>一个Go语言编写的程序对应一个或多个以.go为文件后缀名的源文件。</p>
+</ul></li>
+<li>一个Go语言编写的程序对应一个或多个以.go为文件后缀名的源文件。
 <ul>
 <li>每个源文件中以<strong>包的声明语句</strong>开始，说明该源文件是属于哪个包</li>
 <li>包声明语句之后是import语句<strong>导入依赖的其它包</strong></li>
-<li>然后是包一级的<strong>类型、变量、常量、函数的声明语句</strong><ul>
+<li>然后是包一级的<strong>类型、变量、常量、函数的声明语句</strong>
+<ul>
 <li>包一级的各种类型的声明语句的顺序无关紧要</li>
 <li>函数内部的名字则必须先声明之后才能使用</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="例子">例子</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Boiling prints the boiling point of water.</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> boilingF = <span class="number">212.0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> f = boilingF</span><br><span class="line">    <span class="keyword">var</span> c = (f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;boiling point = %g°F or %g°C\n&quot;</span>, f, c)</span><br><span class="line">    <span class="comment">// Output:</span></span><br><span class="line">    <span class="comment">// boiling point = 212°F or 100°C</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5><span id="变量">变量</span></h5><ul>
-<li>常量boilingF是在包一级范围声明语句声明的<ul>
+<h4 id="例子">例子</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-comment">// Boiling prints the boiling point of water.</span><br><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><span class="hljs-keyword">const</span> boilingF = <span class="hljs-number">212.0</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> f = boilingF<br>    <span class="hljs-keyword">var</span> c = (f - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span><br>    fmt.Printf(<span class="hljs-string">&quot;boiling point = %g°F or %g°C\n&quot;</span>, f, c)<br>    <span class="hljs-comment">// Output:</span><br>    <span class="hljs-comment">// boiling point = 212°F or 100°C</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="变量">变量</h5>
+<ul>
+<li>常量boilingF是在包一级范围声明语句声明的
+<ul>
 <li>包一级声明语句声明的名字可在整个包对应的每个源文件中访问，而不是仅仅在其声明语句所在的源文件中访问</li>
-</ul>
-</li>
-<li>f和c两个变量是在main函数内部声明的声明语句声明的<ul>
+</ul></li>
+<li>f和c两个变量是在main函数内部声明的声明语句声明的
+<ul>
 <li>局部声明的名字就只能在函数内部很小的范围被访问。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="函数">函数</span></h5><ul>
-<li>一个函数的声明由一个函数名字、参数列表（由函数的调用者提供参数变量的具体值）、一个可选的返回值列表和包含函数定义的函数体组成。<ul>
+<h5 id="函数">函数</h5>
+<ul>
+<li>一个函数的声明由一个函数名字、参数列表（由函数的调用者提供参数变量的具体值）、一个可选的返回值列表和包含函数定义的函数体组成。
+<ul>
 <li>如果函数没有返回值，那么返回值列表是省略的。</li>
 <li>执行函数从函数的第一个语句开始，依次顺序执行直到遇到return返回语句，如果没有返回语句则是执行到函数末尾，然后返回到函数调用者。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2><span id="23-变量">2.3 变量</span></h2><h4><span id="var声明语句">var声明语句</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名字 类型 = 表达式</span><br></pre></td></tr></table></figure>
+<h2 id="变量-1">2.3 变量</h2>
+<h4 id="var声明语句">var声明语句</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> 变量名字 类型 = 表达式<br></code></pre></td></tr></table></figure>
 <ul>
-<li><p>var声明语句可以创建一个特定类型的变量</p>
+<li>var声明语句可以创建一个特定类型的变量
 <ul>
 <li>给变量附加一个名字，并且设置变量的初始值</li>
-<li>其中<strong>“类型”</strong>或<strong>“= 表达式”</strong>两个部分可以省略其中的一个。<ul>
+<li>其中<strong>“类型”</strong>或<strong>“=
+表达式”</strong>两个部分可以省略其中的一个。
+<ul>
 <li>如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。</li>
-<li>如果初始化表达式被省略，那么将用零值初始化该变量。<ul>
+<li>如果初始化表达式被省略，那么将用零值初始化该变量。
+<ul>
 <li>接口或引用类型（包括slice、指针、map、chan和函数）变量对应的零值是<strong>nil</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>可以在一个声明语句中同时声明一组变量，或用一组初始化表达式声明并初始化一组变量</p>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>可以在一个声明语句中同时声明一组变量，或用一组初始化表达式声明并初始化一组变量
 <ul>
 <li>如果省略每个变量的类型，将可以声明多个类型不同的变量</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i, j, k <span class="keyword">int</span>                 <span class="comment">// int, int, int</span></span><br><span class="line"><span class="keyword">var</span> b, f, s = <span class="literal">true</span>, <span class="number">2.3</span>, <span class="string">&quot;four&quot;</span> <span class="comment">// bool, float64, string</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> i, j, k <span class="hljs-keyword">int</span>                 <span class="hljs-comment">// int, int, int</span><br><span class="hljs-keyword">var</span> b, f, s = <span class="hljs-literal">true</span>, <span class="hljs-number">2.3</span>, <span class="hljs-string">&quot;four&quot;</span> <span class="hljs-comment">// bool, float64, string</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li>在<strong>包级别声明的变量</strong>会在main入口函数<strong>执行前</strong>完成<strong>初始化</strong></li>
-<li><p><strong>局部变量</strong>将在声明语句被执行到的时候完成初始化。</p>
-</li>
-<li><p>一组变量也可以通过调用一个函数，由函数返回的多个返回值初始化</p>
-</li>
+<li><p>在<strong>包级别声明的变量</strong>会在main入口函数<strong>执行前</strong>完成<strong>初始化</strong></p></li>
+<li><p><strong>局部变量</strong>将在声明语句被执行到的时候完成初始化。</p></li>
+<li><p>一组变量也可以通过调用一个函数，由函数返回的多个返回值初始化</p></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f, err = os.Open(name) <span class="comment">// os.Open returns a file and an error</span></span><br></pre></td></tr></table></figure>
-<h3><span id="231-简短的变量声明">2.3.1 简短的变量声明</span></h3><ul>
-<li><p><strong>“名字 := 表达式”</strong>形式声明变量</p>
-</li>
-<li><p>变量的类型根据表达式来自动推导</p>
-</li>
-<li>简短变量声明被广泛用于大部分的<strong>局部变量的声明和初始化</strong></li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t := <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> f, err = os.Open(name) <span class="hljs-comment">// os.Open returns a file and an error</span><br></code></pre></td></tr></table></figure>
+<h3 id="简短的变量声明">2.3.1 简短的变量声明</h3>
 <ul>
-<li>var形式的声明语句往往是用于需要显式指定变量类型的地方<ul>
+<li><p><strong>“名字 := 表达式”</strong>形式声明变量</p></li>
+<li><p>变量的类型根据表达式来自动推导</p></li>
+<li><p>简短变量声明被广泛用于大部分的<strong>局部变量的声明和初始化</strong></p></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go">t := <span class="hljs-number">0.0</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>var形式的声明语句往往是用于需要显式指定变量类型的地方
+<ul>
 <li>或者因为变量稍后会被重新赋值而初始值无关紧要的地方。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i := <span class="number">100</span>                  <span class="comment">// an int</span></span><br><span class="line"><span class="keyword">var</span> boiling <span class="keyword">float64</span> = <span class="number">100</span> <span class="comment">// a float64</span></span><br><span class="line"><span class="keyword">var</span> names []<span class="keyword">string</span></span><br><span class="line"><span class="keyword">var</span> err error</span><br><span class="line"><span class="keyword">var</span> p Point</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Go">i := <span class="hljs-number">100</span>                  <span class="hljs-comment">// an int</span><br><span class="hljs-keyword">var</span> boiling <span class="hljs-keyword">float64</span> = <span class="hljs-number">100</span> <span class="hljs-comment">// a float64</span><br><span class="hljs-keyword">var</span> names []<span class="hljs-keyword">string</span><br><span class="hljs-keyword">var</span> err error<br><span class="hljs-keyword">var</span> p Point<br></code></pre></td></tr></table></figure>
 <ul>
 <li>多变量同时赋值</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i, j := <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">i, j = j, i <span class="comment">// 交换 i 和 j 的值</span></span><br></pre></td></tr></table></figure>
-<h4><span id="注意">注意</span></h4><ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Go">i, j := <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br>i, j = j, i <span class="hljs-comment">// 交换 i 和 j 的值</span><br></code></pre></td></tr></table></figure>
+<h4 id="注意">注意</h4>
+<ul>
 <li>“:=”是一个变量声明语句，而“=”是一个变量赋值操作</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f, err := os.Open(name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">f, err := os.Open(name)<br></code></pre></td></tr></table></figure>
 <ul>
 <li>简短变量声明语句中必须至少要声明一个新的变量</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f, err := os.Open(infile)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">f, err := os.Create(outfile) <span class="comment">// compile error: no new variables</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Go">f, err := os.Open(infile)<br><span class="hljs-comment">// ...</span><br>f, err := os.Create(outfile) <span class="hljs-comment">// compile error: no new variables</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li>简短变量声明语句<strong>只有对已经在同级词法域声明过的变量才和赋值操作语句等价</strong><ul>
+<li>简短变量声明语句<strong>只有对已经在同级词法域声明过的变量才和赋值操作语句等价</strong>
+<ul>
 <li>如果变量是在外部词法域声明的，那么简短变量声明语句将会在当前词法域重新声明一个新的变量。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3><span id="232-指针">2.3.2. 指针</span></h3><ul>
-<li>一个变量对应一个保存了变量对应类型值的内存空间。<ul>
+<h3 id="指针">2.3.2. 指针</h3>
+<ul>
+<li><p>一个变量对应一个保存了变量对应类型值的内存空间。</p>
+<ul>
 <li>普通变量在声明语句创建时被绑定到一个变量名</li>
-</ul>
-</li>
-<li>一个指针的值是另一个变量的地址。</li>
-<li>一个指针对应变量在内存中的存储位置</li>
-<li><p>并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。</p>
-</li>
+</ul></li>
+<li><p>一个指针的值是另一个变量的地址。</p></li>
+<li><p>一个指针对应变量在内存中的存储位置</p></li>
+<li><p>并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。</p></li>
 <li><p>如果用“var x int”声明语句声明一个x变量，</p>
 <ul>
 <li>那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针</li>
 <li>指针对应的数据类型是<code>*int</code>，指针被称之为“指向int类型的指针”。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>如果指针名字为p，那么可以说“p指针指向变量x”，</p>
 <ul>
-<li>或者说“p指针保存了x变量的内存地址”。</li>
-<li><p>同时<code>*p</code>表达式对应p指针指向的变量的值。</p>
-</li>
-<li><p>一般<code>*p</code>表达式读取指针指向的变量的值，这里为int类型的值，</p>
-</li>
-<li><p>同时因为<code>*p</code>对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p>
-</li>
+<li><p>或者说“p指针保存了x变量的内存地址”。</p></li>
+<li><p>同时<code>*p</code>表达式对应p指针指向的变量的值。</p></li>
+<li><p>一般<code>*p</code>表达式读取指针指向的变量的值，这里为int类型的值，</p></li>
+<li><p>同时因为<code>*p</code>对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x := <span class="number">1</span></span><br><span class="line">p := &amp;x         <span class="comment">// p, of type *int, points to x</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;1&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// equivalent to x = 2</span></span><br><span class="line">fmt.Println(x)  <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Go">x := <span class="hljs-number">1</span><br>p := &amp;x         <span class="hljs-comment">// p, of type *int, points to x</span><br>fmt.Println(*p) <span class="hljs-comment">// &quot;1&quot;</span><br>*p = <span class="hljs-number">2</span>          <span class="hljs-comment">// equivalent to x = 2</span><br>fmt.Println(x)  <span class="hljs-comment">// &quot;2&quot;</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>对于聚合类型每个成员——比如结构体的每个字段、或者是数组的每个元素——也都是对应一个变量，因此可以被取地址。</li>
 <li>即使变量由表达式临时生成，那么表达式也必须能接受<code>&amp;</code>取地址操作。</li>
-<li><strong>任何类型的指针的零值都是nil。</strong><ul>
+<li><strong>任何类型的指针的零值都是nil。</strong>
+<ul>
 <li>如果p指向某个有效变量，那么<code>p != nil</code>测试为真。</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>指针之间也是可以进行相等测试的</strong>，只有当它们指向同一个变量或全部是nil时才相等。</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x, y <span class="keyword">int</span></span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="literal">nil</span>) <span class="comment">// &quot;true false false&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> x, y <span class="hljs-keyword">int</span><br>fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="hljs-literal">nil</span>) <span class="hljs-comment">// &quot;true false false&quot;</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>在Go语言中，返回函数中局部变量的地址也是安全的。</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = f()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span> *<span class="title">int</span></span> &#123;</span><br><span class="line">    v := <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> &amp;v</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(f() == f()) <span class="comment">// &quot;false&quot;</span></span><br></pre></td></tr></table></figure>
-<h4><span id="flag包">flag包</span></h4><p>指针是实现标准库中flag包的关键技术，它使用命令行参数来设置对应变量的值，而这些对应命令行标志参数的变量可能会零散分布在整个程序中。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Echo4 prints its command-line arguments.</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;flag&quot;</span></span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;strings&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> n = flag.Bool(<span class="string">&quot;n&quot;</span>, <span class="literal">false</span>, <span class="string">&quot;omit trailing newline&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> sep = flag.String(<span class="string">&quot;s&quot;</span>, <span class="string">&quot; &quot;</span>, <span class="string">&quot;separator&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    flag.Parse()</span><br><span class="line">    fmt.Print(strings.Join(flag.Args(), *sep))</span><br><span class="line">    <span class="keyword">if</span> !*n &#123;</span><br><span class="line">        fmt.Println()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> p = f()<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> *<span class="hljs-title">int</span></span> &#123;<br>    v := <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> &amp;v<br>&#125;<br><br>fmt.Println(f() == f()) <span class="hljs-comment">// &quot;false&quot;</span><br></code></pre></td></tr></table></figure>
+<h4 id="flag包">flag包</h4>
+<p>指针是实现标准库中flag包的关键技术，它使用命令行参数来设置对应变量的值，而这些对应命令行标志参数的变量可能会零散分布在整个程序中。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-comment">// Echo4 prints its command-line arguments.</span><br><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;flag&quot;</span><br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;strings&quot;</span><br>)<br><br><span class="hljs-keyword">var</span> n = flag.Bool(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;omit trailing newline&quot;</span>)<br><span class="hljs-keyword">var</span> sep = flag.String(<span class="hljs-string">&quot;s&quot;</span>, <span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;separator&quot;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    flag.Parse()<br>    fmt.Print(strings.Join(flag.Args(), *sep))<br>    <span class="hljs-keyword">if</span> !*n &#123;<br>        fmt.Println()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
-<li>调用flag.Bool函数会创建一个新的对应布尔型标志参数的变量。有三个属性<ul>
+<li>调用flag.Bool函数会创建一个新的对应布尔型标志参数的变量。有三个属性
+<ul>
 <li>第一个是命令行标志参数的名字“n”，</li>
 <li>然后是该标志参数的默认值（这里是false），</li>
 <li>最后是该标志参数对应的描述信息。</li>
-</ul>
-</li>
+</ul></li>
 <li>程序中的<code>sep</code>和<code>n</code>变量分别是指向对应命令行标志参数变量的指针，因此必须用<code>*sep</code>和<code>*n</code>形式的指针语法间接引用它们。</li>
 </ul>
-<h3><span id="233-new函数">2.3.3. new函数</span></h3><ul>
-<li><p>另一个<strong>创建变量的方法</strong>是调用内建的new函数</p>
-</li>
+<h3 id="new函数">2.3.3. new函数</h3>
+<ul>
+<li><p>另一个<strong>创建变量的方法</strong>是调用内建的new函数</p></li>
 <li><p>表达式new(T)将创建一个T类型的匿名变量</p>
 <ul>
 <li>初始化为T类型的零值，然后<strong>返回变量地址</strong>，返回的指针类型为<code>*T</code>。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="keyword">int</span>)   <span class="comment">// p, *int 类型, 指向匿名的 int 变量</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;0&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 设置 int 匿名变量的值为 2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Go">p := <span class="hljs-built_in">new</span>(<span class="hljs-keyword">int</span>)   <span class="hljs-comment">// p, *int 类型, 指向匿名的 int 变量</span><br>fmt.Println(*p) <span class="hljs-comment">// &quot;0&quot;</span><br>*p = <span class="hljs-number">2</span>          <span class="hljs-comment">// 设置 int 匿名变量的值为 2</span><br>fmt.Println(*p) <span class="hljs-comment">// &quot;2&quot;</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>用new创建变量和普通变量声明语句方式创建变量没有什么区别</li>
 <li>除了不需要声明一个临时变量的名字外，我们还可以在表达式中使用new(T)</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newInt</span><span class="params">()</span> *<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newInt</span><span class="params">()</span> *<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> dummy <span class="keyword">int</span></span><br><span class="line">    <span class="keyword">return</span> &amp;dummy</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">newInt</span><span class="hljs-params">()</span> *<span class="hljs-title">int</span></span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">new</span>(<span class="hljs-keyword">int</span>)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">newInt</span><span class="hljs-params">()</span> *<span class="hljs-title">int</span></span> &#123;<br>    <span class="hljs-keyword">var</span> dummy <span class="hljs-keyword">int</span><br>    <span class="hljs-keyword">return</span> &amp;dummy<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>每次调用new函数都是返回一个新的变量的地址，因此下面两个地址是不同的</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">q := <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">fmt.Println(p == q) <span class="comment">// &quot;false&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Go">p := <span class="hljs-built_in">new</span>(<span class="hljs-keyword">int</span>)<br>q := <span class="hljs-built_in">new</span>(<span class="hljs-keyword">int</span>)<br>fmt.Println(p == q) <span class="hljs-comment">// &quot;false&quot;</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li><p>特殊情况：如果两个类型都是空的，也就是说类型的大小是0</p>
+<li>特殊情况：如果两个类型都是空的，也就是说类型的大小是0
 <ul>
 <li>例如<code>struct&#123;&#125;</code>和<code>[0]int</code>，有可能有相同的地址（依赖具体的语言实现）</li>
+</ul></li>
+<li>由于new只是<strong>一个预定义的函数</strong>，它并不是一个关键字，因此我们可以<strong>将new名字重新定义为别的类型</strong>。</li>
 </ul>
-</li>
-<li><p>由于new只是<strong>一个预定义的函数</strong>，它并不是一个关键字，因此我们可以<strong>将new名字重新定义为别的类型</strong>。</p>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delta</span><span class="params">(old, <span class="built_in">new</span> <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> <span class="built_in">new</span> - old &#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="234-变量的生命周期">2.3.4. 变量的生命周期</span></h3><ul>
-<li>变量的生命周期指的是在程序运行期间变量有效存在的时间段。</li>
-<li>对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。</li>
-<li>而相比之下，局部变量的生命周期则是动态的：<ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">delta</span><span class="hljs-params">(old, <span class="hljs-built_in">new</span> <span class="hljs-keyword">int</span>)</span> <span class="hljs-title">int</span></span> &#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">new</span> - old &#125;<br></code></pre></td></tr></table></figure>
+<h3 id="变量的生命周期">2.3.4. 变量的生命周期</h3>
+<ul>
+<li><p>变量的生命周期指的是在程序运行期间变量有效存在的时间段。</p></li>
+<li><p>对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。</p></li>
+<li><p>而相比之下，局部变量的生命周期则是动态的：</p>
+<ul>
 <li>每次从创建一个新变量的声明语句开始，直到该变量不再被引用为止，然后变量的存储空间可能被回收</li>
-</ul>
-</li>
-<li><p>函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
-</li>
+</ul></li>
+<li><p>函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p></li>
 <li><p>Go语言的自动垃圾收集器是如何知道一个变量是何时可以被回收的呢？</p>
 <ul>
 <li>基本的实现思路是，从每个包级的变量和每个当前运行函数的每一个局部变量开始，通过指针或引用的访问路径遍历，是否可以找到该变量。</li>
 <li>如果不存在这样的访问路径，那么说明该变量是不可达的，也就是说它是否存在并不会影响程序后续的计算结果。</li>
+</ul></li>
+<li><p>编译器会自动选择在<strong>栈上还是在堆上分配局部变量</strong>的存储空间，但可能令人惊讶的是，这个选择并不是由用var还是new声明变量的方式决定的</p></li>
 </ul>
-</li>
-<li><p>编译器会自动选择在<strong>栈上还是在堆上分配局部变量</strong>的存储空间，但可能令人惊讶的是，这个选择并不是由用var还是new声明变量的方式决定的</p>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> global *<span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">int</span></span><br><span class="line">    x = <span class="number">1</span></span><br><span class="line">    global = &amp;x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">g</span><span class="params">()</span></span> &#123;</span><br><span class="line">    y := <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">    *y = <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> global *<span class="hljs-keyword">int</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> x <span class="hljs-keyword">int</span><br>    x = <span class="hljs-number">1</span><br>    global = &amp;x<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">g</span><span class="hljs-params">()</span></span> &#123;<br>    y := <span class="hljs-built_in">new</span>(<span class="hljs-keyword">int</span>)<br>    *y = <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
-<li>f函数里的<strong>x变量</strong>必须在<strong>堆</strong>上分配，因为它在函数退出后依然可以通过包一级的global变量找到，虽然它是在函数内部定义的</li>
-<li><p><code>*y</code>并没有从函数g中逃逸，编译器可以选择在栈上分配<code>*y</code>的存储空间</p>
-</li>
-<li><p>其实在任何时候，你并不需为了编写正确的代码而要考虑变量的逃逸行为，要记住的是，逃逸的变量需要额外分配内存，同时对性能的优化可能会产生细微的影响。</p>
-</li>
+<li><p>f函数里的<strong>x变量</strong>必须在<strong>堆</strong>上分配，因为它在函数退出后依然可以通过包一级的global变量找到，虽然它是在函数内部定义的</p></li>
+<li><p><code>*y</code>并没有从函数g中逃逸，编译器可以选择在栈上分配<code>*y</code>的存储空间</p></li>
+<li><p>其实在任何时候，你并不需为了编写正确的代码而要考虑变量的逃逸行为，要记住的是，逃逸的变量需要额外分配内存，同时对性能的优化可能会产生细微的影响。</p></li>
 </ul>
-<h2><span id="24-赋值">2.4 赋值</span></h2><ul>
+<h2 id="赋值">2.4 赋值</h2>
+<ul>
 <li>使用赋值语句可以更新一个变量的值</li>
 <li>最简单的赋值语句是将要被赋值的变量放在=的左边，新值的表达式放在=的右边。</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span>                       <span class="comment">// 命名变量的赋值</span></span><br><span class="line">*p = <span class="literal">true</span>                   <span class="comment">// 通过指针间接赋值</span></span><br><span class="line">person.name = <span class="string">&quot;bob&quot;</span>         <span class="comment">// 结构体字段赋值</span></span><br><span class="line">count[x] = count[x] * scale <span class="comment">// 数组、slice或map的元素赋值</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Go">x = <span class="hljs-number">1</span>                       <span class="hljs-comment">// 命名变量的赋值</span><br>*p = <span class="hljs-literal">true</span>                   <span class="hljs-comment">// 通过指针间接赋值</span><br>person.name = <span class="hljs-string">&quot;bob&quot;</span>         <span class="hljs-comment">// 结构体字段赋值</span><br>count[x] = count[x] * scale <span class="hljs-comment">// 数组、slice或map的元素赋值</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>特定的二元算术运算符和赋值语句的复合操作有一个简洁形式</li>
 <li>数值变量也可以支持<code>++</code>递增和<code>--</code>递减语句</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">count[x] *= scale</span><br><span class="line">v := <span class="number">1</span></span><br><span class="line">v++    <span class="comment">// 等价方式 v = v + 1；v 变成 2</span></span><br><span class="line">v--    <span class="comment">// 等价方式 v = v - 1；v 变成 1</span></span><br></pre></td></tr></table></figure>
-<h3><span id="241-元组赋值">2.4.1. 元组赋值</span></h3><ul>
-<li>元组赋值是另一种形式的赋值语句，它允许同时更新多个变量的值。<ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Go">count[x] *= scale<br>v := <span class="hljs-number">1</span><br>v++    <span class="hljs-comment">// 等价方式 v = v + 1；v 变成 2</span><br>v--    <span class="hljs-comment">// 等价方式 v = v - 1；v 变成 1</span><br></code></pre></td></tr></table></figure>
+<h3 id="元组赋值">2.4.1. 元组赋值</h3>
+<ul>
+<li>元组赋值是另一种形式的赋值语句，它允许同时更新多个变量的值。
+<ul>
 <li>在赋值之前，赋值语句右边的所有表达式将会先进行求值，然后再统一更新左边对应变量的值</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x, y = y, x</span><br><span class="line"></span><br><span class="line">a[i], a[j] = a[j], a[i]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">gcd</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> y != <span class="number">0</span> &#123;</span><br><span class="line">        x, y = y, x%y</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Go">x, y = y, x<br><br>a[i], a[j] = a[j], a[i]<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">gcd</span><span class="hljs-params">(x, y <span class="hljs-keyword">int</span>)</span> <span class="hljs-title">int</span></span> &#123;<br>    <span class="hljs-keyword">for</span> y != <span class="hljs-number">0</span> &#123;<br>        x, y = y, x%y<br>    &#125;<br>    <span class="hljs-keyword">return</span> x<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>元组赋值也可以使一系列琐碎赋值更加紧凑</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i, j, k = <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go">i, j, k = <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>但如果<strong>表达式太复杂</strong>的话，应该尽量避免过度使用元组赋值；因为每个变量单独赋值语句的写法可读性会更好。</li>
-<li>有些<strong>表达式会产生多个值</strong>，比如调用一个有多个返回值的函数。<ul>
+<li>有些<strong>表达式会产生多个值</strong>，比如调用一个有多个返回值的函数。
+<ul>
 <li>当这样一个函数调用出现在元组赋值右边的表达式中时</li>
 <li>（译注：右边不能再有其它表达式），左边变量的数目必须和右边一致。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f, err = os.Open(<span class="string">&quot;foo.txt&quot;</span>) <span class="comment">// function call returns two values</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go">f, err = os.Open(<span class="hljs-string">&quot;foo.txt&quot;</span>) <span class="hljs-comment">// function call returns two values</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li>通常，这类函数会用额外的返回值来表达某种错误类型<ul>
+<li>通常，这类函数会用额外的返回值来表达某种错误类型
+<ul>
 <li>还有一些是用来返回布尔值，通常被称为ok。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v, ok = m[key]             <span class="comment">// map lookup</span></span><br><span class="line">v, ok = x.(T)              <span class="comment">// type assertion</span></span><br><span class="line">v, ok = &lt;-ch               <span class="comment">// channel receive</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Go">v, ok = m[key]             <span class="hljs-comment">// map lookup</span><br>v, ok = x.(T)              <span class="hljs-comment">// type assertion</span><br>v, ok = &lt;-ch               <span class="hljs-comment">// channel receive</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>和变量声明一样，我们可以用下划线空白标识符<code>_</code>来丢弃不需要的值。</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_, err = io.Copy(dst, src) <span class="comment">// 丢弃字节数</span></span><br><span class="line">_, ok = x.(T)              <span class="comment">// 只检测类型，忽略具体值</span></span><br></pre></td></tr></table></figure>
-<h3><span id="242-可赋值性">2.4.2. 可赋值性</span></h3><ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Go">_, err = io.Copy(dst, src) <span class="hljs-comment">// 丢弃字节数</span><br>_, ok = x.(T)              <span class="hljs-comment">// 只检测类型，忽略具体值</span><br></code></pre></td></tr></table></figure>
+<h3 id="可赋值性">2.4.2. 可赋值性</h3>
+<ul>
 <li>赋值语句是显式的赋值形式</li>
-<li>但是程序中还有很多地方会发生隐式的赋值行为：<ul>
+<li>但是程序中还有很多地方会发生隐式的赋值行为：
+<ul>
 <li>函数调用会隐式地将调用参数的值赋值给函数的参数变量，</li>
 <li>一个返回语句会隐式地将返回操作的值赋值给结果变量，</li>
 <li>一个复合类型的字面量（§4.2）也会产生赋值行为。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">medals := []<span class="keyword">string</span>&#123;<span class="string">&quot;gold&quot;</span>, <span class="string">&quot;silver&quot;</span>, <span class="string">&quot;bronze&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go">medals := []<span class="hljs-keyword">string</span>&#123;<span class="hljs-string">&quot;gold&quot;</span>, <span class="hljs-string">&quot;silver&quot;</span>, <span class="hljs-string">&quot;bronze&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>隐式地对slice的每个元素进行赋值操作，类似这样写的行为</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">medals[<span class="number">0</span>] = <span class="string">&quot;gold&quot;</span></span><br><span class="line">medals[<span class="number">1</span>] = <span class="string">&quot;silver&quot;</span></span><br><span class="line">medals[<span class="number">2</span>] = <span class="string">&quot;bronze&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Go">medals[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;gold&quot;</span><br>medals[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;silver&quot;</span><br>medals[<span class="hljs-number">2</span>] = <span class="hljs-string">&quot;bronze&quot;</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li>map和chan的元素，虽然不是普通的变量，但是也有类似的隐式赋值行为。</li>
-<li>不管是隐式还是显式地赋值，在赋值语句左边的变量和右边最终的求到的值必须有相同的数据类型。</li>
-<li><p>更直白地说，只有右边的值对于左边的变量是可赋值的，赋值语句才是允许的。</p>
-</li>
-<li><p>nil可以赋值给任何指针或引用类型的变量</p>
-</li>
+<li><p>map和chan的元素，虽然不是普通的变量，但是也有类似的隐式赋值行为。</p></li>
+<li><p>不管是隐式还是显式地赋值，在赋值语句左边的变量和右边最终的求到的值必须有相同的数据类型。</p></li>
+<li><p>更直白地说，只有右边的值对于左边的变量是可赋值的，赋值语句才是允许的。</p></li>
+<li><p>nil可以赋值给任何指针或引用类型的变量</p></li>
 </ul>
-<h2><span id="25-类型">2.5. 类型</span></h2><ul>
+<h2 id="类型">2.5. 类型</h2>
+<ul>
 <li><p>变量或表达式的类型定义了对应存储值的属性特征</p>
 <ul>
 <li>数值在内存的存储大小（或者是元素的bit个数）</li>
 <li>它们在内部是如何表达的，是否支持一些操作符</li>
 <li>以及它们自己关联的方法集等</li>
-</ul>
-</li>
-<li><p>在任何程序中都会存在一些变量有着相同的内部结构，但是却表示完全不同的概念。</p>
-</li>
+</ul></li>
+<li><p>在任何程序中都会存在一些变量有着相同的内部结构，但是却表示完全不同的概念。</p></li>
 <li><p><strong>一个类型声明语句创建了一个新的类型名称</strong>，和现有类型具有相同的底层结构。</p>
 <ul>
 <li>新命名的类型提供了一个方法，用来分隔不同概念的类型，这样即使它们底层类型相同也是不兼容的</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> 类型名字 底层类型</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">type</span> 类型名字 底层类型<br></code></pre></td></tr></table></figure>
 <ul>
 <li>类型声明语句一般出现在<strong>包一级</strong>，因此如果<strong>新创建的类型名字的首字符大写，则在包外部也可以使用。</strong></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Package tempconv performs Celsius and Fahrenheit temperature computations.</span></span><br><span class="line"><span class="keyword">package</span> tempconv</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Celsius <span class="keyword">float64</span>    <span class="comment">// 摄氏温度</span></span><br><span class="line"><span class="keyword">type</span> Fahrenheit <span class="keyword">float64</span> <span class="comment">// 华氏温度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    AbsoluteZeroC Celsius = <span class="number">-273.15</span> <span class="comment">// 绝对零度</span></span><br><span class="line">    FreezingC     Celsius = <span class="number">0</span>       <span class="comment">// 结冰点温度</span></span><br><span class="line">    BoilingC      Celsius = <span class="number">100</span>     <span class="comment">// 沸水温度</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CToF</span><span class="params">(c Celsius)</span> <span class="title">Fahrenheit</span></span> &#123; <span class="keyword">return</span> Fahrenheit(c*<span class="number">9</span>/<span class="number">5</span> + <span class="number">32</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FToC</span><span class="params">(f Fahrenheit)</span> <span class="title">Celsius</span></span> &#123; <span class="keyword">return</span> Celsius((f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span>) &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-comment">// Package tempconv performs Celsius and Fahrenheit temperature computations.</span><br><span class="hljs-keyword">package</span> tempconv<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><span class="hljs-keyword">type</span> Celsius <span class="hljs-keyword">float64</span>    <span class="hljs-comment">// 摄氏温度</span><br><span class="hljs-keyword">type</span> Fahrenheit <span class="hljs-keyword">float64</span> <span class="hljs-comment">// 华氏温度</span><br><br><span class="hljs-keyword">const</span> (<br>    AbsoluteZeroC Celsius = <span class="hljs-number">-273.15</span> <span class="hljs-comment">// 绝对零度</span><br>    FreezingC     Celsius = <span class="hljs-number">0</span>       <span class="hljs-comment">// 结冰点温度</span><br>    BoilingC      Celsius = <span class="hljs-number">100</span>     <span class="hljs-comment">// 沸水温度</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">CToF</span><span class="hljs-params">(c Celsius)</span> <span class="hljs-title">Fahrenheit</span></span> &#123; <span class="hljs-keyword">return</span> Fahrenheit(c*<span class="hljs-number">9</span>/<span class="hljs-number">5</span> + <span class="hljs-number">32</span>) &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FToC</span><span class="hljs-params">(f Fahrenheit)</span> <span class="hljs-title">Celsius</span></span> &#123; <span class="hljs-keyword">return</span> Celsius((f - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span>) &#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>在这个包声明了两种类型：Celsius和Fahrenheit分别对应不同的温度单位。</li>
 <li>它们虽然有着相同的底层类型float64，但是它们是不同的数据类型，因此它们不可以被相互比较或混在一个表达式运算。</li>
 </ul>
-<h4><span id="类型转换">类型转换</span></h4><ul>
-<li><p>Celsius(t)和Fahrenheit(t)是<strong>类型转换操作，它们并不是函数调用</strong>。</p>
+<h4 id="类型转换">类型转换</h4>
+<ul>
+<li>Celsius(t)和Fahrenheit(t)是<strong>类型转换操作，它们并不是函数调用</strong>。
 <ul>
 <li><strong>类型转换不会改变值本身</strong>，但是会使它们的语义发生变化。</li>
-</ul>
-</li>
-<li><p>对于每一个类型T，都有一个对应的类型转换操作T(x)，用于将x转为T类型</p>
+</ul></li>
+<li>对于每一个类型T，都有一个对应的类型转换操作T(x)，用于将x转为T类型
 <ul>
 <li>如果T是指针类型，可能会需要用小括弧包装T，比如<code>(*int)(0)</code></li>
 <li>只有<strong>当两个类型的底层基础类型相同时，才允许这种转型操作</strong>，或者是<strong>两者都是指向相同底层结构的指针类型</strong>，<strong>这些转换只改变类型而不会影响值本身</strong></li>
-</ul>
-</li>
-<li><strong>数值类型之间的转型也是允许的</strong>，并且在字符串和一些特定类型的slice之间也是可以转换的<ul>
-<li>将一个浮点数转为整数将丢弃小数部分，将一个字符串转为<code>[]byte</code>类型的slice将拷贝一个字符串数据的副本</li>
-</ul>
-</li>
-</ul>
-<h4><span id="比较">比较</span></h4><ul>
-<li><p>比较运算符<code>==</code>和<code>&lt;</code>也可以用来比较一个命名类型的变量和另一个有相同类型的变量，或有着相同底层类型的未命名类型的值之间做比较。</p>
-</li>
-<li><p>如果两个值有着不同的类型，则不能直接进行比较：</p>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c Celsius</span><br><span class="line"><span class="keyword">var</span> f Fahrenheit</span><br><span class="line">fmt.Println(c == <span class="number">0</span>)          <span class="comment">// &quot;true&quot;</span></span><br><span class="line">fmt.Println(f &gt;= <span class="number">0</span>)          <span class="comment">// &quot;true&quot;</span></span><br><span class="line">fmt.Println(c == f)          <span class="comment">// compile error: type mismatch</span></span><br><span class="line">fmt.Println(c == Celsius(f)) <span class="comment">// &quot;true&quot;!</span></span><br></pre></td></tr></table></figure>
+</ul></li>
+<li><strong>数值类型之间的转型也是允许的</strong>，并且在字符串和一些特定类型的slice之间也是可以转换的
 <ul>
-<li>注意最后那个语句。尽管看起来像函数调用，但是Celsius(f)是类型转换操作，它并不会改变值，仅仅是改变值的类型而已</li>
-<li><p>测试为真的原因是因为c和g都是零值。</p>
-</li>
-<li><p>下面的声明语句，Celsius类型的参数c出现在了函数名的前面，表示声明的是Celsius类型的一个名叫String的方法，该方法返回该类型对象c带着°C温度单位的字符串</p>
-</li>
+<li>将一个浮点数转为整数将丢弃小数部分，将一个字符串转为<code>[]byte</code>类型的slice将拷贝一个字符串数据的副本</li>
+</ul></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c Celsius)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123; <span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;%g°C&quot;</span>, c) &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="比较">比较</h4>
+<ul>
+<li><p>比较运算符<code>==</code>和<code>&lt;</code>也可以用来比较一个命名类型的变量和另一个有相同类型的变量，或有着相同底层类型的未命名类型的值之间做比较。</p></li>
+<li><p>如果两个值有着不同的类型，则不能直接进行比较：</p></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> c Celsius<br><span class="hljs-keyword">var</span> f Fahrenheit<br>fmt.Println(c == <span class="hljs-number">0</span>)          <span class="hljs-comment">// &quot;true&quot;</span><br>fmt.Println(f &gt;= <span class="hljs-number">0</span>)          <span class="hljs-comment">// &quot;true&quot;</span><br>fmt.Println(c == f)          <span class="hljs-comment">// compile error: type mismatch</span><br>fmt.Println(c == Celsius(f)) <span class="hljs-comment">// &quot;true&quot;!</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>注意最后那个语句。尽管看起来像函数调用，但是Celsius(f)是类型转换操作，它并不会改变值，仅仅是改变值的类型而已</p></li>
+<li><p>测试为真的原因是因为c和g都是零值。</p></li>
+<li><p>下面的声明语句，Celsius类型的参数c出现在了函数名的前面，表示声明的是Celsius类型的一个名叫String的方法，该方法返回该类型对象c带着°C温度单位的字符串</p></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c Celsius)</span> <span class="hljs-title">String</span><span class="hljs-params">()</span> <span class="hljs-title">string</span></span> &#123; <span class="hljs-keyword">return</span> fmt.Sprintf(<span class="hljs-string">&quot;%g°C&quot;</span>, c) &#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li><strong>许多类型都会定义一个String方法</strong>，因为当使用fmt包的打印方法时，将会优先使用该类型对应的String方法返回的结果打印</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c := FToC(<span class="number">212.0</span>)</span><br><span class="line">fmt.Println(c.String()) <span class="comment">// &quot;100°C&quot;</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%v\n&quot;</span>, c)   <span class="comment">// &quot;100°C&quot;; no need to call String explicitly</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, c)   <span class="comment">// &quot;100°C&quot;</span></span><br><span class="line">fmt.Println(c)          <span class="comment">// &quot;100°C&quot;</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%g\n&quot;</span>, c)   <span class="comment">// &quot;100&quot;; does not call String</span></span><br><span class="line">fmt.Println(<span class="keyword">float64</span>(c)) <span class="comment">// &quot;100&quot;; does not call String</span></span><br></pre></td></tr></table></figure>
-<h2><span id="26-包和文件">2.6. 包和文件</span></h2><ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Go">c := FToC(<span class="hljs-number">212.0</span>)<br>fmt.Println(c.String()) <span class="hljs-comment">// &quot;100°C&quot;</span><br>fmt.Printf(<span class="hljs-string">&quot;%v\n&quot;</span>, c)   <span class="hljs-comment">// &quot;100°C&quot;; no need to call String explicitly</span><br>fmt.Printf(<span class="hljs-string">&quot;%s\n&quot;</span>, c)   <span class="hljs-comment">// &quot;100°C&quot;</span><br>fmt.Println(c)          <span class="hljs-comment">// &quot;100°C&quot;</span><br>fmt.Printf(<span class="hljs-string">&quot;%g\n&quot;</span>, c)   <span class="hljs-comment">// &quot;100&quot;; does not call String</span><br>fmt.Println(<span class="hljs-keyword">float64</span>(c)) <span class="hljs-comment">// &quot;100&quot;; does not call String</span><br></code></pre></td></tr></table></figure>
+<h2 id="包和文件">2.6. 包和文件</h2>
+<ul>
 <li>Go语言中的包和其他语言的库或模块的概念类似，目的都是为了支持模块化、封装、单独编译和代码重用</li>
-<li>一个包的源代码保存在一个或多个以.go为文件后缀名的源文件中，通常一个包所在目录路径的后缀是包的导入路径<ul>
+<li>一个包的源代码保存在一个或多个以.go为文件后缀名的源文件中，通常一个包所在目录路径的后缀是包的导入路径
+<ul>
 <li>例如包gopl.io/ch1/helloworld对应的目录路径是$GOPATH/src/gopl.io/ch1/helloworld。</li>
-</ul>
-</li>
-<li>每个包都对应一个独立的名字空间。<ul>
-<li>例如，在image包中的Decode函数和在unicode/utf16包中的 Decode函数是不同的。</li>
+</ul></li>
+<li>每个包都对应一个独立的名字空间。
+<ul>
+<li>例如，在image包中的Decode函数和在unicode/utf16包中的
+Decode函数是不同的。</li>
 <li>要在外部引用该函数，必须显式使用image.Decode或utf16.Decode形式访问。</li>
-</ul>
-</li>
+</ul></li>
 <li>包还可以让我们通过控制哪些名字是外部可见的来隐藏内部实现信息。</li>
 <li>在Go语言中，一个简单的规则是：如果一个名字是大写字母开头的，那么该名字是导出的</li>
 </ul>
-<h4><span id="例子">例子</span></h4><p>把变量的声明、对应的常量，还有方法都放到tempconv.go源文件中：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Package tempconv performs Celsius and Fahrenheit conversions.</span></span><br><span class="line"><span class="keyword">package</span> tempconv</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Celsius <span class="keyword">float64</span></span><br><span class="line"><span class="keyword">type</span> Fahrenheit <span class="keyword">float64</span></span><br><span class="line"><span class="keyword">type</span> Kelvin <span class="keyword">float64</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    AbsoluteZeroC Celsius = <span class="number">-273.15</span></span><br><span class="line">    FreezingC     Celsius = <span class="number">0</span></span><br><span class="line">    BoilingC      Celsius = <span class="number">100</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c Celsius)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span>    &#123; <span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;%g°C&quot;</span>, c) &#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f Fahrenheit)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123; <span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;%g°F&quot;</span>, f) &#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(k Kelvin)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123; <span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;%g K&quot;</span>, k) &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="例子-1">例子</h4>
+<p>把变量的声明、对应的常量，还有方法都放到tempconv.go源文件中：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-comment">// Package tempconv performs Celsius and Fahrenheit conversions.</span><br><span class="hljs-keyword">package</span> tempconv<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><span class="hljs-keyword">type</span> Celsius <span class="hljs-keyword">float64</span><br><span class="hljs-keyword">type</span> Fahrenheit <span class="hljs-keyword">float64</span><br><span class="hljs-keyword">type</span> Kelvin <span class="hljs-keyword">float64</span><br><br><span class="hljs-keyword">const</span> (<br>    AbsoluteZeroC Celsius = <span class="hljs-number">-273.15</span><br>    FreezingC     Celsius = <span class="hljs-number">0</span><br>    BoilingC      Celsius = <span class="hljs-number">100</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c Celsius)</span> <span class="hljs-title">String</span><span class="hljs-params">()</span> <span class="hljs-title">string</span></span>    &#123; <span class="hljs-keyword">return</span> fmt.Sprintf(<span class="hljs-string">&quot;%g°C&quot;</span>, c) &#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(f Fahrenheit)</span> <span class="hljs-title">String</span><span class="hljs-params">()</span> <span class="hljs-title">string</span></span> &#123; <span class="hljs-keyword">return</span> fmt.Sprintf(<span class="hljs-string">&quot;%g°F&quot;</span>, f) &#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(k Kelvin)</span> <span class="hljs-title">String</span><span class="hljs-params">()</span> <span class="hljs-title">string</span></span> &#123; <span class="hljs-keyword">return</span> fmt.Sprintf(<span class="hljs-string">&quot;%g K&quot;</span>, k) &#125;<br></code></pre></td></tr></table></figure>
 <p>转换函数则放在另一个conv.go源文件中</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tempconv</span><br><span class="line"></span><br><span class="line"><span class="comment">// CToF converts a Celsius temperature to Fahrenheit.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CToF</span><span class="params">(c Celsius)</span> <span class="title">Fahrenheit</span></span> &#123; <span class="keyword">return</span> Fahrenheit(c*<span class="number">9</span>/<span class="number">5</span> + <span class="number">32</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FToC converts a Fahrenheit temperature to Celsius.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FToC</span><span class="params">(f Fahrenheit)</span> <span class="title">Celsius</span></span> &#123; <span class="keyword">return</span> Celsius((f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CToK</span><span class="params">(c Celsius)</span> <span class="title">Kelvin</span></span> &#123; <span class="keyword">return</span> Kelvin(c - <span class="number">273.15</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">KToC</span><span class="params">(k Kelvin)</span> <span class="title">Celsius</span></span> &#123; <span class="keyword">return</span> Celsius(k + <span class="number">273.15</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FToK</span><span class="params">(f Fahrenheit)</span> <span class="title">Kelvin</span></span> &#123;<span class="keyword">return</span> CToK(FToC(f)) &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">KToF</span><span class="params">(k Kelvin)</span> <span class="title">Fahrenheit</span></span> &#123;<span class="keyword">return</span> CToF(KToC(k))&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">package</span> tempconv<br><br><span class="hljs-comment">// CToF converts a Celsius temperature to Fahrenheit.</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">CToF</span><span class="hljs-params">(c Celsius)</span> <span class="hljs-title">Fahrenheit</span></span> &#123; <span class="hljs-keyword">return</span> Fahrenheit(c*<span class="hljs-number">9</span>/<span class="hljs-number">5</span> + <span class="hljs-number">32</span>) &#125;<br><br><span class="hljs-comment">// FToC converts a Fahrenheit temperature to Celsius.</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FToC</span><span class="hljs-params">(f Fahrenheit)</span> <span class="hljs-title">Celsius</span></span> &#123; <span class="hljs-keyword">return</span> Celsius((f - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span> / <span class="hljs-number">9</span>) &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">CToK</span><span class="hljs-params">(c Celsius)</span> <span class="hljs-title">Kelvin</span></span> &#123; <span class="hljs-keyword">return</span> Kelvin(c - <span class="hljs-number">273.15</span>) &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">KToC</span><span class="hljs-params">(k Kelvin)</span> <span class="hljs-title">Celsius</span></span> &#123; <span class="hljs-keyword">return</span> Celsius(k + <span class="hljs-number">273.15</span>) &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FToK</span><span class="hljs-params">(f Fahrenheit)</span> <span class="hljs-title">Kelvin</span></span> &#123;<span class="hljs-keyword">return</span> CToK(FToC(f)) &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">KToF</span><span class="hljs-params">(k Kelvin)</span> <span class="hljs-title">Fahrenheit</span></span> &#123;<span class="hljs-keyword">return</span> CToF(KToC(k))&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>每个源文件都是以包的声明语句开始，用来指明包的名字。</li>
 <li>当包被导入的时候，包内的成员将通过类似tempconv.CToF的形式访问。</li>
@@ -638,392 +659,491 @@
 <li>要注意的是tempconv.go源文件导入了fmt包，但是conv.go源文件并没有，因为这个源文件中的代码并没有用到fmt包。</li>
 </ul>
 <p><strong>包级别的常量名</strong>都是以<strong>大写字母开头</strong>，它们可以像tempconv.AbsoluteZeroC这样被外部代码访问：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Printf(<span class="string">&quot;Brrrr! %v\n&quot;</span>, tempconv.AbsoluteZeroC) <span class="comment">// &quot;Brrrr! -273.15°C&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go">fmt.Printf(<span class="hljs-string">&quot;Brrrr! %v\n&quot;</span>, tempconv.AbsoluteZeroC) <span class="hljs-comment">// &quot;Brrrr! -273.15°C&quot;</span><br></code></pre></td></tr></table></figure>
 <p>要将摄氏温度转换为华氏温度，需要先用<strong>import语句导入gopl.io/ch2/tempconv包</strong>，然后就可以使用下面的代码进行转换了：</p>
 <p>要将摄氏温度转换为华氏温度，需要先用import语句导入gopl.io/ch2/tempconv包，然后就可以使用下面的代码进行转换了</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(tempconv.CToF(tempconv.BoilingC)) <span class="comment">// &quot;212°F&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go">fmt.Println(tempconv.CToF(tempconv.BoilingC)) <span class="hljs-comment">// &quot;212°F&quot;</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>在每个源文件的包声明前紧跟着的注释是包注释</li>
-<li>通常，包注释的第一句应该先是包的功能概要说明。一个包通常只有一个源文件有包注释<ul>
+<li>通常，包注释的第一句应该先是包的功能概要说明。一个包通常只有一个源文件有包注释
+<ul>
 <li>（如果有多个包注释，目前的文档工具会根据源文件名的先后顺序将它们链接为一个包注释）。</li>
-</ul>
-</li>
+</ul></li>
 <li>如果包注释很大，通常会放到一个独立的doc.go文件中。</li>
 </ul>
-<h3><span id="261-导入包">2.6.1. 导入包</span></h3><ul>
-<li>在Go语言程序中，每个包都有一个全局唯一的导入路径</li>
-<li><p>除了包的导入路径，每个包还有一个包名，包名一般是短小的名字（并不要求包名是唯一的），包名在包的声明处指定。</p>
-</li>
-<li><p>导入语句将导入的包绑定到一个短小的名字，然后通过该短小的名字就可以引用包中导出的全部内容。</p>
-</li>
+<h3 id="导入包">2.6.1. 导入包</h3>
+<ul>
+<li><p>在Go语言程序中，每个包都有一个全局唯一的导入路径</p></li>
+<li><p>除了包的导入路径，每个包还有一个包名，包名一般是短小的名字（并不要求包名是唯一的），包名在包的声明处指定。</p></li>
+<li><p>导入语句将导入的包绑定到一个短小的名字，然后通过该短小的名字就可以引用包中导出的全部内容。</p></li>
 <li><p>如果导入了一个包，但是又没有使用该包将被当作一个编译错误处理</p>
 <ul>
 <li>在这种情况下，我们需要将不必要的导入删除或注释掉</li>
-</ul>
-</li>
+</ul></li>
 <li><p>可以使用golang.org/x/tools/cmd/goimports导入工具，它可以根据需要自动添加或删除导入的包</p>
 <ul>
 <li>许多编辑器都可以集成goimports工具，然后在保存文件的时候自动运行。</li>
 <li>类似的还有gofmt工具，可以用来格式化Go源文件</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3><span id="262-包的初始化">2.6.2. 包的初始化</span></h3><ul>
+<h3 id="包的初始化">2.6.2. 包的初始化</h3>
+<ul>
 <li>包的初始化首先是<strong>解决包级变量的依赖顺序</strong>，然后按照包级变量声明出现的顺序依次初始化</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = b + c <span class="comment">// a 第三个初始化, 为 3</span></span><br><span class="line"><span class="keyword">var</span> b = f()   <span class="comment">// b 第二个初始化, 为 2, 通过调用 f (依赖c)</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">1</span>     <span class="comment">// c 第一个初始化, 为 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> c + <span class="number">1</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> a = b + c <span class="hljs-comment">// a 第三个初始化, 为 3</span><br><span class="hljs-keyword">var</span> b = f()   <span class="hljs-comment">// b 第二个初始化, 为 2, 通过调用 f (依赖c)</span><br><span class="hljs-keyword">var</span> c = <span class="hljs-number">1</span>     <span class="hljs-comment">// c 第一个初始化, 为 1</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> <span class="hljs-title">int</span></span> &#123; <span class="hljs-keyword">return</span> c + <span class="hljs-number">1</span> &#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>如果包中含有多个.go源文件，它们将按照发给编译器的顺序进行初始化</li>
 <li>Go语言的构建工具首先会将.go文件根据文件名排序，然后依次调用编译器编译。</li>
-<li><p>对于在包级别声明的变量，如果有初始化表达式则用表达式初始化，还有一些没有初始化表达式的</p>
+<li>对于在包级别声明的变量，如果有初始化表达式则用表达式初始化，还有一些没有初始化表达式的
 <ul>
 <li>例如某些表格数据初始化并不是一个简单的赋值过程。</li>
+</ul></li>
+<li>在这种情况下，我们可以用一个<strong>特殊的init初始化函数</strong>来简化初始化工作。每个文件都可以包含多个init初始化函数</li>
 </ul>
-</li>
-<li><p>在这种情况下，我们可以用一个<strong>特殊的init初始化函数</strong>来简化初始化工作。每个文件都可以包含多个init初始化函数</p>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> &#123; <span class="hljs-comment">/* ... */</span> &#125;<br></code></pre></td></tr></table></figure>
 <ul>
-<li>这样的init初始化函数除了不能被调用或引用外，其他行为和普通函数类似。</li>
-<li><p>在每个文件中的init初始化函数，在程序开始执行时按照它们声明的顺序被自动调用。</p>
-</li>
+<li><p>这样的init初始化函数除了不能被调用或引用外，其他行为和普通函数类似。</p></li>
+<li><p>在每个文件中的init初始化函数，在程序开始执行时按照它们声明的顺序被自动调用。</p></li>
 <li><p>每个包在解决依赖的前提下，以导入声明的顺序初始化，每个包只会被初始化一次。</p>
 <ul>
 <li>因此，如果一个p包导入了q包，那么在p包初始化的时候可以认为q包必然已经初始化过了。</li>
 <li>初始化工作是自下而上进行的，main包最后被初始化。</li>
 <li>以这种方式，可以确保在main函数执行之前，所有依赖的包都已经完成初始化工作了。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2><span id="27-作用域">2.7. 作用域</span></h2><ul>
+<h2 id="作用域">2.7. 作用域</h2>
+<ul>
 <li>一个声明语句将程序中的实体和一个名字关联，比如一个函数或一个变量。</li>
 <li>声明语句的作用域是指源代码中可以有效使用这个名字的范围。</li>
 </ul>
-<h4><span id="作用域和声明周期的区别">作用域和声明周期的区别</span></h4><ul>
+<h4 id="作用域和声明周期的区别">作用域和声明周期的区别</h4>
+<ul>
 <li>声明语句的作用域对应的是一个源代码的文本区域；它是一个编译时的属性。</li>
 <li>一个变量的生命周期是指程序运行时变量存在的有效时间段，在此时间区域内它可以被程序的其他部分引用；是一个运行时的概念。</li>
 </ul>
-<h4><span id="词法块">词法块</span></h4><ul>
-<li>句法块是由花括弧所包含的一系列语句，就像函数体或循环体花括弧包裹的内容一样。</li>
-<li><p>句法块内部声明的名字是无法被外部块访问的。这个块决定了内部声明的名字的作用域范围</p>
-</li>
-<li><p>对全局的源代码来说，存在一个整体的词法块，称为全局词法块；</p>
-</li>
-<li>对于每个包；每个for、if和switch语句，也都有对应词法块；</li>
-<li>每个switch或select的分支也有独立的词法块；</li>
-<li>当然也包括显式书写的词法块（花括弧包含的语句）。</li>
+<h4 id="词法块">词法块</h4>
+<ul>
+<li><p>句法块是由花括弧所包含的一系列语句，就像函数体或循环体花括弧包裹的内容一样。</p></li>
+<li><p>句法块内部声明的名字是无法被外部块访问的。这个块决定了内部声明的名字的作用域范围</p></li>
+<li><p>对全局的源代码来说，存在一个整体的词法块，称为全局词法块；</p></li>
+<li><p>对于每个包；每个for、if和switch语句，也都有对应词法块；</p></li>
+<li><p>每个switch或select的分支也有独立的词法块；</p></li>
+<li><p>当然也包括显式书写的词法块（花括弧包含的语句）。</p></li>
 </ul>
-<h4><span id="作用域大小">作用域大小</span></h4><ul>
-<li>声明语句对应的词法域决定了作用域范围的大小。</li>
-<li>对于内置的类型、函数和常量，比如int、len和true等是在全局作用域的，因此可以在整个程序中直接使用。</li>
-<li>任何在函数外部（也就是包级语法域）声明的名字可以在同一个包的任何源文件中访问的</li>
-<li><p>一个程序可能包含多个同名的声明，只要它们在不同的词法域就没有关系。</p>
-</li>
+<h4 id="作用域大小">作用域大小</h4>
+<ul>
+<li><p>声明语句对应的词法域决定了作用域范围的大小。</p></li>
+<li><p>对于内置的类型、函数和常量，比如int、len和true等是在全局作用域的，因此可以在整个程序中直接使用。</p></li>
+<li><p>任何在函数外部（也就是包级语法域）声明的名字可以在同一个包的任何源文件中访问的</p></li>
+<li><p>一个程序可能包含多个同名的声明，只要它们在不同的词法域就没有关系。</p></li>
 <li><p>当编译器遇到一个名字引用时，它会对其定义进行查找，查找过程从最内层的词法域向全局的作用域进行。</p>
 <ul>
 <li>如果查找失败，则报告“未声明的名字”这样的错误。</li>
 <li>如果该名字在内部和外部的块分别声明过，则内部块的声明首先被找到。</li>
 <li>在这种情况下，内部声明屏蔽了外部同名的声明，让外部的声明的名字无法被访问</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = <span class="string">&quot;g&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f := <span class="string">&quot;f&quot;</span></span><br><span class="line">    fmt.Println(f) <span class="comment">// &quot;f&quot;; local var f shadows package-level func f</span></span><br><span class="line">    fmt.Println(g) <span class="comment">// &quot;g&quot;; package-level var</span></span><br><span class="line">    fmt.Println(h) <span class="comment">// compile error: undefined: h</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span> &#123;&#125;<br><br><span class="hljs-keyword">var</span> g = <span class="hljs-string">&quot;g&quot;</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    f := <span class="hljs-string">&quot;f&quot;</span><br>    fmt.Println(f) <span class="hljs-comment">// &quot;f&quot;; local var f shadows package-level func f</span><br>    fmt.Println(g) <span class="hljs-comment">// &quot;g&quot;; package-level var</span><br>    fmt.Println(h) <span class="hljs-comment">// compile error: undefined: h</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>特别注意短变量声明语句的作用域范围</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cwd <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    cwd, err := os.Getwd() <span class="comment">// compile error: unused: cwd</span></span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatalf(<span class="string">&quot;os.Getwd failed: %v&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> cwd <span class="hljs-keyword">string</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> &#123;<br>    cwd, err := os.Getwd() <span class="hljs-comment">// compile error: unused: cwd</span><br>    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>        log.Fatalf(<span class="hljs-string">&quot;os.Getwd failed: %v&quot;</span>, err)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>虽然cwd在外部已经声明过，但是<code>:=</code>语句还是将cwd和err重新声明为新的局部变量。</li>
 <li>因为内部声明的cwd将屏蔽外部的声明，因此上面的代码并不会正确更新包级声明的cwd变量。</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cwd <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    cwd, err := os.Getwd() <span class="comment">// <span class="doctag">NOTE:</span> wrong!</span></span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatalf(<span class="string">&quot;os.Getwd failed: %v&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">    log.Printf(<span class="string">&quot;Working directory = %s&quot;</span>, cwd)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> cwd <span class="hljs-keyword">string</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> &#123;<br>    cwd, err := os.Getwd() <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> wrong!</span><br>    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>        log.Fatalf(<span class="hljs-string">&quot;os.Getwd failed: %v&quot;</span>, err)<br>    &#125;<br>    log.Printf(<span class="hljs-string">&quot;Working directory = %s&quot;</span>, cwd)<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>全局的cwd变量依然是没有被正确初始化的，而且看似正常的日志输出更是让这个BUG更加隐晦。</p>
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Go/" rel="tag"><i class="fa fa-tag"></i> Go</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/10/04/Go1/" rel="prev" title="Go1">
-      <i class="fa fa-chevron-left"></i> Go1
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/10/04/Go3/" rel="next" title="Go3">
-      Go3 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="GuoYB"
-      src="/images/avatar1.gif">
-  <p class="site-author-name" itemprop="name">GuoYB</p>
-  <div class="site-description" itemprop="description">欢迎欢迎</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">103</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">GuoYB</span>
-</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
 
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/" class="category-chain-item">Go</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/">#Go</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go2</div>
+      <div>https://ye2222.github.io/2021/10/04/Go2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GuoYB</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/04/Go3/" title="Go3">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go3</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/04/Go1/" title="Go1">
+                        <span class="hidden-mobile">Go1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>

@@ -1,372 +1,381 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
-  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="Design Patterns">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GuoYB">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Design Patterns">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件工程复习L6">
 <meta property="og:url" content="https://ye2222.github.io/2021/12/07/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L6/index.html">
 <meta property="og:site_name" content="Yeの博客">
 <meta property="og:description" content="Design Patterns">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207200924741.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207201300893.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207201937993.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202019828.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202032548.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202247802.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202714983.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202726486.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202732760.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202810628.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207203128488.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207203328425.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207214553512.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215159520.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215758961.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215807812.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215830944.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091549549.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091555768.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091926644.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092609241.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092632136.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092642639.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092712391.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095100149.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095119392.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095221281.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095414518.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095435627.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101009268.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101039211.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101111028.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101339617.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101407434.png">
 <meta property="article:published_time" content="2021-12-07T11:54:34.000Z">
-<meta property="article:modified_time" content="2022-05-23T07:09:40.386Z">
+<meta property="article:modified_time" content="2023-04-15T08:35:28.733Z">
 <meta property="article:author" content="GuoYB">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207200924741.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202714983.png">
+  
+  
+  
+  <title>软件工程复习L6 - Yeの博客</title>
 
-<link rel="canonical" href="https://ye2222.github.io/2021/12/07/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L6/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>软件工程复习L6 | Yeの博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <!-- <div class="headband"></div> -->
-    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Yeの博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yeの博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/12/07/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L6/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.gif">
-      <meta itemprop="name" content="GuoYB">
-      <meta itemprop="description" content="欢迎欢迎">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yeの博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          软件工程复习L6
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-07 19:54:34" itemprop="dateCreated datePublished" datetime="2021-12-07T19:54:34+08:00">2021-12-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 15:09:40" itemprop="dateModified" datetime="2022-05-23T15:09:40+08:00">2022-05-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
-                </span>
-            </span>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-            <div class="post-description">Design Patterns</div>
-
+            <span id="subtitle" data-typed-text="软件工程复习L6"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-07 19:54" pubdate>
+          2021年12月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <h3><span id="overview-of-patterns">Overview of Patterns</span></h3><ul>
-<li><p>针对特定上下文中出现的常见软件问题提出解决方案</p>
-</li>
-<li><p>捕获软件参与者之间的重复结构和动态，以促进成功设计的重用</p>
-</li>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">软件工程复习L6</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="overview-of-patterns">Overview of Patterns</h3>
+<ul>
+<li><p>针对特定上下文中出现的常见软件问题提出解决方案</p></li>
+<li><p>捕获软件参与者之间的重复结构和动态，以促进成功设计的重用</p></li>
 <li><p>帮助解决关键的软件设计力量</p>
-<p>Flexibility 灵活性<br>Extensibility 可扩展性<br>Dependability 可靠性<br>Predictability 可预测性<br>Scalability 可延展性<br>Efficiency 效率</p>
-</li>
-<li><p>一般编纂设计策略、约束和“最佳实践”的专业知识</p>
-</li>
-<li><p>可以在类中编码并按原样重用的数据结构（即链表、哈希表）</p>
-</li>
-<li><p>复杂的特定领域设计（针对整个应用程序或子系统）</p>
-</li>
+<p>Flexibility 灵活性 Extensibility 可扩展性 Dependability 可靠性
+Predictability 可预测性 Scalability 可延展性 Efficiency 效率</p></li>
+<li><p>一般编纂设计策略、约束和“最佳实践”的专业知识</p></li>
+<li><p>可以在类中编码并按原样重用的数据结构（即链表、哈希表）</p></li>
+<li><p>复杂的特定领域设计（针对整个应用程序或子系统）</p></li>
 <li><p>如果它们不是熟悉的数据结构或复杂的特定领域子系统，它们是什么？</p>
 <ul>
 <li>为解决特定上下文中的一般设计问题而定制的通信对象和类的描述</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3><span id="the-gang-of-four-gof">The “gang of four” (GoF)</span></h3><p>设计模式书目录 23 种不同的模式</p>
+<h3 id="the-gang-of-four-gof">The “gang of four” (GoF)</h3>
+<p>设计模式书目录 23 种不同的模式</p>
 <ul>
 <li>不同类别问题的解决方案，在 C++ 和 Smalltalk 中</li>
 <li>问题及解决方案适用范围广，多人使用多年</li>
 <li>模式建议在分析、设计和编程中重用的机会</li>
 <li>GOF 以结构化格式呈现每个模式</li>
 </ul>
-<h3><span id="elements-of-design-patterns">Elements of Design Patterns</span></h3><p>设计模式有4个基本要素：</p>
+<h3 id="elements-of-design-patterns">Elements of Design Patterns</h3>
+<p>设计模式有4个基本要素：</p>
 <ul>
-<li>图案名称：增加设计师的词汇量 — Pattern</li>
-<li>问题：意图、上下文、何时应用 — Problem</li>
-<li>解决方案：类UML结构，抽象代码 — Solution</li>
-<li>结果：结果和权衡 — Consequences</li>
+<li>图案名称：增加设计师的词汇量 -- Pattern</li>
+<li>问题：意图、上下文、何时应用 -- Problem</li>
+<li>解决方案：类UML结构，抽象代码 -- Solution</li>
+<li>结果：结果和权衡 -- Consequences</li>
 </ul>
-<h3><span id="three-types-of-gof-patterns">Three Types of GoF Patterns</span></h3><ul>
-<li>创作模式： Creational Patterns<ul>
+<h3 id="three-types-of-gof-patterns">Three Types of GoF Patterns</h3>
+<ul>
+<li>创作模式： Creational Patterns
+<ul>
 <li>处理初始化和配置对象</li>
-</ul>
-</li>
-<li>结构模式： Structural Patterns<ul>
+</ul></li>
+<li>结构模式： Structural Patterns
+<ul>
 <li>类或对象的组合</li>
 <li>解耦接口和类的实现</li>
-</ul>
+</ul></li>
+<li>行为模式： Behavioral Patterns
+<ul>
+<li>处理对象社会之间的动态交互<br />
 </li>
-<li>行为模式： Behavioral Patterns<ul>
-<li>处理对象社会之间的动态交互    </li>
 <li>他们如何分配责任</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207200924741.png" alt="image-20211207200924741"></p>
-<h4><span id="structural-patterns">Structural patterns</span></h4><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207200924741.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="structural-patterns">Structural patterns</h4>
+<ul>
 <li>组装对象以实现新功能</li>
-<li>示例：代理 Proxy<ul>
+<li>示例：代理 Proxy
+<ul>
 <li>代理充当另一个对象的方便代理或占位符。</li>
-<li>例子？<ul>
+<li>例子？
+<ul>
 <li>Remote Proxy 远程代理：不同地址空间中对象的本地代表</li>
 <li>Virtual Proxy 虚拟代理：代表应该按需加载的大对象</li>
 <li>Protected Proxy 受保护代理 ：保护对原始对象的访问</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h5><span id="proxy-pattern-structure">Proxy Pattern - Structure</span></h5><ul>
-<li>意图<ul>
+<h5 id="proxy-pattern---structure">Proxy Pattern - Structure</h5>
+<ul>
+<li>意图
+<ul>
 <li>为另一个对象提供代理或占位符以控制对其的访问。</li>
-</ul>
-</li>
+</ul></li>
 <li>结构</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207201300893.png" alt="image-20211207201300893"></p>
-<h5><span id="type-structural-patterns">Type:  Structural Patterns</span></h5><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207201300893.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="type-structural-patterns">Type: Structural Patterns</h5>
+<ul>
 <li>适配器：将类的接口转换为客户期望的接口</li>
 <li>桥：将抽象与许多可能的实现联系起来</li>
 <li>合成的：将部分-整体层次结构表示为树结构</li>
@@ -375,543 +384,693 @@
 <li>蝇量级：高效共享多个细粒度对象</li>
 <li>代理：为另一个对象提供代理或占位符以控制对其的访问</li>
 </ul>
-<h4><span id="adapter-pattern">Adapter pattern</span></h4><ul>
-<li>问题：如何解决不兼容的接口(incompatible interfaces)或为具有不同接口的相似组件提供稳定的接口？</li>
+<h4 id="adapter-pattern">Adapter pattern</h4>
+<ul>
+<li>问题：如何解决不兼容的接口(incompatible
+interfaces)或为具有不同接口的相似组件提供稳定的接口？</li>
 <li>解决方案：通过一个中间适配器将原来的接口组件转换成另一个。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207201937993.png" alt="image-20211207201937993"></p>
-<h5><span id="using-an-adapter-adapt-postsale-request-to-soap-xml-interface">Using an Adapter: adapt postSale request to SOAP XML interface</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202019828.png" alt="image-20211207202019828"></p>
-<h5><span id="adapter-pattern-uses-inheritance">Adapter pattern uses inheritance</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202032548.png" alt="image-20211207202032548"></p>
-<h5><span id="object-adapter">Object Adapter</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202247802.png" alt="image-20211207202247802"></p>
-<h5><span id="优点">优点</span></h5><ul>
-<li>减少与实现特定细节的耦合—Reduces coupling</li>
-<li>多态性和间接性揭示了提供的基本行为 — Polymorphism and indirection</li>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207201937993.png" srcset="/img/loading.gif" lazyload /></p>
+<h5
+id="using-an-adapter-adapt-postsale-request-to-soap-xml-interface">Using
+an Adapter: adapt postSale request to SOAP XML interface</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202019828.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="adapter-pattern-uses-inheritance">Adapter pattern uses
+inheritance</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202032548.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="object-adapter">Object Adapter</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202247802.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="优点">优点</h5>
+<ul>
+<li>减少与实现特定细节的耦合--Reduces coupling</li>
+<li>多态性和间接性揭示了提供的基本行为 -- Polymorphism and
+indirection</li>
 <li>在类图中包含新类中的设计模式名称（例如，TaxMasterAdapter），代码根据已知的设计模式与其他开发人员进行交流</li>
 </ul>
-<h4><span id="composite-pattern">Composite Pattern</span></h4><p>Composite 允许客户端统一处理单个对象和对象的组合。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202714983.png" alt="image-20211207202714983" style="zoom:80%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202726486.png" alt="image-20211207202726486"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202732760.png" alt="image-20211207202732760"></p>
-<h4><span id="facade-pattern-外观图案">Facade Pattern 外观图案</span></h4><ul>
+<h4 id="composite-pattern">Composite Pattern</h4>
+<p>Composite 允许客户端统一处理单个对象和对象的组合。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202714983.png" srcset="/img/loading.gif" lazyload alt="image-20211207202714983" style="zoom:80%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202726486.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202732760.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="facade-pattern-外观图案">Facade Pattern 外观图案</h4>
+<ul>
 <li>为子系统中的一组对象提供统一的接口。</li>
 <li>Facades 允许我们提供一个封闭的架构</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202810628.png" alt="image-20211207202810628"></p>
-<h5><span id="structure-of-the-facade-pattern">Structure of the Facade Pattern</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207203128488.png" alt="image-20211207203128488"></p>
-<h3><span id="type-creational-patterns">Type:  Creational Patterns</span></h3><ul>
-<li>单例：保证访问单个（唯一）实例 — Singleton</li>
-<li>简单工厂：创建专门的、复杂的对象 — Simple Factory</li>
-<li>抽象工厂：打造专业化工厂家族 — Abstract Factory</li>
-<li>工厂方法：定义一个用于创建对象的接口，但让子类决定实例化哪个类 — Factory Method</li>
-<li>Builder：一步一步构造一个复杂的对象 </li>
-<li>原型：从原型克隆新实例 — Prototype</li>
-<li>延迟初始化：延迟昂贵的创建，直到需要它 — Lazy initialization</li>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207202810628.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="structure-of-the-facade-pattern">Structure of the Facade
+Pattern</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207203128488.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="type-creational-patterns">Type: Creational Patterns</h3>
+<ul>
+<li>单例：保证访问单个（唯一）实例 -- Singleton</li>
+<li>简单工厂：创建专门的、复杂的对象 -- Simple Factory</li>
+<li>抽象工厂：打造专业化工厂家族 -- Abstract Factory</li>
+<li>工厂方法：定义一个用于创建对象的接口，但让子类决定实例化哪个类 --
+Factory Method</li>
+<li>Builder：一步一步构造一个复杂的对象</li>
+<li>原型：从原型克隆新实例 -- Prototype</li>
+<li>延迟初始化：延迟昂贵的创建，直到需要它 -- Lazy initialization</li>
 </ul>
-<h4><span id="singleton-pattern">Singleton pattern</span></h4><ul>
+<h4 id="singleton-pattern">Singleton pattern</h4>
+<ul>
 <li>一个只有实例并提供全局访问点的类</li>
 <li>全局变量可能很危险！ （副作用，打破信息隐藏）</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207203328425.png" alt="image-20211207203328425"></p>
-<h4><span id="simple-factory-pattern">Simple Factory pattern</span></h4><ul>
-<li>背景/问题 Context/Problem<ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207203328425.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="simple-factory-pattern">Simple Factory pattern</h4>
+<ul>
+<li>背景/问题 Context/Problem
+<ul>
 <li>当有特殊考虑时，谁应该负责创建对象，例如复杂的逻辑，希望分离创建责任以获得更好的内聚性等等</li>
-</ul>
-</li>
-<li>解决方案 Solution<ul>
+</ul></li>
+<li>解决方案 Solution
+<ul>
 <li>创建一个 Pure Fabrication 来处理创建</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="how-does-simple-factory-work">How does Simple Factory work</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207214553512.png" alt="image-20211207214553512"></p>
-<h5><span id="factory-can-create-different-objects">Factory can create different objects</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215159520.png" alt="image-20211207215159520"></p>
-<h4><span id="factory-pattern">Factory  Pattern</span></h4><ul>
-<li>意图：<ul>
+<h5 id="how-does-simple-factory-work">How does Simple Factory work</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207214553512.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="factory-can-create-different-objects">Factory can create
+different objects</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215159520.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="factory-pattern">Factory Pattern</h4>
+<ul>
+<li>意图：
+<ul>
 <li>定义用于创建对象的接口，但让子类决定实例化哪个类。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215758961.png" alt="image-20211207215758961"></p>
-<h5><span id="abstract-factory-pattern">Abstract Factory Pattern</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215807812.png" alt="image-20211207215807812"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215758961.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="abstract-factory-pattern">Abstract Factory Pattern</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215807812.png" srcset="/img/loading.gif" lazyload /></p>
 <p>example</p>
-<p>The Client remains blissfully unaware of the various concrete classes in this example. </p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215830944.png" alt="image-20211207215830944"></p>
+<p>The Client remains blissfully unaware of the various concrete classes
+in this example.</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211207215830944.png" srcset="/img/loading.gif" lazyload /></p>
 <p>Advantages 优点</p>
 <ul>
 <li>将复杂创建的职责分离为内聚的辅助类</li>
 <li>隐藏复杂的创建逻辑，例如从文件初始化</li>
 <li>处理内存管理策略，例如回收或缓存</li>
 </ul>
-<h4><span id="behavioral-patterns">Behavioral Patterns</span></h4><ul>
-<li>责任链：Chain of Responsible<ul>
+<h4 id="behavioral-patterns">Behavioral Patterns</h4>
+<ul>
+<li>责任链：Chain of Responsible
+<ul>
 <li>请求委托给负责的服务提供商</li>
-</ul>
-</li>
-<li>命令： Command<ul>
+</ul></li>
+<li>命令： Command
+<ul>
 <li>Request 或 Action 是一流的对象，因此是可存储的</li>
-</ul>
-</li>
-<li>迭代器： Iterator<ul>
+</ul></li>
+<li>迭代器： Iterator
+<ul>
 <li>按顺序聚合和访问元素</li>
-</ul>
-</li>
-<li>翻译： Interpreter<ul>
+</ul></li>
+<li>翻译： Interpreter
+<ul>
 <li>小语法的语言解释器</li>
-</ul>
-</li>
-<li>调解员： Mediator<ul>
+</ul></li>
+<li>调解员： Mediator
+<ul>
 <li>协调其同事之间的互动</li>
-</ul>
-</li>
-<li><p>纪念： Memento</p>
+</ul></li>
+<li>纪念： Memento
 <ul>
 <li>Snapshot 私下捕获和恢复对象状态</li>
-</ul>
-</li>
-<li><p>观察员： Observer</p>
+</ul></li>
+<li>观察员： Observer
 <ul>
 <li>当观察到的对象发生变化时，观察者会自动更新</li>
-</ul>
-</li>
-<li>状态： State<ul>
+</ul></li>
+<li>状态： State
+<ul>
 <li>其行为取决于其状态的对象</li>
-</ul>
-</li>
-<li>战略： Strategy<ul>
+</ul></li>
+<li>战略： Strategy
+<ul>
 <li>用于选择多种算法之一的抽象</li>
-</ul>
-</li>
-<li>模板方法： Template Method<ul>
+</ul></li>
+<li>模板方法： Template Method
+<ul>
 <li>派生类提供的带有一些步骤的算法</li>
-</ul>
-</li>
-<li>游客： Visitor<ul>
+</ul></li>
+<li>游客： Visitor
+<ul>
 <li>应用于异构对象结构元素的操作</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="observer-pattern">Observer pattern</span></h4><ul>
-<li>意图：<ul>
+<h4 id="observer-pattern">Observer pattern</h4>
+<ul>
+<li>意图：
+<ul>
 <li>定义对象之间的一对多依赖关系，这样当一个对象改变状态时，它的所有依赖对象都会得到通知并自动更新</li>
-</ul>
-</li>
-<li>在模型-视图-控制器框架中使用(MVC)<ul>
+</ul></li>
+<li>在模型-视图-控制器框架中使用(MVC)
+<ul>
 <li>模型是问题域</li>
 <li>视图是窗口系统</li>
 <li>控制器是鼠标/键盘控制</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091549549.png" alt="image-20211208091549549" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091555768.png" alt="image-20211208091555768" style="zoom:67%;"></p>
-<h4><span id="command-pattern">Command pattern</span></h4><ul>
-<li>概要或意图：Synopsis or Intent<ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091549549.png" srcset="/img/loading.gif" lazyload alt="image-20211208091549549" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091555768.png" srcset="/img/loading.gif" lazyload alt="image-20211208091555768" style="zoom:67%;" /></p>
+<h4 id="command-pattern">Command pattern</h4>
+<ul>
+<li>概要或意图：Synopsis or Intent
+<ul>
 <li>将一个请求封装成一个对象，从而让你参数化具有不同请求、队列或日志请求的客户端，并支持可撤销的操作</li>
-</ul>
-</li>
-<li>解决方案： Solution<ul>
+</ul></li>
+<li>解决方案： Solution
+<ul>
 <li>Command 对象的接口可以是一个简单的 execute() 方法</li>
 <li>额外的方法可以支持撤销和重做</li>
 <li>命令可以是持久的并且可以全局访问，就像普通对象一样</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="command-pattern-structure">Command Pattern Structure:</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091926644.png" alt="image-20211208091926644" style="zoom:67%;"></p>
+<h5 id="command-pattern-structure">Command Pattern Structure:</h5>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208091926644.png" srcset="/img/loading.gif" lazyload alt="image-20211208091926644" style="zoom:67%;" /></p>
 <ul>
-<li><p>参与者（参与此模式的类和/或对象）Participants：</p>
+<li>参与者（参与此模式的类和/或对象）Participants：
 <ul>
 <li>Command 声明用于执行操作的接口</li>
-<li>ConcreteCommand 定义了 Receiver 对象和通过调用 Receiver 上的相应操作来实现 Execute 之间的绑定</li>
+<li>ConcreteCommand 定义了 Receiver 对象和通过调用 Receiver
+上的相应操作来实现 Execute 之间的绑定</li>
 <li>调用者(Invoker)要求命令执行请求</li>
 <li>接收者(Receiver)知道如何执行与执行请求相关的操作</li>
 <li>客户端(Client)创建一个 ConcreteCommand 对象并设置其接收器</li>
-</ul>
-</li>
-<li><p>结果 Consequences：</p>
+</ul></li>
+<li>结果 Consequences：
 <ul>
-<li>您可以撤消/重做任何命令(undo/redo)<ul>
+<li>您可以撤消/重做任何命令(undo/redo)
+<ul>
 <li>每个命令存储恢复状态所需的内容</li>
-</ul>
-</li>
-<li>您可以将命令存储在堆栈或队列中(store Commands)<ul>
+</ul></li>
+<li>您可以将命令存储在堆栈或队列中(store Commands)
+<ul>
 <li>命令处理器模式维护历史</li>
-</ul>
-</li>
-<li>添加新命令很容易，因为您不必更改现有类(you do not have to change existing classes )<ul>
+</ul></li>
+<li>添加新命令很容易，因为您不必更改现有类(you do not have to change
+existing classes )
+<ul>
 <li>命令是一个抽象类，你可以从中派生出新的类</li>
 <li>execute()、undo() 和 redo() 是多态函数</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="state-pattern-motivation">State Pattern – Motivation</span></h4><ul>
-<li>考虑一个代表网络连接的 TCPConnection 类。</li>
-<li>当 TCPConnection 对象收到来自其他对象的请求时，它会根据其当前状态做出不同的响应。</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092609241.png" alt="image-20211208092609241"></p>
+<h4 id="state-pattern-motivation">State Pattern – Motivation</h4>
 <ul>
-<li>意图：允许对象在其内部状态改变时改变其行为。 从客户端的角度来看，该对象似乎改变了它的类。</li>
+<li>考虑一个代表网络连接的 TCPConnection 类。</li>
+<li>当 TCPConnection
+对象收到来自其他对象的请求时，它会根据其当前状态做出不同的响应。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092632136.png" alt="image-20211208092632136"></p>
-<h4><span id="builder-pattern">Builder  Pattern</span></h4><h5><span id="builder-example">Builder  -  Example</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092642639.png" alt="image-20211208092642639"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092609241.png" srcset="/img/loading.gif" lazyload /></p>
+<ul>
+<li>意图：允许对象在其内部状态改变时改变其行为。
+从客户端的角度来看，该对象似乎改变了它的类。</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092632136.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="builder-pattern">Builder Pattern</h4>
+<h5 id="builder---example">Builder - Example</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092642639.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>意图：将复杂对象的构建与其表示分开，以便相同的构建过程可以创建不同的表示。</li>
 <li>结构</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092712391.png" alt="image-20211208092712391"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208092712391.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>客户端创建 Director 对象并使用所需的 Builder 对象对其进行配置。</li>
 <li>每当应该构建产品的一部分时，Director 都会通知构建者。</li>
 <li>Builder 处理来自主管的请求并向产品添加部件。</li>
 <li>客户端从构建器中检索产品。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095100149.png" alt="image-20211208095100149"></p>
-<h4><span id="prototype-pattern">Prototype Pattern</span></h4><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095100149.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="prototype-pattern">Prototype Pattern</h4>
+<ul>
 <li>意图：使用原型实例指定要创建的对象种类，并通过复制此原型来创建新对象。</li>
 <li>结构 客户要求原型克隆自身</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095119392.png" alt="image-20211208095119392"></p>
-<h4><span id="bridge-pattern">Bridge Pattern</span></h4><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095119392.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="bridge-pattern">Bridge Pattern</h4>
+<ul>
 <li><p>意图：将抽象与其实现分离，以便两者可以独立变化。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095221281.png" alt="image-20211208095221281" style="zoom:50%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095414518.png" alt="image-20211208095414518" style="zoom:50%;"></p>
-</li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095221281.png" srcset="/img/loading.gif" lazyload alt="image-20211208095221281" style="zoom:50%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095414518.png" srcset="/img/loading.gif" lazyload alt="image-20211208095414518" style="zoom:50%;" /></p></li>
 </ul>
-<h4><span id="decorator-pattern">Decorator Pattern</span></h4><ul>
+<h4 id="decorator-pattern">Decorator Pattern</h4>
+<ul>
 <li><p>绘画示例</p>
 <ul>
 <li>虽然画挂在墙上可以有框也可以没有框，但往往是加框的，而真正挂在墙上的是框。</li>
-<li><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095435627.png" alt="image-20211208095435627" style="zoom:67%;"></li>
-</ul>
-</li>
+<li><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208095435627.png" srcset="/img/loading.gif" lazyload alt="image-20211208095435627" style="zoom:67%;" /></li>
+</ul></li>
 <li><p>意图</p>
 <ul>
 <li>动态地为对象附加额外的职责。</li>
 <li>装饰器提供了一种灵活的替代子类来扩展功能。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101009268.png" alt="image-20211208101009268" style="zoom:67%;"></p>
-</li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101009268.png" srcset="/img/loading.gif" lazyload alt="image-20211208101009268" style="zoom:67%;" /></p></li>
 </ul>
-<h4><span id="strategy-pattern">Strategy Pattern</span></h4><ul>
+<h4 id="strategy-pattern">Strategy Pattern</h4>
+<ul>
 <li><p>意图</p>
 <ul>
-<li>定义一系列算法，封装每个算法，并使它们可以互换。 策略让算法独立于使用它的客户端而变化。</li>
-</ul>
-</li>
+<li>定义一系列算法，封装每个算法，并使它们可以互换。
+策略让算法独立于使用它的客户端而变化。</li>
+</ul></li>
 <li><p>结构</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101039211.png" alt="image-20211208101039211" style="zoom:67%;"></p>
-</li>
-<li><p>策略定义了一组可以互换使用的算法。</p>
-</li>
-<li><p>到机场的交通方式是战略的一个例子。</p>
-</li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101039211.png" srcset="/img/loading.gif" lazyload alt="image-20211208101039211" style="zoom:67%;" /></p></li>
+<li><p>策略定义了一组可以互换使用的算法。</p></li>
+<li><p>到机场的交通方式是战略的一个例子。</p></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101111028.png" alt="image-20211208101111028"></p>
-<h4><span id="iterator-pattern">Iterator Pattern</span></h4><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101111028.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="iterator-pattern">Iterator Pattern</h4>
+<ul>
 <li>诸如列表之类的聚合对象应该为您提供一种访问其元素而不暴露其内部结构的方法。</li>
 <li>关键思想是把访问和遍历的责任从列表对象中取出，放入迭代器对象中。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101339617.png" alt="image-20211208101339617" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101339617.png" srcset="/img/loading.gif" lazyload alt="image-20211208101339617" style="zoom:67%;" /></p>
 <ul>
-<li>意图<ul>
+<li>意图
+<ul>
 <li>提供一种顺序访问聚合对象的元素而不暴露其底层表示的方法。</li>
-</ul>
-</li>
+</ul></li>
 <li>结构</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101407434.png" alt="image-20211208101407434"></p>
-<h3><span id="benefits-of-design-patterns">Benefits of Design Patterns</span></h3><ul>
-<li><p>设计模式可实现软件架构的大规模重用，并有助于文档系统</p>
-</li>
-<li><p>模式明确地捕捉专家知识和设计权衡，并使其更广泛地可用</p>
-</li>
-<li><p>模式有助于改善开发人员的沟通</p>
-</li>
-<li><p>模式名称形成一个共同的词汇</p>
-</li>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101407434.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="benefits-of-design-patterns">Benefits of Design Patterns</h3>
+<ul>
+<li><p>设计模式可实现软件架构的大规模重用，并有助于文档系统</p></li>
+<li><p>模式明确地捕捉专家知识和设计权衡，并使其更广泛地可用</p></li>
+<li><p>模式有助于改善开发人员的沟通</p></li>
+<li><p>模式名称形成一个共同的词汇</p></li>
 </ul>
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L5/" rel="prev" title="软件工程复习L5">
-      <i class="fa fa-chevron-left"></i> 软件工程复习L5
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L7/" rel="next" title="软件工程复习L7">
-      软件工程复习L7 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="GuoYB"
-      src="/images/avatar1.gif">
-  <p class="site-author-name" itemprop="name">GuoYB</p>
-  <div class="site-description" itemprop="description">欢迎欢迎</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">103</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">GuoYB</span>
-</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
 
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="category-chain-item">课程笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" class="category-chain-item">软件工程</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>软件工程复习L6</div>
+      <div>https://ye2222.github.io/2021/12/07/软件工程复习L6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GuoYB</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L7/" title="软件工程复习L7">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">软件工程复习L7</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L5/" title="软件工程复习L5">
+                        <span class="hidden-mobile">软件工程复习L5</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>

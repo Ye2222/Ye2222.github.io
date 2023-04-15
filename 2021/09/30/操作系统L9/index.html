@@ -1,296 +1,305 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
-  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="内存管理">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GuoYB">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="内存管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统L9">
 <meta property="og:url" content="https://ye2222.github.io/2021/09/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL9/index.html">
 <meta property="og:site_name" content="Yeの博客">
 <meta property="og:description" content="内存管理">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210930101706060.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211006190901818.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211007085003861.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031421658.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031426686.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031507961.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031509087.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031510930.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031521320.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031538574.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031534254.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051927762.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031622846.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031623581.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031852001.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031857497.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031630556.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031832286.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031837365.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031300230.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031541149.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031638130.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840947.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840639.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031859077.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901893.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901668.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031914146.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031911837.png">
 <meta property="article:published_time" content="2021-09-30T02:10:54.000Z">
-<meta property="article:modified_time" content="2022-05-23T07:09:41.606Z">
+<meta property="article:modified_time" content="2023-04-15T08:35:28.649Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="课程:操作系统">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210930101706060.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211007085003861.png">
+  
+  
+  
+  <title>操作系统L9 - Yeの博客</title>
 
-<link rel="canonical" href="https://ye2222.github.io/2021/09/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL9/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>操作系统L9 | Yeの博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <!-- <div class="headband"></div> -->
-    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Yeの博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yeの博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/09/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FL9/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.gif">
-      <meta itemprop="name" content="GuoYB">
-      <meta itemprop="description" content="欢迎欢迎">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yeの博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          操作系统L9
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-30 10:10:54" itemprop="dateCreated datePublished" datetime="2021-09-30T10:10:54+08:00">2021-09-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 15:09:41" itemprop="dateModified" datetime="2022-05-23T15:09:41+08:00">2022-05-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-            <div class="post-description">内存管理</div>
-
+            <span id="subtitle" data-typed-text="操作系统L9"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-30 10:10" pubdate>
+          2021年9月30日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <h2><span id="memory-management-内存管理">Memory Management 内存管理</span></h2><p>理想情况下，程序员需要内存  </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统L9</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="memory-management-内存管理">Memory Management 内存管理</h2>
+<p>理想情况下，程序员需要内存</p>
 <ul>
 <li>大</li>
 <li>快</li>
@@ -302,531 +311,692 @@
 <li>一些中速、中等价格的主内存 (main memory)</li>
 <li>千兆字节的慢速、廉价磁盘存储 (disk storage)</li>
 </ul>
-<h3><span id="基本的内存管理只有操作系统和一个用户进程">基本的内存管理：只有操作系统和一个用户进程</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210930101706060.png" alt="image-20210930101706060"></p>
+<h3
+id="基本的内存管理只有操作系统和一个用户进程">基本的内存管理：只有操作系统和一个用户进程</h3>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20210930101706060.png" srcset="/img/loading.gif" lazyload /></p>
 <p>第一种方案：操作系统位于RAM的底部，以前被用在大型机和小型计算机</p>
 <p>第二种方案：用于一些掌上电脑和嵌入式系统中</p>
 <p>第三种方案：用于早期的个人计算机中，在ROM中的系统部分称为BIOS</p>
 <p>第一种和第三种方案的缺点是用户程序出现的错误可能摧毁操作系统</p>
-<h4><span id="不使用存储器抽象的情况下运行多个程序重定位问题">不使用存储器抽象的情况下运行多个程序：重定位问题</span></h4><p>每个内存块有一个用于标记的4位的保护键，会进行识别，然而会有重定位问题，对于内存地址不正确访问</p>
-<h4><span id><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211006190901818.png" alt="image-20211006190901818"></span></h4><ul>
+<h4
+id="不使用存储器抽象的情况下运行多个程序重定位问题">不使用存储器抽象的情况下运行多个程序：重定位问题</h4>
+<p>每个内存块有一个用于标记的4位的保护键，会进行识别，然而会有重定位问题，对于内存地址不正确访问</p>
+<h4 id="section"><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211006190901818.png" srcset="/img/loading.gif" lazyload /></h4>
+<ul>
 <li>使用绝对物理地址，造成两个程序同时运行时冲突</li>
 <li>可以使用静态重定位技术，给所有的可执行程序提供额外的信息来区别那些内存字中存有可重定位的地址</li>
 </ul>
-<h3><span id="地址空间">地址空间</span></h3><p>物理地址暴露给进程带来的问题：</p>
+<h3 id="地址空间">地址空间</h3>
+<p>物理地址暴露给进程带来的问题：</p>
 <ul>
 <li>如果用户程序可以寻址内存的每个字节，他们就可以很容易的破坏操作系统，从而使系统慢慢地停止运行。除非使用特殊硬件进行保护，如IBM360的锁键模式</li>
 <li>使用这种模型，想要同时运行多个程序比较困难</li>
 </ul>
-<h5><span id="概念">概念</span></h5><ul>
+<h5 id="概念">概念</h5>
+<ul>
 <li>解决问题的关键：保护和重定位</li>
-<li>地址空间—新的存储器抽象<ul>
+<li>地址空间--新的存储器抽象
+<ul>
 <li>是一个进程可用于寻址内存的一套地址集合</li>
 <li>每个进程都有自己的一个地址空间，并且这个地址空间独立于其他进程的地址空间</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="基址寄存器和界限寄存器">基址寄存器和界限寄存器</span></h5><ul>
+<h5 id="基址寄存器和界限寄存器">基址寄存器和界限寄存器</h5>
+<ul>
 <li>使用了<strong>动态重定位</strong>，简单地把每个进程的地址空间映射到物理内存的不同部分</li>
 <li>给每个CPU配置两个特殊硬件寄存器，基址寄存器和界限寄存器</li>
 <li>使用这两个寄存器时，程序装载到内存中连续的空闲位置且装载期间无须重定位</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211007085003861.png" alt="image-20211007085003861" style="zoom:67%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211007085003861.png" srcset="/img/loading.gif" lazyload alt="image-20211007085003861" style="zoom:67%;" /></p>
 <ul>
-<li><p>定位时，会将进程的地址值加上基址寄存器中的值，同时也会检查程序提供的地址是否大于等于界限寄存器里的值。</p>
-</li>
-<li><p>缺点：每次访问内存都需要进行加法和比较运算</p>
-</li>
+<li><p>定位时，会将进程的地址值加上基址寄存器中的值，同时也会检查程序提供的地址是否大于等于界限寄存器里的值。</p></li>
+<li><p>缺点：每次访问内存都需要进行加法和比较运算</p></li>
 </ul>
-<h3><span id="multiprogramming-with-fixed-partitions-固定分区的多道程序设计">Multiprogramming with Fixed Partitions 固定分区的多道程序设计</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031421658.png" alt="image-20220103142158619"></p>
+<h3
+id="multiprogramming-with-fixed-partitions-固定分区的多道程序设计">Multiprogramming
+with Fixed Partitions 固定分区的多道程序设计</h3>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031421658.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>每个分区有单独的输入队列</li>
-<li>单个输入队列 </li>
-<li>由于分区大小是固定的，因此特定作业未使用的任何空间都会丢失。 </li>
+<li>单个输入队列</li>
+<li>由于分区大小是固定的，因此特定作业未使用的任何空间都会丢失。</li>
 <li>要说明特定作业需要多大的分区可能并不容易。</li>
 </ul>
-<h3><span id="swapping-amp-virtual-memory-交换和虚拟内存">Swapping &amp; Virtual Memory 交换和虚拟内存</span></h3><ul>
-<li>是克服内存限制的两种方法<ul>
+<h3 id="swapping-virtual-memory-交换和虚拟内存">Swapping &amp; Virtual
+Memory 交换和虚拟内存</h3>
+<ul>
+<li>是克服内存限制的两种方法
+<ul>
 <li><strong>交换</strong>将进程在内存和磁盘上来回放置。</li>
 <li><strong>虚拟内存</strong>允许程序运行，即使它们只是部分在主内存中</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="swapping">Swapping</span></h4><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031426686.png" alt="image-20220103142626621"></p>
+<h4 id="swapping">Swapping</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031426686.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li>交换在内存中产生了多个空闲区—称为空洞(hole)，这时候可以使用内存紧缩</li>
+<li>交换在内存中产生了多个空闲区--称为空洞(hole)，这时候可以使用内存紧缩</li>
 </ul>
-<h5><span id="内存紧缩-memory-compaction">内存紧缩 memory compaction</span></h5><ul>
+<h5 id="内存紧缩-memory-compaction">内存紧缩 memory compaction</h5>
+<ul>
 <li>通过把所有的进程尽可能向下移动，有可能将这些小的空闲区合成一大块</li>
 <li>会耗费大量的CPU时间</li>
 </ul>
-<h4><span id="空闲内存管理">空闲内存管理</span></h4><p>有两种方法跟踪内存使用情况：位图和空闲区链表  </p>
-<h5><span id="memory-management-with-bit-maps-amp-list-使用位图的存储管理">Memory Management with Bit Maps &amp; List 使用位图的存储管理</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031507961.png" alt="image-20220103150749885"></p>
+<h4 id="空闲内存管理">空闲内存管理</h4>
+<p>有两种方法跟踪内存使用情况：位图和空闲区链表</p>
+<h5 id="memory-management-with-bit-maps-list-使用位图的存储管理">Memory
+Management with Bit Maps &amp; List 使用位图的存储管理</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031507961.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>0表示空闲，1表示占用（或者相反）</li>
 <li>缺点：在映射中查找连续的 0 位是耗时的</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031509087.png" alt="image-20220103150917050"></p>
-<h5><span id="memory-management-with-linked-lists-使用链表的存储管理">Memory Management with Linked Lists 使用链表的存储管理</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031510930.png" alt="image-20220103151015886"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031509087.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="memory-management-with-linked-lists-使用链表的存储管理">Memory
+Management with Linked Lists 使用链表的存储管理</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031510930.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li>链表中的每一个结点都包含以下域<ul>
+<li>链表中的每一个结点都包含以下域
+<ul>
 <li>空闲区(H)或进程(P)的指示标志</li>
 <li>起始地址</li>
 <li>长度</li>
 <li>指向下一结点的指针</li>
-</ul>
-</li>
-<li>四种内存管理的算法<ul>
+</ul></li>
+<li>四种内存管理的算法
+<ul>
 <li>First fit 首次适配：从头开始搜索适合的空洞。</li>
-<li>Next fit 下次适配：从上次停止的地方搜索适合的空洞。 </li>
+<li>Next fit 下次适配：从上次停止的地方搜索适合的空洞。</li>
 <li>Best fit 最佳适配：搜索整个列表并取适合的最小空洞。</li>
 <li>Worst fit 最差适配：搜索适合的最大空洞。</li>
+</ul></li>
+<li>还有一种叫快速适配(quick
+fit)的算法，维护一个存储空闲区信息的链表</li>
 </ul>
-</li>
-<li>还有一种叫快速适配(quick fit)的算法，维护一个存储空闲区信息的链表</li>
-</ul>
-<h4><span id="virtual-memory">Virtual Memory</span></h4><ul>
+<h4 id="virtual-memory">Virtual Memory</h4>
+<ul>
 <li>问题：程序太大，放不进内存中去</li>
-<li><p>解决：虚拟内存 — 操作系统将当前正在使用的程序部分保留在内存中</p>
+<li>解决：虚拟内存 -- 操作系统将当前正在使用的程序部分保留在内存中
 <ul>
-<li>OS keeps the part of the program   currently in use in memory</li>
+<li>OS keeps the part of the program currently in use in memory</li>
+</ul></li>
+<li><strong>Paging</strong> 分页是一种用于实现虚拟内存的技术。</li>
+<li><strong>Virtual Address</strong> 虚拟地址是程序生成的地址。</li>
+<li><strong>MMU</strong> (memory management
+unit)（内存管理单元）将虚拟地址转换为物理地址。</li>
 </ul>
-</li>
-<li><p><strong>Paging</strong> 分页是一种用于实现虚拟内存的技术。 </p>
-</li>
-<li><strong>Virtual Address</strong> 虚拟地址是程序生成的地址。 </li>
-<li><strong>MMU</strong> (memory management unit)（内存管理单元）将虚拟地址转换为物理地址。</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031521320.png" alt="image-20220103152147230" style="zoom:80%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031521320.png" srcset="/img/loading.gif" lazyload alt="image-20220103152147230" style="zoom:80%;" /></p>
 <ul>
-<li><p>虚拟地址空间(<strong>virtual address space</strong>)按照固定大小分为(虚拟)<strong>页面(pages)</strong>，物理内存中对应的为<strong>页框(page frames)</strong>，页面和页框大小通常是一样的</p>
-</li>
-<li><p>一个在/不在位跟踪页面是否被映射。</p>
-</li>
-<li><p>对未映射页面的引用会导致 CPU 陷入操作系统。</p>
-</li>
-<li><p>这个陷阱被称为页面错误<strong>(page fault)</strong>。 MMU 选择一个很少使用的页框，将其内容写入磁盘，获取刚刚引用的页面放到刚才回收的页框中，修改映射关系，并重新启动被捕获的指令</p>
-</li>
+<li><p>虚拟地址空间(<strong>virtual address
+space</strong>)按照固定大小分为(虚拟)<strong>页面(pages)</strong>，物理内存中对应的为<strong>页框(page
+frames)</strong>，页面和页框大小通常是一样的</p></li>
+<li><p>一个在/不在位跟踪页面是否被映射。</p></li>
+<li><p>对未映射页面的引用会导致 CPU 陷入操作系统。</p></li>
+<li><p>这个陷阱被称为页面错误<strong>(page fault)</strong>。 MMU
+选择一个很少使用的页框，将其内容写入磁盘，获取刚刚引用的页面放到刚才回收的页框中，修改映射关系，并重新启动被捕获的指令</p></li>
 </ul>
-<h5><span id="pure-paging">Pure paging</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031538574.png" alt="image-20220103153828541"></p>
-<h5><span id="page-table-页表">Page Table 页表</span></h5><ul>
+<h5 id="pure-paging">Pure paging</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031538574.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="page-table-页表">Page Table 页表</h5>
+<ul>
 <li>给出的虚拟地址和物理内存地址的关系</li>
 <li>用页号作为索引，以得出对应于该虚拟页面的页框号。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031534254.png" alt="image-20220103153434191"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031534254.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>“在/不在”位为0，则将引起一个操作系统陷阱</li>
 </ul>
-<p>两个主要问题： </p>
+<p>两个主要问题：</p>
 <ul>
-<li>虚拟地址空间很大的话，页表也会非常大（例如大多数计算机使用）32 位地址，4k 页大小，12 位偏移<ul>
+<li>虚拟地址空间很大的话，页表也会非常大（例如大多数计算机使用）32
+位地址，4k 页大小，12 位偏移
+<ul>
 <li>20 位虚拟页号</li>
 <li>100 万个条目</li>
-</ul>
-</li>
+</ul></li>
 <li>映射必须很快，因为它是在每次内存访问时完成的</li>
 </ul>
-<h4><span id="针对大内存的页表">针对大内存的页表</span></h4><h5><span id="multilevel-page-tables-多级页表">Multilevel Page Tables 多级页表</span></h5><ul>
-<li>减少表大小。 </li>
+<h4 id="针对大内存的页表">针对大内存的页表</h4>
+<h5 id="multilevel-page-tables-多级页表">Multilevel Page Tables
+多级页表</h5>
+<ul>
+<li>减少表大小。</li>
 <li>另外，不要将不需要的页表保留在内存中</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051927762.png" alt="image-20220103155251097"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201051927762.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li>32位的虚拟地址被划分为<ul>
+<li>32位的虚拟地址被划分为
+<ul>
 <li>10位的PT1域</li>
 <li>10位的PT2域</li>
 <li>12位的Offset(偏移量)域</li>
+</ul></li>
+<li>偏移量是12位，所以页面大小为4KB，共有<span
+class="math inline">\(2^{20}\)</span>个页面</li>
 </ul>
-</li>
-<li>偏移量是12位，所以页面大小为4KB，共有$2^{20}$个页面</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031622846.png" alt="image-20220103162238809"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031622846.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>由索引顶级页表得到的表项中含有二级页表的地址或页框号。</li>
 <li>顶级页表的表项0指向程序正文的页表，表项1指向数据的页表，表项1023指向堆栈的页表，其他的表项未用</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031623581.png" alt="image-20220103162358544"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031623581.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li>示例<ul>
+<li>示例
+<ul>
 <li>32位虚拟地址：0x00403004（十进制为4206596）位于数据部分12292字节处</li>
 <li>它的虚拟地址对应PT1 = 1, PT2 = 3, Offset = 4</li>
-<li>首先用PT1作为索引访问顶级页表得到表项1<ul>
+<li>首先用PT1作为索引访问顶级页表得到表项1
+<ul>
 <li>对应地址范围为4M到8M-1</li>
-</ul>
-</li>
-<li>然后用PT2作为索引访问刚刚找到的二级页表并得到表项3<ul>
+</ul></li>
+<li>然后用PT2作为索引访问刚刚找到的二级页表并得到表项3
+<ul>
 <li>在他的4M块中的12288~16383</li>
-</ul>
-</li>
+</ul></li>
 <li>如果该页面在内存中，从二级页表中得到的页框号与偏移量结合形成物理地址</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="inverted-page-table-倒排页表">Inverted page table 倒排页表</span></h5><ul>
-<li>在这种设计中，实际内存中的每个页框对应一个表项，而不是每个虚拟页面对应一个表项</li>
-<li><p>原因：一个进程对应一个页表，每一个页表中会包含大量的entries</p>
-</li>
+<h5 id="inverted-page-table-倒排页表">Inverted page table 倒排页表</h5>
+<ul>
+<li><p>在这种设计中，实际内存中的每个页框对应一个表项，而不是每个虚拟页面对应一个表项</p></li>
+<li><p>原因：一个进程对应一个页表，每一个页表中会包含大量的entries</p></li>
 <li><p>使用倒排页表，一个entry能够对应一个内存中的页框</p>
 <ul>
 <li><p>表项中记录了哪一个（进程、虚拟页面）对定位于该页框</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031852001.png" alt="image-20220103185208970"></p>
-</li>
-<li><p>表项： <process-id, page-number></process-id,></p>
-</li>
-<li><p>然后在反转页表中搜索匹配项。 如果找到匹配项 i，则生成物理地址 <i, offset>。 </i,></p>
-</li>
-<li>否则，已尝试非法地址访问</li>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031852001.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>表项： &lt;process-id, page-number&gt;</p></li>
+<li><p>然后在反转页表中搜索匹配项。 如果找到匹配项 i，则生成物理地址
+&lt;i, offset&gt;。</p></li>
+<li><p>否则，已尝试非法地址访问</p></li>
+</ul></li>
+<li><p>虽然减少了存储每个页表所需的内存，但增加了发生页引用时查找表所需的时间</p></li>
+<li><p>不足：从虚拟地址到物理地址的转换会变得很困难</p></li>
 </ul>
-</li>
-<li><p>虽然减少了存储每个页表所需的内存，但增加了发生页引用时查找表所需的时间</p>
-</li>
-<li><p>不足：从虚拟地址到物理地址的转换会变得很困难</p>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031857497.png" alt="image-20220103185730459"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031857497.png" srcset="/img/loading.gif" lazyload /></p>
 <p>Page Tables</p>
 <ul>
-<li>大多数操作系统为每个进程分配一个页表。 </li>
-<li>由一组硬件寄存器组成的单页表。 加载进程时，寄存器加载页表。 <ul>
-<li>优点 - 简单 </li>
-<li>缺点 - 如果表很大并且在每次上下文切换时加载完整页表会损害性能，则代价高昂。 </li>
-</ul>
-</li>
-<li>将页表留在内存中——单个寄存器指向表<ul>
+<li>大多数操作系统为每个进程分配一个页表。</li>
+<li>由一组硬件寄存器组成的单页表。 加载进程时，寄存器加载页表。
+<ul>
+<li>优点 - 简单</li>
+<li>缺点 -
+如果表很大并且在每次上下文切换时加载完整页表会损害性能，则代价高昂。</li>
+</ul></li>
+<li>将页表留在内存中——单个寄存器指向表
+<ul>
 <li>优点 - 上下文切换便宜</li>
 <li>缺点 - 一个或多个内存引用来读取表条目</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>页表结构</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031630556.png" alt="image-20220103163020517"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031630556.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>Page frame number 页框号：对应页框号</li>
 <li>Present/absent bit 在/不在位：1/0对应有效/无效条目</li>
-<li>Protection bit 保护位：允许什么类型的访问，使用三位，读、写、执行。</li>
+<li>Protection bit
+保护位：允许什么类型的访问，使用三位，读、写、执行。</li>
 <li>Modified 修改位：在修改和写入磁盘时设置，记录</li>
-<li>Referenced 访问位： 页面被引用时设置（帮助决定要驱逐的页面），记录</li>
-<li>Caching disabled 高速缓存禁止位：用于将逻辑上属于磁盘的数据保留在内存中以提高性能</li>
+<li>Referenced 访问位：
+页面被引用时设置（帮助决定要驱逐的页面），记录</li>
+<li>Caching disabled
+高速缓存禁止位：用于将逻辑上属于磁盘的数据保留在内存中以提高性能</li>
 </ul>
-<h4><span id="加速分页过程">加速分页过程</span></h4><h5><span id="tlb">TLB</span></h5><ul>
+<h4 id="加速分页过程">加速分页过程</h4>
+<h5 id="tlb">TLB</h5>
+<ul>
 <li>观察：大多数程序对少量页面进行大量引用</li>
-<li>为计算机配备一个小型硬件设备，称为转换检测缓冲区(Translation Look-aside Buffer，TLB)或关联内存，无需使用页表即可将虚拟地址映射到物理地址。</li>
+<li>为计算机配备一个小型硬件设备，称为转换检测缓冲区(Translation
+Look-aside
+Buffer，TLB)或关联内存，无需使用页表即可将虚拟地址映射到物理地址。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031832286.png" alt="image-20220103183240240" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031837365.png" alt="image-20220103183741328"></p>
-<h3><span id="问题">问题</span></h3><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031300230.png" alt="image-20220103130054066" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031541149.png" alt="image-20220103154159113" style="zoom:67%;"></p>
-<p>虚拟地址空间总共大小为：$16 * 2048 = 2^{15}B=32KB$，所以需要至少15位来标记</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031638130.png" alt="image-20220103163839090" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840947.png" alt="image-20220103184026900"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840639.png" alt="image-20220103184059601"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031859077.png" alt="image-20220103185948040" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901893.png" alt="image-20220103190114854" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901668.png" alt="image-20220103190152626"></p>
-<h3><span id="check-points">Check Points</span></h3><ol>
-<li>What is the drawback of the bitmap method for free  memory management?</li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031832286.png" srcset="/img/loading.gif" lazyload alt="image-20220103183240240" style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031837365.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="问题">问题</h3>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031300230.png" srcset="/img/loading.gif" lazyload alt="image-20220103130054066" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031541149.png" srcset="/img/loading.gif" lazyload alt="image-20220103154159113" style="zoom:67%;" /></p>
+<p>虚拟地址空间总共大小为：<span class="math inline">\(16 * 2048 =
+2^{15}B=32KB\)</span>，所以需要至少15位来标记</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031638130.png" srcset="/img/loading.gif" lazyload alt="image-20220103163839090" style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840947.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840639.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031859077.png" srcset="/img/loading.gif" lazyload alt="image-20220103185948040" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901893.png" srcset="/img/loading.gif" lazyload alt="image-20220103190114854" style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901668.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="check-points">Check Points</h3>
+<ol type="1">
+<li>What is the drawback of the bitmap method for free memory
+management?</li>
 <li>What is the purpose of virtual memory?</li>
-<li>What is page table? </li>
+<li>What is page table?</li>
 <li>What is the purpose of using multi-level page table?</li>
-<li>What is the purpose of using TLB？ </li>
+<li>What is the purpose of using TLB？</li>
 <li>What is invert page table？</li>
 </ol>
-<h4><span id="solution">Solution</span></h4><ol>
-<li>to find consecutive 0 bits in the  map is time-consuming.</li>
+<h4 id="solution">Solution</h4>
+<ol type="1">
+<li>to find consecutive 0 bits in the map is time-consuming.</li>
 <li>在一定程度上缓解内存不足的压力</li>
-<li>The relation between  virtual addresses and  physical memory  addresses given  by page table</li>
-<li>reduce the table size. Also,  don’t keep page tables in memory that are not needed.</li>
+<li>The relation between virtual addresses and physical memory addresses
+given by page table</li>
+<li>reduce the table size. Also, don't keep page tables in memory that
+are not needed.</li>
 </ol>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031914146.png" alt="image-20220103191442113"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031911837.png" alt="image-20220103191127800"></p>
-<ol>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031914146.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031911837.png" srcset="/img/loading.gif" lazyload /></p>
+<ol start="5" type="1">
 <li>加快分页过程</li>
-<li>There is one entry for each real page (frame) of  memory.</li>
+<li>There is one entry for each real page (frame) of memory.</li>
 </ol>
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E8%AF%BE%E7%A8%8B-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 课程:操作系统</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/09/28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-7/" rel="prev" title="深度学习--7">
-      <i class="fa fa-chevron-left"></i> 深度学习--7
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/10/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-9/" rel="next" title="深度学习-9">
-      深度学习-9 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="GuoYB"
-      src="/images/avatar1.gif">
-  <p class="site-author-name" itemprop="name">GuoYB</p>
-  <div class="site-description" itemprop="description">欢迎欢迎</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">103</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">GuoYB</span>
-</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
 
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="category-chain-item">课程笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">操作系统</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%BE%E7%A8%8B-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#课程:操作系统</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>操作系统L9</div>
+      <div>https://ye2222.github.io/2021/09/30/操作系统L9/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GuoYB</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-9/" title="深度学习-9">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">深度学习-9</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-7/" title="深度学习--7">
+                        <span class="hidden-mobile">深度学习--7</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>

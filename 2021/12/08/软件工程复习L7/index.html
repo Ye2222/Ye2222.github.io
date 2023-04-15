@@ -1,374 +1,417 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
-  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-flat-top.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ye2222.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="Software testing">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GuoYB">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Software testing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件工程复习L7">
 <meta property="og:url" content="https://ye2222.github.io/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L7/index.html">
 <meta property="og:site_name" content="Yeの博客">
 <meta property="og:description" content="Software testing">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101736773.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101807120.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103125760.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208102057966.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208102946769.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211209153135521.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103141408.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103155416.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103217703.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103314118.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103522113.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103527360.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103614848.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103640550.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208104515798.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105102329.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105324356.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105430022.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105543923.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105636833.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105701057.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105715142.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208110525260.png">
 <meta property="article:published_time" content="2021-12-08T02:16:15.000Z">
-<meta property="article:modified_time" content="2022-05-23T07:09:40.385Z">
+<meta property="article:modified_time" content="2023-04-15T08:35:28.734Z">
 <meta property="article:author" content="GuoYB">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101736773.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103125760.png">
+  
+  
+  
+  <title>软件工程复习L7 - Yeの博客</title>
 
-<link rel="canonical" href="https://ye2222.github.io/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L7/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>软件工程复习L7 | Yeの博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ye2222.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <!-- <div class="headband"></div> -->
-    <a target="_blank" rel="noopener" href="https://github.com/Ye2222" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Yeの博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yeの博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">30</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ye2222.github.io/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L7/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.gif">
-      <meta itemprop="name" content="GuoYB">
-      <meta itemprop="description" content="欢迎欢迎">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yeの博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          软件工程复习L7
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-08 10:16:15" itemprop="dateCreated datePublished" datetime="2021-12-08T10:16:15+08:00">2021-12-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 15:09:40" itemprop="dateModified" datetime="2022-05-23T15:09:40+08:00">2022-05-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
-                </span>
-            </span>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-            <div class="post-description">Software testing</div>
-
+            <span id="subtitle" data-typed-text="软件工程复习L7"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-08 10:16" pubdate>
+          2021年12月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <h4><span id="introduction">Introduction</span></h4><ul>
-<li>软件测试的两个不同目标<ul>
-<li>向开发人员和客户证明软件满足要求 — software meets requirements</li>
-<li>在软件的行为不正确、不受欢迎或不符合其规范的情况下发现软件中的故障或缺陷 — discover faults or defects</li>
-</ul>
-</li>
-<li><p>埃兹格·迪克斯特拉：</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">软件工程复习L7</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="introduction">Introduction</h4>
+<ul>
+<li>软件测试的两个不同目标
+<ul>
+<li>向开发人员和客户证明软件满足要求 -- software meets requirements</li>
+<li>在软件的行为不正确、不受欢迎或不符合其规范的情况下发现软件中的故障或缺陷
+-- discover faults or defects</li>
+</ul></li>
+<li>埃兹格·迪克斯特拉：
 <ul>
 <li>“测试只能显示错误的存在，而不是它们的缺失”</li>
+</ul></li>
+<li>软件测试过程模型 software testing process</li>
 </ul>
-</li>
-<li><p>软件测试过程模型 software testing process</p>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101736773.png" alt="image-20211208101736773"></p>
-<h4><span id="software-testing-process">Software Testing Process</span></h4><p>数据处理 -&gt; 设计测试用例 -&gt; 判断结果</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101807120.png" alt="image-20211208101807120"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101736773.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="software-testing-process">Software Testing Process</h4>
+<p>数据处理 -&gt; 设计测试用例 -&gt; 判断结果</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208101807120.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li>验收测试：<ul>
+<li>验收测试：
+<ul>
 <li>如果软件是给一个客户开发的，需要进行一系列验收测试来保证满足客户所有的需求。验收测试主要由用户而不是开发者来进行的。</li>
-</ul>
-</li>
-<li>Alpha测试与Beta测试：<ul>
+</ul></li>
+<li>Alpha测试与Beta测试：
+<ul>
 <li>如果一个软件是给很多客户使用的，可使用Alpha测试与Beta测试。</li>
-</ul>
-</li>
-<li>Alpha测试：<ul>
+</ul></li>
+<li>Alpha测试：
+<ul>
 <li>是在一个受控的环境下，由用户在开发者的指导下进行测试，由开发者负责记录错误和使用中出现的问题。</li>
-</ul>
-</li>
-<li>Beta测试：<ul>
+</ul></li>
+<li>Beta测试：
+<ul>
 <li>由最终用户在自己的场所进行，开发发者通常不在场，也不能控制应用的环境。由用户记录错误和使用中出现的问题，并定期地交给开发者来解决。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="integration-testing-集成测试">Integration testing 集成测试</span></h5><ul>
+<h5 id="integration-testing-集成测试">Integration testing 集成测试</h5>
+<ul>
 <li>系统集成的过程包括从其组件构建一个系统，并针对组件交互引起的问题测试生成的系统</li>
 <li>集成测试期间出现的一个主要问题是定位错误 localizing errors</li>
 <li>为了更容易地定位错误，您应该始终使用增量方法进行系统集成和测试</li>
-<li>一个好的经验法则是首先集成实现最常用功能的组件。 这意味着最常用的组件接受最多的测试</li>
-<li>系统被视为组件的层次结构<ul>
-<li><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103125760.png" alt="image-20211208103125760" style="zoom:33%;"></li>
+<li>一个好的经验法则是首先集成实现最常用功能的组件。
+这意味着最常用的组件接受最多的测试</li>
+<li>系统被视为组件的层次结构
+<ul>
+<li><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103125760.png" srcset="/img/loading.gif" lazyload alt="image-20211208103125760" style="zoom:33%;" /></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="incremental-integration-testing">Incremental integration testing</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208102057966.png" alt="image-20211208102057966" style="zoom:67%;"></p>
-<h5><span id="integration-testing-strategies-集成测试策略">Integration Testing Strategies 集成测试策略</span></h5><ul>
-<li>选项：<ul>
-<li>“大爆炸”方法 — big bang</li>
-<li>增量构建策略 — incremental construction strategy</li>
-</ul>
-</li>
+<h5 id="incremental-integration-testing">Incremental integration
+testing</h5>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208102057966.png" srcset="/img/loading.gif" lazyload alt="image-20211208102057966" style="zoom:67%;" /></p>
+<h5 id="integration-testing-strategies-集成测试策略">Integration Testing
+Strategies 集成测试策略</h5>
+<ul>
+<li>选项：
+<ul>
+<li>“大爆炸”方法 -- big bang</li>
+<li>增量构建策略 -- incremental construction strategy</li>
+</ul></li>
 </ul>
 <p>Big-Bang Integration Example</p>
 <p>需要存根和驱动程序来测试独立组件</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208102946769.png" alt="image-20211208102946769"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208102946769.png" srcset="/img/loading.gif" lazyload /></p>
 <p>系统被视为组件的层次结构</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211209153135521.png" alt="image-20211209153135521" style="zoom:50%;"></p>
-<h5><span id="bottom-up-integration-example">Bottom-Up Integration Example</span></h5><p>测试序列及其依赖关系</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103141408.png" alt="image-20211208103141408" style="zoom:50%;"></p>
-<h5><span id="top-down-integration-example">Top-Down Integration Example</span></h5><p>只有A是自己测试的</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103155416.png" alt="image-20211208103155416" style="zoom:50%;"></p>
-<h5><span id="modified-top-down-integration-example">Modified Top-Down Integration Example</span></h5><p>在合并之前对每个级别的组件进行单独测试</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103217703.png" alt="image-20211208103217703" style="zoom:50%;"></p>
-<h4><span id="集成测试的策略">集成测试的策略：</span></h4><ul>
-<li>自顶向下测试：从顶模块开始，沿被测程序的结构图逐渐向下测试。按照移动路线的差异，又可区分为两种不同的实施策略：<ul>
-<li>先广度后深度实施步骤。<br>组装顺序：M1-M2-M3-M4-M5-M6-M7-M8</li>
-<li>先深度后广度实施步骤。<br>组装顺序：M1-M2-M5-M6-M8-M3-M4-M7</li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211209153135521.png" srcset="/img/loading.gif" lazyload alt="image-20211209153135521" style="zoom:50%;" /></p>
+<h5 id="bottom-up-integration-example">Bottom-Up Integration
+Example</h5>
+<p>测试序列及其依赖关系</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103141408.png" srcset="/img/loading.gif" lazyload alt="image-20211208103141408" style="zoom:50%;" /></p>
+<h5 id="top-down-integration-example">Top-Down Integration Example</h5>
+<p>只有A是自己测试的</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103155416.png" srcset="/img/loading.gif" lazyload alt="image-20211208103155416" style="zoom:50%;" /></p>
+<h5 id="modified-top-down-integration-example">Modified Top-Down
+Integration Example</h5>
+<p>在合并之前对每个级别的组件进行单独测试</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103217703.png" srcset="/img/loading.gif" lazyload alt="image-20211208103217703" style="zoom:50%;" /></p>
+<h4 id="集成测试的策略">集成测试的策略：</h4>
+<ul>
+<li>自顶向下测试：从顶模块开始，沿被测程序的结构图逐渐向下测试。按照移动路线的差异，又可区分为两种不同的实施策略：
+<ul>
+<li>先广度后深度实施步骤。 组装顺序：M1-M2-M3-M4-M5-M6-M7-M8</li>
+<li>先深度后广度实施步骤。 组装顺序：M1-M2-M5-M6-M8-M3-M4-M7</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103314118.png" alt="image-20211208103314118"></p>
-<h4><span id="black-box-and-white-box-testing">Black-box and White-box testing</span></h4><h5><span id="黑箱测试">黑箱测试</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103522113.png" alt="image-20211208103522113" style="zoom:50%;"></p>
-<h5><span id="白箱测试">白箱测试</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103527360.png" alt="image-20211208103527360" style="zoom:50%;"></p>
-<h4><span id="release-testing-发布测试">Release testing 发布测试</span></h4><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103314118.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="black-box-and-white-box-testing">Black-box and White-box
+testing</h4>
+<h5 id="黑箱测试">黑箱测试</h5>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103522113.png" srcset="/img/loading.gif" lazyload alt="image-20211208103522113" style="zoom:50%;" /></p>
+<h5 id="白箱测试">白箱测试</h5>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103527360.png" srcset="/img/loading.gif" lazyload alt="image-20211208103527360" style="zoom:50%;" /></p>
+<h4 id="release-testing-发布测试">Release testing 发布测试</h4>
+<ul>
 <li>发布测试是测试将分发给客户的系统发布的过程</li>
 <li>发布测试通常是一个黑盒测试过程，其中测试源自系统规范</li>
 <li>黑盒测试</li>
 <li>另一个名称是功能测试</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103614848.png" alt="image-20211208103614848"></p>
-<h5><span id="black-box-testing">Black box testing</span></h5><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103640550.png" alt="image-20211208103640550"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103614848.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="black-box-testing">Black box testing</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208103640550.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li>导致异常行为的输入</li>
-<li><p>显示缺陷存在的输出</p>
-</li>
+<li><p>导致异常行为的输入</p></li>
+<li><p>显示缺陷存在的输出</p></li>
 <li><p>惠特克 (2002) 指导方针：</p>
 <ul>
 <li>选择强制系统生成所有错误消息的输入</li>
@@ -376,8 +419,7 @@
 <li>多次重复相同的输入或一系列输入</li>
 <li>强制生成无效输出</li>
 <li>强制计算结果过大或过小</li>
-</ul>
-</li>
+</ul></li>
 <li><p>LIBSYS 示例：</p>
 <ul>
 <li>使用正确和不正确的登录来测试登录机制，以检查是否接受了有效用户和拒绝了无效用户</li>
@@ -385,84 +427,97 @@
 <li>测试系统演示工具以检查有关文档的信息是否正确显示</li>
 <li>测试请求下载权限的机制</li>
 <li>测试表明下载的文档可用的电子邮件响应</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="performance-testing-性能测试">Performance testing 性能测试</span></h4><ul>
-<li>发现缺陷的一种有效方法是围绕系统的限制设计测试。 在性能测试中，这意味着对系统施加压力——因此得名压力测试(stress testing)</li>
-<li>压力测试的两大功能<ul>
+<h4 id="performance-testing-性能测试">Performance testing 性能测试</h4>
+<ul>
+<li>发现缺陷的一种有效方法是围绕系统的限制设计测试。
+在性能测试中，这意味着对系统施加压力——因此得名压力测试(stress
+testing)</li>
+<li>压力测试的两大功能
+<ul>
 <li>它测试系统的故障行为</li>
 <li>它会给系统带来压力，并可能导致通常不会发现的缺陷曝光</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="component-testing-组件测试">Component testing 组件测试</span></h4><ul>
+<h4 id="component-testing-组件测试">Component testing 组件测试</h4>
+<ul>
 <li>组件测试（或单元测试）是测试系统中单个组件的过程</li>
-<li>要测试的不同类型的组件<ul>
+<li>要测试的不同类型的组件
+<ul>
 <li>对象中的单个函数或方法</li>
 <li>具有多个属性和方法的对象类</li>
 <li>由几个不同的对象或功能组成的复合组件</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="interface-testing-接口测试">Interface testing 接口测试</span></h4><ul>
+<h4 id="interface-testing-接口测试">Interface testing 接口测试</h4>
+<ul>
 <li>许多组件由几个相互作用的对象组成</li>
 <li>测试这些复合组件然后主要关注测试组件接口的行为</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208104515798.png" alt="image-20211208104515798" style="zoom:50%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208104515798.png" srcset="/img/loading.gif" lazyload alt="image-20211208104515798" style="zoom:50%;" /></p>
 <ul>
-<li>接口测试的一些通用指南<ul>
+<li>接口测试的一些通用指南
+<ul>
 <li>检查要测试的代码并明确列出对外部组件的每次调用</li>
-<li>当指针通过接口传递时，始终使用空指针参数测试接口 — pointers</li>
+<li>当指针通过接口传递时，始终使用空指针参数测试接口 -- pointers</li>
 <li>在通过程序接口调用组件的情况下，设计应该导致组件失败的测试</li>
-<li>在消息传递系统中使用压力测试，如上一节所述 — stress testing</li>
+<li>在消息传递系统中使用压力测试，如上一节所述 -- stress testing</li>
 <li>在多个组件通过共享内存交互的情况下，设计测试以改变这些组件的激活顺序</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4><span id="test-case-design">Test case design</span></h4><ul>
+<h4 id="test-case-design">Test case design</h4>
+<ul>
 <li>设计测试系统的测试用例（输入和预测输出）</li>
-<li>测试用例设计的各种方法<ul>
-<li>基于需求的测试，其中测试用例旨在测试系统需求 — Requirements-based testing</li>
-<li>分区测试，识别输入和输出分区并设计测试，以便系统执行来自所有分区的输入并在所有分区中生成输出 — Partition testing</li>
-<li>结构测试，您使用程序结构的知识来设计测试程序的所有部分 — Structural testing</li>
+<li>测试用例设计的各种方法
+<ul>
+<li>基于需求的测试，其中测试用例旨在测试系统需求 -- Requirements-based
+testing</li>
+<li>分区测试，识别输入和输出分区并设计测试，以便系统执行来自所有分区的输入并在所有分区中生成输出
+-- Partition testing</li>
+<li>结构测试，您使用程序结构的知识来设计测试程序的所有部分 -- Structural
+testing</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="requirements-based-testing">Requirements-based testing</span></h5><ul>
+<h5 id="requirements-based-testing">Requirements-based testing</h5>
+<ul>
 <li>基于需求的测试是一种系统的测试用例设计方法，您可以在其中考虑每个需求并为其派生一组测试</li>
-<li><p>LIBSYS 要求</p>
+<li>LIBSYS 要求
 <ul>
 <li>用户应能够搜索所有初始数据库集或从中选择一个子集</li>
 <li>系统应提供合适的查看器供用户阅读文档库中的文档</li>
 <li>每个订单都应分配一个唯一标识符（ORDER_ID），用户应能够将其复制到帐户永久存储区</li>
-</ul>
-</li>
-<li><p>LIBSYS 测试：</p>
+</ul></li>
+<li>LIBSYS 测试：
 <ul>
 <li>发起用户搜索已知存在和已知不存在的项目，其中一组数据库包括一个数据库</li>
-<li>…..，包括两个数据库</li>
+<li>.....，包括两个数据库</li>
 <li>……，包括两个以上的数据库</li>
 <li>从一组数据库中选择一个数据库并启动用户搜索已知存在和已知不存在的项目</li>
 <li>从一组数据库中选择一个以上的数据库，然后……</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="partition-testing">Partition testing</span></h5><ul>
+<h5 id="partition-testing">Partition testing</h5>
+<ul>
 <li>输入数据和输出结果通常属于不同的类，其中一个类的所有成员都是相关的。</li>
-<li>这些类中的每一个都是一个等效分区(equivalence partition)或域，其中程序对每个类成员都以等效的方式运行。</li>
+<li>这些类中的每一个都是一个等效分区(equivalence
+partition)或域，其中程序对每个类成员都以等效的方式运行。</li>
 <li>应从每个分区中选择测试用例。</li>
 </ul>
 <p>Equivalence partitioning</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105102329.png" alt="image-20211208105102329" style="zoom:67%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105324356.png" alt="image-20211208105324356"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105102329.png" srcset="/img/loading.gif" lazyload alt="image-20211208105102329" style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105324356.png" srcset="/img/loading.gif" lazyload /></p>
 <p>Equivalence partition for search routine</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105430022.png" alt="image-20211208105430022"></p>
-<h5><span id="structural-testing">Structural testing</span></h5><ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105430022.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="structural-testing">Structural testing</h5>
+<ul>
 <li>结构测试是一种测试用例设计的方法，其中测试源自对软件结构和实现的知识</li>
 <li>有时称为“白盒”测试</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105543923.png" alt="image-20211208105543923"></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105543923.png" srcset="/img/loading.gif" lazyload /></p>
 <p>Path testing</p>
 <ul>
 <li>路径测试是一种<strong>结构测试</strong>策略，其目标是通过组件或程序来执行每条独立的执行路径</li>
@@ -471,331 +526,440 @@
 <li>路径测试的起点是程序流程图 (a program flow graph)</li>
 <li>路径测试的目标是确保通过程序的每个独立路径至少执行一次</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105636833.png" alt="image-20211208105636833" style="zoom: 50%;"></p>
-<h4><span id="when-to-stop-testing-more-faulty">When to Stop Testing More faulty?</span></h4><p>Probability of finding faults during the development</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105701057.png" alt="image-20211208105701057" style="zoom:50%;"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105715142.png" alt="image-20211208105715142"></p>
-<h4><span id="fault-seeding">Fault seeding</span></h4><h5><span id="何时停止测试停止方法">何时停止测试停止方法</span></h5><ul>
-<li>覆盖标准 Coverage criteria</li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105636833.png" srcset="/img/loading.gif" lazyload alt="image-20211208105636833" style="zoom: 50%;" /></p>
+<h4 id="when-to-stop-testing-more-faulty">When to Stop Testing More
+faulty?</h4>
+<p>Probability of finding faults during the development</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105701057.png" srcset="/img/loading.gif" lazyload alt="image-20211208105701057" style="zoom:50%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208105715142.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="fault-seeding">Fault seeding</h4>
+<h5 id="何时停止测试停止方法">何时停止测试停止方法</h5>
+<ul>
+<li><p>覆盖标准 Coverage criteria</p></li>
 <li><p>故障播种 Fault seeding</p>
 <ul>
-<li>$\frac{检测到的种子故障}{种子错误总数} = \frac{检测到的非种子故障}{非种子错误总数}$</li>
-</ul>
-</li>
+<li><span class="math inline">\(\frac{检测到的种子故障}{种子错误总数} =
+\frac{检测到的非种子故障}{非种子错误总数}\)</span></li>
+</ul></li>
 <li><p>N=Sn/s</p>
 <ul>
 <li>S:播种故障数，n找到非播种故障数，其中播种故障s个</li>
-</ul>
-</li>
-<li>两个独立的测试小组测试<ul>
+</ul></li>
+<li><p>两个独立的测试小组测试</p>
+<ul>
 <li>两个小组的有效性 E1=x/n, E2=y/n</li>
 <li>两个小组共同发现了q个故障</li>
-<li>小组1的有效性 E1=x/n=q/y  并且 E2 =y/n=q/x</li>
+<li>小组1的有效性 E1=x/n=q/y 并且 E2 =y/n=q/x</li>
 <li>因此推导出 n= q/(E1*E2)，用q/y，q/x来模拟有效性</li>
 <li>n = x*y/q</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h5><span id="何时停止测试识别容易出错的代码">何时停止测试识别容易出错的代码</span></h5><ul>
+<h5
+id="何时停止测试识别容易出错的代码">何时停止测试识别容易出错的代码</h5>
+<ul>
 <li>跟踪开发过程中在每个组件中发现的故障数量</li>
 <li>收集关于每个组件的测量（例如，大小、决策数量）</li>
-<li>分类树(Classification trees)：一种统计技术，可对大量测量信息进行排序并创建决策树以显示最佳预测值<ul>
+<li>分类树(Classification
+trees)：一种统计技术，可对大量测量信息进行排序并创建决策树以显示最佳预测值
+<ul>
 <li>树有助于确定哪些组件可能有大量错误</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>An Example of a Classification Tree</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208110525260.png" alt="image-20211208110525260" style="zoom:50%;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211208110525260.png" srcset="/img/loading.gif" lazyload alt="image-20211208110525260" style="zoom:50%;" /></p>
 <p>Test automation 测试自动化</p>
 <ul>
 <li>测试是软件过程中一个昂贵且费力的阶段</li>
-<li>一些工具：<ul>
-<li>Test manager<br>Test data generator<br>Oracle<br>File comparator<br>Report generator<br>Dynamic analyzer<br>Simulator</li>
+<li>一些工具：
+<ul>
+<li>Test manager Test data generator Oracle File comparator Report
+generator Dynamic analyzer Simulator</li>
+</ul></li>
 </ul>
-</li>
-</ul>
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/12/07/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L6/" rel="prev" title="软件工程复习L6">
-      <i class="fa fa-chevron-left"></i> 软件工程复习L6
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L8/" rel="next" title="软件工程复习L8">
-      软件工程复习L8 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="GuoYB"
-      src="/images/avatar1.gif">
-  <p class="site-author-name" itemprop="name">GuoYB</p>
-  <div class="site-description" itemprop="description">欢迎欢迎</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">103</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Ye2222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ye2222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:12554804@qq.com" title="E-Mail → mailto:12554804@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">GuoYB</span>
-</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://fastly.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
 
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="category-chain-item">课程笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" class="category-chain-item">软件工程</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>软件工程复习L7</div>
+      <div>https://ye2222.github.io/2021/12/08/软件工程复习L7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GuoYB</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/08/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L8/" title="软件工程复习L8">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">软件工程复习L8</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/07/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0L6/" title="软件工程复习L6">
+                        <span class="hidden-mobile">软件工程复习L6</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>
