@@ -52,7 +52,7 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201921403.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201922723.png">
 <meta property="article:published_time" content="2022-06-20T02:03:18.000Z">
-<meta property="article:modified_time" content="2023-04-15T08:35:28.685Z">
+<meta property="article:modified_time" content="2023-04-26T06:21:34.109Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="DeepLearning">
 <meta name="twitter:card" content="summary_large_image">
@@ -324,10 +324,10 @@
 <li>给定一个分布，从分布sample出一些样本</li>
 <li>网络作为generator，可以接收sample出来的样本和输入x，学习到一个复杂的分布，输出y。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201522909.png" srcset="/img/loading.gif" lazyload alt="image-20220620152245797" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201522909.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="为什么需要一个分布">为什么需要一个分布</h5>
 <p>以一个Video Prediction为例子</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201525726.png" srcset="/img/loading.gif" lazyload alt="image-20220620152519633" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201525726.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>给定之前的帧，网络需要输出下一帧</li>
 <li>但是这样会出现一个问题，网络采用一个多分类问题的解决形式时，输出可能会结合多种可能性，生成一种包含所有情况，只是概率大小不同的图
@@ -335,13 +335,13 @@
 <li>在这个例子中，你会看到小豆子分裂，一个往左，一个往右，网络没办法只选定一种可能</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201528854.png" srcset="/img/loading.gif" lazyload alt="image-20220620152809649" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201528854.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>当给定一个分布sample出来的数值，网络便可以学习到一个分布，进行一个特定的选择</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201545752.png" srcset="/img/loading.gif" lazyload alt="image-20220620154550641" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201545752.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="所有种类的gan">所有种类的GAN</h4>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201555147.png" srcset="/img/loading.gif" lazyload alt="image-20220620155516033" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201555147.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>https://github.com/hindupuravinash/the-gan-zoo</p>
 <h4 id="gan的结构">GAN的结构</h4>
 <ul>
@@ -349,14 +349,14 @@
 <li>Generator根据输入和sample来在一个复杂的分布中sample出一个输出</li>
 <li>Discriminator对于给定的输入，进行打分，判断其是否为真实的</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558718.png" srcset="/img/loading.gif" lazyload alt="image-20220620155834504" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558214.png" srcset="/img/loading.gif" lazyload alt="image-20220620155843019" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558718.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558214.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="gan的思想">GAN的思想</h4>
 <ul>
 <li>Generator想办法生成逼真的图片来骗过Discriminator</li>
 <li>Discriminator想办法辨别出真假图片</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201559238.png" srcset="/img/loading.gif" lazyload alt="image-20220620155944071" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201559238.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="gan的算法">GAN的算法</h4>
 <ol type="1">
 <li>初始化generator和discriminator</li>
@@ -367,20 +367,20 @@
 <li>固定generator G，更新discriminator D</li>
 <li>Discriminator学习给真实的图片高分，给生成的图片低分，即学会去分辨真假图片</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201608509.png" srcset="/img/loading.gif" lazyload alt="image-20220620160847368" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201608509.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="step2">Step2</h5>
 <ul>
 <li>固定discrimator D，更新generator G</li>
 <li>Generator要学会去欺骗discriminator</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611928.png" srcset="/img/loading.gif" lazyload alt="image-20220620161108827" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611665.png" srcset="/img/loading.gif" lazyload alt="image-20220620161157451" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611928.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611665.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="gan背后的理论">GAN背后的理论</h4>
 <h5 id="目标">目标</h5>
 <ul>
 <li>让Generator生成的分布尽可能向数据的分布靠近</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201616856.png" srcset="/img/loading.gif" lazyload alt="image-20220620161655751" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201616856.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>即 <span class="math display">\[
 G^* = arg\min_{G}Div(P_G,P_{data})
 \]</span> 这里的<span
@@ -388,10 +388,10 @@ class="math inline">\(Div(P_G,P_{data})\)</span>是指两个分布之间的diver
 <h6 id="sampling">Sampling</h6>
 <p>尽管我们不能确切地知道<span class="math inline">\(P_G\)</span>和<span
 class="math inline">\(P_{data}\)</span>的分布，但是我们从两个分布中sample出一些样本</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201620547.png" srcset="/img/loading.gif" lazyload alt="image-20220620162034425" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201620547.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="discriminator">Discriminator</h5>
 <p>这里的Discriminator是一个二分类的分类器</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201621874.png" srcset="/img/loading.gif" lazyload alt="image-20220620162143764" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201621874.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p><strong>Training</strong>： <span class="math display">\[
 D^* = arg\max_{D}V(D,G)
 \]</span> 其实后面的<span
@@ -401,12 +401,12 @@ V(G,D)=E_{y\sim P_{data}}[logD(y)]+E_{y\sim P_G}[log(1-D(y))]
 \]</span> 其中，我们希望<span
 class="math inline">\(logD(y)\)</span>能够尽可能地大，这样能够认出真实的图片；<span
 class="math inline">\(log(1-D(y))\)</span>能够尽可能地小，这样可以辨别出生成地图片</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201627838.png" srcset="/img/loading.gif" lazyload alt="image-20220620162722742" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201629793.png" srcset="/img/loading.gif" lazyload alt="image-20220620162945694" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201627838.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201629793.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>我们可以将Generator中需要的散度换成Discriminator的目标函数，联合训练</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630402.png" srcset="/img/loading.gif" lazyload alt="image-20220620163033264" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630402.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>其他的一些divergence</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630227.png" srcset="/img/loading.gif" lazyload alt="image-20220620163058118" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630227.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="tips-for-gan">Tips for GAN</h4>
 <h5 id="js-divergence并不适合gan">JS divergence并不适合GAN</h5>
 <h6
@@ -417,28 +417,28 @@ class="math inline">\(P_{data}\)</span>并不是重叠的(overlapped)</h6>
 <li>两者都是高维空间在低维空间的流形(manifold)，重叠部分可以忽略</li>
 <li>取样问题，尽管两者之间有重叠但是取样不够多的话</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201845025.png" srcset="/img/loading.gif" lazyload alt="image-20220620184554919" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201846683.png" srcset="/img/loading.gif" lazyload alt="image-20220620184601523" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201845025.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201846683.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h6 id="js-divergence的问题">JS divergence的问题</h6>
 <ul>
 <li>当两个分布不重叠的话，JS divergence总是<span
 class="math inline">\(log_2\)</span></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201851921.png" srcset="/img/loading.gif" lazyload alt="image-20220620185159789" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201851921.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>这样会出现一个很严重的问题，当两个分布不重叠的时候，discriminator总是会实现百分百精度的分类，但这样GAN的训练就无法有一个明确的方向去优化了，因为只要不重叠，都是一样差的</p>
 <h5 id="wasserstein-distance">Wasserstein distance</h5>
 <p>Wasserstein
 distance可以用来衡量一个分布变换到目标分布的<strong>最小距离</strong></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201859084.png" srcset="/img/loading.gif" lazyload alt="image-20220620185906943" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201859084.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>这样GAN的优化就有一个明确的方向</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201901989.png" srcset="/img/loading.gif" lazyload alt="image-20220620190153844" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201901989.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="wgan">WGAN</h4>
 <h5 id="使用wasserstein-distance来优化p_data和p_g">使用Wasserstein
 distance来优化<span class="math inline">\(P_{data}\)</span>和<span
 class="math inline">\(P_G\)</span></h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201905869.png" srcset="/img/loading.gif" lazyload alt="image-20220620190549765" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201905869.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>如果没有D函数光滑的限制，D的训练将不会收敛</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201909399.png" srcset="/img/loading.gif" lazyload alt="image-20220620190901300" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201909399.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>如上图所示，生成分布和数据分布没有重叠，discriminator可能会不断往无穷处进行打分，来更好地区分两者，无法收敛</li>
 <li>让discriminator的函数保持光滑可以强制<span
@@ -456,15 +456,15 @@ class="math inline">\(w = -c\)</span></p></li>
 </ul></li>
 <li><p>Improved WGAN -&gt; Gradient Penalty 梯度惩罚</p></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201919203.png" srcset="/img/loading.gif" lazyload alt="image-20220620191900047" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201919203.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>Spectral Normalization-&gt;Keep gradient norm smaller than 1
 everywhere</li>
 </ul>
 <p>GAN仍然很难训练，Generator和Discriminator需要棋逢对手，不能有一方独大</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201921403.png" srcset="/img/loading.gif" lazyload alt="image-20220620192120275" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201921403.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="用于序列生成的gan">用于序列生成的GAN</h4>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201922723.png" srcset="/img/loading.gif" lazyload alt="image-20220620192202569" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201922723.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>通常，generator是从一个从其他方法中学习的模型微调(fine-tuned)得到的</li>
 <li>但是，通过足够的超参数调整和提示，ScarchGAN可以从头开始训练</li>
@@ -566,9 +566,9 @@ everywhere</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/11/Linux2/" title="Linux2">
+                      <a href="/2022/09/11/%E8%B6%A3%E8%B0%88Linux2/" title="趣谈Linux2">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux2</span>
+                        <span class="hidden-mobile">趣谈Linux2</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -576,8 +576,8 @@ everywhere</li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/14/Linux1/" title="Linux1">
-                        <span class="hidden-mobile">Linux1</span>
+                      <a href="/2022/06/14/%E8%B6%A3%E8%B0%88Linux1/" title="趣谈Linux1">
+                        <span class="hidden-mobile">趣谈Linux1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

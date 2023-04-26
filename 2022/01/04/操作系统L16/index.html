@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042111328.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131166.png">
 <meta property="article:published_time" content="2022-01-04T12:13:55.000Z">
-<meta property="article:modified_time" content="2023-04-15T08:35:28.617Z">
+<meta property="article:modified_time" content="2023-04-26T06:21:33.662Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="课程:操作系统">
 <meta name="twitter:card" content="summary_large_image">
@@ -311,7 +311,7 @@ Allocation</h5>
 <li>一个块中的数据量不是2的幂</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042018219.png" srcset="/img/loading.gif" lazyload alt="image-20220104201822170" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042018219.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>由于指针占去了一些字节，每个磁盘块存储数据的字节数不再是2的整数次幂</p>
 <h5
 id="采用内存中的表进行链表分配-linked-list-allocation-using-an-index">采用内存中的表进行链表分配
@@ -330,14 +330,14 @@ Table 文件分配表）中。</li>
 <li>对于 200-GB 磁盘，该表将占用 600M 或 800M 内存。</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042021424.png" srcset="/img/loading.gif" lazyload alt="image-20220104202111372" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042021424.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="i-node-index-node">I-node (index-node)</h5>
 <ul>
 <li><p>是一种数据结构，给每个文件赋予一个i节点</p></li>
 <li><p>列出文件块的属性和磁盘地址</p></li>
 <li><p>给定i节点，就能找到文件的所有块</p></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042025695.png" srcset="/img/loading.gif" lazyload alt="image-20220104202517643" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042025695.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li><p>这种机制有很大的优势，即只有在对应文件打开时，其i节点才在内存中</p></li>
 <li><p>占用空间比FAT小</p></li>
@@ -451,20 +451,20 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131541
 <li>从 USB 启动？ 网络？</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042128691.png" srcset="/img/loading.gif" lazyload alt="image-20220104212853648" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042128691.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131355.png" srcset="/img/loading.gif" lazyload /></p>
 <h3 id="问题">问题</h3>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042015823.png" srcset="/img/loading.gif" lazyload alt="image-20220104201524784" style="zoom: 80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042026360.png" srcset="/img/loading.gif" lazyload alt="image-20220104202634326" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042026410.png" srcset="/img/loading.gif" lazyload alt="image-20220104202650375" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042015823.png" srcset="/img/loading.gif" lazyload  style="zoom: 80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042026360.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042026410.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>文件如果很大，i节点块的大小需要变大，可能还需要指向另一块包含额外块地址的块的地址，所以B、C、D有关</p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042032607.png" srcset="/img/loading.gif" lazyload /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042040182.png" srcset="/img/loading.gif" lazyload /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042111328.png" srcset="/img/loading.gif" lazyload alt="image-20220104211112286" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131166.png" srcset="/img/loading.gif" lazyload alt="image-20220104213143133" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042111328.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131166.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042132690.png" srcset="/img/loading.gif" lazyload /></p>
 <h3 id="check-points">Check Points</h3>

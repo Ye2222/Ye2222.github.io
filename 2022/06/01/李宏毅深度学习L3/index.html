@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191836293.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191837325.png">
 <meta property="article:published_time" content="2022-06-01T07:23:07.000Z">
-<meta property="article:modified_time" content="2023-04-15T08:35:28.684Z">
+<meta property="article:modified_time" content="2023-04-26T06:21:34.098Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="DeepLearning">
 <meta name="twitter:card" content="summary_large_image">
@@ -417,11 +417,11 @@
 <ul>
 <li>假设我们现在有一张彩色的图片，在电脑中它有<strong>红绿蓝</strong>三个通道，每个通道是一个100*100的矩阵</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252103858.png" srcset="/img/loading.gif" lazyload alt="image-20220525210355635" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252103858.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <ul>
 <li>但是对于图片来说，如果我们使用全连接层的模型，参数会变得特别多</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252104016.png" srcset="/img/loading.gif" lazyload alt="image-20220525210410836" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252104016.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h3 id="感受野">感受野</h3>
 <ul>
 <li>我们观察到对于图像分类来说，要抓住的是图像中物体的特征，需要去捕捉图片的<strong>局部信息</strong>
@@ -429,7 +429,7 @@
 <li>如图中鸟的特征：鸟喙、眼睛、鸟爪</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252104884.png" srcset="/img/loading.gif" lazyload alt="image-20220525210454682" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252104884.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <ul>
 <li>所以我们设置一个<strong>感受野(Receptive
 field)</strong>区域，来提取这一区域覆盖的图片信息(局部信息)，并将信息给予一个神经元
@@ -443,14 +443,14 @@ class="math inline">\(3\times3\)</span></li>
 <li>常规设置：每一个感受野有一组神经元（例如64个神经元）</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252105684.png" srcset="/img/loading.gif" lazyload alt="image-20220525210535560" style="zoom:67%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252105098.png" srcset="/img/loading.gif" lazyload alt="image-20220525210548972" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252105684.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252105098.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h5 id="相同特征在不同区域">相同特征在不同区域</h5>
 <ul>
 <li><p>给我们两张鸟的图片，它们都有鸟喙，但是它们的鸟喙在图片上的不同区域上，那对于每一个感受野来说，都需要配置一个专门的鸟喙检测的神经元吗？</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252106259.png" srcset="/img/loading.gif" lazyload alt="image-20220525210639090" style="zoom:67%;" /></p></li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252106259.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p></li>
 <li><p>可以让所有感受野中相应的神经元来共享参数</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252115474.png" srcset="/img/loading.gif" lazyload alt="image-20220525211512165" style="zoom:67%;" /></p></li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252115474.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p></li>
 </ul>
 <h5 id="好处">好处</h5>
 <ul>
@@ -460,15 +460,15 @@ class="math inline">\(3\times3\)</span></li>
 <li>在不同的图片中，相同的pattern会出现在图片的不同区域</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252103648.png" srcset="/img/loading.gif" lazyload alt="image-20220525210322504" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252103648.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="卷积层">卷积层</h3>
 <ul>
 <li>彩色：3个通道</li>
 <li>黑白/灰：1个通道</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252122120.png" srcset="/img/loading.gif" lazyload alt="image-20220525212211875" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202205252122120.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>假设我们的通道为1，现在我们拥有一张6*6图片，在给定的filter中，它们的值是不确定的，需要训练得到</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011540275.png" srcset="/img/loading.gif" lazyload alt="image-20220601153426273" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011540275.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>进行卷积操作后得到的数据的结构</p>
 <ul>
 <li><p>列数： <span class="math display">\[
@@ -489,21 +489,21 @@ class="math inline">\(3\times3\)</span></li>
 <li><p>stride: 指filter在移动时跨越的步数</p></li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011554197.png" srcset="/img/loading.gif" lazyload alt="image-20220601155454992" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011557435.png" srcset="/img/loading.gif" lazyload alt="image-20220601155736322" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011554197.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011557435.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>当所有的filter都对输入进行处理后，我们便获得了<strong>Feature
 Map</strong>，每一个filter都是对图片的不同解读，即拓展了查看图片的角度</p>
 <ul>
 <li>我们可以将Feature Map投入到下一个卷积层中</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011559173.png" srcset="/img/loading.gif" lazyload alt="image-20220601155918024" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011559173.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="感受野和滤波器的比较">感受野和滤波器的比较</h3>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011602332.png" srcset="/img/loading.gif" lazyload alt="image-20220601160244225" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011602332.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <ul>
 <li>拥有不同感受野的神经元会共享相同的参数</li>
 <li>每个滤波器会在整张输入图片上进行卷积操作</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011606741.png" srcset="/img/loading.gif" lazyload alt="image-20220601160611633" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011606741.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="pooling">Pooling</h3>
 <p>对像素进行子采样不会更改对象</p>
 <ul>
@@ -514,9 +514,9 @@ Map</strong>，每一个filter都是对图片的不同解读，即拓展了查�
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011608798.png" srcset="/img/loading.gif" lazyload /></p>
 <h4 id="max-pooling">Max Pooling</h4>
 <p>选取Filter中最大的值作为感受野的取值</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011609590.png" srcset="/img/loading.gif" lazyload alt="image-20220601160911474" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011609029.png" srcset="/img/loading.gif" lazyload alt="image-20220601160954861" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011610577.png" srcset="/img/loading.gif" lazyload alt="image-20220601161048459" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011609590.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011609029.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011610577.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="小结">小结</h3>
 <ul>
 <li>CNN能够捕捉局部信息，当使用CNN时，我们应该考虑我们的数据集和目标，是否适用CNN
@@ -556,25 +556,25 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220612153748
 <li>一个维度标记词库中的一个单词</li>
 <li>对于某一个单词，它所在维度为1，其他维度为0</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121530986.png" srcset="/img/loading.gif" lazyload alt="image-20220612153012893" style="zoom:67%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121529997.png" srcset="/img/loading.gif" lazyload alt="image-20220612152953887" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121530986.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121529997.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h5 id="改进">改进</h5>
 <h6 id="others">Others</h6>
 <ul>
 <li>将其他不存在词库中的单词设置为“other”</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121531532.png" srcset="/img/loading.gif" lazyload alt="image-20220612153112422" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121531532.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h6 id="word-hashing">Word hashing</h6>
 <ul>
 <li>维度用来标记字母组合</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121532801.png" srcset="/img/loading.gif" lazyload alt="image-20220612153228675" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121532801.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="rnn">RNN</h3>
 <h4 id="存储前一个输入的信息">存储前一个输入的信息</h4>
 <ul>
 <li>将隐藏层的信息存储起来，将该信息作为输入，让网络可以学习</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121547500.png" srcset="/img/loading.gif" lazyload alt="image-20220612154709343" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121547500.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h5 id="例子">例子</h5>
 <ul>
 <li><p>假设所有的权重为1，没有bias，激活函数都是线性的</p></li>
@@ -634,9 +634,9 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220612155723
 <li>改变输入序列的顺序，会改变输出</li>
 <li>反复使用这样的结构</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121559818.png" srcset="/img/loading.gif" lazyload alt="image-20220612155900617" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121559818.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>如上图所示，当前输入，可以获得前一个输入的信息，可以简单区分出一些不同</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121604746.png" srcset="/img/loading.gif" lazyload alt="image-20220612160431558" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121604746.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>可以将网络做深</li>
 </ul>
@@ -729,12 +729,12 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220612192165
 <ul>
 <li>可以将上一个LSTM网络中的c拼合输入中</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121927804.png" srcset="/img/loading.gif" lazyload alt="image-20220612192703602" style="zoom: 80%;" /></p></li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121927804.png" srcset="/img/loading.gif" lazyload  style="zoom: 80%;" /></p></li>
 </ul>
 <h5 id="多层lstm">多层LSTM</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121933005.png" srcset="/img/loading.gif" lazyload alt="image-20220612193342779" style="zoom: 67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121933005.png" srcset="/img/loading.gif" lazyload  style="zoom: 67%;" /></p>
 <h5 id="学习目标">学习目标</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121935566.png" srcset="/img/loading.gif" lazyload alt="image-20220612193533363" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206121935566.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <ul>
 <li>BPTT（Backpropagation through time）</li>
 </ul>
@@ -805,41 +805,41 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220612201031
 <p>输入和输出都是序列，且长度没有限制，可以不一样 -&gt; Sequence to
 sequence learning</p>
 <h6 id="machine-translation">Machine Translation</h6>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206150959111.png" srcset="/img/loading.gif" lazyload alt="image-20220615095955057" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151009677.png" srcset="/img/loading.gif" lazyload alt="image-20220615100913625" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206150959111.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151009677.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="beyond-sequence">Beyond Sequence</h5>
 <h6 id="syntactic-parsing">Syntactic parsing</h6>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151011308.png" srcset="/img/loading.gif" lazyload alt="image-20220615101152260" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151011308.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="sequence-to-sequence-auto-encoder-text">Sequence-to-sequence
 Auto-encoder Text</h5>
 <p>要理解一个句子的意思，单词的顺序不可以忽略</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151014571.png" srcset="/img/loading.gif" lazyload alt="image-20220615101426521" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151015496.png" srcset="/img/loading.gif" lazyload alt="image-20220615101517419" style="zoom: 80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151016619.png" srcset="/img/loading.gif" lazyload alt="image-20220615101624543" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151014571.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151015496.png" srcset="/img/loading.gif" lazyload  style="zoom: 80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151016619.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="sequence-to-sequence-auto-encoder-speech">Sequence-to-sequence
 Auto-encoder Speech</h5>
 <ul>
 <li>不定长度的序列的降维</li>
 <li>发音相近的词语转换为向量后，会聚集在一定区域</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151022522.png" srcset="/img/loading.gif" lazyload alt="image-20220615102242458" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151022522.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>音频归档分为可变长度的音频段，然后可以对语音进行检索</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151026948.png" srcset="/img/loading.gif" lazyload alt="image-20220615102627894" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151026948.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>将语音片段转换为向量后，我们希望向量能够表示这个语音片段</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151029985.png" srcset="/img/loading.gif" lazyload alt="image-20220615102914925" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151029985.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>Encoder和Decoder是联合训练的</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151030015.png" srcset="/img/loading.gif" lazyload alt="image-20220615103050956" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151030015.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="attention-based-model">Attention-based Model</h4>
 <ul>
 <li>DNN/RNN可以通过Reading Head
 Controller在Memory中找到自己想要的相关信息</li>
 <li>就像人类的大脑一样，可以去记忆中去搜索相关的知识</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151034669.png" srcset="/img/loading.gif" lazyload alt="image-20220615103430622" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151034669.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>DNN/RNN同时也可以写入Memory</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151035798.png" srcset="/img/loading.gif" lazyload alt="image-20220615103542742" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151035798.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="应用">应用</h5>
 <h6 id="reading-comprehension">Reading Comprehension</h6>
 <ul>
@@ -885,7 +885,7 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220615130065
 <h5 id="一起使用">一起使用</h5>
 <h6 id="speech-recognition-cnnlstmdnn-hmm">Speech Recognition:
 CNN/LSTM/DNN + HMM</h6>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151308161.png" srcset="/img/loading.gif" lazyload alt="image-20220615130854017" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151308161.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h6 id="semantic-tagging-bi-directional-lstm-crfstructured-svm">Semantic
 Tagging: Bi-directional LSTM + CRF/Structured SVM</h6>
 <p><img
@@ -896,7 +896,7 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220615131088
 <li>输入是一个向量，经过模型后输出一个数字或者类别</li>
 <li>输入时一组向量，经过模型后输出一组数字或者类别</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011932332.png" srcset="/img/loading.gif" lazyload alt="image-20220601193201217" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011932332.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p><strong>输入时是一组向量</strong></p>
 <ul>
 <li>语句</li>
@@ -906,7 +906,7 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220615131088
 <p><strong>语句</strong></p>
 <p>如一句话“this is a
 cat”，我们需要对数据集进行编码处理，以便识别各个单词</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011936886.png" srcset="/img/loading.gif" lazyload alt="image-20220601193609800" style="zoom:50%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011936886.png" srcset="/img/loading.gif" lazyload  style="zoom:50%;" /></p>
 <ul>
 <li>One-hot Encoding 一键编码
 <ul>
@@ -918,10 +918,10 @@ cat”，我们需要对数据集进行编码处理，以便识别各个单词</
 <li>对词语进行编码处理，相似意义的词会聚集</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011933411.png" srcset="/img/loading.gif" lazyload alt="image-20220601193358288" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011933411.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p><strong>语音</strong></p>
 <p>进行加窗处理</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011939047.png" srcset="/img/loading.gif" lazyload alt="image-20220601193925885" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011939047.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p><strong>图</strong></p>
 <p>将每一个节点都视为一个向量</p>
 <p><img
@@ -930,20 +930,20 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220601194062
 <ul>
 <li>每一个向量都有一个标签</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011942420.png" srcset="/img/loading.gif" lazyload alt="image-20220601194100359" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011942420.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>例子</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011941403.png" srcset="/img/loading.gif" lazyload alt="image-20220601194147282" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011941403.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>整个序列有一个标签</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011942658.png" srcset="/img/loading.gif" lazyload alt="image-20220601194232485" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011942658.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>例子</p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011943264.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>模型自己决定有多少个标签（seq2seq）</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011946215.png" srcset="/img/loading.gif" lazyload alt="image-20220601194616106" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206011946215.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="思考">思考</h4>
 <ul>
 <li>对于一段文本，我们需要考虑前后文，如判断"I saw a
@@ -959,29 +959,29 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220601200475
 <li>可以使用自注意力机制</li>
 </ul>
 <h3 id="自注意力">自注意力</h3>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012006615.png" srcset="/img/loading.gif" lazyload alt="image-20220601200646438" style="zoom: 67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012006615.png" srcset="/img/loading.gif" lazyload  style="zoom: 67%;" /></p>
 <h4 id="实现">实现</h4>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012007564.png" srcset="/img/loading.gif" lazyload alt="image-20220601200757296" style="zoom: 67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012007564.png" srcset="/img/loading.gif" lazyload  style="zoom: 67%;" /></p>
 <h5
 id="考虑当前向量和序列中其他向量的关系">考虑当前向量和序列中其他向量的关系</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012008036.png" srcset="/img/loading.gif" lazyload alt="image-20220601200854852" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012008036.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h5
 id="可以对两个要关联的向量进行某种运算">可以对两个要关联的向量进行某种运算</h5>
 <ul>
 <li><strong>Dot-product</strong></li>
 <li>Additive</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012010332.png" srcset="/img/loading.gif" lazyload alt="image-20220601201001156" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012010332.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p>对于当前向量，计算出一个query向量，对于其他的向量，各有一个key向量，可以分别计算得出注意力分数(attention
 score)</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012012018.png" srcset="/img/loading.gif" lazyload alt="image-20220601201235782" style="zoom: 67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012012018.png" srcset="/img/loading.gif" lazyload  style="zoom: 67%;" /></p>
 <p>可以对注意力分数(attention score)进行softmax运算</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012013572.png" srcset="/img/loading.gif" lazyload alt="image-20220601201352413" style="zoom:50%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012013572.png" srcset="/img/loading.gif" lazyload  style="zoom:50%;" /></p>
 <p>然后基于注意力分数(attention score)，利用value向量，提取出信息</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012015446.png" srcset="/img/loading.gif" lazyload alt="image-20220601201509303" style="zoom:50%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012015446.png" srcset="/img/loading.gif" lazyload  style="zoom:50%;" /></p>
 <p>对于所有的向量，平行地进行运算</p>
-<p><img src="C:/Users/12554/AppData/Roaming/Typora/typora-user-images/image-20220601201612541.png" srcset="/img/loading.gif" lazyload alt="image-20220601201612541" style="zoom:50%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012016199.png" srcset="/img/loading.gif" lazyload alt="image-20220601201657068" style="zoom:67%;" /></p>
+<p><img src="C:/Users/12554/AppData/Roaming/Typora/typora-user-images/image-20220601201612541.png" srcset="/img/loading.gif" lazyload  style="zoom:50%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012016199.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h5
 id="对于这样相同的运算我们可以将这些向量拼合成矩阵进行矩阵运算加快运算">对于这样相同的运算，我们可以将这些向量拼合成矩阵，进行矩阵运算，加快运算</h5>
 <ul>
@@ -992,7 +992,7 @@ id="对于这样相同的运算我们可以将这些向量拼合成矩阵进行�
 <li>value：<span class="math inline">\(V = W^vI\)</span></li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012018858.png" srcset="/img/loading.gif" lazyload alt="image-20220601201802665" style="zoom: 80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012018858.png" srcset="/img/loading.gif" lazyload  style="zoom: 80%;" /></p>
 <ul>
 <li>注意力分数的获取</li>
 </ul>
@@ -1015,13 +1015,13 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220601202668
 <ul>
 <li>小结</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012027497.png" srcset="/img/loading.gif" lazyload alt="image-20220601202744354" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012027497.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <h3 id="multi-head-self-attention">Multi-head Self-attention</h3>
 <ul>
 <li>多头注意力机制</li>
 <li>可以探索不同类型之间的联系</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012031288.png" srcset="/img/loading.gif" lazyload alt="image-20220601203142163" style="zoom: 67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012031288.png" srcset="/img/loading.gif" lazyload  style="zoom: 67%;" /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012032401.png" srcset="/img/loading.gif" lazyload /></p>
 <h3 id="positional-encoding">Positional Encoding</h3>
@@ -1041,11 +1041,11 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220601203959
 <li><p>NLP 自然语言处理</p></li>
 <li><p>语音处理：Truncated Self-attention</p></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012043669.png" srcset="/img/loading.gif" lazyload alt="image-20220601204318387" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012043669.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <ul>
 <li>图像</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012047516.png" srcset="/img/loading.gif" lazyload alt="image-20220601204706231" style="zoom: 67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012047516.png" srcset="/img/loading.gif" lazyload  style="zoom: 67%;" /></p>
 <ul>
 <li>Self-attention GAN</li>
 </ul>
@@ -1072,12 +1072,12 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220601210069
 <ul>
 <li>Self-attention适合更多的数据，而CNN适合比较少的数据</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012102106.png" srcset="/img/loading.gif" lazyload alt="image-20220601210243798" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012102106.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="self-attention和rnn的比较">Self-attention和RNN的比较</h3>
 <p>RNN不可以平行处理，而自注意力可以</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012103414.png" srcset="/img/loading.gif" lazyload alt="image-20220601210357104" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012103414.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="self-attention-for-graph">Self-attention for Graph</h3>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012104168.png" srcset="/img/loading.gif" lazyload alt="image-20220601210432017" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206012104168.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h3 id="transformer">Transformer</h3>
 <h4 id="seq2seq">Seq2seq</h4>
 <ul>
@@ -1090,51 +1090,51 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220601210069
 <li>Seq2seq for Chatbot</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201016079.png" srcset="/img/loading.gif" lazyload alt="image-20220620101610237" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201016079.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li><p>其他的一些应用</p>
 <ul>
 <li>Seq2seq for Syntactic Parsing</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201020094.png" srcset="/img/loading.gif" lazyload alt="image-20220620102011952" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201020094.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>Seq2seq for Multi-label Classification</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021238.png" srcset="/img/loading.gif" lazyload alt="image-20220620102042105" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021238.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>Seq2seq for Object Detection</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021586.png" srcset="/img/loading.gif" lazyload alt="image-20220620102118403" style="zoom:80%;" /></p></li>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201021586.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p></li>
 </ul>
 <h4 id="transformer-1">Transformer</h4>
 <p>Encoder-Decoder架构</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201023469.png" srcset="/img/loading.gif" lazyload alt="image-20220620102300323" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201023469.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>结构</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201026730.png" srcset="/img/loading.gif" lazyload alt="image-20220620102633567" style="zoom: 80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201026730.png" srcset="/img/loading.gif" lazyload  style="zoom: 80%;" /></p>
 <h5 id="encoder">Encoder</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201027152.png" srcset="/img/loading.gif" lazyload alt="image-20220620102723001" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031355.png" srcset="/img/loading.gif" lazyload alt="image-20220620103105168" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201027152.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031355.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>Layer Norm的调整</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031877.png" srcset="/img/loading.gif" lazyload alt="image-20220620103151696" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201031877.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="decoder">Decoder</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201038711.png" srcset="/img/loading.gif" lazyload alt="image-20220620103857554" style="zoom: 67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201038711.png" srcset="/img/loading.gif" lazyload  style="zoom: 67%;" /></p>
 <p>Transformer的Decoder是一个自回归的Decoder（Autoregressive
 Decoder）</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201036338.png" srcset="/img/loading.gif" lazyload alt="image-20220620103624171" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201036338.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="masked-self-attention">Masked Self-attention</h5>
 <ul>
 <li>在解码器中，第一个注意力机制是一个掩码的自注意力</li>
 <li>这是因为解码器需要输出一个序列，它需要在不知道后面的信息的情况下，根据前面的信息，来预测当前的输出</li>
 <li>所以我们在训练时，需要将后面的序列盖住</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201042918.png" srcset="/img/loading.gif" lazyload alt="image-20220620104239749" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201042918.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>在训练时，我们给解码器的输入都是正确答案，帮助其完成训练</li>
 </ul>
 <p><strong>停止符号</strong></p>
 <p>为了让输出停止，我们需要定义一个停止符号，提示解码器停止输出</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201043748.png" srcset="/img/loading.gif" lazyload alt="image-20220620104334428" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201044384.png" srcset="/img/loading.gif" lazyload alt="image-20220620104422226" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201043748.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201044384.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="nat-非自回归">NAT 非自回归</h5>
 <ul>
 <li>AT需要前面的输出信息，才能给出当前的输出</li>
@@ -1146,20 +1146,20 @@ Decoder）</p>
 <li>输出一个固定长度的长序列，忽略终止符END后面的Token</li>
 </ul>
 <h5 id="cross-attention">Cross attention</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201057230.png" srcset="/img/loading.gif" lazyload alt="image-20220620105702079" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201057230.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>Cross attention部分会将Encoder的最后一个输出转换为Decoder部分的<span
 class="math inline">\(k\)</span>和<span
 class="math inline">\(v\)</span>矩阵</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201416702.png" srcset="/img/loading.gif" lazyload alt="image-20220620141608521" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201421768.png" srcset="/img/loading.gif" lazyload alt="image-20220620142157510" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201416702.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201421768.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h6 id="不同的连接方式">不同的连接方式</h6>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201422724.png" srcset="/img/loading.gif" lazyload alt="image-20220620142232490"  /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201422724.png" srcset="/img/loading.gif" lazyload   /></p>
 <h4 id="训练transformer">训练Transformer</h4>
 <ul>
 <li>Encoder和Decoder联合训练</li>
 <li>使用softmax和cross entropy进行训练</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201437245.png" srcset="/img/loading.gif" lazyload alt="image-20220620143749025" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201437245.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="teacher-forcing模式">Teacher Forcing模式</h5>
 <p>将输出数据作为Decoder的输入，使其向正确输出靠近</p>
 <p><img
@@ -1167,7 +1167,7 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220620143993
 <h4 id="tips">Tips</h4>
 <h5 id="copy-machanism-复制机制">Copy Machanism 复制机制</h5>
 <p>将一些不太需要翻译的人名、地名等直接复制</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201441878.png" srcset="/img/loading.gif" lazyload alt="image-20220620144123673" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201441878.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="guided-attention">Guided Attention</h5>
 <ul>
 <li><p>Monotonic Attention</p></li>
@@ -1175,38 +1175,38 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/20220620143993
 <li><p>在一些任务中，输入和输出是单调排列的，顺序关系不可改变</p></li>
 <li><p>例如下面的序列中，在输出时，第一个输出中，Attention关注的是后面的序列</p></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201450843.png" srcset="/img/loading.gif" lazyload alt="image-20220620145025627" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201450843.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="beam-search">Beam Search</h5>
 <ul>
 <li>在Attention
 Score中，模型会选择当前分数最高的，但是多次选择后，综合起来，不一定是最好的选择</li>
 <li>Beam Search会综合考虑全局的分数，选择最好的结果</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201453733.png" srcset="/img/loading.gif" lazyload alt="image-20220620145344491" style="zoom: 80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201453733.png" srcset="/img/loading.gif" lazyload  style="zoom: 80%;" /></p>
 <p>但是最好的选择不一定会产生很好的结果</p>
 <h5 id="sampling">Sampling</h5>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201456221.png" srcset="/img/loading.gif" lazyload /></p>
 <p>在一些任务中，生成序列时，Decoder需要一些噪声(Randomness)，sample是指从某些分布中sample中出来的噪声</p>
 <h6 id="scheduled-sampling">Scheduled Sampling</h6>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201508376.png" srcset="/img/loading.gif" lazyload alt="image-20220620150815218" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201508376.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>采样由Decoder决定</p>
 <h5 id="optimizing-evaluation-metrics">Optimizing Evaluation
 Metrics</h5>
 <p>优化方案的选择</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201501785.png" srcset="/img/loading.gif" lazyload alt="image-20220620150131465" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201501785.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>Cross Entropy</li>
 <li>BLEU score</li>
 <li>Reinforcement learning</li>
 </ul>
 <h3 id="各种各样的attention">各种各样的Attention</h3>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151319663.png" srcset="/img/loading.gif" lazyload alt="image-20220615131919483" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151319663.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="自注意力机制的运作">自注意力机制的运作</h4>
 <ul>
 <li>利用Query和Key构造一个Attention Matrix</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151320098.png" srcset="/img/loading.gif" lazyload alt="image-20220615132047951" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151320098.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>自注意力只是一个大型网络的一个模块</li>
 <li>当序列的长度N足够大的时候，自注意力在计算占主导</li>
@@ -1217,13 +1217,13 @@ id="人工干预来跳过一些attention-matrix的计算">人工干预来跳过�
 Matrix的计算</h4>
 <h5 id="local-attentiontruncated-attention">Local Attention/Truncated
 Attention</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151328102.png" srcset="/img/loading.gif" lazyload alt="image-20220615132821960" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151328102.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>只计算标记的部位，其他位置设置为0</li>
 <li>跟CNN有些相似</li>
 </ul>
 <h5 id="stride-attention">Stride Attention</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151330114.png" srcset="/img/loading.gif" lazyload alt="image-20220615133009983" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151330114.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>选中从自身向左右两边跨越规定的步数的部位，进行计算</li>
 </ul>
@@ -1235,8 +1235,8 @@ Attention</h5>
 <li>被每一个token关注(attend)，知道全局信息</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151341781.png" srcset="/img/loading.gif" lazyload alt="image-20220615134147669" style="zoom:67%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151353367.png" srcset="/img/loading.gif" lazyload alt="image-20220615135338223" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151341781.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151353367.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>图中前两个是special token</p>
 <h5 id="小结-2">小结</h5>
 <ul>
@@ -1245,14 +1245,14 @@ Attention</h5>
 <li>不同的head可以使用不同的模式</li>
 </ul></li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151355615.png" srcset="/img/loading.gif" lazyload alt="image-20220615135545467" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151355615.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4
 id="关注一些matrix中关键的部分critical-parts">关注一些Matrix中关键的部分(Critical
 Parts)</h4>
 <ul>
 <li>小数值直接设置为0</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151415355.png" srcset="/img/loading.gif" lazyload alt="image-20220615141532216" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151415355.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>如何快速估计注意力权重较小的部分</li>
 </ul>
@@ -1263,29 +1263,29 @@ Parts)</h4>
 </ul>
 <h6 id="步骤1">步骤1</h6>
 <p>基于相似度对query和key进行聚类标注</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151435498.png" srcset="/img/loading.gif" lazyload alt="image-20220615143507228" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151435498.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h6 id="步骤2">步骤2</h6>
 <ul>
 <li>相同类别的才计算attention weight</li>
 <li>不同类别的设置为0</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151436784.png" srcset="/img/loading.gif" lazyload alt="image-20220615143639643" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151436784.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="learnable-patterns">Learnable Patterns</h5>
 <p>通过学习来获取需要计算的部位</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151443520.png" srcset="/img/loading.gif" lazyload alt="image-20220615144303332" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151443520.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="不需要完整的attention-matrix">不需要完整的Attention matrix</h5>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151446205.png" srcset="/img/loading.gif" lazyload alt="image-20220615144605069" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151446205.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>可以减少key和value的长度</li>
 <li>query的长度不变，因为输出长度需要不变</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151453211.png" srcset="/img/loading.gif" lazyload alt="image-20220615145312066" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151453211.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h6 id="使用卷积">使用卷积</h6>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151457166.png" srcset="/img/loading.gif" lazyload alt="image-20220615145754047" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151457166.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h6 id="使用参数矩阵相乘">使用参数矩阵相乘</h6>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151458612.png" srcset="/img/loading.gif" lazyload alt="image-20220615145841338" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151458612.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="注意力机制计算">注意力机制计算</h4>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151500280.png" srcset="/img/loading.gif" lazyload alt="image-20220615150050121" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151500280.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li>利用输入I获取Q、K、V进行运算，得到输出O</li>
 <li>为加快运算，采用矩阵计算的形式</li>
@@ -1294,13 +1294,13 @@ Parts)</h4>
 <ul>
 <li><span class="math inline">\(K^TQ\)</span>先计算</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151505401.png" srcset="/img/loading.gif" lazyload alt="image-20220615150558285" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151505401.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li><span class="math inline">\(VK^T\)</span>先计算</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151506681.png" srcset="/img/loading.gif" lazyload alt="image-20220615150610340" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151506681.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>三个矩阵计算顺序不同，进行乘法次数不同，结果相同</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151608002.png" srcset="/img/loading.gif" lazyload alt="image-20220615160842793" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206151608002.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>而Q、K、V三个矩阵的运算中，</p>
 <p>正常进行计算，会进行<span
 class="math inline">\((d+d^\prime)N^2\)</span>次乘法运算</p>
@@ -1308,7 +1308,7 @@ class="math inline">\((d+d^\prime)N^2\)</span>次乘法运算</p>
 <p>先计算<span class="math inline">\(V K^T\)</span>的话，会计算<span
 class="math inline">\(2d^\prime
 dN\)</span>次乘法运算，小于正常运算次数，序列长度N是大于维度d的</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191609388.png" srcset="/img/loading.gif" lazyload alt="image-20220619160902235" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191609388.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h5 id="注意力计算的变换">注意力计算的变换</h5>
 <p>我们利用当前向量的<span
 class="math inline">\(q\)</span>矩阵，来与自身和其他向量的<span
@@ -1327,7 +1327,7 @@ class="math inline">\(b^1\)</span>，即 <span class="math display">\[
 b^1 = \sum_{i=1}^{N}\alpha^{\prime}_{1,i}v^i =
 \sum_{i=1}^{N}\frac{exp(q^1\cdot k^i)}{\sum^N_{j=1}exp(q^1\cdot k^j)}v^i
 \]</span>
-<img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191622844.png" srcset="/img/loading.gif" lazyload alt="image-20220619162249548" style="zoom:80%;" /></p>
+<img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191622844.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>在这里，我们可以对<span
 class="math inline">\(softmax\)</span>的计算进行改变 <span
 class="math display">\[
@@ -1354,13 +1354,13 @@ k^j)}v^i \\ \\
 \cdot\sum^{N}_{j=1}\phi(k^j)
 \end{equation}
 \]</span>
-<img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191639053.png" srcset="/img/loading.gif" lazyload alt="image-20220619163916875" style="zoom:67%;" /></p>
+<img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191639053.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p>那么<span class="math inline">\(b^1\)</span>的计算进一步调整</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191640161.png" srcset="/img/loading.gif" lazyload alt="image-20220619164017990" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191640161.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>我们可以利用<span class="math inline">\(k\)</span>和<span
 class="math inline">\(v\)</span>提前计算好部分值，需要时直接调用即可</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191642452.png" srcset="/img/loading.gif" lazyload alt="image-20220619164259336" style="zoom:80%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191816815.png" srcset="/img/loading.gif" lazyload alt="image-20220619181601660" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191642452.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191816815.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <p>这样子，有一部分不用重复进行计算</p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191819653.png" srcset="/img/loading.gif" lazyload /></p>
@@ -1372,9 +1372,9 @@ Matrix</h4>
 <p>注意力机制通过<span class="math inline">\(q\)</span>和<span
 class="math inline">\(k\)</span>来计算Attention
 Matrix，但是我们可以将整个矩阵是为网络的参数</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191836293.png" srcset="/img/loading.gif" lazyload alt="image-20220619183648004" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191836293.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <h4 id="小结-3">小结</h4>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191837325.png" srcset="/img/loading.gif" lazyload alt="image-20220619183747143" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206191837325.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 
                 
               </div>
@@ -1472,9 +1472,9 @@ Matrix，但是我们可以将整个矩阵是为网络的参数</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/14/Linux1/" title="Linux1">
+                      <a href="/2022/06/14/%E8%B6%A3%E8%B0%88Linux1/" title="趣谈Linux1">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux1</span>
+                        <span class="hidden-mobile">趣谈Linux1</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031859077.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901893.png">
 <meta property="article:published_time" content="2021-09-30T02:10:54.000Z">
-<meta property="article:modified_time" content="2023-04-15T08:35:28.649Z">
+<meta property="article:modified_time" content="2023-04-26T06:21:34.019Z">
 <meta property="article:author" content="GuoYB">
 <meta property="article:tag" content="课程:操作系统">
 <meta name="twitter:card" content="summary_large_image">
@@ -349,7 +349,7 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-202110061
 <li>给每个CPU配置两个特殊硬件寄存器，基址寄存器和界限寄存器</li>
 <li>使用这两个寄存器时，程序装载到内存中连续的空闲位置且装载期间无须重定位</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211007085003861.png" srcset="/img/loading.gif" lazyload alt="image-20211007085003861" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211007085003861.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <ul>
 <li><p>定位时，会将进程的地址值加上基址寄存器中的值，同时也会检查程序提供的地址是否大于等于界限寄存器里的值。</p></li>
 <li><p>缺点：每次访问内存都需要进行加法和比较运算</p></li>
@@ -431,7 +431,7 @@ fit)的算法，维护一个存储空闲区信息的链表</li>
 <li><strong>MMU</strong> (memory management
 unit)（内存管理单元）将虚拟地址转换为物理地址。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031521320.png" srcset="/img/loading.gif" lazyload alt="image-20220103152147230" style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031521320.png" srcset="/img/loading.gif" lazyload  style="zoom:80%;" /></p>
 <ul>
 <li><p>虚拟地址空间(<strong>virtual address
 space</strong>)按照固定大小分为(虚拟)<strong>页面(pages)</strong>，物理内存中对应的为<strong>页框(page
@@ -563,21 +563,21 @@ src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031630556
 Look-aside
 Buffer，TLB)或关联内存，无需使用页表即可将虚拟地址映射到物理地址。</li>
 </ul>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031832286.png" srcset="/img/loading.gif" lazyload alt="image-20220103183240240" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031832286.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031837365.png" srcset="/img/loading.gif" lazyload /></p>
 <h3 id="问题">问题</h3>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031300230.png" srcset="/img/loading.gif" lazyload alt="image-20220103130054066" style="zoom:67%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031541149.png" srcset="/img/loading.gif" lazyload alt="image-20220103154159113" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031300230.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031541149.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p>虚拟地址空间总共大小为：<span class="math inline">\(16 * 2048 =
 2^{15}B=32KB\)</span>，所以需要至少15位来标记</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031638130.png" srcset="/img/loading.gif" lazyload alt="image-20220103163839090" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031638130.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840947.png" srcset="/img/loading.gif" lazyload /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031840639.png" srcset="/img/loading.gif" lazyload /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031859077.png" srcset="/img/loading.gif" lazyload alt="image-20220103185948040" style="zoom:67%;" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901893.png" srcset="/img/loading.gif" lazyload alt="image-20220103190114854" style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031859077.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901893.png" srcset="/img/loading.gif" lazyload  style="zoom:67%;" /></p>
 <p><img
 src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201031901668.png" srcset="/img/loading.gif" lazyload /></p>
 <h3 id="check-points">Check Points</h3>
