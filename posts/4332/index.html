@@ -1,0 +1,776 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计网L9 | Yeの博客</title><meta name="author" content="GuoYB"><meta name="copyright" content="GuoYB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网络层 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网L9">
+<meta property="og:url" content="https://ye2222.github.io/posts/4332/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="网络层 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ye2222.github.io/img/avatar.png">
+<meta property="article:published_time" content="2021-12-19T12:43:21.000Z">
+<meta property="article:modified_time" content="2023-04-26T11:19:54.839Z">
+<meta property="article:author" content="GuoYB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ye2222.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ye2222.github.io/posts/4332/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":100,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计网L9',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-26 19:19:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Yeの博客"><span class="site-name">Yeの博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计网L9</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-19T12:43:21.000Z" title="发表于 2021-12-19 20:43:21">2021-12-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-26T11:19:54.839Z" title="更新于 2023-04-26 19:19:54">2023-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计网L9"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="主要内容">主要内容</h4>
+<ul>
+<li>packets(包)是如何从源地址传送到目标地址的</li>
+<li>如何选择路径
+<ul>
+<li>Routing protocol, Router</li>
+<li>Routed protocol: IPv4,IPv6</li>
+<li>Others</li>
+</ul></li>
+<li>Outline of network layer</li>
+<li>Outline of Routing algorithm</li>
+<li>Learn Dijkstra algorithm</li>
+<li>Distance-vector algorithm ：Rip</li>
+<li>Link state routing algorithm ：OSPF</li>
+<li>Multi-level routing, broadcast routing, mobile routing, adhoc
+routing, p2p, and et al.</li>
+</ul>
+<h5 id="第一部分">第一部分</h5>
+<ul>
+<li>Main function of network layer</li>
+<li>Routing algorithm
+<ul>
+<li>Static routing algorithm
+<ul>
+<li>Dijkstra</li>
+<li>flooding</li>
+</ul></li>
+<li>Dynamic routing algorithm
+<ul>
+<li>DV</li>
+<li>LS</li>
+</ul></li>
+</ul></li>
+<li>Learn Dijkstra algorithm</li>
+</ul>
+<h2 id="网络层-network-layer">网络层 network layer</h2>
+<h4 id="网络层的位置">网络层的位置</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205250810.png"  style="zoom:67%;" /></p>
+<h4 id="网络层的主要作用">网络层的主要作用</h4>
+<p>将数据包从源头一直传输到目的地。</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205400001.png" /></p>
+<h3 id="service-types-provided-by-network-layer-服务类型">Service types
+provided by network layer 服务类型</h3>
+<ul>
+<li>Connection oriented service 面向连接：<strong>X.25, ATM
+虚电路</strong></li>
+<li>Connectionless service 无连接：<strong>IP 数据报</strong></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205452271.png"  style="zoom: 67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219205547429.png" /></p>
+<ul>
+<li>Virtual-circuit subnet 虚电路子网
+<ul>
+<li>Select a path when connection is established
+<ul>
+<li>建立连接时选择路径</li>
+</ul></li>
+<li>Each packet has a connection-number
+<ul>
+<li>每个数据包都有一个连接号</li>
+</ul></li>
+<li>Connection is removed when communication is over
+<ul>
+<li>通信结束后连接被删除</li>
+</ul></li>
+</ul></li>
+<li>Datagram subnet 数据报子网
+<ul>
+<li>Each datagram has destination-address
+<ul>
+<li>每个数据报都有目的地址</li>
+</ul></li>
+<li>Each datagram look for path independently
+<ul>
+<li>每个数据报独立寻找路径</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210127638.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210106534.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210231958.png" /></p>
+<h3 id="ipv4协议">IPv4协议</h3>
+<h5 id="介绍">介绍</h5>
+<ul>
+<li>网际协议版本4</li>
+<li>一种无连接的协议，是互联网的核心</li>
+<li>也是使 用最广泛的网际协议版本，其后继版本为IPv6</li>
+</ul>
+<h5 id="基本功能">基本功能</h5>
+<p>internet协议执行两个基本功能</p>
+<ul>
+<li>寻址(addressing)</li>
+<li>分片(fragmentation)</li>
+</ul>
+<h5 id="ipv4数据报格式">IPv4数据报格式</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219210727923.png" /></p>
+<h5 id="数据报分片">数据报分片</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211003459.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211047797.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211103487.png" /></p>
+<h5 id="总结">总结</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211119275.png" /></p>
+<h5 id="ip地址">IP地址</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211204626.png" /></p>
+<h5 id="ip地址的分类">IP地址的分类</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211249325.png" /></p>
+<h5 id="一些特殊的地址">一些特殊的地址</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211333100.png" /></p>
+<h4 id="子网的划分">子网的划分</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211422213.png" /></p>
+<h3 id="routing-table">Routing table</h3>
+<ul>
+<li><p>Static routing</p>
+<ul>
+<li>Configured by administrator: ip route</li>
+</ul></li>
+<li><p>Dynamic routing</p>
+<ul>
+<li>Routing algorithm
+<ul>
+<li>Distance vector routing（D-V）</li>
+<li>Link state routing（L-S）</li>
+</ul></li>
+</ul></li>
+<li><p>由管理员配置的路由表项称为<strong>静态路由</strong></p>
+<ul>
+<li>适合小而稳定的网络，成本更低</li>
+<li>默认路由：目的网络地址和子网掩码均为0.0.0.0，如：</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211623227.png" /></p></li>
+<li><p>可以使用Windows：route print, check routing table</p></li>
+<li><p>通过路由协议获得的路由表项称为<strong>动态路由</strong></p>
+<ul>
+<li>适合大型变分网络，成本更高</li>
+</ul></li>
+</ul>
+<h4 id="routed-protocol和routing-protocol的区别">Routed
+protocol和Routing protocol的区别</h4>
+<ul>
+<li>Routed protocol 直接连接用户的
+<ul>
+<li>example：IP、IPX</li>
+</ul></li>
+<li>Routing protocol 维持路由间的表格
+<ul>
+<li>Distance vector routing</li>
+<li>Link state routing</li>
+<li>Hybrid routing</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219211739218.png"  style="zoom:67%;" /></p>
+<h2 id="routing-algorithm">Routing algorithm</h2>
+<ul>
+<li>路由算法设计必须考虑以下问题：
+<ul>
+<li>正确性、简单性、鲁棒性、稳定性、公平性和最优性（矛盾、权衡）</li>
+<li>Correctness, simplicity, robustness, stability, fairness, and
+optimality (contradictory、trade-off)</li>
+</ul></li>
+<li>路由算法分类
+<ul>
+<li>静态算法（非自适应路由选择）（not self-adaptive）</li>
+<li>动态算法（自适应路由选择）（ self-adaptive ）</li>
+</ul></li>
+</ul>
+<h4 id="路由算法中的度量">路由算法中的度量</h4>
+<ul>
+<li>Alias：cost，量度、代价、开销、成本</li>
+<li>Common metric
+<ul>
+<li>Path length：hop (跳数)</li>
+<li>reliability：error rate on line</li>
+<li>delay</li>
+<li>bandwidth</li>
+<li>Load of router</li>
+<li>Communication cost</li>
+</ul></li>
+</ul>
+<h4 id="最优化原则-optimization-principle">最优化原则 Optimization
+principle</h4>
+<ul>
+<li>如果路由器 J 在从路由器 I 到路由器 K 的最优路径上，那么从 J 到 K
+的最优路径也落在同一条路径上</li>
+<li><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212224980.png"  style="zoom:67%;" /></li>
+<li>从所有源到给定目的地的一组最优路由形成以目的地为根的树（称为sink
+tree）</li>
+</ul>
+<h4 id="sink-tree汇集树">Sink tree(汇集树)</h4>
+<ul>
+<li>汇集树不一定是唯一的</li>
+<li>所有路由算法的目标都是发现并使用所有路由器的汇集树</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212307700.png" /></p>
+<h3 id="shortest-path-routing">Shortest path routing</h3>
+<ul>
+<li><p>定义</p>
+<ul>
+<li>用于计算一个节点到其他所有节点的最短路径，主要特点是以起始点为
+中心向外逐层扩展，直到扩展到终点为止</li>
+</ul></li>
+</ul>
+<h4 id="dijkstra算法">Dijkstra算法</h4>
+<ul>
+<li><p>compute shortest path using weight on communication-line</p></li>
+<li><p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212457173.png"  style="zoom:80%;" /></p></li>
+<li><p>带有最少行的路径可能不是最短路径</p></li>
+<li><p>最短的路可能不是最快的</p></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219212911855.png" /></p>
+<h5 id="步骤">步骤</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213055109.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213101714.png" /></p>
+<h5 id="例子">例子</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213115305.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213121592.png" /></p>
+<h4 id="flooding">Flooding</h4>
+<ul>
+<li>Every incoming packet is sent out on every outgoing line except the
+one it arrived on
+<ul>
+<li>不计算路径，有路就走</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219213234071.png"  style="zoom:67%;" /></p>
+<ul>
+<li><p>problem：duplicate packets，such as 3，6</p></li>
+<li><p>解决：</p>
+<ul>
+<li>在packet-header中加一个计数器，通过节点时减1，计数器为零时丢包</li>
+<li>每个节点建立一个寄存器表，数据包再次到达节点时被丢弃</li>
+<li>选择性地Flooding</li>
+</ul></li>
+<li><p>缺点：重复数据包有两个，浪费带宽</p></li>
+<li><p>优点：可靠性高，路径短，军事上使用频繁</p></li>
+</ul>
+<h2 id="dynamic-routing-algorithm">Dynamic Routing algorithm</h2>
+<ul>
+<li>Distance vector routing algorithm
+<ul>
+<li>For example: RIP</li>
+</ul></li>
+<li>Link state routing algorithm
+<ul>
+<li>For example: OSPF</li>
+</ul></li>
+<li>Hybrid routing 混合路由
+<ul>
+<li>For example: IGRP</li>
+</ul></li>
+</ul>
+<h4 id="动态的实现">动态的实现</h4>
+<ul>
+<li>如果路由器需要通信，他们必须说相同的语言，即相同的路由协议</li>
+<li>一个新的路由器必须主动介绍自己（问好）</li>
+<li>定期发送 hello 数据包以了解其他人的健康状况（保持活动状态）</li>
+</ul>
+<h4 id="distance-vector-routing-距离矢量路由">Distance Vector Routing
+距离矢量路由</h4>
+<ul>
+<li>距离矢量路由选择：
+<ul>
+<li>通过让每个路由器维护一个表（即矢量）来操作</li>
+<li>给出到每个目的地的最佳已知距离以及使用哪条线路到达那里。</li>
+</ul></li>
+<li>D-V 算法是动态的和分布式的。 常用于小型网络，RIP是D-V的典型例子</li>
+<li>RIP：路由信息协议，路由选择信息协议，1988，RFC1058</li>
+</ul>
+<h5 id="working-principle-of-dv----dv算法的工作原则">Working principle
+of DV -- DV算法的工作原则</h5>
+<ul>
+<li>每个路由器使用两个向量 $D_i $和 <span
+class="math inline">\(S_i\)</span>
+<ul>
+<li>$D_i $表示从一个节点到所有其他节点的距离</li>
+<li><span class="math inline">\(S_i\)</span> 表示下一个节点（跳）</li>
+</ul></li>
+<li>在邻居路由器之间交换路径信息</li>
+<li>每个节点根据路径信息更新自己的路由表</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214243425.png" /></p>
+<h5 id="更新表">更新表</h5>
+<ul>
+<li>交换向量后
+<ul>
+<li>更新距离</li>
+<li>更新下一个节点</li>
+</ul></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219214530162.png" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219232907230.png"  style="zoom:67%;" /></p>
+<h5 id="练习">练习</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219233157580.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211219235557166.png" /></p>
+<h5 id="d-v算法的特点">D-V算法的特点</h5>
+<ul>
+<li>优势
+<ul>
+<li>算法很简单</li>
+</ul></li>
+<li>坏处
+<ul>
+<li>交换的信息太大</li>
+<li>路径信息传播缓慢，路径信息可能不同</li>
+<li>收敛速度慢，导致无穷计数问题。</li>
+<li>不适合大网络</li>
+</ul></li>
+</ul>
+<h5 id="main-features-of-rip">Main features of RIP</h5>
+<ul>
+<li>RIP 是一种 D-V 路由协议</li>
+<li>RIP 使用 hop（跳数）作为度量(metric)</li>
+<li>当metric大于15时，认为目的地不可达</li>
+<li>默认发送周期为 30 秒</li>
+</ul>
+<h5 id="disadvantage-of-rip">Disadvantage of RIP</h5>
+<ul>
+<li>当目标网络的度量大于 15（如此小）时无法到达</li>
+<li>RIP的度量是hop，一路都是router的编号，不太合理</li>
+<li>实际中，常数到无穷大，收敛缓慢</li>
+</ul>
+<h5 id="the-problems-induced-by-dv">The problems induced by DV</h5>
+<ul>
+<li>Representation
+<ul>
+<li>routing loop（路由环路）</li>
+<li>Count to infinite（计数到无穷问题）</li>
+<li>slow Convergence （收敛慢的问题）</li>
+</ul></li>
+<li>Cause
+<ul>
+<li>Trust wrong routing information</li>
+</ul></li>
+</ul>
+<h5 id="main-problem-of-dv">Main problem of DV</h5>
+<p>It reacts rapidly to good news, but leisurely to bad
+news(好消息跑得快，坏消息传得慢)</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220000245076.png" /></p>
+<h3 id="link-state-routing-ospf">Link State Routing OSPF</h3>
+<ul>
+<li>距离矢量路由一直在 ARPANET 中使用，直到 1979
+年它被链路状态路由取代。</li>
+<li>链路状态路由的变体现在被广泛使用。</li>
+<li>链路状态路由背后的思想由五个部分组成：
+<ul>
+<li>发现它的邻居并了解他们的网络地址。</li>
+<li>测量每个邻居的延迟或成本。</li>
+<li>构造一个分组，分组中包含刚收到的所有信息</li>
+<li>将此分组发送给其他的路由器</li>
+<li>计算到所有其他路由器的最短路径。</li>
+</ul></li>
+</ul>
+<h4 id="learning-about-the-neighbors">Learning about the Neighbors</h4>
+<ul>
+<li>当路由器启动时，它会在每条点对点线路上发送一个特殊的 HELLO
+数据包。</li>
+<li>期望另一端的路由器发回一个回复，告诉它是谁（使用全局唯一名称）。</li>
+<li>当两个或多个路由器通过 LAN 连接时，LAN 可以建模为一个节点。</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001502179.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002158695.png" /></p>
+<h4 id="measuring-line-cost-设置到每个邻居的成本度量">Measuring Line
+Cost 设置到每个邻居的成本度量</h4>
+<ul>
+<li><p>为了确定线路的成本，路由器发送一个特殊的 ECHO
+数据包，并且要求对方立即发回。</p></li>
+<li><p>通过测量往返时间，发送路由器可以获得对延迟的合理估计。</p>
+<ul>
+<li>为了获得更好的结果，可以多次进行测试，并使用平均值。</li>
+</ul></li>
+<li><p>为了将负载考虑在内，往返计时器必须在 ECHO
+数据包排队时启动。</p></li>
+<li><p>要忽略负载，应在 ECHO 数据包到达队列前端时启动计时器。</p></li>
+<li><p>测量延迟时是否应考虑负载？</p>
+<ul>
+<li>论证可以通过两种方式进行。</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001724161.png"  style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002346064.png" /></p>
+<h4 id="building-link-state-packets">Building Link State Packets</h4>
+<ul>
+<li>链路状态包被构造为发送到其他路由器。 数据包中包含的信息是：
+<ul>
+<li>ID of the sender</li>
+<li>sequence number</li>
+<li>age</li>
+<li>list of neighbors</li>
+<li>delay to each neighbor</li>
+</ul></li>
+<li>什么时候建立？
+<ul>
+<li>状态数据包可能会定期构建，或者在某些重要事件发生时构建，例如线路或邻居断开或再次恢复。</li>
+</ul></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220001940232.png" /></p>
+<ol type="a">
+<li>A subnet. (b) The link state packets for this subnet.</li>
+</ol>
+<h4
+id="distributing-the-link-state-packets-将lsp分组发送给其他的路由器">Distributing
+The Link State Packets 将LSP分组发送给其他的路由器</h4>
+<ul>
+<li>基本算法：
+<ul>
+<li>每个状态数据包都包含一个序列号，该序列号随着每个新数据包的发送而递增。</li>
+<li>路由器会跟踪它们看到的所有（源路由器、序列）对。</li>
+<li>当一个新的链路状态数据包进来时，它会根据已经看到的数据包列表进行检查。
+<ul>
+<li>如果它是新的，它将在除到达的那条线路之外的所有线路上转发（即，flooding）。</li>
+<li>如果它是重复的，则将其丢弃--discarded</li>
+<li>如果一个序列号低于迄今为止看到的最高序列号的数据包到达，则它被视为已过时而被拒绝。</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220002844515.png" /></p>
+<ul>
+<li>基本算法的问题：
+<ul>
+<li>序列号可能会环绕，导致混淆。
+<ul>
+<li>解决方案：使用 32 位序列号。 每秒一个数据包，需要 137
+年才能环绕。</li>
+</ul></li>
+<li>如果路由器崩溃，它将失去对自己序列号的跟踪。 如果它再次从序列号 0
+开始，新的数据包将被其他路由器拒绝为过时/重复。</li>
+<li>如果序列号被破坏并且接收到 65,540 而不是 4（1 位错误），则数据包 5
+-- 65540 将被拒绝为已过时。</li>
+</ul></li>
+</ul>
+<p>00000000000000100 10000000000000100</p>
+<ul>
+<li><p>路由器崩溃和序列号损坏的解决方案是将age（例如，60）与来自任何路由器的每个状态数据包相关联，并每秒递减一次年龄。</p></li>
+<li><p>当年龄达到zero时，来自该路由器的信息将被丢弃。</p></li>
+<li><p>通常每 10
+秒就会有一个新数据包出现，因此路由器信息仅在路由器关闭时才会超时（或连续丢失
+6 个数据包，这种情况不太可能发生）。</p></li>
+<li><p>对基本算法的一些改进使其更加健壮。</p>
+<ul>
+<li>当一个状态包进入路由器进行flooding时，它首先被放置在一个保持区（保留区）中等待一小会。</li>
+<li>如果来自同一源的另一个状态数据包在传输之前进入，则比较它们的序列号。
+<ul>
+<li>如果它们相等，则丢弃重复项。</li>
+<li>如果它们不同，则较旧的将被丢弃。</li>
+</ul></li>
+<li>为了防止线路上的错误，所有状态数据包都被确认。</li>
+<li>当一条线路空闲时，保持区被循环扫描以选择要发送的数据包或确认。</li>
+</ul></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003427402.png" /></p>
+<h4 id="computing-the-new-routes">Computing the New Routes</h4>
+<ul>
+<li>一组完整的链路状态数据包允许路由器构建整个子网的图。</li>
+<li>我们现在可以使用 Dijkstra 算法来计算路由器之间的最短路径。</li>
+<li>我们可以在路由器中安装这些信息来引导数据包。 （设置路由表）</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003603118.png" /></p>
+<h4 id="characteristics-of-l-s-routing-algorithm">Characteristics of L-S
+routing algorithm</h4>
+<ul>
+<li>好处
+<ul>
+<li>每个路由器的一致性好</li>
+<li>收敛性好</li>
+<li>适合大网络</li>
+</ul></li>
+<li>缺点
+<ul>
+<li>每个路由器需要更大的存储空间</li>
+<li>计算工作量很大</li>
+</ul></li>
+</ul>
+<h4 id="ospf">OSPF</h4>
+<ul>
+<li>先开最短路径</li>
+<li>用图代替真实网络
+<ul>
+<li>每个路由器都是一个节点</li>
+<li>计量成本（公制）</li>
+<li>可能有几张图</li>
+</ul></li>
+<li>计算最短路径</li>
+</ul>
+<h3 id="bgpborder-gateway-protocol边界网关协议">BGP（border gateway
+protocol）（边界网关协议）</h3>
+<ul>
+<li>不同的协议 - AS 之间需要
+BGP（边界网关协议），因为内部网关协议和外部网关协议的目标不同。</li>
+<li>BGP 的定义在 RFCs 1771 到 1774 中。</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003838934.png" /></p>
+<ul>
+<li>外部网关协议路由器的典型策略涉及政治、安全或经济方面的考虑。</li>
+<li>鉴于 BGP 对传输流量的特殊兴趣，网络被分为三类之一。
+<ul>
+<li>存根网络 stub networks</li>
+<li>多连接网络 multiconnected networks</li>
+<li>过境网络 transit networks</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220003953673.png"  style="zoom:67%;" /></p>
+<ul>
+<li>BGP 路由器对通过建立 TCP 连接相互通信。</li>
+<li>BGP 从根本上说是一种距离矢量协议，但与大多数其他协议（如
+RIP）截然不同。
+<ul>
+<li>BGP 路由器会跟踪准确的路径。</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211220004015917.png"  style="zoom:67%;" /></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://ye2222.github.io">GuoYB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ye2222.github.io/posts/4332/">https://ye2222.github.io/posts/4332/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ye2222.github.io" target="_blank">Yeの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/22806/" title="计网L10"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计网L10</div></div></a></div><div class="next-post pull-right"><a href="/posts/53293/" title="计网L8"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计网L8</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">GuoYB</div><div class="author-info__description">欢迎欢迎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ye2222"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ye2222" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:12554804@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://t.me/mumukin" target="_blank" title="Telegram"><i class="fab fa-telegram" style="color: #1E3050;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hahaha~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text">第一部分</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82-network-layer"><span class="toc-number"></span> <span class="toc-text">网络层 network layer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">网络层的位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">网络层的主要作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#service-types-provided-by-network-layer-%E6%9C%8D%E5%8A%A1%E7%B1%BB%E5%9E%8B"><span class="toc-number"></span> <span class="toc-text">Service types
+provided by network layer 服务类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ipv4%E5%8D%8F%E8%AE%AE"><span class="toc-number"></span> <span class="toc-text">IPv4协议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">0.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD"><span class="toc-number">0.2.</span> <span class="toc-text">基本功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ipv4%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%A0%BC%E5%BC%8F"><span class="toc-number">0.3.</span> <span class="toc-text">IPv4数据报格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%88%86%E7%89%87"><span class="toc-number">0.4.</span> <span class="toc-text">数据报分片</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">0.5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80"><span class="toc-number">0.6.</span> <span class="toc-text">IP地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">0.7.</span> <span class="toc-text">IP地址的分类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%9A%84%E5%9C%B0%E5%9D%80"><span class="toc-number">0.8.</span> <span class="toc-text">一些特殊的地址</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E7%9A%84%E5%88%92%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">子网的划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#routing-table"><span class="toc-number"></span> <span class="toc-text">Routing table</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#routed-protocol%E5%92%8Crouting-protocol%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">Routed
+protocol和Routing protocol的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#routing-algorithm"><span class="toc-number"></span> <span class="toc-text">Routing algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E5%BA%A6%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">路由算法中的度量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E5%8C%96%E5%8E%9F%E5%88%99-optimization-principle"><span class="toc-number">2.</span> <span class="toc-text">最优化原则 Optimization
+principle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sink-tree%E6%B1%87%E9%9B%86%E6%A0%91"><span class="toc-number">3.</span> <span class="toc-text">Sink tree(汇集树)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shortest-path-routing"><span class="toc-number"></span> <span class="toc-text">Shortest path routing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dijkstra%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">Dijkstra算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flooding"><span class="toc-number">2.</span> <span class="toc-text">Flooding</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dynamic-routing-algorithm"><span class="toc-number"></span> <span class="toc-text">Dynamic Routing algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">动态的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#distance-vector-routing-%E8%B7%9D%E7%A6%BB%E7%9F%A2%E9%87%8F%E8%B7%AF%E7%94%B1"><span class="toc-number">2.</span> <span class="toc-text">Distance Vector Routing
+距离矢量路由</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#working-principle-of-dv----dv%E7%AE%97%E6%B3%95%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">Working principle
+of DV -- DV算法的工作原则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E8%A1%A8"><span class="toc-number">2.2.</span> <span class="toc-text">更新表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">2.3.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#d-v%E7%AE%97%E6%B3%95%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.4.</span> <span class="toc-text">D-V算法的特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#main-features-of-rip"><span class="toc-number">2.5.</span> <span class="toc-text">Main features of RIP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#disadvantage-of-rip"><span class="toc-number">2.6.</span> <span class="toc-text">Disadvantage of RIP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#the-problems-induced-by-dv"><span class="toc-number">2.7.</span> <span class="toc-text">The problems induced by DV</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#main-problem-of-dv"><span class="toc-number">2.8.</span> <span class="toc-text">Main problem of DV</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#link-state-routing-ospf"><span class="toc-number"></span> <span class="toc-text">Link State Routing OSPF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#learning-about-the-neighbors"><span class="toc-number">1.</span> <span class="toc-text">Learning about the Neighbors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#measuring-line-cost-%E8%AE%BE%E7%BD%AE%E5%88%B0%E6%AF%8F%E4%B8%AA%E9%82%BB%E5%B1%85%E7%9A%84%E6%88%90%E6%9C%AC%E5%BA%A6%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">Measuring Line
+Cost 设置到每个邻居的成本度量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#building-link-state-packets"><span class="toc-number">3.</span> <span class="toc-text">Building Link State Packets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#distributing-the-link-state-packets-%E5%B0%86lsp%E5%88%86%E7%BB%84%E5%8F%91%E9%80%81%E7%BB%99%E5%85%B6%E4%BB%96%E7%9A%84%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">Distributing
+The Link State Packets 将LSP分组发送给其他的路由器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#computing-the-new-routes"><span class="toc-number">5.</span> <span class="toc-text">Computing the New Routes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#characteristics-of-l-s-routing-algorithm"><span class="toc-number">6.</span> <span class="toc-text">Characteristics of L-S
+routing algorithm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ospf"><span class="toc-number">7.</span> <span class="toc-text">OSPF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bgpborder-gateway-protocol%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE"><span class="toc-number"></span> <span class="toc-text">BGP（border gateway
+protocol）（边界网关协议）</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12759/" title="统计学习方法L2">统计学习方法L2</a><time datetime="2023-04-15T06:23:15.000Z" title="发表于 2023-04-15 14:23:15">2023-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/48218/" title="64位系统--BootLoader">64位系统--BootLoader</a><time datetime="2023-04-13T11:36:51.000Z" title="发表于 2023-04-13 19:36:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/7112/" title="64位系统--GNU_C">64位系统--GNU_C</a><time datetime="2023-04-13T11:31:51.000Z" title="发表于 2023-04-13 19:31:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12439/" title="统计学习方法L1">统计学习方法L1</a><time datetime="2023-04-11T07:56:41.000Z" title="发表于 2023-04-11 15:56:41">2023-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/32268/" title="趣谈Linux4">趣谈Linux4</a><time datetime="2023-04-10T11:46:37.000Z" title="发表于 2023-04-10 19:46:37">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By GuoYB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

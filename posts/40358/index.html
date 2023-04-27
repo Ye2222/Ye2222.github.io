@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>操作系统L11 | Yeの博客</title><meta name="author" content="GuoYB"><meta name="copyright" content="GuoYB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="页面内存管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统L11">
+<meta property="og:url" content="https://ye2222.github.io/posts/40358/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="页面内存管理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ye2222.github.io/img/avatar.png">
+<meta property="article:published_time" content="2022-01-03T13:03:58.000Z">
+<meta property="article:modified_time" content="2023-04-26T11:19:54.759Z">
+<meta property="article:author" content="GuoYB">
+<meta property="article:tag" content="课程:操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ye2222.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ye2222.github.io/posts/40358/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":100,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统L11',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-26 19:19:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Yeの博客"><span class="site-name">Yeの博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">操作系统L11</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-03T13:03:58.000Z" title="发表于 2022-01-03 21:03:58">2022-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-26T11:19:54.759Z" title="更新于 2023-04-26 19:19:54">2023-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="操作系统L11"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="内容">内容</h3>
+<ul>
+<li>与分页内存管理相关的一些问题</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032115315.png" /></p>
+<ul>
+<li>Segmentation 分段</li>
+</ul>
+<h4 id="paged-memory-management-分页内存管理">Paged Memory Management
+分页内存管理</h4>
+<p>CPU生成的地址被分为</p>
+<ul>
+<li>Page number(p)
+<ul>
+<li>用作页表的索引，页表包含物理内存中每个页面的基址</li>
+</ul></li>
+<li>Page offset(d)
+<ul>
+<li>结合基地址来定义发送到内存单元的物理内存地址</li>
+</ul></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032121396.png" /></p>
+<ul>
+<li>p是到页表的索引</li>
+<li>d是页表上的偏差</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032122299.png" /></p>
+<h3 id="分页系统中的设计问题">分页系统中的设计问题</h3>
+<h4
+id="local-versus-global-allocation-policies-本地与全局分配策略">Local
+versus Global Allocation Policies 本地与全局分配策略</h4>
+<ul>
+<li>全局算法在所有可运行进程之间动态分配页框。</li>
+<li>本地算法为单个进程分配页面。</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032124013.png" /></p>
+<p>全局算法用于防止颠簸(thrashing)并将分页率保持在可接受的范围内：</p>
+<ul>
+<li>A: 太高 -&gt; 为进程分配更多的页框。</li>
+<li>B: 太低 -&gt; 分配进程较少的页框。</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032127059.png" /></p>
+<h4 id="page-size-页面大小">Page Size 页面大小</h4>
+<h5 id="small-page-size">small page size</h5>
+<ul>
+<li>优点：内部碎片较少
+<ul>
+<li>内部碎片 internal fragmentation
+<ul>
+<li>随便选择一个正文段、数据段或堆栈段很可能不会恰好装满整个页面，多余的空间就被浪费了，这种浪费便是内部碎片</li>
+</ul></li>
+</ul></li>
+<li>缺点：程序需要很多页 -&gt; 更大的页表</li>
+<li>由于页表和内部碎片造成的开销</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032129232.png"  style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032131070.png" /></p>
+<h4
+id="separate-instruction-and-data-spaces-分离的指令空间和数据空间">Separate
+Instruction and Data Spaces 分离的指令空间和数据空间</h4>
+<ul>
+<li><p>大多数计算机只有一个地址空间，既存放程序也存放数据</p></li>
+<li><p>大多数系统将指令（程序文本）和数据的地址空间分开。</p></li>
+<li><p>一个进程在其进程表中可以有两个指针：</p>
+<ul>
+<li>一个指向指令页，一个指向数据页。</li>
+</ul></li>
+<li><p>一个共享代码可以被两个进程指向。</p></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032135754.png" /></p>
+<h4 id="shared-pages-共享页面">Shared Pages 共享页面</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032136541.png" /></p>
+<h4 id="cleaning-policy-清除策略">Cleaning Policy 清除策略</h4>
+<p>Paging Daemon（分页守护进程）：</p>
+<ul>
+<li>一个后台进程，大部分时间处于休眠状态；</li>
+<li>定期唤醒以检查内存状态</li>
+<li>当空闲页框太少时，使用替换算法选择要驱逐的页面</li>
+</ul>
+<h4 id="page-fault-handling-缺页中断处理">Page Fault Handling
+缺页中断处理</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032139680.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032139339.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032140253.png" /></p>
+<h4 id="locking-pages-in-memory-锁定内存中的页面">Locking Pages in
+Memory 锁定内存中的页面</h4>
+<ul>
+<li>Process通过系统调用从设备读取数据到缓冲区
+<ul>
+<li>在等待 I/O 时，另一个进程启动</li>
+<li>有一个缺页中断</li>
+<li>第一个进程的缓冲可能会被选择置换出</li>
+</ul></li>
+<li>如果通过I/O处于对该页面进行DMA传输的过程中，将这个页面移出，会导致部分数据写入它们所需的缓存区中，而部分数据被写入到最新装入的页面中。</li>
+<li>在这种情况下，页面需要被钉住（pinning）</li>
+</ul>
+<h4 id="backing-store-后备存储">Backing Store 后备存储</h4>
+<p>在磁盘上分配页面空间的两种方法：</p>
+<p>1）分页到静态交换区</p>
+<p>2）使用磁盘映射动态备份页面</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032148007.png" /></p>
+<h3 id="segmentation-分段">Segmentation 分段</h3>
+<ul>
+<li><p>对程序的虚拟地址进行分段，映射到物理地址时，物理地址也被分段了</p></li>
+<li><p>在机器上提供多个互相独立的称为段(segment)</p></li>
+<li><p>程序员不知道这些将有多大，或者它们将如何增长，并且不想管理它们在虚拟内存中的位置</p></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032303949.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032335433.png" /></p>
+<h4
+id="compiler-with-one-dimensional-address-space-具有一维地址空间的编译器">Compiler
+with One-dimensional Address Space 具有一维地址空间的编译器</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032307327.png"  style="zoom: 80%;" /></p>
+<h4 id="compiler-with-segmentation-带分段的编译器">Compiler with
+Segmentation 带分段的编译器</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032310637.png" /></p>
+<ul>
+<li>分段为每个进程维护多个独立的虚拟地址空间</li>
+<li>允许每个表独立增长或收缩</li>
+</ul>
+<h4 id="pure-segmentation">Pure Segmentation</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032316722.png"  style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032318682.png" /></p>
+<ul>
+<li><p>段(segment)是逻辑上独立的地址空间</p>
+<ul>
+<li>段可能有不同的大小</li>
+<li>它们的大小可以动态变化</li>
+<li>地址空间使用二维内存地址并且有2部分：(段#，段内偏移)</li>
+<li>段可以有不同的保护</li>
+<li>允许共享程序和进程之间的数据。</li>
+</ul></li>
+<li><p>分段和分页结合：MULTICS</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032329771.png" /></p></li>
+</ul>
+<h3 id="问题">问题</h3>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032104712.png"  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032113447.png"  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032148956.png"  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032254015.png"  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032330044.png"  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032330693.png"  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032330393.png"  style="zoom:67%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201032337632.png"  style="zoom:67%;" /></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://ye2222.github.io">GuoYB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ye2222.github.io/posts/40358/">https://ye2222.github.io/posts/40358/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ye2222.github.io" target="_blank">Yeの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BE%E7%A8%8B-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">课程:操作系统</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/23591/" title="操作系统L13"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">操作系统L13</div></div></a></div><div class="next-post pull-right"><a href="/posts/23911/" title="操作系统L10"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">操作系统L10</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/23911/" title="操作系统L10"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-03</div><div class="title">操作系统L10</div></div></a></div><div><a href="/posts/40166/" title="操作系统L12"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-14</div><div class="title">操作系统L12</div></div></a></div><div><a href="/posts/23591/" title="操作系统L13"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-04</div><div class="title">操作系统L13</div></div></a></div><div><a href="/posts/40550/" title="操作系统L14"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-04</div><div class="title">操作系统L14</div></div></a></div><div><a href="/posts/24231/" title="操作系统L15"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-28</div><div class="title">操作系统L15</div></div></a></div><div><a href="/posts/24551/" title="操作系统L16"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-04</div><div class="title">操作系统L16</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">GuoYB</div><div class="author-info__description">欢迎欢迎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ye2222"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ye2222" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:12554804@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://t.me/mumukin" target="_blank" title="Telegram"><i class="fab fa-telegram" style="color: #1E3050;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hahaha~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#paged-memory-management-%E5%88%86%E9%A1%B5%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">Paged Memory Management
+分页内存管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">分页系统中的设计问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#local-versus-global-allocation-policies-%E6%9C%AC%E5%9C%B0%E4%B8%8E%E5%85%A8%E5%B1%80%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-number">2.1.</span> <span class="toc-text">Local
+versus Global Allocation Policies 本地与全局分配策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#page-size-%E9%A1%B5%E9%9D%A2%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.2.</span> <span class="toc-text">Page Size 页面大小</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#small-page-size"><span class="toc-number">2.2.1.</span> <span class="toc-text">small page size</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#separate-instruction-and-data-spaces-%E5%88%86%E7%A6%BB%E7%9A%84%E6%8C%87%E4%BB%A4%E7%A9%BA%E9%97%B4%E5%92%8C%E6%95%B0%E6%8D%AE%E7%A9%BA%E9%97%B4"><span class="toc-number">2.3.</span> <span class="toc-text">Separate
+Instruction and Data Spaces 分离的指令空间和数据空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shared-pages-%E5%85%B1%E4%BA%AB%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.4.</span> <span class="toc-text">Shared Pages 共享页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cleaning-policy-%E6%B8%85%E9%99%A4%E7%AD%96%E7%95%A5"><span class="toc-number">2.5.</span> <span class="toc-text">Cleaning Policy 清除策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#page-fault-handling-%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86"><span class="toc-number">2.6.</span> <span class="toc-text">Page Fault Handling
+缺页中断处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#locking-pages-in-memory-%E9%94%81%E5%AE%9A%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.7.</span> <span class="toc-text">Locking Pages in
+Memory 锁定内存中的页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#backing-store-%E5%90%8E%E5%A4%87%E5%AD%98%E5%82%A8"><span class="toc-number">2.8.</span> <span class="toc-text">Backing Store 后备存储</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#segmentation-%E5%88%86%E6%AE%B5"><span class="toc-number">3.</span> <span class="toc-text">Segmentation 分段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#compiler-with-one-dimensional-address-space-%E5%85%B7%E6%9C%89%E4%B8%80%E7%BB%B4%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">Compiler
+with One-dimensional Address Space 具有一维地址空间的编译器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#compiler-with-segmentation-%E5%B8%A6%E5%88%86%E6%AE%B5%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">Compiler with
+Segmentation 带分段的编译器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pure-segmentation"><span class="toc-number">3.3.</span> <span class="toc-text">Pure Segmentation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">问题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12759/" title="统计学习方法L2">统计学习方法L2</a><time datetime="2023-04-15T06:23:15.000Z" title="发表于 2023-04-15 14:23:15">2023-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/48218/" title="64位系统--BootLoader">64位系统--BootLoader</a><time datetime="2023-04-13T11:36:51.000Z" title="发表于 2023-04-13 19:36:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/7112/" title="64位系统--GNU_C">64位系统--GNU_C</a><time datetime="2023-04-13T11:31:51.000Z" title="发表于 2023-04-13 19:31:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12439/" title="统计学习方法L1">统计学习方法L1</a><time datetime="2023-04-11T07:56:41.000Z" title="发表于 2023-04-11 15:56:41">2023-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/32268/" title="趣谈Linux4">趣谈Linux4</a><time datetime="2023-04-10T11:46:37.000Z" title="发表于 2023-04-10 19:46:37">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By GuoYB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>操作系统L16 | Yeの博客</title><meta name="author" content="GuoYB"><meta name="copyright" content="GuoYB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文件系统续">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统L16">
+<meta property="og:url" content="https://ye2222.github.io/posts/24551/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="文件系统续">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ye2222.github.io/img/avatar.png">
+<meta property="article:published_time" content="2022-01-04T12:13:55.000Z">
+<meta property="article:modified_time" content="2023-04-26T11:19:54.773Z">
+<meta property="article:author" content="GuoYB">
+<meta property="article:tag" content="课程:操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ye2222.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ye2222.github.io/posts/24551/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":100,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统L16',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-26 19:19:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Yeの博客"><span class="site-name">Yeの博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">操作系统L16</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-04T12:13:55.000Z" title="发表于 2022-01-04 20:13:55">2022-01-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-26T11:19:54.773Z" title="更新于 2023-04-26 19:19:54">2023-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="操作系统L16"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="file-allocation-文件的实现-续">File Allocation 文件的实现
+续</h4>
+<h5 id="链表分配-linked-list-allocation">链表分配 Linked List
+Allocation</h5>
+<ul>
+<li>保持磁盘块的链表</li>
+<li>缺点
+<ul>
+<li>随机存取速度慢</li>
+<li>一个块中的数据量不是2的幂</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042018219.png"  style="zoom:80%;" /></p>
+<p>由于指针占去了一些字节，每个磁盘块存储数据的字节数不再是2的整数次幂</p>
+<h5
+id="采用内存中的表进行链表分配-linked-list-allocation-using-an-index">采用内存中的表进行链表分配
+Linked List Allocation using an index</h5>
+<ul>
+<li>从每个块中取出表指针字并将它们放入内存中的索引表FAT（File Allocation
+Table 文件分配表）中。</li>
+<li>好处
+<ul>
+<li>整个块可用于数据</li>
+<li>存储在内存中，速度快</li>
+</ul></li>
+<li>缺点
+<ul>
+<li>占用大量内存。需要将整个表放在内存中</li>
+<li>对于 200-GB 磁盘，该表将占用 600M 或 800M 内存。</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042021424.png"  style="zoom:80%;" /></p>
+<h5 id="i-node-index-node">I-node (index-node)</h5>
+<ul>
+<li><p>是一种数据结构，给每个文件赋予一个i节点</p></li>
+<li><p>列出文件块的属性和磁盘地址</p></li>
+<li><p>给定i节点，就能找到文件的所有块</p></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042025695.png"  style="zoom:80%;" /></p>
+<ul>
+<li><p>这种机制有很大的优势，即只有在对应文件打开时，其i节点才在内存中</p></li>
+<li><p>占用空间比FAT小</p></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042029882.png" /></p>
+<ul>
+<li>i节点的问题</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042030165.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042030166.png" /></p>
+<h4 id="directories-目录的实现">Directories 目录的实现</h4>
+<ul>
+<li>打开文件时，文件系统使用路径名来定位目录条目(directory entry)。</li>
+<li>目录：提供查找磁盘块所需的信息。
+<ol type="1">
+<li>整个文件的磁盘地址（连续块）</li>
+<li>第一个块的数量（链表）</li>
+<li>I-node的数量（I-node）</li>
+</ol></li>
+<li>在哪里存储属性？ 在目录中还是在 I 节点中？</li>
+</ul>
+<h5 id="两种存储属性的方法">两种存储属性的方法</h5>
+<ul>
+<li>目录条目中的固定大小条目、磁盘地址和属性 (MS-DOS/Windows)</li>
+<li>每个条目仅引用一个 I 节点的目录 (UNIX)</li>
+</ul>
+<h5 id="处理目录中的长文件名">处理目录中的长文件名</h5>
+<ul>
+<li>Fixed-length names 定长名称（浪费空间）</li>
+<li>In-line 行（删除文件时，会引入一个可变大小的间隙（a））</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042105983.png" /></p>
+<ul>
+<li>Heap 堆（堆管理需要额外的努力（b））</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042107130.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042107198.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042055517.png" /></p>
+<h5 id="如何搜索每个目录中的文件">如何搜索每个目录中的文件？</h5>
+<ul>
+<li>Linearly 线性（慢）</li>
+<li>Hash table 哈希表（更快的查找但更复杂的管理）</li>
+<li>Cache the results of searches 缓存搜索结果</li>
+</ul>
+<h5 id="shared-files-共享文件">Shared files 共享文件</h5>
+<ul>
+<li>共享文件用于允许文件出现在多个目录中。</li>
+<li>目录和共享文件之间的连接称为链接(link)。 文件系统是有向无环图
+(DAG)。</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042112143.png" /></p>
+<ul>
+<li>问题：
+<ul>
+<li>如果目录包含磁盘地址，则必须在目录 B
+中制作C目录中的磁盘地址的副本。如果 C 或 B
+往文件中添加内容，新的数据块将仅出现在添加工作的用户的目录中。</li>
+</ul></li>
+<li>解决方案：
+<ul>
+<li>不要在目录中列出磁盘块地址，而是在一个小的数据结构中，目录指向这个数据结构。例如，索引节点、i节点</li>
+<li>创建一个类型为 link 的新文件，其中包含链接到的文件的路径名 →
+符号链接(symbolic linking)</li>
+</ul></li>
+<li>两种方法的缺点</li>
+</ul>
+<p>数据结构</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042121037.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042121860.png" /></p>
+<p>符号链接</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042122572.png" /></p>
+<h4 id="virtual-file-systems-虚拟文件系统">Virtual File Systems
+虚拟文件系统</h4>
+<ul>
+<li><p>定义：虚拟文件系统（或虚拟文件系统交换机）是内核中的软件层，为用户空间程序提供文件系统接口。</p>
+<ul>
+<li>从“the”文件系统到许多文件系统类型</li>
+<li>示例 –
+Ext2、UFS(Solaris)、NFS、Ext3、Veritas、ReiserFS、XFS、ISO9660 (CD)、UDF
+(DVD) 等。</li>
+</ul></li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042129805.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042127850.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042130760.png" /></p>
+<ul>
+<li><p>不同类型文件系统的相同 API</p>
+<ul>
+<li>将文件系统通用操作与实现细节分开</li>
+<li>系统调用程序到 VFS API 而不是特定的 FS 接口</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131541.png" /></p></li>
+<li><p>非常灵活的用例：</p>
+<ul>
+<li>远程用户文件和本地系统文件？</li>
+<li>从 USB 启动？ 网络？</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042128691.png"  style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131355.png" /></p>
+<h3 id="问题">问题</h3>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042015823.png"  style="zoom: 80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042026360.png"  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042026410.png"  style="zoom:80%;" /></p>
+<p>文件如果很大，i节点块的大小需要变大，可能还需要指向另一块包含额外块地址的块的地址，所以B、C、D有关</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042032607.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042040182.png" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042111328.png"  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042131166.png"  style="zoom:67%;" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/202201042132690.png" /></p>
+<h3 id="check-points">Check Points</h3>
+<p>Please describe the advantages and disadvantages of contiguous
+allocation.</p>
+<ul>
+<li>随机读取速度快，实现简单，性能好（无需寻道）</li>
+<li>需要提前知道文件大小，文件删除后留下碎片</li>
+</ul>
+<p>Please describe the advantages and disadvantages of linked listed
+allocation.</p>
+<ul>
+<li>文件大小可拓展，充分利用磁盘空间</li>
+<li>随机存储慢，数据大小不是2的幂次</li>
+</ul>
+<p>Please describe the advantages and disadvantages of FAT.</p>
+<ul>
+<li>随机存储速度快，文件大小可拓展</li>
+<li>占用内存大量空间，</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://ye2222.github.io">GuoYB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ye2222.github.io/posts/24551/">https://ye2222.github.io/posts/24551/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ye2222.github.io" target="_blank">Yeの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BE%E7%A8%8B-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">课程:操作系统</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/40742/" title="操作系统L17"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">操作系统L17</div></div></a></div><div class="next-post pull-right"><a href="/posts/40550/" title="操作系统L14"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">操作系统L14</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/23911/" title="操作系统L10"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-03</div><div class="title">操作系统L10</div></div></a></div><div><a href="/posts/40166/" title="操作系统L12"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-14</div><div class="title">操作系统L12</div></div></a></div><div><a href="/posts/40358/" title="操作系统L11"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-03</div><div class="title">操作系统L11</div></div></a></div><div><a href="/posts/23591/" title="操作系统L13"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-04</div><div class="title">操作系统L13</div></div></a></div><div><a href="/posts/40550/" title="操作系统L14"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-04</div><div class="title">操作系统L14</div></div></a></div><div><a href="/posts/24231/" title="操作系统L15"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-28</div><div class="title">操作系统L15</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">GuoYB</div><div class="author-info__description">欢迎欢迎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ye2222"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ye2222" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:12554804@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://t.me/mumukin" target="_blank" title="Telegram"><i class="fab fa-telegram" style="color: #1E3050;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hahaha~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#file-allocation-%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%9E%E7%8E%B0-%E7%BB%AD"><span class="toc-number">1.</span> <span class="toc-text">File Allocation 文件的实现
+续</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E5%88%86%E9%85%8D-linked-list-allocation"><span class="toc-number">1.1.</span> <span class="toc-text">链表分配 Linked List
+Allocation</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%87%E7%94%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E8%A1%A8%E8%BF%9B%E8%A1%8C%E9%93%BE%E8%A1%A8%E5%88%86%E9%85%8D-linked-list-allocation-using-an-index"><span class="toc-number">1.2.</span> <span class="toc-text">采用内存中的表进行链表分配
+Linked List Allocation using an index</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#i-node-index-node"><span class="toc-number">1.3.</span> <span class="toc-text">I-node (index-node)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#directories-%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">Directories 目录的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E5%AD%98%E5%82%A8%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">两种存储属性的方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E9%95%BF%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-number">2.2.</span> <span class="toc-text">处理目录中的长文件名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%90%9C%E7%B4%A2%E6%AF%8F%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">如何搜索每个目录中的文件？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#shared-files-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">Shared files 共享文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#virtual-file-systems-%E8%99%9A%E6%8B%9F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">Virtual File Systems
+虚拟文件系统</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number"></span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#check-points"><span class="toc-number"></span> <span class="toc-text">Check Points</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12759/" title="统计学习方法L2">统计学习方法L2</a><time datetime="2023-04-15T06:23:15.000Z" title="发表于 2023-04-15 14:23:15">2023-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/48218/" title="64位系统--BootLoader">64位系统--BootLoader</a><time datetime="2023-04-13T11:36:51.000Z" title="发表于 2023-04-13 19:36:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/7112/" title="64位系统--GNU_C">64位系统--GNU_C</a><time datetime="2023-04-13T11:31:51.000Z" title="发表于 2023-04-13 19:31:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12439/" title="统计学习方法L1">统计学习方法L1</a><time datetime="2023-04-11T07:56:41.000Z" title="发表于 2023-04-11 15:56:41">2023-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/32268/" title="趣谈Linux4">趣谈Linux4</a><time datetime="2023-04-10T11:46:37.000Z" title="发表于 2023-04-10 19:46:37">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By GuoYB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

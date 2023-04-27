@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>李宏毅深度学习L4 | Yeの博客</title><meta name="author" content="GuoYB"><meta name="copyright" content="GuoYB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GAN(生成对抗网络)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李宏毅深度学习L4">
+<meta property="og:url" content="https://ye2222.github.io/posts/32343/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="GAN(生成对抗网络)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ye2222.github.io/img/avatar.png">
+<meta property="article:published_time" content="2022-06-20T02:03:18.000Z">
+<meta property="article:modified_time" content="2023-04-26T11:19:54.797Z">
+<meta property="article:author" content="GuoYB">
+<meta property="article:tag" content="DeepLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ye2222.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ye2222.github.io/posts/32343/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":100,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '李宏毅深度学习L4',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-26 19:19:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Yeの博客"><span class="site-name">Yeの博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">李宏毅深度学习L4</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-20T02:03:18.000Z" title="发表于 2022-06-20 10:03:18">2022-06-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-26T11:19:54.797Z" title="更新于 2023-04-26 19:19:54">2023-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9D%8E%E5%AE%8F%E6%AF%85/">李宏毅</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="李宏毅深度学习L4"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="gan">GAN</h2>
+<h4 id="将网络作为生成器generator">将网络作为生成器(Generator)</h4>
+<ul>
+<li>给定一个分布，从分布sample出一些样本</li>
+<li>网络作为generator，可以接收sample出来的样本和输入x，学习到一个复杂的分布，输出y。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201522909.png"  style="zoom:80%;" /></p>
+<h5 id="为什么需要一个分布">为什么需要一个分布</h5>
+<p>以一个Video Prediction为例子</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201525726.png"  style="zoom:80%;" /></p>
+<ul>
+<li>给定之前的帧，网络需要输出下一帧</li>
+<li>但是这样会出现一个问题，网络采用一个多分类问题的解决形式时，输出可能会结合多种可能性，生成一种包含所有情况，只是概率大小不同的图
+<ul>
+<li>在这个例子中，你会看到小豆子分裂，一个往左，一个往右，网络没办法只选定一种可能</li>
+</ul></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201528854.png"  style="zoom:80%;" /></p>
+<ul>
+<li>当给定一个分布sample出来的数值，网络便可以学习到一个分布，进行一个特定的选择</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201545752.png"  style="zoom:80%;" /></p>
+<h4 id="所有种类的gan">所有种类的GAN</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201555147.png"  style="zoom:80%;" /></p>
+<p>https://github.com/hindupuravinash/the-gan-zoo</p>
+<h4 id="gan的结构">GAN的结构</h4>
+<ul>
+<li>GAN包括Generator和Discriminator两个结构</li>
+<li>Generator根据输入和sample来在一个复杂的分布中sample出一个输出</li>
+<li>Discriminator对于给定的输入，进行打分，判断其是否为真实的</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558718.png"  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201558214.png"  style="zoom:80%;" /></p>
+<h4 id="gan的思想">GAN的思想</h4>
+<ul>
+<li>Generator想办法生成逼真的图片来骗过Discriminator</li>
+<li>Discriminator想办法辨别出真假图片</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201559238.png"  style="zoom:80%;" /></p>
+<h4 id="gan的算法">GAN的算法</h4>
+<ol type="1">
+<li>初始化generator和discriminator</li>
+<li>在每一个训练步骤中</li>
+</ol>
+<h5 id="step1">Step1</h5>
+<ul>
+<li>固定generator G，更新discriminator D</li>
+<li>Discriminator学习给真实的图片高分，给生成的图片低分，即学会去分辨真假图片</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201608509.png"  style="zoom:80%;" /></p>
+<h5 id="step2">Step2</h5>
+<ul>
+<li>固定discrimator D，更新generator G</li>
+<li>Generator要学会去欺骗discriminator</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611928.png"  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201611665.png"  style="zoom:80%;" /></p>
+<h4 id="gan背后的理论">GAN背后的理论</h4>
+<h5 id="目标">目标</h5>
+<ul>
+<li>让Generator生成的分布尽可能向数据的分布靠近</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201616856.png"  style="zoom:80%;" /></p>
+<p>即 <span class="math display">\[
+G^* = arg\min_{G}Div(P_G,P_{data})
+\]</span> 这里的<span
+class="math inline">\(Div(P_G,P_{data})\)</span>是指两个分布之间的divergence(散度)</p>
+<h6 id="sampling">Sampling</h6>
+<p>尽管我们不能确切地知道<span class="math inline">\(P_G\)</span>和<span
+class="math inline">\(P_{data}\)</span>的分布，但是我们从两个分布中sample出一些样本</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201620547.png"  style="zoom:80%;" /></p>
+<h5 id="discriminator">Discriminator</h5>
+<p>这里的Discriminator是一个二分类的分类器</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201621874.png"  style="zoom:80%;" /></p>
+<p><strong>Training</strong>： <span class="math display">\[
+D^* = arg\max_{D}V(D,G)
+\]</span> 其实后面的<span
+class="math inline">\(\max_DV(D,G)\)</span>相当于一个JS散度</p>
+<p><strong>Objective Function</strong>: <span class="math display">\[
+V(G,D)=E_{y\sim P_{data}}[logD(y)]+E_{y\sim P_G}[log(1-D(y))]
+\]</span> 其中，我们希望<span
+class="math inline">\(logD(y)\)</span>能够尽可能地大，这样能够认出真实的图片；<span
+class="math inline">\(log(1-D(y))\)</span>能够尽可能地小，这样可以辨别出生成地图片</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201627838.png"  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201629793.png"  style="zoom:80%;" /></p>
+<p>我们可以将Generator中需要的散度换成Discriminator的目标函数，联合训练</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630402.png"  style="zoom:80%;" /></p>
+<p>其他的一些divergence</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201630227.png"  style="zoom:80%;" /></p>
+<h4 id="tips-for-gan">Tips for GAN</h4>
+<h5 id="js-divergence并不适合gan">JS divergence并不适合GAN</h5>
+<h6
+id="在大部分情况下p_g和p_data并不是重叠的overlapped">在大部分情况下，<span
+class="math inline">\(P_G\)</span>和<span
+class="math inline">\(P_{data}\)</span>并不是重叠的(overlapped)</h6>
+<ul>
+<li>两者都是高维空间在低维空间的流形(manifold)，重叠部分可以忽略</li>
+<li>取样问题，尽管两者之间有重叠但是取样不够多的话</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201845025.png"  style="zoom:80%;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201846683.png"  style="zoom:80%;" /></p>
+<h6 id="js-divergence的问题">JS divergence的问题</h6>
+<ul>
+<li>当两个分布不重叠的话，JS divergence总是<span
+class="math inline">\(log_2\)</span></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201851921.png"  style="zoom:80%;" /></p>
+<p>这样会出现一个很严重的问题，当两个分布不重叠的时候，discriminator总是会实现百分百精度的分类，但这样GAN的训练就无法有一个明确的方向去优化了，因为只要不重叠，都是一样差的</p>
+<h5 id="wasserstein-distance">Wasserstein distance</h5>
+<p>Wasserstein
+distance可以用来衡量一个分布变换到目标分布的<strong>最小距离</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201859084.png"  style="zoom:80%;" /></p>
+<p>这样GAN的优化就有一个明确的方向</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201901989.png"  style="zoom:80%;" /></p>
+<h4 id="wgan">WGAN</h4>
+<h5 id="使用wasserstein-distance来优化p_data和p_g">使用Wasserstein
+distance来优化<span class="math inline">\(P_{data}\)</span>和<span
+class="math inline">\(P_G\)</span></h5>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201905869.png"  style="zoom:80%;" /></p>
+<p>如果没有D函数光滑的限制，D的训练将不会收敛</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201909399.png"  style="zoom:80%;" /></p>
+<ul>
+<li>如上图所示，生成分布和数据分布没有重叠，discriminator可能会不断往无穷处进行打分，来更好地区分两者，无法收敛</li>
+<li>让discriminator的函数保持光滑可以强制<span
+class="math inline">\(D(y)\)</span>位于正无穷和负无穷之间</li>
+</ul>
+<h6 id="不同的做法">不同的做法</h6>
+<ul>
+<li><p>Origin WGAN -&gt; Weight</p>
+<ul>
+<li><p>强制参数w位于c和-c之间</p></li>
+<li><p>参数更新后，如果<span
+class="math inline">\(w&gt;c\)</span>，<span class="math inline">\(w =
+c\)</span>；如果<span class="math inline">\(w &lt; -c\)</span>，<span
+class="math inline">\(w = -c\)</span></p></li>
+</ul></li>
+<li><p>Improved WGAN -&gt; Gradient Penalty 梯度惩罚</p></li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201919203.png"  style="zoom:80%;" /></p>
+<ul>
+<li>Spectral Normalization-&gt;Keep gradient norm smaller than 1
+everywhere</li>
+</ul>
+<p>GAN仍然很难训练，Generator和Discriminator需要棋逢对手，不能有一方独大</p>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201921403.png"  style="zoom:80%;" /></p>
+<h4 id="用于序列生成的gan">用于序列生成的GAN</h4>
+<p><img src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images2/202206201922723.png"  style="zoom:80%;" /></p>
+<ul>
+<li>通常，generator是从一个从其他方法中学习的模型微调(fine-tuned)得到的</li>
+<li>但是，通过足够的超参数调整和提示，ScarchGAN可以从头开始训练</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://ye2222.github.io">GuoYB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ye2222.github.io/posts/32343/">https://ye2222.github.io/posts/32343/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ye2222.github.io" target="_blank">Yeの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DeepLearning/">DeepLearning</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/31884/" title="趣谈Linux2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">趣谈Linux2</div></div></a></div><div class="next-post pull-right"><a href="/posts/32204/" title="趣谈Linux1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">趣谈Linux1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/32151/" title="李宏毅深度学习L1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-07</div><div class="title">李宏毅深度学习L1</div></div></a></div><div><a href="/posts/48150/" title="李宏毅深度学习L3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-01</div><div class="title">李宏毅深度学习L3</div></div></a></div><div><a href="/posts/31959/" title="李宏毅深度学习L2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-07</div><div class="title">李宏毅深度学习L2</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">GuoYB</div><div class="author-info__description">欢迎欢迎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ye2222"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ye2222" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:12554804@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://t.me/mumukin" target="_blank" title="Telegram"><i class="fab fa-telegram" style="color: #1E3050;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hahaha~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gan"><span class="toc-number">1.</span> <span class="toc-text">GAN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E7%BD%91%E7%BB%9C%E4%BD%9C%E4%B8%BA%E7%94%9F%E6%88%90%E5%99%A8generator"><span class="toc-number">1.0.1.</span> <span class="toc-text">将网络作为生成器(Generator)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">为什么需要一个分布</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E7%A7%8D%E7%B1%BB%E7%9A%84gan"><span class="toc-number">1.0.2.</span> <span class="toc-text">所有种类的GAN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gan%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">1.0.3.</span> <span class="toc-text">GAN的结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gan%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-number">1.0.4.</span> <span class="toc-text">GAN的思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gan%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-number">1.0.5.</span> <span class="toc-text">GAN的算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#step1"><span class="toc-number">1.0.5.1.</span> <span class="toc-text">Step1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#step2"><span class="toc-number">1.0.5.2.</span> <span class="toc-text">Step2</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gan%E8%83%8C%E5%90%8E%E7%9A%84%E7%90%86%E8%AE%BA"><span class="toc-number">1.0.6.</span> <span class="toc-text">GAN背后的理论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-number">1.0.6.1.</span> <span class="toc-text">目标</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sampling"><span class="toc-number">1.0.6.1.1.</span> <span class="toc-text">Sampling</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#discriminator"><span class="toc-number">1.0.6.2.</span> <span class="toc-text">Discriminator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tips-for-gan"><span class="toc-number">1.0.7.</span> <span class="toc-text">Tips for GAN</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#js-divergence%E5%B9%B6%E4%B8%8D%E9%80%82%E5%90%88gan"><span class="toc-number">1.0.7.1.</span> <span class="toc-text">JS divergence并不适合GAN</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9C%A8%E5%A4%A7%E9%83%A8%E5%88%86%E6%83%85%E5%86%B5%E4%B8%8Bp_g%E5%92%8Cp_data%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%87%8D%E5%8F%A0%E7%9A%84overlapped"><span class="toc-number">1.0.7.1.1.</span> <span class="toc-text">在大部分情况下，\(P_G\)和\(P_{data}\)并不是重叠的(overlapped)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#js-divergence%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.0.7.1.2.</span> <span class="toc-text">JS divergence的问题</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#wasserstein-distance"><span class="toc-number">1.0.7.2.</span> <span class="toc-text">Wasserstein distance</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wgan"><span class="toc-number">1.0.8.</span> <span class="toc-text">WGAN</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8wasserstein-distance%E6%9D%A5%E4%BC%98%E5%8C%96p_data%E5%92%8Cp_g"><span class="toc-number">1.0.8.1.</span> <span class="toc-text">使用Wasserstein
+distance来优化\(P_{data}\)和\(P_G\)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-number">1.0.8.1.1.</span> <span class="toc-text">不同的做法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%BA%8F%E5%88%97%E7%94%9F%E6%88%90%E7%9A%84gan"><span class="toc-number">1.0.9.</span> <span class="toc-text">用于序列生成的GAN</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12759/" title="统计学习方法L2">统计学习方法L2</a><time datetime="2023-04-15T06:23:15.000Z" title="发表于 2023-04-15 14:23:15">2023-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/48218/" title="64位系统--BootLoader">64位系统--BootLoader</a><time datetime="2023-04-13T11:36:51.000Z" title="发表于 2023-04-13 19:36:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/7112/" title="64位系统--GNU_C">64位系统--GNU_C</a><time datetime="2023-04-13T11:31:51.000Z" title="发表于 2023-04-13 19:31:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12439/" title="统计学习方法L1">统计学习方法L1</a><time datetime="2023-04-11T07:56:41.000Z" title="发表于 2023-04-11 15:56:41">2023-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/32268/" title="趣谈Linux4">趣谈Linux4</a><time datetime="2023-04-10T11:46:37.000Z" title="发表于 2023-04-10 19:46:37">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By GuoYB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

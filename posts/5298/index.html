@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>软件工程复习L1 | Yeの博客</title><meta name="author" content="GuoYB"><meta name="copyright" content="GuoYB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="overview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程复习L1">
+<meta property="og:url" content="https://ye2222.github.io/posts/5298/index.html">
+<meta property="og:site_name" content="Yeの博客">
+<meta property="og:description" content="overview">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ye2222.github.io/img/avatar.png">
+<meta property="article:published_time" content="2021-11-22T08:29:44.000Z">
+<meta property="article:modified_time" content="2023-04-26T11:19:54.847Z">
+<meta property="article:author" content="GuoYB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ye2222.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ye2222.github.io/posts/5298/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":100,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '软件工程复习L1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-26 19:19:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Yeの博客"><span class="site-name">Yeの博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">软件工程复习L1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-22T08:29:44.000Z" title="发表于 2021-11-22 16:29:44">2021-11-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-26T11:19:54.847Z" title="更新于 2023-04-26 19:19:54">2023-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="软件工程复习L1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="soft-engineering">Soft engineering</h1>
+<h4 id="定义">定义</h4>
+<p>Software engineering is an engineering discipline that is concerned
+with all aspects of software production from early system specification
+to maintaining the system after it has gone into use</p>
+<p>软件工程是一门工程学科，涉及软件生产的各个方面，从早期的系统规范到系统投入使用后的维护</p>
+<h4 id="engineering-discipline">Engineering discipline</h4>
+<ol type="1">
+<li>Theories</li>
+<li>methods</li>
+<li>tools (formal or less formal approach)</li>
+</ol>
+<h3 id="software-engineering-solving-problems--软件工程三要素">Software
+Engineering Solving Problems--软件工程三要素</h3>
+<ul>
+<li>Method
+<ul>
+<li>提供一系列软件开发技术。包括完成开发过程中各方面任务的方法并用某种特殊的语言或图形来描述。
+<ul>
+<li>UML and other models</li>
+<li>Design Pattern</li>
+<li>Formal method</li>
+<li>Agile Development</li>
+</ul></li>
+</ul></li>
+<li>Tool
+<ul>
+<li>软件工具为软件方法提供了自动的或半自动的支撑环境。将多种工具集成在一起可构成计算机辅助软件工程（
+Computer-Aided Software Engineering 即CASE）的软件开发支撑系统。</li>
+</ul></li>
+<li>Procedure
+<ul>
+<li>软件过程是将软件工程的方法和工具综合起来，进行软件开发活动。
+<ul>
+<li>Analysis (requirement specification)</li>
+<li>Design</li>
+<li>Implementation</li>
+<li>Testing</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="需要解决的问题">需要解决的问题</h3>
+<p>软件产品庞大而复杂</p>
+<p>发展需要分析和综合(analysis, synthesis)</p>
+<ul>
+<li><p>分析：将一个大问题分解成更小的、可以理解的部分</p>
+<ul>
+<li>抽象是关键</li>
+</ul></li>
+<li><p>综合：从较小的构建块构建（组合）软件</p>
+<ul>
+<li>组合具有挑战性</li>
+</ul></li>
+</ul>
+<p>分析</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122164158199.png" /></p>
+<p>综合</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122164207177.png" /></p>
+<h3 id="the-software-life-cycle">The Software Life Cycle</h3>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122210136246.png" /></p>
+<h3 id="software-process">Software Process</h3>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122210216359.png" /></p>
+<h4 id="software-process-model">software process model</h4>
+<p>a simplified description of a software process</p>
+<ul>
+<li>include activities of software process, software products and the
+role of people involved</li>
+</ul>
+<h5 id="software-development-model">software development model</h5>
+<ul>
+<li>Waterfall approach</li>
+<li>Iterative development</li>
+<li>Component-based software engineering</li>
+</ul>
+<h4 id="development-process-models">Development process models</h4>
+<p>four phases</p>
+<ul>
+<li>analysis (requirement specificiation)</li>
+<li>design</li>
+<li>implementation</li>
+<li>testing</li>
+</ul>
+<h5 id="the-waterfall-model">The waterfall model</h5>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122210959978.png" /></p>
+<p>a phase cannot be started until the previous phase is completed.</p>
+<p>除非前面的阶段结束，否则不会开始新的阶段</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122211040743.png" /></p>
+<h5 id="the-iterative-model">The iterative model</h5>
+<p>software is developed in a series of steps.</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122211122621.png" /></p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122211312975.png" /></p>
+<h2 id="analysis-phase">ANALYSIS PHASE</h2>
+<ul>
+<li>开发过程从分析阶段开始</li>
+<li>此阶段产生一个规范文档，该文档显示软件将做什么，而不指定如何做</li>
+<li>分析阶段可以使用两种不同的方法，这取决于实现阶段是使用过程编程语言还是面向对象语言完成的。</li>
+</ul>
+<h3 id="procedure-oriented-analysis">Procedure-oriented analysis</h3>
+<ul>
+<li>also called structured analysis or classical analysis</li>
+<li>是系统实现阶段使用过程语言时使用的分析过程。</li>
+</ul>
+<h4 id="data-flow-diagrams">Data flow diagrams</h4>
+<p>展示系统中数据的移动</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122211504868.png" /></p>
+<h4 id="entity-relationship-diagrams">Entity-relationship diagrams</h4>
+<h4 id="state-diagrams">State diagrams</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211122212157618.png" /></p>
+<h3 id="object-oriented-analysis">Object-oriented analysis</h3>
+<ul>
+<li>在实现使用面向对象语言时使用的分析过程。</li>
+</ul>
+<h4 id="use-case-diagrams">Use case diagrams</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211123191035535.png" /></p>
+<p>four components:</p>
+<ul>
+<li>system, use cases, actors and relationships</li>
+</ul>
+<h4 id="class-diagrams">Class diagrams</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211123191218465.png" /></p>
+<h2 id="design-phase">DESIGN PHASE</h2>
+<ul>
+<li>定义了系统将如何完成分析阶段定义的内容。</li>
+<li>在设计阶段，定义了系统的所有组件。</li>
+</ul>
+<h3 id="procedure-oriented-design">Procedure-oriented design</h3>
+<ul>
+<li>需要设计过程和数据</li>
+<li>在面向过程的设计中，整个系统被划分为一组过程或模块。</li>
+</ul>
+<h4 id="structure-charts">Structure charts</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211123194112171.png" /></p>
+<p>在面向过程的设计中，说明模块之间关系的常用工具是结构图。</p>
+<h4 id="modularity-模块化">Modularity 模块化</h4>
+<ul>
+<li>模块化意味着将一个大型项目分解为易于理解和处理的较小部分。</li>
+<li>模块化意味着将一个大任务划分为可以相互通信的小任务</li>
+<li>当系统被划分为模块时，有两个主要问题：耦合和内聚（coupling and
+cohesion）</li>
+</ul>
+<h5 id="coupling-耦合">coupling 耦合</h5>
+<ul>
+<li>耦合是衡量两个模块相互绑定紧密程度的一种方法。</li>
+<li><strong>软件系统中模块之间的耦合必须最小化</strong></li>
+<li>当两个模块相互依赖时，它们<strong>紧密耦合</strong>--Tightly
+coupled</li>
+<li><strong>松耦合</strong>模块具有一定的依赖性，但它们的互连较弱--Loosely
+coupled</li>
+<li><strong>未耦合</strong>的模块完全没有互连；他们完全没有关系--Uncoupled
+modules</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211123195056820.png" /></p>
+<h5 id="cohesion-内聚">cohesion 内聚</h5>
+<ul>
+<li>在计算机编程中，内聚性是指模块中的元素属于一起的程度。</li>
+<li>从某种意义上说，它是一个类的方法和数据与该类所服务的统一目的或概念之间关系强度的度量。</li>
+<li>具有高内聚性的模块往往更可取，因为高内聚性与软件的几个理想特性相关，包括健壮性、可靠性、可重用性和可理解性。</li>
+<li><strong>软件系统中模块内的内聚必须最大化。</strong></li>
+</ul>
+<h3 id="object-oriented-design">Object-oriented design</h3>
+<ul>
+<li>在面向对象设计中，设计阶段通过详细说明类的细节继续进行。</li>
+<li>一个类由一组变量（属性）和一组方法组成。</li>
+<li>面向对象设计阶段列出了这些属性和方法的详细信息</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211124202911781.png" /></p>
+<h2 id="implementation-phase">IMPLEMENTATION PHASE</h2>
+<p>在这个阶段，程序员在面向过程的设计中为模块编写代码，或者在面向对象的设计中编写程序单元来实现类</p>
+<h3 id="choice-of-language">Choice of language</h3>
+<h3 id="software-quality">Software quality</h3>
+<ul>
+<li>高质量的软件系统是指满足用户需求、满足组织的操作标准并在为其开发的硬件上高效运行的系统。</li>
+<li>如果我们想要实现高质量的软件系统，我们必须能够定义一些质量属性。</li>
+</ul>
+<h4 id="software-quality-factors">Software quality factors</h4>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211124203325242.png" /></p>
+<ul>
+<li>操作性</li>
+<li>兼容性</li>
+<li>可移植性</li>
+</ul>
+<h2 id="testing-phase">TESTING PHASE</h2>
+<ul>
+<li>测试阶段的目标是发现错误，这意味着一个好的测试策略是发现最多错误的策略。</li>
+<li>有两种类型的测试：玻璃盒（白盒）和黑盒</li>
+</ul>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211124203453656.png" /></p>
+<h3 id="glass-box-testing">Glass-box testing</h3>
+<ul>
+<li>玻璃盒测试（或白盒测试）基于了解软件的内部结构。</li>
+<li>测试的目标是确定软件的所有组件是否都达到了设计的目的。</li>
+<li>玻璃盒测试假设测试人员了解软件的一切。
+<ul>
+<li>在这种情况下，软件就像一个玻璃盒子，盒子里的一切都是可见的。玻璃盒测试由软件工程师或专门团队完成。</li>
+</ul></li>
+</ul>
+<h4 id="basis-path-testing--基本路径测试">Basis path
+testing--基本路径测试</h4>
+<p>此方法创建一组测试用例，这些测试用例至少执行软件中的每个语句一次。</p>
+<p><img
+src="https://fastly.jsdelivr.net/gh/Ye2222/blogImage@main/images/image-20211124204204530.png" /></p>
+<h3 id="black-box-testing">Black-box testing</h3>
+<ul>
+<li>黑盒测试的名字来源于测试软件的概念，它不知道软件内部是什么，也不知道它是如何工作的。换句话说，软件就像一个测试人员看不见的黑匣子。</li>
+<li>黑盒测试根据软件应该完成的功能（如输入和输出）测试软件的功能。</li>
+</ul>
+<h4 id="exhaustive-testing">Exhaustive testing</h4>
+<ul>
+<li>最好的黑盒测试方法是测试软件在输入域中的<strong>所有可能值</strong>。</li>
+<li>然而，在复杂的软件中，输入域是如此巨大，以至于这样做通常是不切实际的。</li>
+</ul>
+<h4 id="random-testing">Random testing</h4>
+<ul>
+<li>在<strong>随机测试</strong>中，选择输入域中的值子集进行测试。</li>
+<li>选择子集的方式必须确保值分布在域输入上，这一点非常重要。</li>
+<li>在这种情况下，使用随机数生成器非常有用。</li>
+</ul>
+<h4 id="boundary-value-testing">Boundary-value testing</h4>
+<ul>
+<li>遇到<strong>边界值</strong>时，经常会发生错误。
+<ul>
+<li>例如，如果模块定义其输入之一必须大于或等于100，则测试模块的边界值100非常重要。</li>
+</ul></li>
+<li>如果模块在此边界值处失败，则模块代码中的某些条件（如x）可能会失效≥
+100写为x&gt;100。</li>
+</ul>
+<h2 id="documentation">DOCUMENTATION</h2>
+<ul>
+<li>为了正确使用和有效维护软件，需要文档。</li>
+<li>通常，为软件准备三套独立的文档：用户文档、系统文档和技术文档。
+<ul>
+<li>user documentation, system documentation and technical
+documentation.</li>
+</ul></li>
+<li>文件编制是一个持续的过程。</li>
+</ul>
+<h3 id="user-documentation">User documentation</h3>
+<ul>
+<li>为了正确运行软件系统，用户需要文档，传统上称为用户指南，它显示了如何一步一步地使用软件。</li>
+<li>用户指南通常包含一个教程部分，用于指导用户了解软件的每个功能。
+一个好的用户指南可以是一个非常强大的营销工具：用户文档在营销中的重要性怎么强调都不过分。</li>
+<li>用户指南应该为新手和专家用户编写，一个具有良好用户文档的软件系统肯定会增加销量。</li>
+</ul>
+<h3 id="system-documentation">System documentation</h3>
+<ul>
+<li>系统文档定义了软件本身。</li>
+<li>它的编写应该使软件能够由原始开发人员以外的人进行维护和修改。</li>
+<li>系统开发的所有四个阶段都应有系统文档。</li>
+</ul>
+<h3 id="technical-documentation">Technical documentation</h3>
+<ul>
+<li>技术文档描述了软件系统的安装和维修。</li>
+<li>安装文档定义了软件应如何安装在每台计算机上，例如服务器和客户端。</li>
+<li>服务文档定义了在必要时应如何维护和更新系统。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://ye2222.github.io">GuoYB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ye2222.github.io/posts/5298/">https://ye2222.github.io/posts/5298/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ye2222.github.io" target="_blank">Yeの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/5618/" title="软件工程复习L2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">软件工程复习L2</div></div></a></div><div class="next-post pull-right"><a href="/posts/38485/" title="pandasL2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">pandasL2</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">GuoYB</div><div class="author-info__description">欢迎欢迎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ye2222"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ye2222" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:12554804@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://t.me/mumukin" target="_blank" title="Telegram"><i class="fab fa-telegram" style="color: #1E3050;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hahaha~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#soft-engineering"><span class="toc-number">1.</span> <span class="toc-text">Soft engineering</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#engineering-discipline"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">Engineering discipline</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#software-engineering-solving-problems--%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-number">1.0.1.</span> <span class="toc-text">Software
+Engineering Solving Problems--软件工程三要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.0.2.</span> <span class="toc-text">需要解决的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-software-life-cycle"><span class="toc-number">1.0.3.</span> <span class="toc-text">The Software Life Cycle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#software-process"><span class="toc-number">1.0.4.</span> <span class="toc-text">Software Process</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#software-process-model"><span class="toc-number">1.0.4.1.</span> <span class="toc-text">software process model</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#software-development-model"><span class="toc-number">1.0.4.1.1.</span> <span class="toc-text">software development model</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#development-process-models"><span class="toc-number">1.0.4.2.</span> <span class="toc-text">Development process models</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#the-waterfall-model"><span class="toc-number">1.0.4.2.1.</span> <span class="toc-text">The waterfall model</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#the-iterative-model"><span class="toc-number">1.0.4.2.2.</span> <span class="toc-text">The iterative model</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#analysis-phase"><span class="toc-number">1.1.</span> <span class="toc-text">ANALYSIS PHASE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#procedure-oriented-analysis"><span class="toc-number">1.1.1.</span> <span class="toc-text">Procedure-oriented analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#data-flow-diagrams"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Data flow diagrams</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#entity-relationship-diagrams"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">Entity-relationship diagrams</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#state-diagrams"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">State diagrams</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object-oriented-analysis"><span class="toc-number">1.1.2.</span> <span class="toc-text">Object-oriented analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#use-case-diagrams"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Use case diagrams</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#class-diagrams"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Class diagrams</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#design-phase"><span class="toc-number">1.2.</span> <span class="toc-text">DESIGN PHASE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#procedure-oriented-design"><span class="toc-number">1.2.1.</span> <span class="toc-text">Procedure-oriented design</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#structure-charts"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">Structure charts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#modularity-%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Modularity 模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#coupling-%E8%80%A6%E5%90%88"><span class="toc-number">1.2.1.2.1.</span> <span class="toc-text">coupling 耦合</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cohesion-%E5%86%85%E8%81%9A"><span class="toc-number">1.2.1.2.2.</span> <span class="toc-text">cohesion 内聚</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object-oriented-design"><span class="toc-number">1.2.2.</span> <span class="toc-text">Object-oriented design</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#implementation-phase"><span class="toc-number">1.3.</span> <span class="toc-text">IMPLEMENTATION PHASE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#choice-of-language"><span class="toc-number">1.3.1.</span> <span class="toc-text">Choice of language</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#software-quality"><span class="toc-number">1.3.2.</span> <span class="toc-text">Software quality</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#software-quality-factors"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">Software quality factors</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testing-phase"><span class="toc-number">1.4.</span> <span class="toc-text">TESTING PHASE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#glass-box-testing"><span class="toc-number">1.4.1.</span> <span class="toc-text">Glass-box testing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#basis-path-testing--%E5%9F%BA%E6%9C%AC%E8%B7%AF%E5%BE%84%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">Basis path
+testing--基本路径测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#black-box-testing"><span class="toc-number">1.4.2.</span> <span class="toc-text">Black-box testing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exhaustive-testing"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Exhaustive testing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#random-testing"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">Random testing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#boundary-value-testing"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">Boundary-value testing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#documentation"><span class="toc-number">1.5.</span> <span class="toc-text">DOCUMENTATION</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#user-documentation"><span class="toc-number">1.5.1.</span> <span class="toc-text">User documentation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#system-documentation"><span class="toc-number">1.5.2.</span> <span class="toc-text">System documentation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#technical-documentation"><span class="toc-number">1.5.3.</span> <span class="toc-text">Technical documentation</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12759/" title="统计学习方法L2">统计学习方法L2</a><time datetime="2023-04-15T06:23:15.000Z" title="发表于 2023-04-15 14:23:15">2023-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/48218/" title="64位系统--BootLoader">64位系统--BootLoader</a><time datetime="2023-04-13T11:36:51.000Z" title="发表于 2023-04-13 19:36:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/7112/" title="64位系统--GNU_C">64位系统--GNU_C</a><time datetime="2023-04-13T11:31:51.000Z" title="发表于 2023-04-13 19:31:51">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/12439/" title="统计学习方法L1">统计学习方法L1</a><time datetime="2023-04-11T07:56:41.000Z" title="发表于 2023-04-11 15:56:41">2023-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/32268/" title="趣谈Linux4">趣谈Linux4</a><time datetime="2023-04-10T11:46:37.000Z" title="发表于 2023-04-10 19:46:37">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By GuoYB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
